@@ -1,0 +1,2699 @@
+<!--Created by TIBCO WSDL--><wsdl:definitions name="Untitled" targetNamespace="http://www.tsh.bestbuy.com/BusinessServices/Proxy/TradeInCheck" xmlns:ns0="http://bestbuy.com/bbym/sales/transactioncheck/service/v1" xmlns:ns1="http://tsh.bestbuy.com/tsh/tshfault" xmlns:ns10="http://www.tsh.bestbuy.com/common/party/v1" xmlns:ns11="http://www.tsh.bestbuy.com/common/qualifiled/datatype/v1" xmlns:ns2="http://www.tsh.bestbuy.com/common/v1" xmlns:ns3="http://bestbuy.com/bbym/sales/transactioncheck/fields/v1" xmlns:ns4="http://www.tsh.bestbuy.com/common/datatype/v1" xmlns:ns5="http://www.tsh.bestbuy.com/common/metadata/fields/v1" xmlns:ns6="http://www.tsh.bestbuy.com/common/communication/v1" xmlns:ns7="http://www.tsh.bestbuy.com/common/metadata/components/v1" xmlns:ns8="http://www.tsh.bestbuy.com/common/location/v1" xmlns:ns9="http://bestbuy.com/bbym/sales/transactioncheck/component/v1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.tsh.bestbuy.com/BusinessServices/Proxy/TradeInCheck" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:types>
+        <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.tsh.bestbuy.com/common/v1" version="1.0" xmlns:dt="http://www.tsh.bestbuy.com/common/datatype/v1" xmlns:qdt="http://www.tsh.bestbuy.com/common/qualifiled/datatype/v1" xmlns:tns="http://www.tsh.bestbuy.com/common/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/datatype/v1"/>
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/qualifiled/datatype/v1"/>
+            <xs:annotation>
+                <xs:documentation>Common Location schema is defined to capture common generic elements which can be leveraged by other TSH schemas.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType name="AmountType">
+                <xs:annotation>
+                    <xs:documentation>A type defining a currency amount.</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Amount" type="qdt:DecimalNumericType">
+                        <xs:annotation>
+                            <xs:documentation>The monetary quantity in currency units.
+					</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+                <xs:attribute name="currency" type="qdt:StringType"/>
+            </xs:complexType>
+            <xs:complexType name="DescriptionType">
+                <xs:annotation>
+                    <xs:documentation/>
+                </xs:annotation>
+                <xs:simpleContent>
+                    <xs:extension base="dt:TextType">
+                        <xs:attribute name="type" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="DocumentIDType">
+                <xs:annotation>
+                    <xs:documentation>This is the ID assigned to the document by the creator of the document.</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element ref="tns:ID">
+                        <xs:annotation>
+                            <xs:documentation>Is the Identifiers of the given instance of an entity within the scope of the integration. 
+				The schemeAgencyID attribute identifies the party that provided or knows this party by the given identifier.
+			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+                <xs:attribute name="agencyID" type="qdt:StringType">
+                    <xs:annotation>
+                        <xs:documentation>is identifier of the agency owns this ID </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="agencyName" type="qdt:StringType">
+                    <xs:annotation>
+                        <xs:documentation>is name of the agency owns this ID </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="agencyRole" type="qdt:StringType">
+                    <xs:annotation>
+                        <xs:documentation>is role of the agency for this ID</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:complexType>
+            <xs:complexType name="EntityDateListType">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:EntityDate">
+                        <xs:annotation>
+                            <xs:documentation>This date type allows to provide various date types for associating entity.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="EntityDateType">
+                <xs:simpleContent>
+                    <xs:extension base="xs:date">
+                        <xs:attribute ref="tns:type" use="required"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="PartyIDsType">
+                <xs:annotation>
+                    <xs:documentation>Contain the ids for a given party. These ids may be assigned by multiple organizations.</xs:documentation>
+                </xs:annotation>
+                <xs:group ref="tns:PartyIDsGroup"/>
+            </xs:complexType>
+            <xs:complexType abstract="true" name="StatusBaseType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="tns:Code">
+                        <xs:annotation>
+                            <xs:documentation>Element for the communication of all codes.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:Description"/>
+                    <xs:element minOccurs="0" name="ReasonCode" type="dt:CodeType">
+                        <xs:annotation>
+                            <xs:documentation>Identifies the reason for an activity</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="StatusType">
+                <xs:complexContent>
+                    <xs:extension base="tns:StatusBaseType"/>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="TrackingInfoType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="tns:TrackID">
+                        <xs:annotation>
+                            <xs:documentation>This is the ID used for tracking the status of a job or request.
+			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:TrackURL">
+                        <xs:annotation>
+                            <xs:documentation>This the Tracking URL that can be used to track the current status of the request or job.
+			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="TrackStatus" type="tns:TrackingStatusType"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TrackingStatusType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="tns:Code">
+                        <xs:annotation>
+                            <xs:documentation>Element for the communication of all codes.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:Description"/>
+                    <xs:element minOccurs="0" name="StatusUpdateDateTime" type="qdt:DateTimeType"/>
+                    <xs:element minOccurs="0" name="ReasonCode" type="dt:CodeType">
+                        <xs:annotation>
+                            <xs:documentation>Identifies the reason for an activity</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TransactionType">
+                <xs:annotation>
+                    <xs:documentation>A type defining a transaction.</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="tns:ID">
+                        <xs:annotation>
+                            <xs:documentation>Is the Identifiers of the given instance of an entity within the scope of the integration. 
+				The schemeAgencyID attribute identifies the party that provided or knows this party by the given identifier.
+			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:Name">
+                        <xs:annotation>
+                            <xs:documentation>Identifies the Name of the object in which associated.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:Description"/>
+                    <xs:element minOccurs="0" ref="tns:ChannelCode">
+                        <xs:annotation>
+                            <xs:documentation>Identifies the channel in which the associated entity comes.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Date" type="qdt:DateType"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="AccountID" type="dt:IdentifierType">
+                <xs:annotation>
+                    <xs:documentation>Identifier of the account</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="AlternateDocumentID" type="tns:DocumentIDType">
+                <xs:annotation>
+                    <xs:documentation>Is the alternate document id for the associated document.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="BirthDateTime" type="qdt:DateTimeType">
+                <xs:annotation>
+                    <xs:documentation>Is the date and time that an individual was born.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ChannelCode" type="dt:CodeType">
+                <xs:annotation>
+                    <xs:documentation>Identifies the channel in which the associated entity comes.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Code" type="dt:CodeType">
+                <xs:annotation>
+                    <xs:documentation>Element for the communication of all codes.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DeathDateTime" type="qdt:DateTimeType">
+                <xs:annotation>
+                    <xs:documentation>Is the date and time that an individual died.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DepartmentName" type="dt:NameType">
+                <xs:annotation>
+                    <xs:documentation>Name of the Department</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Description" type="xs:string"/>
+            <xs:element name="DocumentID" type="tns:DocumentIDType">
+                <xs:annotation>
+                    <xs:documentation>Is the primary document id for the document associated.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="EffectiveDateTime" type="qdt:DateTimeType">
+                <xs:annotation>
+                    <xs:documentation>This is the DateTime the associated object is made effective</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="EntityDate" type="tns:EntityDateType">
+                <xs:annotation>
+                    <xs:documentation>This date type allows to provide various date types for associating entity.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="EntityDateList" type="tns:EntityDateListType"/>
+            <xs:element name="EthnicOrigin" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation>The concept of ethnic origin is an attempt to classify people, not according to their current nationality, but according to where their ancestors came from. ...</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="FirstName" type="dt:NameType">
+                <xs:annotation>
+                    <xs:documentation>A given name is a personal name that specifies and differentiates between 
+				members of a group of individuals, especially in a family, all of whose members usually share
+				the same family name (surname). 
+				A given name is a name given to a person, as opposed to an inherited one such as a family name.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="GenderCode" type="dt:CodeType">
+                <xs:annotation>
+                    <xs:documentation>A Code indicating the sex of the individual in which it is associated.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ID" type="dt:IdentifierType">
+                <xs:annotation>
+                    <xs:documentation>Is the Identifiers of the given instance of an entity within the scope of the integration. 
+				The schemeAgencyID attribute identifies the party that provided or knows this party by the given identifier.
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="JobTitle" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation>Is the position or designation of the pesron with whom associated within the given organization. Examples are Director, Software Engineer, Purchasing Manager etc</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="LastName" type="dt:NameType">
+                <xs:annotation>
+                    <xs:documentation> family name (in Western contexts often referred to as a last name) is a type of surname and part of 
+				a person's name indicating the family to which the person belongs. The use of family names is widespread in 
+				cultures around the world. ...</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="MaidenName" type="dt:NameType">
+                <xs:annotation>
+                    <xs:documentation>the original surname (last name) of a woman (as opposed to her married name).</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="MaritalStatusCode" type="dt:CodeType">
+                <xs:annotation>
+                    <xs:documentation>A code indicating the martial status of the individual in which it is associated.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="MiddleName" type="dt:NameType">
+                <xs:annotation>
+                    <xs:documentation>People's names in several countries include one or more middle names, 
+				placed between the first given name and the surname. In most such countries, except
+				Northern America, this notion of middle name does not exist, and those names are considered 
+				as a second, third, etc. given name. ...</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Name" type="dt:NameType">
+                <xs:annotation>
+                    <xs:documentation>Identifies the Name of the object in which associated.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Nationality" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation>Nationality is membership of a nation or sovereign state. Nationality can be acquired by being born within the jurisdiction of a state, 
+				by inheriting it from parents, or by a process of naturalization. ...</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="NickName" type="dt:NameType">
+                <xs:annotation>
+                    <xs:documentation>a familiar name for a person (often a shortened version of a person's given name) 
+				"Joe's mother would not use his nickname and always called him Joseph"; "Henry's nickname was Slim"</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Number" type="qdt:IntegerNumericType">
+                <xs:annotation>
+                    <xs:documentation>
+				System assigned number of the associated entity. 
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PartyIDs" type="tns:PartyIDsType">
+                <xs:annotation>
+                    <xs:documentation>Contains the set of possible identifiers for an associated Party.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Prefix" type="dt:NameType">
+                <xs:annotation>
+                    <xs:documentation>Prefixes precede the name and should not be included in he name field.  Prefixes include Mr., Mrs., Ms., Miss and Dr.
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PrimeLineNumber" type="dt:IdentifierType">
+                <xs:annotation>
+                    <xs:documentation>Is the Line Number of the given Line Component within the document. LineNumbers are assigned by the sending system.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Reason" type="dt:TextType"/>
+            <xs:element name="ReasonCode" type="dt:CodeType"/>
+            <xs:element name="Responsibility" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation>A text description of the responsibility of the associated entity.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="SalutationPreferredName" type="dt:NameType">
+                <xs:annotation>
+                    <xs:documentation>Way the person is addressed e.g. Honorable etc?</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Status" type="tns:StatusType">
+                <xs:annotation>
+                    <xs:documentation> Indicates the status of the associated object by providing the Status Code along with a description and when the status is effective.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="SubLineNumber" type="dt:IdentifierType">
+                <xs:annotation>
+                    <xs:documentation>Is the SubLine Number of the given Line Component within the document.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Suffix" type="dt:NameType">
+                <xs:annotation>
+                    <xs:documentation>A name suffix, in the Western English-language naming tradition, follows a person’s full name 
+				and provides additional information about the person. Post-nominal letters indicate that the individual holds a 
+				position, educational degree, accreditation, office or honour.
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="SystemID" type="dt:IdentifierType">
+                <xs:annotation>
+                    <xs:documentation>The Entity Id of the associated object for the given system in systemId tag</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="TaxID" type="dt:IdentifierType">
+                <xs:annotation>
+                    <xs:documentation>Identifier for a business or individual provided by the government. This maybe a FIIN, Social Security Number, or Drivers License Number to name a few.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Title" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation>A title is a prefix or suffix added to someone's name to signify either veneration, 
+				an official position or a professional or academic qualification. ...</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="TrackID" type="dt:IdentifierType">
+                <xs:annotation>
+                    <xs:documentation>This is the ID used for tracking the status of a job or request.
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="TrackURL" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation>This the Tracking URL that can be used to track the current status of the request or job.
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="TrackingInfo" type="tns:TrackingInfoType">
+                <xs:annotation>
+                    <xs:documentation> This is used for  tracking details for request or Job </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="UserArea" type="dt:UserAreaType">
+                <xs:annotation>
+                    <xs:documentation>Allows the Tag Super Highway schema data model to extend the specification in order to provide additional information that is not captured in Canonical Schema.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:attribute name="category" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>category of associating object</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="createDateTime" type="qdt:DateTimeType"/>
+            <xs:attribute name="languageCode" type="qdt:NormalizedStringType">
+                <xs:annotation>
+                    <xs:documentation>A language code is a code that assigns letters or numbers as identifiers for languages. 
+				These codes are often used to organize library collections, to choose the correct localizations and 
+				translations in computing, and as a shorthand designation for forms.
+			</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="languagePreference" type="qdt:NormalizedStringType"/>
+            <xs:attribute name="operationCode" type="qdt:NormalizedStringType">
+                <xs:annotation>
+                    <xs:documentation>This code denotes requested operation on entity
+			</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="preferedIndicator" type="qdt:BooleanType">
+                <xs:annotation>
+                    <xs:documentation>
+				Preference  
+			</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="preferrence" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation> indicates the </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="primary" type="qdt:BooleanType">
+                <xs:annotation>
+                    <xs:documentation>This attribute determines primary status of the associate object.
+			</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="sourceID" type="qdt:NormalizedStringType"/>
+            <xs:attribute name="type" type="qdt:NormalizedStringType">
+                <xs:annotation>
+                    <xs:documentation>Type property can be used to define type of the document</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:group name="PartyIDsGroup">
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="tns:ID">
+                        <xs:annotation>
+                            <xs:documentation>Is the Identifiers of the given instance of an entity within the scope of the integration. 
+				The schemeAgencyID attribute identifies the party that provided or knows this party by the given identifier.
+			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:TaxID">
+                        <xs:annotation>
+                            <xs:documentation>Identifier for a business or individual provided by the government. This maybe a FIIN, Social Security Number, or Drivers License Number to name a few.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:UserArea">
+                        <xs:annotation>
+                            <xs:documentation>Allows the Tag Super Highway schema data model to extend the specification in order to provide additional information that is not captured in Canonical Schema.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:group>
+            <xs:group name="PersonNameGroup">
+                <xs:annotation>
+                    <xs:documentation>Person name group</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:Title">
+                        <xs:annotation>
+                            <xs:documentation>A title is a prefix or suffix added to someone's name to signify either veneration, 
+				an official position or a professional or academic qualification. ...</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:SalutationPreferredName">
+                        <xs:annotation>
+                            <xs:documentation>Way the person is addressed e.g. Honorable etc?</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:FirstName">
+                        <xs:annotation>
+                            <xs:documentation>A given name is a personal name that specifies and differentiates between 
+				members of a group of individuals, especially in a family, all of whose members usually share
+				the same family name (surname). 
+				A given name is a name given to a person, as opposed to an inherited one such as a family name.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:MiddleName">
+                        <xs:annotation>
+                            <xs:documentation>People's names in several countries include one or more middle names, 
+				placed between the first given name and the surname. In most such countries, except
+				Northern America, this notion of middle name does not exist, and those names are considered 
+				as a second, third, etc. given name. ...</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:LastName">
+                        <xs:annotation>
+                            <xs:documentation> family name (in Western contexts often referred to as a last name) is a type of surname and part of 
+				a person's name indicating the family to which the person belongs. The use of family names is widespread in 
+				cultures around the world. ...</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:MaidenName">
+                        <xs:annotation>
+                            <xs:documentation>the original surname (last name) of a woman (as opposed to her married name).</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:NickName">
+                        <xs:annotation>
+                            <xs:documentation>a familiar name for a person (often a shortened version of a person's given name) 
+				"Joe's mother would not use his nickname and always called him Joseph"; "Henry's nickname was Slim"</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:Prefix">
+                        <xs:annotation>
+                            <xs:documentation>Prefixes precede the name and should not be included in he name field.  Prefixes include Mr., Mrs., Ms., Miss and Dr.
+			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:Suffix">
+                        <xs:annotation>
+                            <xs:documentation>A name suffix, in the Western English-language naming tradition, follows a person’s full name 
+				and provides additional information about the person. Post-nominal letters indicate that the individual holds a 
+				position, educational degree, accreditation, office or honour.
+			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:group>
+            <xs:attributeGroup name="IDAttributeGroup">
+                <xs:annotation>
+                    <xs:documentation> </xs:documentation>
+                </xs:annotation>
+                <xs:attribute name="agencyID" type="qdt:StringType">
+                    <xs:annotation>
+                        <xs:documentation>is identifier of the agency owns this ID </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="agencyName" type="qdt:StringType">
+                    <xs:annotation>
+                        <xs:documentation>is name of the agency owns this ID </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="agencyRole" type="qdt:StringType">
+                    <xs:annotation>
+                        <xs:documentation>is role of the agency for this ID</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:attributeGroup>
+        </xs:schema>
+        <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://bestbuy.com/bbym/sales/transactioncheck/fields/v1" version="1.0" xmlns:common="http://www.tsh.bestbuy.com/common/v1" xmlns:communication="http://www.tsh.bestbuy.com/common/communication/v1" xmlns:location="http://www.tsh.bestbuy.com/common/location/v1" xmlns:qdt="http://www.tsh.bestbuy.com/common/qualifiled/datatype/v1" xmlns:tns="http://bestbuy.com/bbym/sales/transactioncheck/fields/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/v1"/>
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/communication/v1"/>
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/location/v1"/>
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/qualifiled/datatype/v1"/>
+            <xs:complexType name="AddressType">
+                <xs:complexContent>
+                    <xs:extension base="location:AddressBaseType">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="AddressType" type="qdt:StringType">
+                                <xs:annotation>
+                                    <xs:documentation>Address Type - 1 for Shipping Address; 2 for Billing Address</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element minOccurs="0" name="UrbanizationCode" type="qdt:NormalizedStringType">
+                                <xs:annotation>
+                                    <xs:documentation>
+								An urbanization denotes an area, sector, or residential development within a geographic
+								area. In addition to being a descriptive word, it precedes the name of that area. This
+								descriptor, commonly used in Puerto Rican urban areas, is an important part of the addressing
+								format as it describes the location of a given street.
+							</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element minOccurs="0" name="Direction" type="qdt:NormalizedStringType"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="CarrierBaseType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="common:Code">
+                        <xs:annotation>
+                            <xs:documentation>Carrier code 3 digit character</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="common:Name">
+                        <xs:annotation>
+                            <xs:documentation>Carrier code description</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ChannelType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="common:ID">
+                        <xs:annotation>
+                            <xs:documentation>Channel ID</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="common:Code">
+                        <xs:annotation>
+                            <xs:documentation>Element for the communication of all codes.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Name" type="qdt:StringType"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CommunicationType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="communication:Phone">
+                        <xs:annotation>
+                            <xs:documentation>Customer contact Phone number</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="communication:EMail">
+                        <xs:annotation>
+                            <xs:documentation>Customer email address</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Address" type="tns:AddressType">
+                        <xs:annotation>
+                            <xs:documentation>Customer billing or shipping address</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ContractLineItemType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Device" type="tns:DeviceType">
+                        <xs:annotation>
+                            <xs:documentation>Complex type used to capture the device details.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="DeviceListType">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:Device"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="DeviceType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="TechnologyCode" type="qdt:NormalizedStringType">
+                        <xs:annotation>
+                            <xs:documentation>
+						The technology type of the device.
+						GSM, IDEN, CDMA, UMTS						
+						SPR : IDEN, CDMA VEZ: CDMA ATT: GSM , UMTS
+					</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="SKU" type="qdt:NormalizedStringType">
+                        <xs:annotation>
+                            <xs:documentation>
+						The carrier's unique identifier for
+						the model. Used if handset identifier is
+						not available.
+						
+						Only supported by SPRINT at this time.
+						
+					</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:choice>
+                        <xs:element minOccurs="0" name="ESN" type="qdt:NormalizedStringType">
+                            <xs:annotation>
+                                <xs:documentation>
+							The unique identifier for the hardware:
+							ESN(11 digit), IMEI, or MEID(14 digit).
+							Connditionally required, see the doc for more information.
+						</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element minOccurs="0" name="IMEI" type="qdt:NormalizedStringType">
+                            <xs:annotation>
+                                <xs:documentation>
+							International Mobile Equipment Identity
+							or IMEI is a number unique to every GSM,
+							CDMA, and iDen mobile Phones.
+						</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:choice>
+                    <xs:element minOccurs="0" name="SIM" type="qdt:NormalizedStringType">
+                        <xs:annotation>
+                            <xs:documentation>
+						The sim serial number for the device. Used by
+						Sprint and ATT.		Conditionally Required.
+					</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="UPC" type="qdt:NormalizedStringType">
+                        <xs:annotation>
+                            <xs:documentation>
+						Universal Product Code, barcode synbology that is used to track items.
+					</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="MSN" type="qdt:NormalizedStringType">
+                        <xs:annotation>
+                            <xs:documentation>
+						Manufacturer's Serial Number, used
+						to identify manufacturer's
+						handsets.
+					</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="MACID" type="qdt:NormalizedStringType">
+                        <xs:annotation>
+                            <xs:documentation> MAC(Media Access Control) id is device id require for 4G
+				devices. Sprint only. </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" ref="common:ID">
+                        <xs:annotation>
+                            <xs:documentation>Is the Identifiers of the given instance of an entity within the scope of the integration. 
+				The schemeAgencyID attribute identifies the party that provided or knows this party by the given identifier.
+			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PlanType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="common:ID">
+                        <xs:annotation>
+                            <xs:documentation>Carrier's Plan ID (SKU)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="common:Name">
+                        <xs:annotation>
+                            <xs:documentation>Plan Description details</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Type" type="qdt:StringType">
+                        <xs:annotation>
+                            <xs:documentation>"Carrier's Plan Type. Valid Values: INDIVIDUAL, PRIMARY,SECONDARY. Note: PRIMARY and SECONDARY values should always be family plans"</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Term" type="qdt:IntegerNumericType">
+                        <xs:annotation>
+                            <xs:documentation>Duration of the plan 1,12,24,36 months</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TransactionBaseType">
+                <xs:sequence>
+                    <xs:element ref="common:ID">
+                        <xs:annotation>
+                            <xs:documentation>Define Beast Transaction ID, Carrier Transaction ID</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="common:Name">
+                        <xs:annotation>
+                            <xs:documentation>Define name of the transaction whether Beast Transaction ID or Carrier Transaction ID</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="TransactionDateTime" type="xs:dateTime">
+                        <xs:annotation>
+                            <xs:documentation>Transaction create time</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TransactionListType">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:Transaction"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="AccountNumber" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Customer Account Number provided by the Carrier</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ActivationDate" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>Date of the activation by Carrier. This maps to the Contract Start Date which may be in the future</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ActivationMethod" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Activation through CAP or over the phone. Valid values - CAP, PHONE</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ActivationRequestDate" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>Date the activation was requested by the customer</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ActivationType" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Activation Type e.g. New, Upgrade.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="AgentCode" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Agent code is nothing but a dealerCode and will be
+				used for commission</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Carrier" type="tns:CarrierBaseType"/>
+            <xs:element name="Category" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Plan Category. This description is provided by Carrier. Eg: "Simply Everything"</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Communication" type="tns:CommunicationType"/>
+            <xs:element name="ConfirmationNumber" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Store the deposit payment mode. Payment done through Cash or credit card.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ContractType" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Indicate if the Activation is NOCONTRACT or POSTPAID</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DepositMode" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Store the deposit payment mode. Payment done through Cash or credit card.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Device" type="tns:DeviceType"/>
+            <xs:element name="LineSequenceNumber" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Line Sequence Number for each subscriber line.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="LinesRequested" type="qdt:IntegerNumericType">
+                <xs:annotation>
+                    <xs:documentation>Number of Lines requested for Activation</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="LocationID" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Store or Warehouse ID</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ManagerID" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>The ID of the manager who supervises this transaction. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="OrderType" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Order Type - SALE, RETURN or CANCEL</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="OriginalLineSequenceNumber" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Original SALE Order Line Identifier for RETURNS from the source system for every order header</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="OriginalTransactionID" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Original SALE Order Header for RETURNS from the source system</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Plan" type="tns:PlanType"/>
+            <xs:element name="PortFlag" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>To indicate the port in activation</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Qualification" type="qdt:NormalizedStringType"/>
+            <xs:element name="RecurringCharge" type="qdt:DoubleNumericType">
+                <xs:annotation>
+                    <xs:documentation>Recurring Monthly Charge</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="RepID" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>The ID of the blue shirt or other agent that
+				assisted in this sale.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Rule" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation/>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="RuleSetName" type="qdt:StringType"/>
+            <xs:element name="Score" type="qdt:IntegerNumericType"/>
+            <xs:element name="Status" type="qdt:NormalizedStringType">
+                <xs:annotation>
+                    <xs:documentation>
+				Status of the Ruleset or RuleList.Example Approved, Declined</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="SubAccountNumber" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Customer Account Sub Number provided by the Carrier</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="SubscriberID" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Carrier Subscriber ID for the Line</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="SubscriberNumber" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Phone Number of the Line as Activated</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Term" type="qdt:IntegerNumericType">
+                <xs:annotation>
+                    <xs:documentation>Duration of the plan 1,12,24,36 months</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Transaction" type="tns:TransactionBaseType"/>
+            <xs:element name="TransactionList" type="tns:TransactionListType"/>
+            <xs:element name="Type" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Plan Type. Valid Values: INDIVIDUAL, PRIMARY,SECONDARY.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="UpgradeEligibleCode" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Carriers Code confirming Upgrade Eligibility</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="UpgradeTier" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Upgrade tier assigned to customer by carrier when an upgrade request is carried out.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Value" type="qdt:StringType"/>
+        </xs:schema>
+        <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://tsh.bestbuy.com/tsh/tshfault" xmlns:cf="http://www.tsh.bestbuy.com/common/v1" xmlns:dt="http://www.tsh.bestbuy.com/common/datatype/v1" xmlns:tns="http://tsh.bestbuy.com/tsh/tshfault" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/datatype/v1"/>
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/v1"/>
+            <xs:annotation>
+                <xs:documentation>-----------------------------------------------------------------------------------------------------
+		</xs:documentation>
+                <xs:documentation> Version: 1.0         </xs:documentation>
+                <xs:documentation> Project Name : TagSuperHighWay </xs:documentation>
+                <xs:documentation> Description : This XSD contains the exception
+			format for TagSuperHighway Project. This file refers
+			QualifiedDataType.xsd for the Data Types .  												</xs:documentation>
+                <xs:documentation>-----------------------------------------------------------------------------------------------------
+		</xs:documentation>
+            </xs:annotation>
+            <xs:annotation>
+                <xs:documentation>This is for the service detail fields
+
+			1. Service -
+			Name of the service where the exception occurred.
+			2. ProcessId -
+			Instance Id of the process
+			3. DomainName - This is the domain to
+			Service belongs
+			4. ServerName - The name of the Integration Server or
+			Integration
+			Hostname of where the service failed.
+			5. ApplicationName -
+			The name of the source/target system where the
+			exception occurred.
+			6.
+			ExceptionCode - The internal exception code generated by the target
+			application.
+			7. ExceptionType - The type of exception identified by
+			the fully
+			qualified exception name
+			8. ExceptionMessage - The complete
+			exception message returned by the
+			application or service.
+			9.
+			ExceptionAdditionalInfo - A field provided to store additional
+			exception related information. An example would be a value indicating
+			the level at which the exception occurred.
+			10. LogMessage - A field
+			provided to store integration process specific
+			log data.
+			11.
+			ExceptionTimeStamp - The timestamp when the exception occurred
+
+		</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType name="FaultTypeEnumeration">
+                <xs:annotation>
+                    <xs:documentation>Enumerations for the Indicator for Error or Warning
+			</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="ERROR"/>
+                    <xs:enumeration value="WARNING"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="TSHFaultType">
+                <xs:annotation>
+                    <xs:documentation>Provides information about TSH Fault generated for
+				TSH service</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="SourceID" type="dt:TextType">
+                        <xs:annotation>
+                            <xs:documentation> Provides the SourceID of the TSH fault.
+					</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="SourceName" type="dt:TextType">
+                        <xs:annotation>
+                            <xs:documentation>Provide the Source Name from which the fault was
+						generated.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="Fault" type="tns:faultType">
+                        <xs:annotation>
+                            <xs:documentation>Returns information about the Fault Data like
+						ErrorCode, Error Message.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Status" type="dt:TextType">
+                        <xs:annotation>
+                            <xs:documentation>Provides the status of TSH Fault.
+					</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="ServiceDetails" type="tns:serviceDetailsType"/>
+                    <xs:element ref="cf:UserArea">
+                        <xs:annotation>
+                            <xs:documentation>Allows the Tag Super Highway schema data model to extend the specification in order to provide additional information that is not captured in Canonical Schema.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="faultType">
+                <xs:annotation>
+                    <xs:documentation>Returns information about the Fault Data like
+				ErrorCode, Error Message</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Code" type="dt:TextType">
+                        <xs:annotation>
+                            <xs:documentation>Returns the Error code or the Exception Code.
+					</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Message" type="dt:TextType">
+                        <xs:annotation>
+                            <xs:documentation>
+						Returns the Error message based on the Error Code
+						or Exception Code.
+					</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Detail" type="dt:TextType">
+                        <xs:annotation>
+                            <xs:documentation>
+						Returns the Detailed description of error which
+						includes Error code and Error message.
+					</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+                <xs:attribute name="type" type="tns:FaultTypeEnumeration"/>
+            </xs:complexType>
+            <xs:complexType name="serviceDetailsType">
+                <xs:annotation>
+                    <xs:documentation>Information about the Service details .
+			</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Service" type="dt:TextType"/>
+                    <xs:element minOccurs="0" name="ProcessId" type="dt:TextType"/>
+                    <xs:element minOccurs="0" name="DomainName" type="dt:TextType"/>
+                    <xs:element minOccurs="0" name="ServerName" type="dt:TextType"/>
+                    <xs:element minOccurs="0" name="ApplicationName" type="dt:TextType"/>
+                    <xs:element minOccurs="0" name="ExceptionCode" type="dt:TextType"/>
+                    <xs:element minOccurs="0" name="ExceptionType" type="dt:TextType"/>
+                    <xs:element minOccurs="0" name="ExceptionMessage" type="dt:TextType"/>
+                    <xs:element minOccurs="0" name="ExceptionAdditionalInfo" type="dt:TextType"/>
+                    <xs:element minOccurs="0" name="LogMessage" type="dt:TextType"/>
+                    <xs:element minOccurs="0" name="ExceptionTimeStamp" type="dt:TextType"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="TSHFault" type="tns:TSHFaultType">
+                <xs:annotation>
+                    <xs:documentation>This XSD provides information about TSH Fault
+				generated for TSH service</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.tsh.bestbuy.com/common/datatype/v1" xmlns:qdt="http://www.tsh.bestbuy.com/common/qualifiled/datatype/v1" xmlns:tns="http://www.tsh.bestbuy.com/common/datatype/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/qualifiled/datatype/v1"/>
+            <xs:annotation>
+                <xs:documentation> This schema defines custom datatypes used by other TSH schemas.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType name="CodeType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en">
+				A character string (letters, figures, or symbols) that for brevity and/or 
+				languange independence may be used to represent or replace a definitive value
+				or text of an attribute together with relevant supplementary information.
+			</xs:documentation>
+                </xs:annotation>
+                <xs:simpleContent>
+                    <xs:extension base="xs:normalizedString">
+                        <xs:attribute name="name" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="en">
+							The textual equivalent of the code content component.
+						</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="FlagType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en">
+				Flag Type
+			</xs:documentation>
+                </xs:annotation>
+                <xs:simpleContent>
+                    <xs:extension base="xs:string"/>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="IdentifierType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en">
+				A character string to identify and distinguish uniquely, one instance 
+				of an object in an identification scheme from all other objects in the same 
+				scheme together with relevant supplementary information.
+			</xs:documentation>
+                </xs:annotation>
+                <xs:simpleContent>
+                    <xs:extension base="xs:normalizedString">
+                        <xs:attribute name="type" type="qdt:NormalizedStringType">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="en">
+							type assigned to the identifier.
+						</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:simpleType name="IndicatorType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en">
+				A list of two mutually exclusive Boolean values that express the only possible state
+				of a property.
+			</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="qdt:BooleanType">
+                    <xs:pattern value="false"/>
+                    <xs:pattern value="true"/>
+                    <xs:pattern value="0"/>
+                    <xs:pattern value="1"/>
+                    <xs:pattern value="yes"/>
+                    <xs:pattern value="no"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="KeyType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en">
+				A character string used to identify.
+			</xs:documentation>
+                </xs:annotation>
+                <xs:simpleContent>
+                    <xs:extension base="xs:normalizedString"/>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="MeasureType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en">
+				A numeric value determined by measuring an object along with the 
+				specified unit of measure.
+			</xs:documentation>
+                </xs:annotation>
+                <xs:simpleContent>
+                    <xs:extension base="xs:decimal">
+                        <xs:attribute name="unitCode" type="qdt:StringType" use="required">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="en">
+							The type of unit of measure.
+						</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:simpleType name="MinorVersionType">
+                <xs:restriction base="xs:nonNegativeInteger">
+                    <xs:minInclusive value="1"/>
+                    <xs:maxInclusive value="99"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="NameType">
+                <xs:simpleContent>
+                    <xs:extension base="xs:string"/>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="NameValueType">
+                <xs:sequence>
+                    <xs:element name="name" type="tns:KeyType"/>
+                    <xs:element name="value" type="tns:TextType"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SequencedNameType">
+                <xs:simpleContent>
+                    <xs:extension base="tns:NameType">
+                        <xs:attribute name="sequence" type="xs:positiveInteger"/>
+                        <xs:attribute name="sequenceName" type="xs:normalizedString"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="SequencedTextType">
+                <xs:simpleContent>
+                    <xs:extension base="tns:TextType">
+                        <xs:attribute name="sequence" type="xs:positiveInteger"/>
+                        <xs:attribute name="sequenceName" type="xs:normalizedString"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="TextType">
+                <xs:simpleContent>
+                    <xs:extension base="xs:string"/>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="UserAreaType">
+                <xs:sequence>
+                    <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##any" processContents="strict"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="ENTER_NAME_OF_ROOT_ELEMENT_HERE" type="xs:anyType">
+                <xs:annotation>
+                    <xs:documentation>Comment describing your root element</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.tsh.bestbuy.com/common/metadata/fields/v1" version="1.0" xmlns:dt="http://www.tsh.bestbuy.com/common/datatype/v1" xmlns:qdt="http://www.tsh.bestbuy.com/common/qualifiled/datatype/v1" xmlns:tns="http://www.tsh.bestbuy.com/common/metadata/fields/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/datatype/v1"/>
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/qualifiled/datatype/v1"/>
+            <xs:annotation>
+                <xs:documentation> This schema defines various fields required to define business and technical metadata for TSH requests.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="Brand" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>
+				A distinct banner under which business is
+				operated (usually visible to the customer)
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="BusinessUnit" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>
+				An organizational sub unit which may hold
+				P&amp;L responsibility
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Channel" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>
+				The medium under which business is operated
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Company" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>
+				One or more legal entities which reside /
+				operate in the particular countries under a
+				given Trading Area.
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Enterprise" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>
+				The overall Best Buy. INC Corporation
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Environment" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>This  element (of type String) defines environment type which is used to process the message. 
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="MessageID" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>This MENDATORY element (of type String) conveys unique [message id] property. 
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ProgramID" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Program Id of the application which is originating this object
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="RequestTimeStamp" type="qdt:DateTimeType">
+                <xs:annotation>
+                    <xs:documentation>is the date time stamp that the given instance of the message was created by originating system. 
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ResponseTimeStamp" type="qdt:DateTimeType">
+                <xs:annotation>
+                    <xs:documentation>is the date time stamp that the given instance of the message was created in response to original MessageID. 
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="SourceID" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>The Id of the source system which is originating this object.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="TradingArea" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>
+				A distinct Geographic region comprising of one
+				or more countries: US, Canada, China, UK,
+				Mexico. This will be implemented as the ISO
+				Standard 3166: 2 Character Country code.
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="UserID" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>User Identifier from the application who requests for the object creation
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Version" type="dt:MinorVersionType">
+                <xs:annotation>
+                    <xs:documentation source="SOA Governance Documentation. ID# DEV-003-R-0003 Minor version increment"> Whenever service interface is changed in such a way that the
+				new service is backward compatible with existing deployments, minor version of service interface MUST be incremented.
+				Major version will remain same in this case. In cases where the consumers are invoking the existing definitions of the 
+				service and not the new compatible changes in the service, the minor version in request message can continue to be the 
+				older value before the change.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.tsh.bestbuy.com/common/communication/v1" version="1.0" xmlns:com="http://www.tsh.bestbuy.com/common/v1" xmlns:dt="http://www.tsh.bestbuy.com/common/datatype/v1" xmlns:loc="http://www.tsh.bestbuy.com/common/location/v1" xmlns:qdt="http://www.tsh.bestbuy.com/common/qualifiled/datatype/v1" xmlns:tns="http://www.tsh.bestbuy.com/common/communication/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/datatype/v1"/>
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/qualifiled/datatype/v1"/>
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/v1"/>
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/location/v1"/>
+            <xs:annotation>
+                <xs:documentation>Common Location schema is defined to capture common communication elements which can be leveraged by other TSH schemas.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType name="CommunicationBaseType">
+                <xs:annotation>
+                    <xs:documentation>Communication Base Type to define basic communication methods</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element ref="com:ChannelCode">
+                        <xs:annotation>
+                            <xs:documentation>Channel code denotes the communication option used in the message </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:choice>
+                        <xs:element minOccurs="0" name="Address" type="loc:MailingAddressType"/>
+                        <xs:element minOccurs="0" ref="tns:EMail"/>
+                        <xs:element minOccurs="0" ref="tns:Phone"/>
+                    </xs:choice>
+                </xs:sequence>
+                <xs:attribute ref="com:operationCode"/>
+            </xs:complexType>
+            <xs:complexType name="EMailBaseType">
+                <xs:annotation>
+                    <xs:documentation>The EMail type used to bind email details</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="tns:EmailID">
+                        <xs:annotation>
+                            <xs:documentation>ID for the associated Object</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="com:Status">
+                        <xs:annotation>
+                            <xs:documentation> Indicates the status of the associated object by providing the Status Code along with a description and when the status is effective.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+                <xs:attribute ref="com:preferedIndicator"/>
+                <xs:attribute ref="com:primary"/>
+                <xs:attribute ref="com:type"/>
+            </xs:complexType>
+            <xs:complexType name="EmailType">
+                <xs:annotation>
+                    <xs:documentation>Provides Complete Email Type of the Customer.
+			</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element name="EmailAddress" type="qdt:StringType"/>
+                </xs:sequence>
+                <xs:attribute name="preferrence" type="qdt:StringType"/>
+                <xs:attribute name="type" type="qdt:StringType"/>
+            </xs:complexType>
+            <xs:complexType name="PhoneBaseType">
+                <xs:annotation>
+                    <xs:documentation>The phone type used to bind phone number details</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="com:ID">
+                        <xs:annotation>
+                            <xs:documentation>Identifier of the associated object in source system</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:CountryDialing">
+                        <xs:annotation>
+                            <xs:documentation>The country dialing code for a communication number.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:AreaDialing">
+                        <xs:annotation>
+                            <xs:documentation>The area dialing code for a communication number.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:DialNumber">
+                        <xs:annotation>
+                            <xs:documentation>The commication number, not including country dialing or area dialing codes.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:Extension">
+                        <xs:annotation>
+                            <xs:documentation>The extension of the assoicated communication number.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="com:Status">
+                        <xs:annotation>
+                            <xs:documentation> Indicates the status of the associated object by providing the Status Code along with a description and when the status is effective.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+                <xs:attribute ref="com:preferedIndicator"/>
+                <xs:attribute ref="com:primary"/>
+                <xs:attribute ref="com:type"/>
+            </xs:complexType>
+            <xs:complexType name="PhoneType">
+                <xs:annotation>
+                    <xs:documentation>Provides Complete Phone Type of the Customer
+			</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="tns:CoutryDialingCode"/>
+                    <xs:element minOccurs="0" ref="tns:AreaCode"/>
+                    <xs:element minOccurs="0" ref="com:Number">
+                        <xs:annotation>
+                            <xs:documentation>Dial Number </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+                <xs:attribute ref="com:preferrence"/>
+                <xs:attribute ref="com:type"/>
+            </xs:complexType>
+            <xs:element name="AccessCode" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation>The extension of the assoicated communication number.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="AreaCode" type="qdt:IntegerNumericType"/>
+            <xs:element name="AreaDialing" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation>The area dialing code for a communication number.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Communication" type="tns:CommunicationBaseType">
+                <xs:annotation>
+                    <xs:documentation>Basic Communication methods</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CountryDialing" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation>The country dialing code for a communication number.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CoutryDialingCode" type="qdt:IntegerNumericType"/>
+            <xs:element name="DialNumber" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation>The commication number, not including country dialing or area dialing codes.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="EMail" type="tns:EMailBaseType"/>
+            <xs:element name="EmailID" type="qdt:NormalizedStringType">
+                <xs:annotation>
+                    <xs:documentation>ID for the associated Object</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Extension" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation>The extension of the assoicated communication number.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Phone" type="tns:PhoneBaseType"/>
+        </xs:schema>
+        <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.tsh.bestbuy.com/common/metadata/components/v1" version="1.0" xmlns:data="http://www.tsh.bestbuy.com/common/metadata/fields/v1" xmlns:tns="http://www.tsh.bestbuy.com/common/metadata/components/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/metadata/fields/v1"/>
+            <xs:annotation>
+                <xs:documentation>
+			Defines top level complex components for Metadata type.
+		</xs:documentation>
+            </xs:annotation>
+            <xs:complexType name="InternationalBusinessHierarchyType">
+                <xs:annotation>
+                    <xs:documentation>International Business Hierarchy structure</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="data:Enterprise">
+                        <xs:annotation>
+                            <xs:documentation>
+				The overall Best Buy. INC Corporation
+			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="data:TradingArea">
+                        <xs:annotation>
+                            <xs:documentation>
+				A distinct Geographic region comprising of one
+				or more countries: US, Canada, China, UK,
+				Mexico. This will be implemented as the ISO
+				Standard 3166: 2 Character Country code.
+			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="data:Company">
+                        <xs:annotation>
+                            <xs:documentation>
+				One or more legal entities which reside /
+				operate in the particular countries under a
+				given Trading Area.
+			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="data:Brand">
+                        <xs:annotation>
+                            <xs:documentation>
+				A distinct banner under which business is
+				operated (usually visible to the customer)
+			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="data:BusinessUnit">
+                        <xs:annotation>
+                            <xs:documentation>
+				An organizational sub unit which may hold
+				P&amp;L responsibility
+			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="data:Channel">
+                        <xs:annotation>
+                            <xs:documentation>
+				The medium under which business is operated
+			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType abstract="true" name="MessageMetatDataBaseType">
+                <xs:annotation>
+                    <xs:documentation>Metadata base type to define  </xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="data:Version">
+                        <xs:annotation>
+                            <xs:documentation source="SOA Governance Documentation. ID# DEV-003-R-0003 Minor version increment"> Whenever service interface is changed in such a way that the
+				new service is backward compatible with existing deployments, minor version of service interface MUST be incremented.
+				Major version will remain same in this case. In cases where the consumers are invoking the existing definitions of the 
+				service and not the new compatible changes in the service, the minor version in request message can continue to be the 
+				older value before the change.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="data:SourceID">
+                        <xs:annotation>
+                            <xs:documentation>The Id of the source system which is originating this object.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="data:UserID">
+                        <xs:annotation>
+                            <xs:documentation>User Identifier from the application who requests for the object creation
+			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="data:ProgramID">
+                        <xs:annotation>
+                            <xs:documentation>Program Id of the application which is originating this object
+			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="data:MessageID">
+                        <xs:annotation>
+                            <xs:documentation>This MENDATORY element (of type String) conveys unique [message id] property. 
+			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="RequestMetaDataType">
+                <xs:complexContent>
+                    <xs:extension base="tns:MessageMetatDataBaseType">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" ref="data:RequestTimeStamp">
+                                <xs:annotation>
+                                    <xs:documentation>is the date time stamp that the given instance of the message was created by originating system. 
+			</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="ResponseMetaDataType">
+                <xs:complexContent>
+                    <xs:extension base="tns:MessageMetatDataBaseType">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" ref="data:Environment">
+                                <xs:annotation>
+                                    <xs:documentation>This  element (of type String) defines environment type which is used to process the message. 
+			</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element minOccurs="0" ref="data:ResponseTimeStamp">
+                                <xs:annotation>
+                                    <xs:documentation>is the date time stamp that the given instance of the message was created in response to original MessageID. 
+			</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.tsh.bestbuy.com/common/location/v1" version="1.0" xmlns:com="http://www.tsh.bestbuy.com/common/v1" xmlns:dt="http://www.tsh.bestbuy.com/common/datatype/v1" xmlns:qdt="http://www.tsh.bestbuy.com/common/qualifiled/datatype/v1" xmlns:tns="http://www.tsh.bestbuy.com/common/location/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/datatype/v1"/>
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/qualifiled/datatype/v1"/>
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/v1"/>
+            <xs:annotation>
+                <xs:documentation>Common Location schema is defined to capture common location elements which can be leveraged by other TSH schemas.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType abstract="true" name="AddressBaseType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en">Address BaseType provides the information about the address or 
+				semantic address of an associated entity.
+			</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="com:ID">
+                        <xs:annotation>
+                            <xs:documentation> Address ID in the object originating system</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="com:Description">
+                        <xs:annotation>
+                            <xs:documentation>Address description</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:AddressLine1">
+                        <xs:annotation>
+                            <xs:documentation xml:lang="en"> Address line 1 should contain the primary 
+				address information (e.g., street address or P.O. Box).
+			</xs:documentation>
+                            <xs:documentation xml:lang="en">
+				Special Characters Do not use special characters or
+                punctuation (such as %, &amp;, ', -, ?, !, etc.) when entering your address.
+			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:AddressLine2">
+                        <xs:annotation>
+                            <xs:documentation xml:lang="en"> Address line 2 should contain the following, if necessary:
+				Apartment number (Apt 244)
+				Care of (c o, a space is necessary between c and o)
+				Attention (attn John Doe)
+			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:AddressLine3">
+                        <xs:annotation>
+                            <xs:documentation xml:lang="en"> Additional space to capture more information of the address.  </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:City">
+                        <xs:annotation>
+                            <xs:documentation xml:lang="en"> Identifies the Town or the City </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:choice>
+                        <xs:element minOccurs="0" ref="tns:Province">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="en">
+				Province in Canada are referred as State in US
+			</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element minOccurs="0" ref="tns:State">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="en"> State in US are referred as Province in Canada.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:choice>
+                    <xs:element ref="tns:PostalCode">
+                        <xs:annotation>
+                            <xs:documentation xml:lang="en"> PostalCode of the address </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:PostalCodePlus4">
+                        <xs:annotation>
+                            <xs:documentation>An extended Postal CodePlus4 to identify a
+				geographic segment
+			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="tns:CountryCode">
+                        <xs:annotation>
+                            <xs:documentation xml:lang="en"> Country in which the Address is in. Preferable values is as specified in ISO 3166-2. </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:CountyName">
+                        <xs:annotation>
+                            <xs:documentation xml:lang="en"> The fully-spelled county name. </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CountryCodeType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en"> Country Code Type. </xs:documentation>
+                </xs:annotation>
+                <xs:simpleContent>
+                    <xs:extension base="dt:CodeType"/>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="GeoCoordinateMeasureType">
+                <xs:annotation>
+                    <xs:documentation>Geographic Units
+			</xs:documentation>
+                </xs:annotation>
+                <xs:simpleContent>
+                    <xs:extension base="dt:MeasureType">
+                        <xs:attribute ref="tns:degreeUnit"/>
+                        <xs:attribute ref="tns:minuteUnit"/>
+                        <xs:attribute ref="tns:secondUnit"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="GeographyType">
+                <xs:annotation>
+                    <xs:documentation>Geographic location of the city/state
+			</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="tns:Latitude">
+                        <xs:annotation>
+                            <xs:documentation>the angular distance between an imaginary line around a heavenly body parallel to its equator and the equator itself 
+				It is usually expressed in degrees, minutes	and seconds.
+				
+						An alternative representation uses degrees and minutes, where parts of a minute are expressed in decimal notation 
+						with a fraction, thus: 23° 27.500′ E. Degrees may also be expressed as a decimal fraction: 23.45833° E. 
+						For calculations, the angular measure may be converted to radians, so longitude may also be expressed in this 
+						manner as a signed fraction of π (pi), or an unsigned fraction of 2π.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:Longitude">
+                        <xs:annotation>
+                            <xs:documentation>Longitude is the angular distance of a point's meridian from the Prime
+				(Greenwich) Meridian. It is usually expressed in degrees, minutes and seconds.
+				
+						An alternative representation uses degrees and minutes, where parts of a minute are expressed in decimal notation 
+						with a fraction, thus: 23° 27.500′ E. Degrees may also be expressed as a decimal fraction: 23.45833° E. 
+						For calculations, the angular measure may be converted to radians, so longitude may also be expressed in this 
+						manner as a signed fraction of π (pi), or an unsigned fraction of 2π.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:Elevation">
+                        <xs:annotation>
+                            <xs:documentation>Elevation, or geometric height, is mainly used
+				when referring to points on the Earth's surface</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:Altitude">
+                        <xs:annotation>
+                            <xs:documentation>Is the value and unit of measure in the z-axis in a thrre dimensional system.
+				Examples of this maybe the Altitude in the case of a map of the world, or the height or shelf in 
+				a rack system in the case of a manufacturing or warehouse facility.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="com:UserArea">
+                        <xs:annotation>
+                            <xs:documentation>Allows the Tag Super Highway schema data model to extend the specification in order to provide additional information that is not captured in Canonical Schema.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:Sectioncode">
+                        <xs:annotation>
+                            <xs:documentation>Elevation, or geometric height, is mainly used
+				when referring to points on the Earth's surface</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:Bsacode"/>
+                    <xs:element minOccurs="0" ref="tns:Matchcode"/>
+                    <xs:element minOccurs="0" ref="tns:Faultcode"/>
+                    <xs:element minOccurs="0" ref="tns:Faultmessage"/>
+                    <xs:element minOccurs="0" ref="tns:Statuscode"/>
+                </xs:sequence>
+                <xs:attribute ref="com:type"/>
+            </xs:complexType>
+            <xs:complexType name="MailingAddressType">
+                <xs:complexContent>
+                    <xs:extension base="tns:AddressBaseType">
+                        <xs:sequence minOccurs="0">
+                            <xs:element minOccurs="0" ref="com:Status">
+                                <xs:annotation>
+                                    <xs:documentation> Indicates the status of the associated object by providing the Status Code along with a description and when the status is effective.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element minOccurs="0" ref="com:UserArea">
+                                <xs:annotation>
+                                    <xs:documentation>Allows the Tag Super Highway schema data model to extend the specification in order to provide additional information that is not captured in Canonical Schema.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute default="false" ref="com:preferedIndicator"/>
+                        <xs:attribute default="false" ref="com:primary"/>
+                        <xs:attribute ref="com:type"/>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="PostalCodeType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en">
+				Postal Codes Type
+			</xs:documentation>
+                </xs:annotation>
+                <xs:simpleContent>
+                    <xs:extension base="dt:CodeType"/>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="StateCodeType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en">
+				State Codes Type
+			</xs:documentation>
+                </xs:annotation>
+                <xs:simpleContent>
+                    <xs:extension base="dt:CodeType"/>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="TimeZoneType">
+                <xs:annotation>
+                    <xs:documentation/>
+                </xs:annotation>
+                <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                        <xs:attribute name="abbreviations" type="qdt:NormalizedStringType">
+                            <xs:annotation>
+                                <xs:documentation>Time zones are often represented by abbreviations such as "EST, WST, CST" 
+							but these are not part of the international time and date standard ISO 8601 and their 
+							use as sole designator for a time zone is not recommended. Such designations can be ambiguous.							
+						</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute default="UTC" name="designator" type="qdt:NormalizedStringType">
+                            <xs:annotation>
+                                <xs:documentation>There are no time zone designators in ISO 8601. Time is only represented as local time or in relation to UTC.						
+						</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="isDayLightSavingsInEffect" type="qdt:BooleanType">
+                            <xs:annotation>
+                                <xs:documentation>UTC does not change with a change of seasons, but local time or civil time may change
+							if a time zone jurisdiction observes daylight saving time or summer time. For example, 
+							UTC is 5 hours ahead of local time on the east coast of the United States during winter, 
+							but 4 hours ahead during summer.
+						</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="offset" type="qdt:BooleanType">
+                            <xs:annotation>
+                                <xs:documentation>Time zone are written as offset from UTC in the format ±[hh]:[mm], ±[hh][mm],
+							or ±[hh]. So if the time being described is one hour ahead of UTC (such as the time in Berlin during the winter), 
+							the zone designator would be "+01:00", "+0100", or simply "+01".</xs:documentation>
+                            </xs:annotation>
+                        </xs:attribute>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:element name="AddressLine" type="dt:SequencedTextType"/>
+            <xs:element name="AddressLine1" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en"> Address line 1 should contain the primary 
+				address information (e.g., street address or P.O. Box).
+			</xs:documentation>
+                    <xs:documentation xml:lang="en">
+				Special Characters Do not use special characters or
+                punctuation (such as %, &amp;, ', -, ?, !, etc.) when entering your address.
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="AddressLine2" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en"> Address line 2 should contain the following, if necessary:
+				Apartment number (Apt 244)
+				Care of (c o, a space is necessary between c and o)
+				Attention (attn John Doe)
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="AddressLine3" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en"> Additional space to capture more information of the address.  </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="AddressLine4" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en"> Additional space to capture more information of the address </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="AddressLine5" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en"> Additional space to capture more information of the address</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Altitude" type="tns:GeoCoordinateMeasureType">
+                <xs:annotation>
+                    <xs:documentation>Is the value and unit of measure in the z-axis in a thrre dimensional system.
+				Examples of this maybe the Altitude in the case of a map of the world, or the height or shelf in 
+				a rack system in the case of a manufacturing or warehouse facility.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Bsacode" type="qdt:NormalizedStringType"/>
+            <xs:element name="BuildingName" type="dt:SequencedNameType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en">
+				The building or house name on the street that identifies where to deliver mail.
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="BuildingNumber" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en">
+				The Number of the building or house on the street that identifies where to deliver mail.  
+				For example, Building 300 on Standards Parkway&gt;</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="City" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en"> Identifies the Town or the City </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CountryCode" type="tns:CountryCodeType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en"> Country in which the Address is in. Preferable values is as specified in ISO 3166-2. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CountyName" type="dt:NameType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en"> The fully-spelled county name. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DeliveryPoint" type="dt:CodeType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en"> The two-digit DPBC code. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Direction" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation>Is the value and unit of measure in the z-axis in a thrre dimensional system.
+				Examples of this maybe the Altitude in the case of a map of the world, or the height or shelf in 
+				a rack system in the case of a manufacturing or warehouse facility.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Elevation" type="dt:MeasureType">
+                <xs:annotation>
+                    <xs:documentation>Elevation, or geometric height, is mainly used
+				when referring to points on the Earth's surface</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Faultcode" type="qdt:NormalizedStringType"/>
+            <xs:element name="Faultmessage" type="qdt:NormalizedStringType"/>
+            <xs:element name="Latitude" type="tns:GeoCoordinateMeasureType">
+                <xs:annotation>
+                    <xs:documentation>the angular distance between an imaginary line around a heavenly body parallel to its equator and the equator itself 
+				It is usually expressed in degrees, minutes	and seconds.
+				
+						An alternative representation uses degrees and minutes, where parts of a minute are expressed in decimal notation 
+						with a fraction, thus: 23° 27.500′ E. Degrees may also be expressed as a decimal fraction: 23.45833° E. 
+						For calculations, the angular measure may be converted to radians, so longitude may also be expressed in this 
+						manner as a signed fraction of π (pi), or an unsigned fraction of 2π.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Longitude" type="tns:GeoCoordinateMeasureType">
+                <xs:annotation>
+                    <xs:documentation>Longitude is the angular distance of a point's meridian from the Prime
+				(Greenwich) Meridian. It is usually expressed in degrees, minutes and seconds.
+				
+						An alternative representation uses degrees and minutes, where parts of a minute are expressed in decimal notation 
+						with a fraction, thus: 23° 27.500′ E. Degrees may also be expressed as a decimal fraction: 23.45833° E. 
+						For calculations, the angular measure may be converted to radians, so longitude may also be expressed in this 
+						manner as a signed fraction of π (pi), or an unsigned fraction of 2π.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Matchcode" type="qdt:NormalizedStringType"/>
+            <xs:element name="PostCodeType" type="dt:CodeType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en">
+				The type of ZIP Code that is assigned:
+				M: Military
+				U: Unique (specific to a university, large firm, or other institution).
+				blank: Ordinary ZIP Code or the ZIP Code was not assigned.
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PostalBoxNumber" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en">Identifies a Post Office Box number</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PostalCode" type="tns:PostalCodeType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en"> PostalCode of the address </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PostalCodePlus4" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>An extended Postal CodePlus4 to identify a
+				geographic segment
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Province" type="tns:StateCodeType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en">
+				Province in Canada are referred as State in US
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Sectioncode" type="qdt:NormalizedStringType">
+                <xs:annotation>
+                    <xs:documentation>Elevation, or geometric height, is mainly used
+				when referring to points on the Earth's surface</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="State" type="tns:StateCodeType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en"> State in US are referred as Province in Canada.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Statuscode" type="qdt:NormalizedStringType"/>
+            <xs:element name="StreetName" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en">Street Name</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="StreetNumber" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en">House numbering is the system of giving a unique number to each building 
+				in a street or area, with the intention of making it easier to locate a particular building. 
+				The house number is often part of a postal address.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="UnitDescription" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en"> The unit description, such as “Apartment”
+				or “Flat.”</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="UnitNumber" type="dt:TextType">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en"> The unit number, such as 100 in “Apartment 100.” </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:attribute name="degreeUnit" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Provides the type unit of measure degree
+				component of the object. It could be Degree Or Decimal.
+			</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="minuteUnit" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Provides the type unit of measure minute
+				component of the object. It could be Degree Or Decimal.
+			</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="secondUnit" type="qdt:StringType">
+                <xs:annotation>
+                    <xs:documentation>Provides the type unit of measure second
+				component of the object. It could be Degree Or Decimal.
+			</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:schema>
+        <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://bestbuy.com/bbym/sales/transactioncheck/component/v1" version="1.0" xmlns:common="http://www.tsh.bestbuy.com/common/v1" xmlns:communication="http://www.tsh.bestbuy.com/common/communication/v1" xmlns:fields="http://bestbuy.com/bbym/sales/transactioncheck/fields/v1" xmlns:location="http://www.tsh.bestbuy.com/common/location/v1" xmlns:meta="http://www.tsh.bestbuy.com/common/metadata/components/v1" xmlns:party="http://www.tsh.bestbuy.com/common/party/v1" xmlns:tns="http://bestbuy.com/bbym/sales/transactioncheck/component/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/metadata/components/v1"/>
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/v1"/>
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/communication/v1"/>
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/location/v1"/>
+            <xs:import namespace="http://bestbuy.com/bbym/sales/transactioncheck/fields/v1"/>
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/party/v1"/>
+            <xs:complexType name="CommunicationType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="communication:Phone"/>
+                    <xs:element minOccurs="0" ref="communication:EMail"/>
+                    <xs:element name="Address" type="fields:AddressType"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CustomerType">
+                <xs:complexContent>
+                    <xs:extension base="party:PartyType">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" ref="fields:Qualification">
+                                <xs:annotation>
+                                    <xs:documentation> Customer Qualification </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute ref="common:languagePreference"/>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="HeaderType">
+                <xs:sequence>
+                    <xs:element maxOccurs="10" minOccurs="0" ref="common:ID">
+                        <xs:annotation>
+                            <xs:documentation>Add N number of ID we can use it here</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:TransationSourceDetail"/>
+                    <xs:element minOccurs="0" ref="fields:OrderType">
+                        <xs:annotation>
+                            <xs:documentation>Order Type - SALE, RETURN or CANCEL</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="fields:ActivationType">
+                        <xs:annotation>
+                            <xs:documentation>Activation Type e.g. New, Upgrade, etc.Use same codes as in VBS</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="fields:ContractType">
+                        <xs:annotation>
+                            <xs:documentation>Indicate if the Activation is NOCONTRACT or POSTPAID</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:Customer"/>
+                    <xs:element minOccurs="0" ref="fields:Carrier"/>
+                    <xs:element minOccurs="0" ref="common:UserArea">
+                        <xs:annotation>
+                            <xs:documentation>Allows the Tag Super Highway schema data model to extend the specification in order to provide additional information that is not captured in Canonical Schema.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="fields:LinesRequested">
+                        <xs:annotation>
+                            <xs:documentation>Number of Lines requested for Activation</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ItemizedRuleResultListType">
+                <xs:sequence>
+                    <xs:element maxOccurs="20" minOccurs="0" name="ItemizedRuleResult" type="tns:ItemizedRuleResultType">
+                        <xs:annotation>
+                            <xs:documentation>Indicates the list of rules that were executed and their result.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ItemizedRuleResultType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="fields:Rule">
+                        <xs:annotation>
+                            <xs:documentation>Indicates the Rule that was executed. E.g: 30DayCheck</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="fields:Status">
+                        <xs:annotation>
+                            <xs:documentation>
+				Status of the Ruleset or RuleList.Example Approved, Declined</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="common:Description"/>
+                    <xs:element minOccurs="0" ref="common:ReasonCode"/>
+                    <xs:element minOccurs="0" ref="fields:Score">
+                        <xs:annotation>
+                            <xs:documentation>Indicates the score after executing the rule.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:NameValuePairList"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="LineItemListType">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="LineItem" type="tns:LineItemType">
+                        <xs:annotation>
+                            <xs:documentation>Block contains activation contract details.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="LineItemType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="common:ID">
+                        <xs:annotation>
+                            <xs:documentation>Line ID or order ID</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="fields:LineSequenceNumber">
+                        <xs:annotation>
+                            <xs:documentation>Order Header Identifier from the source system</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="fields:OriginalTransactionID">
+                        <xs:annotation>
+                            <xs:documentation>Original SALE Order Header for RETURNS from the source system</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="fields:OriginalLineSequenceNumber">
+                        <xs:annotation>
+                            <xs:documentation>Original SALE Order Line Identifier for RETURNS from the source system for every order header</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="fields:Device">
+                        <xs:annotation>
+                            <xs:documentation>Complex type used to capture the device(Hardware) details.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="fields:Plan">
+                        <xs:annotation>
+                            <xs:documentation>Indicate if the Activation is NOCONTRACT or POSTPAID</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="fields:ActivationDate">
+                        <xs:annotation>
+                            <xs:documentation>Date of the activation by Carrier. This maps to the Contract Start Date which may be in the future</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="fields:UpgradeTier">
+                        <xs:annotation>
+                            <xs:documentation>Upgrade tier assigned to customer by carrier when an upgrade request is carried out.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="fields:SubscriberNumber">
+                        <xs:annotation>
+                            <xs:documentation>Phone Number of the Line as Activated</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="fields:DepositMode">
+                        <xs:annotation>
+                            <xs:documentation>Store the deposit payment mode. Payment done through Cash or credit card.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="fields:ConfirmationNumber">
+                        <xs:annotation>
+                            <xs:documentation>Confirmation number when the payment done through credit card</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="fields:PortFlag">
+                        <xs:annotation>
+                            <xs:documentation>To indicate the port in activation</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="common:UserArea">
+                        <xs:annotation>
+                            <xs:documentation>Allows the Tag Super Highway schema data model to extend the specification in order to provide additional information that is not captured in Canonical Schema.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="NameValuePairListType">
+                <xs:sequence>
+                    <xs:element maxOccurs="20" minOccurs="0" ref="tns:NameValuePair"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="NameValuePairType">
+                <xs:sequence>
+                    <xs:element ref="common:Name">
+                        <xs:annotation>
+                            <xs:documentation>Identifies the Name of the object in which associated.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="fields:Value"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="RuleListType">
+                <xs:sequence>
+                    <xs:element maxOccurs="20" ref="fields:Rule">
+                        <xs:annotation>
+                            <xs:documentation/>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="RuleSetType">
+                <xs:choice>
+                    <xs:element minOccurs="0" name="RuleList" type="tns:RuleListType">
+                        <xs:annotation>
+                            <xs:documentation>Indicates the specific rules to be executed. E.g: VelocityCheck, 30DayCheck etc...</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="common:Name">
+                        <xs:annotation>
+                            <xs:documentation>Indicates the name of the ruleSet to execute. E.g: TradeIn, NewActivation etc..</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:choice>
+            </xs:complexType>
+            <xs:complexType name="TransactionBaseType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Header" type="tns:HeaderType"/>
+                    <xs:element minOccurs="0" name="LineItemList" type="tns:LineItemListType">
+                        <xs:annotation>
+                            <xs:documentation>Block contains activation contract details.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TransactionCheckRequestType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="RequestMetaData" type="meta:RequestMetaDataType"/>
+                    <xs:element minOccurs="0" name="InternationalBusinessHierarchy" type="meta:InternationalBusinessHierarchyType"/>
+                    <xs:element name="TransactionCheck" type="tns:TransactionCheckType"/>
+                    <xs:element ref="tns:RuleSet">
+                        <xs:annotation>
+                            <xs:documentation>Client can either indicate RuleSet Name to execute, e.g. NewActivation, TradeIn or specify the specific one or more rules to execute e.g. 30DayCheck or stolen check or velocity check.
+NOTE: Rule Set consisits of multiple rules.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TransactionCheckResponseType">
+                <xs:sequence>
+                    <xs:element name="ResponseMetaData" type="meta:ResponseMetaDataType"/>
+                    <xs:element minOccurs="0" name="TransactionCheckResult" type="tns:TransactionCheckResultType"/>
+                    <xs:element minOccurs="0" ref="common:Status">
+                        <xs:annotation>
+                            <xs:documentation> Indicates the status of the associated object by providing the Status Code along with a description and when the status is effective.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="common:UserArea">
+                        <xs:annotation>
+                            <xs:documentation>Allows the Tag Super Highway schema data model to extend the specification in order to provide additional information that is not captured in Canonical Schema.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TransactionCheckResultHeaderType">
+                <xs:annotation>
+                    <xs:documentation>Indicates the result of excution of the ruleSet or the specificed rules.</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="fields:Status">
+                        <xs:annotation>
+                            <xs:documentation>
+				Status of the Ruleset or RuleList.Example Approved, Declined</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="common:Description"/>
+                    <xs:element minOccurs="0" ref="common:ReasonCode"/>
+                    <xs:element minOccurs="0" ref="fields:Score">
+                        <xs:annotation>
+                            <xs:documentation>Indicates the aggregated score after executing the ruleSet of rules. This can range from 0 to 1000. Higher the better.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="fields:RuleSetName">
+                        <xs:annotation>
+                            <xs:documentation>Indicates the RuleSet to be executed. E.g: NewActivation, TradeIn, etc...</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:NameValuePairList"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TransactionCheckResultType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="tns:TransactionCheckResultHeader"/>
+                    <xs:element minOccurs="0" ref="tns:ItemizedRuleResultList"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TransactionCheckType">
+                <xs:sequence>
+                    <xs:element name="TransactionDetails" type="tns:TransactionBaseType">
+                        <xs:annotation>
+                            <xs:documentation>Activation details of an order.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TransationSourceDetailType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="fields:RepID">
+                        <xs:annotation>
+                            <xs:documentation>The ID of the blue shirt or other agent that
+						assisted in this sale.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="fields:AgentCode">
+                        <xs:annotation>
+                            <xs:documentation>Agent code is nothing but a dealerCode and will be
+						used for commission</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="fields:ManagerID">
+                        <xs:annotation>
+                            <xs:documentation>The ID of the manager who supervises this transaction. </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="fields:LocationID">
+                        <xs:annotation>
+                            <xs:documentation>Store or Warehouse ID</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="Customer" type="tns:CustomerType"/>
+            <xs:element name="ItemizedRuleResult" type="tns:ItemizedRuleResultType"/>
+            <xs:element name="ItemizedRuleResultList" type="tns:ItemizedRuleResultListType"/>
+            <xs:element name="NameValuePair" type="tns:NameValuePairType"/>
+            <xs:element name="NameValuePairList" type="tns:NameValuePairListType"/>
+            <xs:element name="RuleList" type="tns:RuleListType"/>
+            <xs:element name="RuleSet" type="tns:RuleSetType">
+                <xs:annotation>
+                    <xs:documentation>Client can either indicate RuleSet Name to execute, e.g. NewActivation, TradeIn or specify the specific one or more rules to execute e.g. 30DayCheck or stolen check or velocity check.
+NOTE: Rule Set consisits of multiple rules.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="TransactionCheckResultHeader" type="tns:TransactionCheckResultHeaderType"/>
+            <xs:element name="TransationSourceDetail" type="tns:TransationSourceDetailType"/>
+        </xs:schema>
+        <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://bestbuy.com/bbym/sales/transactioncheck/service/v1" version="1.0" xmlns:cmp="http://bestbuy.com/bbym/sales/transactioncheck/component/v1" xmlns:tns="http://bestbuy.com/bbym/sales/transactioncheck/service/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://bestbuy.com/bbym/sales/transactioncheck/component/v1"/>
+            <xs:annotation>
+                <xs:documentation>			
+			This XSD (in current scope)defines request and response structure for elements of loss prevention order Service
+		</xs:documentation>
+            </xs:annotation>
+            <xs:element name="TransactionCheckRequest" type="cmp:TransactionCheckRequestType">
+                <xs:annotation>
+                    <xs:documentation>Request schema for loss prevention order Service
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="TransactionCheckResponse" type="cmp:TransactionCheckResponseType">
+                <xs:annotation>
+                    <xs:documentation>Response schema for loss prevention order service
+			</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.tsh.bestbuy.com/common/party/v1" version="1.0" xmlns:com="http://www.tsh.bestbuy.com/common/v1" xmlns:communication="http://www.tsh.bestbuy.com/common/communication/v1" xmlns:ns1="http://www.tsh.bestbuy.com/common/datatype/v1" xmlns:tns="http://www.tsh.bestbuy.com/common/party/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/v1"/>
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/communication/v1"/>
+            <xs:import namespace="http://www.tsh.bestbuy.com/common/datatype/v1"/>
+            <xs:annotation>
+                <xs:documentation>Common party schema is defined to capture common party element.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType name="PartyType">
+                <xs:annotation>
+                    <xs:documentation>
+				This element can be used to describe party details, name, contact etc.
+			</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="tns:PartyIDs">
+                        <xs:annotation>
+                            <xs:documentation>
+				This element can be used for different IDs associated to a party.
+			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="tns:AccountID"/>
+                    <xs:group minOccurs="0" ref="com:PersonNameGroup">
+                        <xs:annotation>
+                            <xs:documentation>Person name group</xs:documentation>
+                        </xs:annotation>
+                    </xs:group>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:Contact">
+                        <xs:annotation>
+                            <xs:documentation>
+				This element can be used to describe contact information for a party.
+			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" ref="com:UserArea">
+                        <xs:annotation>
+                            <xs:documentation>Allows the Tag Super Highway schema data model to extend the specification in order to provide additional information that is not captured in Canonical Schema.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="AccountID" type="ns1:IdentifierType"/>
+            <xs:element name="Contact">
+                <xs:annotation>
+                    <xs:documentation>
+				This element can be used to describe contact information for a party.
+			</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" ref="com:ID">
+                            <xs:annotation>
+                                <xs:documentation>Is the Identifiers of the given instance of an entity within the scope of the integration. 
+				The schemeAgencyID attribute identifies the party that provided or knows this party by the given identifier.
+			</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" ref="communication:Communication">
+                            <xs:annotation>
+                                <xs:documentation>Basic Communication methods</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="PartyIDs">
+                <xs:annotation>
+                    <xs:documentation>
+				This element can be used for different IDs associated to a party.
+			</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" ref="com:ID">
+                            <xs:annotation>
+                                <xs:documentation>Is the Identifiers of the given instance of an entity within the scope of the integration. 
+				The schemeAgencyID attribute identifies the party that provided or knows this party by the given identifier.
+			</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.tsh.bestbuy.com/common/qualifiled/datatype/v1" xmlns:tns="http://www.tsh.bestbuy.com/common/qualifiled/datatype/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:annotation>
+                <xs:documentation>
+			Version 1.0.0
+			Provides wrapper around standard schema datatypes 
+		</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType name="BooleanType">
+                <xs:annotation>
+                    <xs:documentation>boolean represents true and false status</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:boolean"/>
+            </xs:simpleType>
+            <xs:simpleType name="DateTimeType">
+                <xs:annotation>
+                    <xs:documentation>Date/Time represents date with month,day and year</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:dateTime"/>
+            </xs:simpleType>
+            <xs:simpleType name="DateType">
+                <xs:annotation>
+                    <xs:documentation>Date represents date with month,day and year</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:date"/>
+            </xs:simpleType>
+            <xs:simpleType name="DayDateType">
+                <xs:annotation>
+                    <xs:documentation>Day of a Month. A string value</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="01"/>
+                    <xs:enumeration value="02"/>
+                    <xs:enumeration value="03"/>
+                    <xs:enumeration value="04"/>
+                    <xs:enumeration value="05"/>
+                    <xs:enumeration value="06"/>
+                    <xs:enumeration value="07"/>
+                    <xs:enumeration value="08"/>
+                    <xs:enumeration value="09"/>
+                    <xs:enumeration value="10"/>
+                    <xs:enumeration value="11"/>
+                    <xs:enumeration value="12"/>
+                    <xs:enumeration value="13"/>
+                    <xs:enumeration value="14"/>
+                    <xs:enumeration value="15"/>
+                    <xs:enumeration value="16"/>
+                    <xs:enumeration value="17"/>
+                    <xs:enumeration value="18"/>
+                    <xs:enumeration value="19"/>
+                    <xs:enumeration value="20"/>
+                    <xs:enumeration value="21"/>
+                    <xs:enumeration value="22"/>
+                    <xs:enumeration value="23"/>
+                    <xs:enumeration value="24"/>
+                    <xs:enumeration value="25"/>
+                    <xs:enumeration value="26"/>
+                    <xs:enumeration value="27"/>
+                    <xs:enumeration value="28"/>
+                    <xs:enumeration value="29"/>
+                    <xs:enumeration value="30"/>
+                    <xs:enumeration value="31"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="DecimalNumericType">
+                <xs:annotation>
+                    <xs:documentation>The double datatype corresponds to IEEE decimal data type. </xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:decimal"/>
+            </xs:simpleType>
+            <xs:simpleType name="DoubleNumericType">
+                <xs:annotation>
+                    <xs:documentation> double datatype corresponds to IEEE double-precision 64-bit floating point type. </xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:double"/>
+            </xs:simpleType>
+            <xs:simpleType name="DurationMeasureType">
+                <xs:annotation>
+                    <xs:documentation>duration represents a duration of time. </xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:duration"/>
+            </xs:simpleType>
+            <xs:simpleType name="FloatNumericType">
+                <xs:annotation>
+                    <xs:documentation>float corresponds to the IEEE single-precision 32-bit floating point type . 
+				</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:float"/>
+            </xs:simpleType>
+            <xs:simpleType name="IntegerNumericType">
+                <xs:annotation>
+                    <xs:documentation>integer is derived from decimal by fixing the value of fractionDigits to be 0. </xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:integer"/>
+            </xs:simpleType>
+            <xs:simpleType name="LongType">
+                <xs:annotation>
+                    <xs:documentation>long represents long integer</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:long"/>
+            </xs:simpleType>
+            <xs:simpleType name="MonthDateType">
+                <xs:annotation>
+                    <xs:documentation>Month of the Year. A String Value</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="01"/>
+                    <xs:enumeration value="02"/>
+                    <xs:enumeration value="03"/>
+                    <xs:enumeration value="04"/>
+                    <xs:enumeration value="05"/>
+                    <xs:enumeration value="06"/>
+                    <xs:enumeration value="07"/>
+                    <xs:enumeration value="08"/>
+                    <xs:enumeration value="09"/>
+                    <xs:enumeration value="10"/>
+                    <xs:enumeration value="11"/>
+                    <xs:enumeration value="12"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="NormalizedStringType">
+                <xs:annotation>
+                    <xs:documentation>normalized String represents white space normalized strings. 
+			</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:normalizedString"/>
+            </xs:simpleType>
+            <xs:simpleType name="StringType">
+                <xs:annotation>
+                    <xs:documentation>The string datatype represents character strings in XML. 
+			</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string"/>
+            </xs:simpleType>
+            <xs:simpleType name="TokenType">
+                <xs:annotation>
+                    <xs:documentation>token represents tokenized strings. </xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:token"/>
+            </xs:simpleType>
+            <xs:simpleType name="URIType">
+                <xs:annotation>
+                    <xs:documentation>anyURI represents a Uniform Resource Identifier Reference (URI).  </xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:anyURI"/>
+            </xs:simpleType>
+            <xs:simpleType name="YearDateType">
+                <xs:annotation>
+                    <xs:documentation>gYear represents a gregorian calendar year. </xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:gYear"/>
+            </xs:simpleType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:service name="TradeInCheckService.serviceagent">
+        <wsdl:port binding="tns:TransactionCheckServicePortTypeEndpoint1Binding" name="TransactionCheckServicePortTypeEndpoint1">
+            <soap:address location="https://tagservices.na.bestbuy.com/OrdersServices/TradeInCheckServiceSoap"/>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="TransactionCheckServicePortType">
+        <wsdl:operation name="TransactionCheck">
+            <wsdl:input message="tns:TransactionCheckRequest"/>
+            <wsdl:output message="tns:TransactionCheckResponse"/>
+            <wsdl:fault message="tns:TransactionCheckFault" name="fault1"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="TransactionCheckServicePortTypeEndpoint1Binding" type="tns:TransactionCheckServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="TransactionCheck">
+            <soap:operation soapAction="/BusinessServices/Proxy/TransactionCheck/TransactionCheckService.serviceagent/TransactionCheckServicePortTypeEndpoint1/TransactionCheck" style="document"/>
+            <wsdl:input>
+                <soap:body parts="TransactionCheckInput" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="TransactionCheckOutput" use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault name="fault1" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:message name="TransactionCheckRequest">
+        <wsdl:part element="ns0:TransactionCheckRequest" name="TransactionCheckInput"/>
+    </wsdl:message>
+    <wsdl:message name="TransactionCheckResponse">
+        <wsdl:part element="ns0:TransactionCheckResponse" name="TransactionCheckOutput"/>
+    </wsdl:message>
+    <wsdl:message name="TransactionCheckFault">
+        <wsdl:part element="ns1:TSHFault" name="Fault"/>
+    </wsdl:message>
+</wsdl:definitions>

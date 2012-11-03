@@ -1,0 +1,46 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<script type="text/javascript">
+		function setupInventoryTable() {
+			if ($('#inventoryTable').length == 0) {
+				return;
+			}
+
+			// Remove sorting from Action columns
+			removeColumnSorting('#inventoryTable', 8);
+			if ($('#inventoryTable tr th:eq(9)').length > 0) {
+				removeColumnSorting('#inventoryTable', 9);
+			}
+
+			applyRowHighlighting('#inventoryTable');
+			fixTableNoRecords('#inventoryTable', 'No Records Found');
+			fixTableBorders('#inventoryTable');
+		}
+		
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:panel>
+		<div class="table-wrap">
+			<form wicket:id="inventoryForm" autocomplete="off">
+				<ul class="table-nav">
+					<li>
+						<div class="inputs">
+							<select wicket:id="carrierFilter"></select> <select
+								wicket:id="osFilter"></select> <select
+								wicket:id="availabilityFilter"></select> 
+								<input type="text" wicket:id="imeiFilter" class="prefill-hint" maxlength="20" size="20" tabindex="3" />
+								<input class="button" type="submit" value="filter" id="filterSubmit" wicket:id="filterSubmit" />
+						</div>    
+					</li>
+				</ul>
+			</form>
+			<table wicket:id="inventoryTable" class="default-table loaner_phone">
+			</table>
+		</div>
+	</wicket:panel>
+</body>
+</html>

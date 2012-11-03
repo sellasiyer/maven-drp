@@ -1,0 +1,21 @@
+<!-- Failure response -->
+
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+   <SOAP-ENV:Body>
+      <SOAP-ENV:Fault>
+         <faultcode>SOAP-ENV:Server</faultcode>
+         <faultstring>This is an operation implementation generated fault</faultstring>
+         <faultactor/>
+         <detail>
+            <ns:TSHFault xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns="http://tsh.bestbuy.com/tsh/tshfault" xmlns:ns0="http://schemas.xmlsoap.org/soap/envelope/">
+               <ns:Fault>
+                  <ns:Code>TSH-PXY-100002</ns:Code>
+                  <ns:Message>LossPrevention is not currently responding (Timeout)</ns:Message>
+                  <ns:Detail>PXY-LossPrevention-100002</ns:Detail>
+               </ns:Fault>
+               <ns1:UserArea xmlns:ns1="http://www.tsh.bestbuy.com/common/v1"/>
+            </ns:TSHFault>
+         </detail>
+      </SOAP-ENV:Fault>
+   </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

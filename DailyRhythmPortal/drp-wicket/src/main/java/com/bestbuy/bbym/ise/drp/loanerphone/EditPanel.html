@@ -1,0 +1,94 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<link type="text/css"
+		href="css/ui-lightness/jquery-ui-1.8.19.custom.css" rel="stylesheet" />
+	<script type="text/javascript"
+		src="js/jquery-ui-1.8.19.autocomplete.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(
+				function() {
+					// Ignore enter key because scanning an IMEI/ESN/MEID causes a simulated enter key press.
+					$("form input").keypress(
+							function(e) {
+								if ((e.which && e.which == 13)
+										|| (e.keyCode && e.keyCode == 13)) {
+									return false;
+								} else {
+									return true;
+								}
+							});
+				});
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:panel>
+		<div wicket:id="feedback" class="required"></div>
+		<fieldset>
+			<legend>Phone Details</legend>
+			<div class="required">
+				<label><wicket:message
+						key="loanerPhoneEditPanel.carrierDropDownChoice" /> </label> <select
+					wicket:id="carrierDropDownChoice"></select>
+			</div>
+			<div class="disabled">
+				<label><wicket:message
+						key="loanerPhoneEditPanel.carrierLoanerSkuTextField" /> </label> <input
+					type="text" name="" disabled="disabled"
+					wicket:id="carrierLoanerSkuTextField" />
+			</div>
+			<div class="required quarter">
+				<label><wicket:message
+						key="loanerPhoneEditPanel.operatingSystemDropDownChoice" /> </label> <select
+					wicket:id="operatingSystemDropDownChoice"></select>
+			</div>
+			<div class="required quarter">
+				<label><wicket:message
+						key="loanerPhoneEditPanel.makeTextField" /> </label> <input type="text"
+					name="" wicket:id="makeTextField" maxlength="100" />
+			</div>
+			<div class="required quarter">
+				<label><wicket:message
+						key="loanerPhoneEditPanel.modelNumberTextField" /> </label> <input
+					type="text" name="" wicket:id="modelNumberTextField"
+					maxlength="100" />
+			</div>
+			<div class="required">
+				<label><wicket:message
+						key="loanerPhoneEditPanel.serialNumberTextField" /> </label> <input
+					type="text" name="" wicket:id="serialNumberTextField"
+					maxlength="20" />
+			</div>
+			<div class="full required">
+				<div wicket:id="conditionRadioGroup">
+					<label><wicket:message
+							key="loanerPhoneEditPanel.conditionRadioGroup" /> </label> <span
+						class="radio"> <input type="radio" name="condition"
+						value="GOOD" wicket:id="conditionGoodRadio" /> <label><wicket:message
+								key="loanerPhone.condition.good" /> </label> </span> <span class="radio">
+						<input type="radio" name="condition" value="FAIR"
+						wicket:id="conditionFairRadio" /> <label><wicket:message
+								key="loanerPhone.condition.fair" /> </label> </span> <span class="radio">
+						<input type="radio" name="condition" value="POOR"
+						wicket:id="conditionPoorRadio" /> <label><wicket:message
+								key="loanerPhone.condition.poor" /> </label> </span> <span
+						wicket:id="damagedLostRadioContainer"> <span class="radio">
+							<input type="radio" name="condition" value="DAMAGED"
+							wicket:id="conditionDamagedRadio" /> <label><wicket:message
+									key="loanerPhone.condition.damaged" /> </label> </span> <span class="radio">
+							<input type="radio" name="condition" value="LOST"
+							wicket:id="conditionLostRadio" /> <label><wicket:message
+									key="loanerPhone.condition.lost" /> </label> </span> </span>
+				</div>
+			</div>
+			<div class="full bottom">
+				<label><wicket:message
+						key="loanerPhoneEditPanel.conditionCommentTextArea" /> </label>
+				<textarea rows="3" wicket:id="conditionCommentTextArea"></textarea>
+			</div>
+		</fieldset>
+	</wicket:panel>
+</body>
+</html>

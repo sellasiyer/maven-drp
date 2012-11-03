@@ -1,0 +1,39 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:panel>
+		<div wicket:id="feedback" class="required"></div>
+		<fieldset>
+			<legend>Phone Details</legend>
+			<div class="view">
+				<label>Carrier</label> <span wicket:id="carrierField"></span>
+			</div>
+			<div class="view">
+				<label>Carriers Loaner SKU</label> <span
+					wicket:id="carrierLoanerSkuField"></span>
+			</div>
+			<div class="view quarter">
+				<label>OS</label> <span wicket:id="operatingSystemField"></span>
+			</div>
+			<div class="view quarter">
+				<label>Make</label> <span wicket:id="makeField"></span>
+			</div>
+			<div class="view quarter">
+				<label>Model</label> <span wicket:id="modelNumberField"></span>
+			</div>
+			<br />
+			<div class="view full">
+				<label>IMEI / ESN</label> <span wicket:id="serialNumberField"></span>
+			</div>
+			<div class="view full">
+				<label>Condition</label> <span wicket:id="conditionField"></span>
+			</div>
+			<div class="view full bottom">
+				<label>Condition Comment</label> <span
+					wicket:id="conditionCommentField"></span>
+			</div>
+		</fieldset>
+	</wicket:panel>
+</body>
+</html>

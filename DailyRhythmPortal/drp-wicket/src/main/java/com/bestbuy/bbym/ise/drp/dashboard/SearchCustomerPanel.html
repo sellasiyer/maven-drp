@@ -1,0 +1,100 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<script type="text/javascript">
+		var wicketBehaviorSCP;
+		var searchCustomersTable = {
+			tableID : 'searchCustomersTable',
+			stripHeaderAnchorHref : true,
+			tidyHeader : false,
+			oddClasses : true,
+			lastClasses : true,
+			widths : [ '100', '100', '-', '100', '60', '110', '70' ],
+			textAlignment : [ 'l', 'l', 'l', 'l', 'l', 'l', 'r' ],
+			sortable : [ true, true, true, true, true, true, false ],
+			truncate : [ true, true, true, true, true, true, false ]
+		};
+		function setupSelectBestBuyCustomerLoading() {
+			$("#searchCustomersContainer table tr td:last-child span a").click(
+					function() {
+						$(this).replaceWith(
+								"<div class='loading-spinner-small'></div>");
+					});
+		}
+		function selectSearchCustomersNavFilter(filter) {
+			$('#searchCustomersFilter li.open').each(function(index) {
+				$(this).removeClass('open');
+			});
+			if (filter && filter == 'PHONE_NUMBER') {
+				$('#searchCustomersFilter li:eq(0)').addClass('open');
+			} else if (filter && filter == 'FN_LN_ZIP') {
+				$('#searchCustomersFilter li:eq(1)').addClass('open');
+			} else if (filter && filter == 'EMAIL') {
+				$('#searchCustomersFilter li:eq(2)').addClass('open');
+			}
+
+			//bind enter to submit form + start search
+			$('.inputs input').keypress(function(e) {
+				if (e.which == 13) {
+					$(this).siblings('.button').click();
+					$('form#login').submit();
+				}
+			});
+
+			//give the first search box focus
+			$('#searchCustomersFilter li.open .inputs input').first().focus();
+		}
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:panel>
+		<h2 class="top" style="margin: 36px 0 15px 15px;">Best Buy
+			Customer Search</h2>
+
+		<div wicket:id="searchCustomerFeedback" class="required"></div>
+
+		<div class="table-wrap">
+			<form wicket:id="searchCustomerForm" autocomplete="off">
+				<ul class="table-nav" id="searchCustomersFilter">
+					<li><a wicket:id="phoneSearchLink"><wicket:message
+								key="searchCustomerForm.phoneSearch" /> </a>
+						<div class="inputs">
+							<input wicket:id="phoneSearch" type="text" maxlength="10" /> <input
+								class="button" wicket:id="phoneSearchButton" type="button" />
+						</div>
+					</li>
+					<li><a wicket:id="nameZipSearchLink"><wicket:message
+								key="searchCustomerForm.nameZipSearch" /> </a>
+						<div class="inputs">
+							<input wicket:id="firstNameSearch" type="text" maxlength="30" />
+							<input wicket:id="lastNameSearch" type="text" maxlength="30" />
+							<input wicket:id="zipCodeSearch" type="text" maxlength="5" /><input
+								class="button" wicket:id="nameZipSearchButton" type="button" />
+						</div>
+					</li>
+					<li><a wicket:id="emailSearchLink"><wicket:message
+								key="searchCustomerForm.emailSearch" /> </a>
+						<div class="inputs">
+							<input wicket:id="emailSearch" type="text" maxlength="50" /> <input
+								class="button" wicket:id="emailSearchButton" type="button" />
+						</div>
+					</li>
+				</ul>
+			</form>
+
+			<div wicket:id="searchCustomersContainer">
+				<table class="default-table" wicket:id="searchCustomersTable">
+				</table>
+			</div>
+		</div>
+
+		<div wicket:id="noSearchCustomersContainer">
+			<p class="no-results" wicket:id="noSearchCustomersLabel"></p>
+		</div>
+
+		<br clear="all" />
+	</wicket:panel>
+</body>
+</html>

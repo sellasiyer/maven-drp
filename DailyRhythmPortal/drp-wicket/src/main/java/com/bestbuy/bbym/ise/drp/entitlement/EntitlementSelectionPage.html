@@ -1,0 +1,55 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+<script src="js/jquery-1.7.min.js"></script>
+	<script type="text/javascript" src="js/table-prep.js"></script>
+	<script src="js/search-nav.js"></script>
+	
+</wicket:head>
+
+<body>
+<wicket:extend>
+<div class="grid-"></div>
+<div class="page-header">
+	<h1>Customer Benefit Lookup</h1>
+	<div>             
+	<ul class="quick-actions">
+				<li><a class="button" href="#" wicket:id="printButton" target="_blank">Print Summary</a></li>
+	</ul>   
+	</div>
+</div>    
+
+<div wicket:id="entitlementSelectionFeedback" class="required"></div>
+<div wicket:id="customerDashboardHeaderPanel"></div>
+      
+<form> 
+
+<div wicket:id="purchaseViewContainer">
+<div wicket:id="purchaseViewPanel"></div>
+<div wicket:id="mobileDeviceViewPanel"></div>
+<div wicket:id="gspViewPanel"></div>
+<div wicket:id="rzViewPanel"></div>
+</div> 
+
+<div wicket:id="entitlementTypesSelectionContainer">
+<div class="data-box view">
+	<h2>DISCLAIMER</h2>
+ 	<p wicket:id="disclaimerLabel"></p>
+</div>
+<div wicket:id="entitlementSelectionPanel"></div>
+<div class="data-box view" wicket:id="nextStepsPanel"></div> 
+</div> 
+
+<div class="buttons">
+	<a wicket:id = "cancelButton" class="button minor">Cancel</a>
+	<a wicket:id = "backButton" class="button">Back</a>
+	<a wicket:id = "continueLink" class="button">Complete</a>
+</div>
+		
+</form>
+		 
+
+</wicket:extend>
+
+</body>
+</html>		

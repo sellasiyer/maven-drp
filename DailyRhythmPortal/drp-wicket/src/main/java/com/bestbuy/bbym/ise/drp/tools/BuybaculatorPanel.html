@@ -1,0 +1,36 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head>
+<title>Buybaculator</title>
+<style>
+   
+</style>
+</head>
+<body>
+	<wicket:panel>
+		<div wicket:id="feedback"></div>
+		<form>
+			<div class="buybaculator">
+				<label for="retail-price">Full Retail Price of Phone ($):</label>
+				<input type="text" name="retail-price" id="retail-price" class="required" />
+				<dl id="buyback-value">
+					<dt>Up to 6 Months</dt>
+					<dd>50%</dd>
+					<dt>6-12 Months</dt>
+					<dd>40%</dd>
+					<dt>12-18 Months</dt>
+					<dd>30%</dd>
+					<dt>18-24 Months</dt>
+					<dd>20%</dd>
+				</dl>
+				<div class="clearer"></div>
+				<p>From the effective date (31 days after purchase)</p>
+			</div>
+			<div class="buttons">
+				<input class="button minor" type="submit" value="Reset" onclick="resetForm(); return false;")/>
+				<input class="button" type="submit" value="Calculate" onclick="calculateForm(); return false;"/>                  						
+			</div>
+		</form>
+	</wicket:panel>
+</body>
+</html>

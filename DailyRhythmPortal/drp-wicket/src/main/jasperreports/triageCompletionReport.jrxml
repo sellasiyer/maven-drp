@@ -1,0 +1,336 @@
+<?xml version="1.0"?>
+<jasperReport
+		xmlns="http://jasperreports.sourceforge.net/jasperreports"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+		name="triageCompletionReport">
+	<subDataset name="totalSuccessful">
+    	<queryString>
+      		<![CDATA[
+				select COUNT(*) as totalSuccessfulWorkflows, status as status, (ROUND(Count(status) *100/ (Select Count(*) 
+				FROM workflow),2)) as percent 
+				FROM workflow group by status
+				order by totalSuccessfulWorkflows desc
+			]]>  
+    	</queryString>
+   		<field name="totalSuccessfulWorkflows" class="java.lang.Integer"></field>
+   		<field name="status" class="java.lang.String"></field>
+   		<field name="percent" class="java.lang.Float"></field>
+	</subDataset>
+	
+	<subDataset name="averageTime">
+    	<queryString>
+      		<![CDATA[
+				SELECT  ROUND(AVG(END_CANCEL_CALC-START_CANCEL_CALC),2) averageTime
+				FROM (SELECT
+					to_number(extract(second from END_TM)) +
+              		to_number(extract(minute from END_TM)) * 60 + 
+              		to_number(extract(hour from END_TM))   * 60 * 60 + 
+              		to_number(extract(day from END_TM))  * 60 * 60* 24 AS END_CANCEL_CALC,
+					to_number(extract(second from START_TM)) +
+              		to_number(extract(minute from START_TM)) * 60 + 
+              		to_number(extract(hour from START_TM))   * 60 * 60 + 
+              		to_number(extract(day from START_TM))  * 60 * 60* 24 AS START_CANCEL_CALC
+				FROM WORKFLOW WHERE END_TM IS NOT NULL AND START_TM IS NOT NULL
+				)
+			]]>   
+    	</queryString>
+   		<field name="averageTime" class="java.lang.String"></field>
+	</subDataset>
+
+	<subDataset name="workflowTypeCount">
+    	<queryString>
+      		<![CDATA[
+		
+				select val
+				,count(1) cnt
+				from (select rank ()  over (partition by hist.workflow_id order by hist.sequence_number) rankit
+				,attr.val
+				,hist.workflow_id
+				,sequence_number
+				from workflow wf
+				inner join workflow_step_hist hist
+				on wf.workflow_id = hist.workflow_id
+				inner join workflow_attribute_hist attr
+				on attr.wf_step_hist_id = hist.wf_step_hist_id
+				) detail
+				where detail.rankit=1
+				group by val
+				order by cnt desc
+			]]>   
+    	</queryString>
+   		<field name="val" class="java.lang.String"></field>
+   		<field name="cnt" class="java.lang.String"></field>
+	</subDataset>
+
+	<subDataset name="noGSPNextStep">
+    	<queryString>
+      		<![CDATA[	
+				select questhist.answer_text as ansText,
+				count (1) cnt 
+				from dialog_question quest
+				inner join dialog_question_hist questHist
+				on quest.dialog_question_id = questhist.dialog_question_id
+				where 
+				questhist.answer_text is not null and
+				quest.question_code='no_gsbtp_next_steps'
+				group by questhist.answer_text
+				order by cnt desc
+			]]>   
+    	</queryString>
+   		<field name="ansText" class="java.lang.String"></field>
+   		<field name="cnt" class="java.lang.String"></field>
+	</subDataset>
+	
+	<queryString>  
+			<![CDATA[
+				select COUNT(*) as totalWorkflowsExecuted from workflow
+			]]>  
+	</queryString> 
+	<field name="totalWorkflowsExecuted" class="java.lang.Integer"></field>
+	
+	<title>
+		<band height="100">
+			<staticText>
+				<reportElement x="100" y="5" width="375" height="35"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text>
+					<![CDATA[ Triage Summary Report ]]>
+				</text>
+			</staticText>
+		</band>
+	</title>
+
+	<detail>	
+		<band height="20">
+		<staticText >
+				<reportElement x="2" y="0" width="400" height="20"/>
+				<textElement textAlignment="Left">
+					<font size="10"/>
+				</textElement>
+				<text>Status of all initiated triage processes (INPROGRESS may include abandoned processes)</text>
+			</staticText>
+		</band>
+		<band height="20">
+			<rectangle>
+				<reportElement mode="Transparent" x="0" y="0" width="370" height="20"/>
+				<graphicElement/>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="0" width="80" height="20"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<text>status</text>
+			</staticText>
+			<staticText>
+				<reportElement x="85" y="0" width="60" height="20"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<text>total #</text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="0" width="100" height="20"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<text>percent of total</text>
+			</staticText>
+			<staticText>
+				<reportElement x="255" y="0" width="100" height="20"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<text>average time</text>
+			</staticText>
+		</band>	
+		<band height="20">
+		 	<componentElement>
+        		<reportElement x="0" y="0" width="60" height="20"/>
+        		<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" 
+                 xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components 
+                 http://jasperreports.sourceforge.net/xsd/components.xsd">
+
+       				<datasetRun subDataset="totalSuccessful"/>
+
+		          <jr:listContents height="20">
+					<textField>
+						<reportElement x="2" y="0" width="80" height="20"/>
+						<textFieldExpression class="java.lang.String">
+							<![CDATA[ $F{status} ]]>
+						</textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement x="85" y="0" width="60" height="20"/>
+						<textFieldExpression class="java.lang.Integer">
+							<![CDATA[ $F{totalSuccessfulWorkflows} ]]>
+						</textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement x="150" y="0" width="60" height="20"/>
+						<textFieldExpression class="java.lang.Float">
+							<![CDATA[ $F{percent} ]]>
+						</textFieldExpression>
+					</textField>
+		          </jr:listContents>
+		        </jr:list>
+      		</componentElement>	
+      	</band>
+      	<band height="10">
+      		<line>
+				<reportElement x="0" y="5" width="355" height="1" forecolor="#808080"/>
+				<graphicElement pen="Thin"/>
+			</line>
+      	</band>
+      	<band height="20">
+      		<staticText>
+				<reportElement x="2" y="0" width="60" height="20"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<text>Total</text>
+			</staticText>
+			<textField>
+				<reportElement x="85" y="0" width="60" height="20"/>
+				<textFieldExpression class="java.lang.Integer">
+					<![CDATA[ $F{totalWorkflowsExecuted} ]]>
+				</textFieldExpression>
+			</textField>
+      		<componentElement>
+        		<reportElement x="255" y="0" width="60" height="20"/>
+        		<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" 
+                 xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components 
+                 http://jasperreports.sourceforge.net/xsd/components.xsd">
+
+       				<datasetRun subDataset="averageTime"/>
+
+		          <jr:listContents height="20">
+					<textField>
+						<reportElement x="0" y="0" width="160" height="20"/>
+						<textFieldExpression class="java.lang.String">
+							<![CDATA[ $F{averageTime} + " seconds"]]>
+						</textFieldExpression>
+					</textField>
+		          </jr:listContents>
+		        </jr:list>
+      		</componentElement>	
+		</band>
+		<band height="20">
+		</band>
+		<band height="20">
+			<staticText >
+				<reportElement x="2" y="0" width="400" height="20"/>
+				<textElement textAlignment="Left">
+					<font size="10"/>
+				</textElement>
+				<text>Count of types of triage processes initiated where first step is complete</text>
+			</staticText>
+		</band>
+		<band height="20">
+			<rectangle>
+				<reportElement mode="Transparent" x="0" y="0" width="370" height="20"/>
+				<graphicElement/>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="0" width="120" height="20"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<text>triage type</text>
+			</staticText>
+			<staticText>
+				<reportElement x="125" y="0" width="60" height="20"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<text>total #</text>
+			</staticText>
+		</band>
+		<band height="20">
+		 	<componentElement>
+        		<reportElement x="0" y="0" width="60" height="20"/>
+        		<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" 
+                 xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components 
+                 http://jasperreports.sourceforge.net/xsd/components.xsd">
+
+       				<datasetRun subDataset="workflowTypeCount"/>
+
+		          <jr:listContents height="20">
+					<textField>
+						<reportElement x="2" y="0" width="120" height="20"/>
+						<textFieldExpression class="java.lang.String">
+							<![CDATA[ $F{val} ]]>
+						</textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement x="125" y="0" width="60" height="20"/>
+						<textFieldExpression class="java.lang.String">
+							<![CDATA[ $F{cnt} ]]>
+						</textFieldExpression>
+					</textField>
+		          </jr:listContents>
+		        </jr:list>
+      		</componentElement>	
+      	</band>
+      	<band height="20">
+		</band>
+		<band height="20">
+			<staticText >
+				<reportElement x="2" y="0" width="400" height="20"/>
+				<textElement textAlignment="Left">
+					<font size="10"/>
+				</textElement>
+				<text>Count of action taken when customer does not have Black Tie</text>
+			</staticText>
+		</band>
+		<band height="20">
+			<rectangle>
+				<reportElement mode="Transparent" x="0" y="0" width="370" height="20"/>
+				<graphicElement/>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="0" width="120" height="20"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<text>next step (no GSP)</text>
+			</staticText>
+			<staticText>
+				<reportElement x="125" y="0" width="60" height="20"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<text>total #</text>
+			</staticText>
+		</band>
+		<band height="20">
+		 	<componentElement>
+        		<reportElement x="0" y="0" width="60" height="20"/>
+        		<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" 
+                 xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components 
+                 http://jasperreports.sourceforge.net/xsd/components.xsd">
+
+       				<datasetRun subDataset="noGSPNextStep"/>
+
+		          <jr:listContents height="20">
+					<textField>
+						<reportElement x="2" y="0" width="120" height="20"/>
+						<textFieldExpression class="java.lang.String">
+							<![CDATA[ $F{ansText} ]]>
+						</textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement x="125" y="0" width="60" height="20"/>
+						<textFieldExpression class="java.lang.String">
+							<![CDATA[ $F{cnt} ]]>
+						</textFieldExpression>
+					</textField>
+		          </jr:listContents>
+		        </jr:list>
+      		</componentElement>	
+      	</band>
+	</detail>
+</jasperReport>

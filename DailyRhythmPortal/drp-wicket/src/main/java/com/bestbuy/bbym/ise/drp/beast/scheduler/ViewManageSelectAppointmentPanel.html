@@ -1,0 +1,97 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+
+<script type="text/javascript">
+                     
+$(document).ready(function() {
+	installSelectPanelClickHandlers();
+});  
+ 
+function installSelectPanelClickHandlers() {
+	   
+	 $('#cancelCheckboxSubType').bind('click',function(){		   
+		 $('#completeCheckboxSubType').removeAttr("checked");
+		 $('#noShowCheckboxSubType').removeAttr("checked");	 
+		 
+		 if($('#cancelCheckboxSubType:checked').length > 0){
+				toggleSearchButton(false);
+				toggleSubmitButton(true);			
+			}else{
+				toggleSearchButton(true);
+				toggleSubmitButton(false);	
+		}
+		 
+	  }) 
+	 $('#completeCheckboxSubType').bind('click',function(){		   
+		 $('#cancelCheckboxSubType').removeAttr("checked");
+		 $('#noShowCheckboxSubType').removeAttr("checked");	 
+		 
+		 if($('#completeCheckboxSubType:checked').length > 0){
+				toggleSearchButton(false);
+				toggleSubmitButton(true);			
+			}else{
+				toggleSearchButton(true);
+				toggleSubmitButton(false);	
+		}
+		       
+	  })
+	 $('#noShowCheckboxSubType').bind('click',function(){		   
+		$('#completeCheckboxSubType').removeAttr("checked");
+		$('#cancelCheckboxSubType').removeAttr("checked");	 
+		
+		 if($('#noShowCheckboxSubType:checked').length > 0){
+				toggleSearchButton(false);
+				toggleSubmitButton(true);			
+			}else{
+				toggleSearchButton(true);
+				toggleSubmitButton(false);	
+		}
+		
+	  })
+	
+} 
+ 
+
+</script>
+
+</wicket:head>
+
+<body>
+	<wicket:panel>
+	
+	 <div id="fixedHeaderTable01" class="appt-search" wicket:id="schedularSelectedDisplayContainer">
+		<table class="fixed-header fht-table" wicket:id="selectedSchedulerTable">
+		</table>	 
+	 </div>   
+		       
+	  <div wicket:id="schedularSelectedTextContainer">
+		   
+		<h3 class="appt-details">Appointment ID: <span wicket:id="appointmentId"></span></h3>
+		<dl class="info appt-details">
+		<div class="column">  
+			<dt><wicket:message key="viewManageAppointmentSelectForm.name.label" /></dt>
+			<dd><span wicket:id="fullName"></span></dd>
+			<dt><wicket:message key="viewManageAppointmentSelectForm.phoneNum.label" /></dt>
+			<dd><span wicket:id="phoneNo"></span></dd>
+			<dt><wicket:message key="viewManageAppointmentSelectForm.email.label" /></dt>
+			<dd><span wicket:id="email"></span></dd>
+			<dt><wicket:message key="viewManageAppointmentSelectForm.orderNumber.label" /></dt>
+			<dd><span wicket:id="orderNo"></span></dd>  
+		</div>         
+		<div class="column">
+			<dt><wicket:message key="viewManageAppointmentSelectForm.date.label" /></dt>
+			<dd><span wicket:id="apptDate"></span></dd>
+			<dt><wicket:message key="viewManageAppointmentSelectForm.time.label" /></dt>
+			<dd><span wicket:id="timeLabel"></span></dd>
+			<dt><wicket:message key="viewManageAppointmentSelectForm.reason.label" /></dt>
+			<dd><span wicket:id="reason"></span></dd>
+			<dt><wicket:message key="viewManageAppointmentSelectForm.reasonType.label" /></dt>
+			<dd><span wicket:id="reasonTypeLabel"></span></dd>
+		</div>                       
+ 		</dl>                                   
+	</div>                              				
+	</wicket:panel>   
+</body>
+</html>    

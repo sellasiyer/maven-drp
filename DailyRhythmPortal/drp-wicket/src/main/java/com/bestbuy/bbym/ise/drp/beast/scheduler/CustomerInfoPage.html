@@ -1,0 +1,245 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<title>BEAST</title>
+	<script type="text/javascript" src="js/validation.js"></script>
+	<script type="text/javascript" src="js/jquery.hotkeys.js"></script>   
+	<script type="text/javascript">
+		var closeFunction = function() {
+			$('#closeButton').click();
+		};
+		var clearFunction = function() {
+			$('#clearButton').click();
+		};
+		var backFunction = function() {
+			$('#backButton').click();
+		};
+
+		var continueFunction = function() {
+			$('#continueButton').click();
+		};
+		hotKeysConfig = {
+			f1 : {
+				handler : backFunction,
+				buttonSelector : '#backButton'
+			},
+			f2 : {
+				handler : continueFunction,
+				buttonSelector : '#continueButton'
+			},
+			f3 : {
+				handler : closeFunction,
+				buttonSelector : '#closeButton'
+			},
+			f4 : {
+				handler : clearFunction,
+				buttonSelector : '#clearButton'
+			}
+		};
+
+		var handleCustInfoConitnueButtonState = function(enabled) {
+			var continueButton = $('#continueButton');
+			if (enabled) {
+				continueButton.removeAttr('disabled').parent().removeClass(
+						'disabled');
+			} else {
+				continueButton.attr('disabled', true).parent().addClass(
+						'disabled');
+			}
+		};
+		var custInfoValidation = {
+			handleButtonState : handleCustInfoConitnueButtonState,
+			phone : {
+				type : VALIDATION_TYPE.PHONE,
+				valueSelector : '#phone',
+				valid : false,
+				ignore : false,
+				optional : false
+			},
+			email : {
+				type : VALIDATION_TYPE.EMAIL,
+				valueSelector : '#email',
+				valid : false,
+				ignore : false,
+				optional : false
+			},
+			confirmEmail : {
+				type : VALIDATION_TYPE.EMAIL,
+				valueSelector : '#confirmEmail',
+				valid : false,
+				ignore : false,
+				optional : false
+			},
+			firstName : {
+				type : VALIDATION_TYPE.NAME,
+				valueSelector : '#firstName',
+				valid : false,
+				ignore : false,
+				optional : false
+			},
+			lastName : {
+				type : VALIDATION_TYPE.NAME,
+				valueSelector : '#lastName',
+				valid : false,
+				ignore : false,
+				optional : false
+			}
+
+		};
+
+		function formatPhoneNumber() {
+			$("#phone").keyup(function() {
+				var curchr = this.value.length;
+				var curval = $(this).val();
+				if (curchr == 3) {
+					$(this).val("(" + curval + ")");
+				} else if (curchr == 8) {
+					$(this).val(curval + "-");
+				}
+			});
+		}
+
+		function disableEmailCopyPaste() {
+			$(document).ready(function() {
+				$('#confirmEmail').bind("cut copy paste", function(e) {
+					e.preventDefault();
+				});
+			});
+		}
+		
+		function bindHotKeys() {   
+			                
+			$(document).live('keydown', 'f1', function() {
+				$('#backButton').click();
+				return false;
+			});
+			$("input").live('keydown', 'f1', function() {
+				$('#backButton').click();
+				return false;
+			});
+			$("select").live('keydown', 'f1', function() {
+				$('#backButton').click();
+				return false;
+			});
+			
+			$(document).live('keydown', 'f2', function() {
+				$('#continueButton').click();
+				return false;
+			});
+			$("input").live('keydown', 'f2', function() {
+				$('#continueButton').click();
+				return false;
+			});
+			$("select").live('keydown', 'f2', function() {
+				$('#continueButton').click();
+				return false;
+			});
+			
+			$(document).live('keydown', 'f3', function() {
+				$('#closeButton').click();
+				return false;
+			});
+			
+			$("input").live('keydown', 'f3', function() {
+				$('#closeButton').click();
+				return false;
+			});
+			$("select").live('keydown', 'f3', function() {
+				$('#closeButton').click();
+				return false;
+			});
+			
+			$(document).live('keydown', 'f4', function() {
+				$('#clearButton').click();
+				return false;
+			});
+
+			$("input").live('keydown', 'f4', function() {
+				$('#clearButton').click();
+				return false;
+			});
+			
+			$("select").live('keydown', 'f4', function() {
+				$('#clearButton').click();
+				return false;
+			});
+			
+		}  
+
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+
+		<div wicket:id="feedback" class="error"></div>
+
+		<div class="wrap">
+			<!-- here to replicate beast frame -->
+			<h1 class="highlight">Step 1: Your Info</h1>
+			<dl class="form" style="width: 100%; margin-bottom: 20px;">
+				<dd>
+					<label><wicket:message
+							key="schedulerCustomerInfoForm.firstName.label" /> </label> <input
+						wicket:id="firstName" type="text" maxlength="25" class="required"
+						onkeypress="return keyEntryValidation(event, 'firstName', custInfoValidation)"
+						onkeyup="fieldValidation(event, 'firstName', custInfoValidation)" />
+				</dd>
+				<dd>
+					<label><wicket:message
+							key="schedulerCustomerInfoForm.lastName.label" /> </label> <input
+						wicket:id="lastName" type="text" maxlength="25" class="required"
+						onkeypress="return keyEntryValidation(event, 'lastName', custInfoValidation)"
+						onkeyup="fieldValidation(event, 'lastName', custInfoValidation)" />
+				</dd>
+				<br />
+				<dd>
+					<label><wicket:message
+							key="schedulerCustomerInfoForm.orderNo.label" /> </label> <input
+						wicket:id="orderNo" type="text" />
+				</dd>
+				<dd>
+					<label><wicket:message
+							key="schedulerCustomerInfoForm.phone.label" /> </label> <input
+						wicket:id="phone" type="text" class="required"
+						onkeypress="return keyEntryValidation(event, 'phone', custInfoValidation)"
+						onkeyup="fieldValidation(event, 'phone', custInfoValidation);" />
+				</dd>
+				<br />
+				<br />
+				<dd class="long">
+					<input type="checkbox" wicket:id="emailOptInCbx"
+						name="email_opt_in" id="email_opt_in" checked="checked" /><label
+						for="email_opt_in" style="display: inline;"><wicket:message
+							key="schedulerChoooseAppointment.footNote" /> </label>
+				</dd>
+				<br/>
+				<dd class="long">
+					<label><wicket:message
+							key="schedulerCustomerInfoForm.email.label" /> </label> <input
+						wicket:id="email" type="text" class="required"
+						onkeypress="return keyEntryValidation(event, 'email', custInfoValidation)"
+						onkeyup="fieldValidation(event, 'email', custInfoValidation)" />
+				</dd>
+				<br />
+				<dd class="long">
+					<label><wicket:message
+							key="schedulerCustomerInfoForm.confirmEmail.label" /> </label> <input
+						wicket:id="confirmEmail" type="text" class="required"
+						onkeypress="return keyEntryValidation(event, 'confirmEmail', custInfoValidation)"
+						onkeyup="fieldValidation(event, 'confirmEmail', custInfoValidation)" />
+				</dd>
+			</dl>
+
+
+
+			<div class="strong-notes">
+				<p>
+					<wicket:message key="schedulerCustomerInfo.footNote" />
+				</p>
+			</div>
+		</div>
+	</wicket:extend>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+	
+<body>
+	<wicket:panel>
+		<div class="table-wrap">
+			<form wicket:id="searchRewardZoneForm" autocomplete="off">
+				<ul class="table-nav" id="searchRewardZonesFilter">
+					<li><a wicket:id="phoneSearchLink"><wicket:message
+								key="searchCustomerForm.phoneSearch" /> </a>
+						<div class="inputs">
+							<input wicket:id="phoneSearch" type="text" maxlength="10" /> <input
+								class="button" wicket:id="phoneSearchButton" type="button" />
+						</div></li>
+					<li><a wicket:id="nameZipSearchLink"><wicket:message
+								key="searchCustomerForm.nameSearch" /> </a>
+						<div class="inputs">
+							<input wicket:id="firstNameSearch" type="text" maxlength="30" />
+							<input wicket:id="lastNameSearch" type="text" maxlength="30" />
+							<input class="button" wicket:id="nameZipSearchButton" 
+								type="button" /> 
+						</div></li>
+					<li><a wicket:id="emailSearchLink"><wicket:message
+								key="searchCustomerForm.emailSearch" /> </a>
+						<div class="inputs">
+							<input wicket:id="emailSearch" type="text" maxlength="50" /> <input
+								class="button" wicket:id="emailSearchButton" type="button" />
+						</div></li>
+				</ul> 
+			</form>
+
+			<div class="default-table-container" wicket:id="searchRewardZonesContainer">
+				<table class="default-table" wicket:id="searchRewardZonesTable">
+				</table>
+			</div>
+
+			<div wicket:id="noSearchRewardZonesContainer">
+				<p class="no-results" wicket:id="noSearchRewardZonesLabel"></p>
+			</div>
+
+			<div id="searchRewardZonesLoading" class="loading-spinner-big">
+				<wicket:message key="searchRewardZonePanel.loading.label" />
+			</div>
+		</div>
+	</wicket:panel>
+</body>
+</html>

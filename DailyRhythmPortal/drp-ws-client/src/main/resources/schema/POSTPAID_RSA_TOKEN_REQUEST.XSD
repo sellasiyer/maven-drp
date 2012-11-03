@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://bestbuy.com/bbym/beast/cap/request/postpaid/rsaToken"
+	targetNamespace="http://bestbuy.com/bbym/beast/cap/request/postpaid/rsaToken"
+	xmlns:header="http://bestbuy.com/bbym/beast/cap/request/header"
+	xmlns:common="http://bestbuy.com/bbym/beast/cap/common"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified">
+
+	<xs:import namespace="http://bestbuy.com/bbym/beast/cap/request/header"
+		schemaLocation="CAP_REQUEST_HEADER.XSD" />
+	<xs:import namespace="http://bestbuy.com/bbym/beast/cap/common"
+		schemaLocation="CAP_COMMON.XSD" />
+
+	<xs:complexType name="Body">
+		<xs:sequence>
+			<xs:element name="repName" type="common:Name" maxOccurs="1" minOccurs="0">
+                	<xs:annotation>
+                		<xs:documentation>
+                			VEZ Only.
+                			Complex type to capture the store representative&apos;s
+                			name
+                		</xs:documentation>
+                	</xs:annotation>
+             </xs:element>
+			<xs:element name="reasonCode" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="ACTIVATION"></xs:enumeration>
+						<xs:enumeration value="CANCEL"></xs:enumeration>
+						<xs:enumeration value="INQUIRY"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="cancellationCode" type="xs:string"
+				maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This is a unique Cancellation code. This
+						element is conditionally required.
+						If reasonCode is cancelled, then it is mandatory.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subscriber" maxOccurs="5" minOccurs="0"
+				type="SubscriberType">
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SubscriberType">
+		<xs:annotation>
+			<xs:documentation>
+				This is an indivudal line on the account.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+
+			<xs:element name="phoneNumber" type="common:PhoneNumberType"
+				maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This element is conditionally required. If
+						reasonCode is cancelled, then it is mandatory.
+				</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="handsetIdentifier" maxOccurs="1"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This element is conditionally required. If
+						reasonCode is cancelled, then it is mandatory.
+						This can contain the
+						info of either SIM, IMEI or ESN.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="PostpaidRsaTokenRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Header" type="header:Header" />
+				<xs:element name="Body" type="Body" maxOccurs="1" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

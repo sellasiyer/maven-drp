@@ -1,0 +1,112 @@
+
+<ns0:RetrieveLocationsResponse
+	xmlns:jms1="http://www.tibco.com/namespaces/tnt/plugins/jms" xmlns:ns0="http://www.tsh.bestbuy.com/facilities/locations/service/v2">
+	<ns1:MetaData
+		xmlns:ns1="http://www.tsh.bestbuy.com/facilities/locations/fields/v2">
+		<ns2:Version xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/fields/v1">2</ns2:Version>
+		<ns2:SourceID xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/fields/v1">ISE</ns2:SourceID>
+		<ns2:ResponseTimeStamp
+			xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/components/v2">2012-11-02T11:29:33.602-05:00</ns2:ResponseTimeStamp>
+	</ns1:MetaData>
+	<ns1:Status xmlns:ns1="http://www.tsh.bestbuy.com/facilities/locations/fields/v2">
+		<ns2:Code xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">PXY-TSH-000000</ns2:Code>
+		<ns2:Description xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">executed successfully
+		</ns2:Description>
+		<ns2:ReasonCode xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">executed successfully
+		</ns2:ReasonCode>
+	</ns1:Status>
+	<ns1:Locations
+		xmlns:ns1="http://www.tsh.bestbuy.com/facilities/locations/fields/v2">
+		<ns1:Location>
+			<ns1:Header>
+				<ns1:LocationID>699</ns1:LocationID>
+				<ns1:LocationName>APPLICATION TEST SER</ns1:LocationName>
+				<ns1:LocationTypeID>54</ns1:LocationTypeID>
+				<ns1:LocationType />
+				<ns1:LocationCategory>Store</ns1:LocationCategory>
+				<ns1:LocationTypeDescription>Wholesale Store
+				</ns1:LocationTypeDescription>
+				<ns1:ExpressSASIndicator>N</ns1:ExpressSASIndicator>
+				<ns1:MobileSASIndicator>N</ns1:MobileSASIndicator>
+				<ns1:StoreDeliveryIndicator>N</ns1:StoreDeliveryIndicator>
+				<ns1:PhysicalWarehouseIndicator>N</ns1:PhysicalWarehouseIndicator>
+				<ns1:CrossDockIndicator>N</ns1:CrossDockIndicator>
+				<ns1:LocationHierarchy type="District">
+					<ns2:ID xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">1</ns2:ID>
+					<ns2:Name xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">ST. PAUL</ns2:Name>
+				</ns1:LocationHierarchy>
+				<ns1:LocationHierarchy type="Region">
+					<ns2:ID xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">32</ns2:ID>
+					<ns2:Name xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">TERRITORY 32</ns2:Name>
+				</ns1:LocationHierarchy>
+			</ns1:Header>
+			<ns1:Communication>
+				<ns2:Phone xmlns:ns2="http://www.tsh.bestbuy.com/common/communication/v1">
+					<ns2:AreaDialing>800</ns2:AreaDialing>
+					<ns2:DialNumber>9472000</ns2:DialNumber>
+				</ns2:Phone>
+				<ns2:Phone ns3:type="DirectNumber"
+					xmlns:ns2="http://www.tsh.bestbuy.com/common/communication/v1"
+					xmlns:ns3="http://www.tsh.bestbuy.com/common/v1">
+					<ns2:AreaDialing>612</ns2:AreaDialing>
+					<ns2:DialNumber>9472000</ns2:DialNumber>
+				</ns2:Phone>
+				<ns1:Address>
+					<ns1:AddressLine1>7075 FLYING CLOUD DR</ns1:AddressLine1>
+					<ns1:AddressLine2 />
+					<ns1:City>EDEN PRAIRIE</ns1:City>
+					<ns1:State>MN</ns1:State>
+					<ns1:PostalCode>55344</ns1:PostalCode>
+					<ns1:CountryCode>US</ns1:CountryCode>
+				</ns1:Address>
+			</ns1:Communication>
+			<ns1:LocationHours />
+			<ns1:LocationPoint>
+				<ns1:Latitude>0.0E0</ns1:Latitude>
+				<ns1:Longitude>0.0E0</ns1:Longitude>
+			</ns1:LocationPoint>
+			<ns1:LocationServices>
+				<ns1:LocationService>
+					<ns2:Name xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">MobileInstall</ns2:Name>
+					<ns1:Types>
+						<ns1:Type>In-Store</ns1:Type>
+					</ns1:Types>
+				</ns1:LocationService>
+				<ns1:LocationService>
+					<ns2:Name xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">GeekSquad</ns2:Name>
+					<ns1:Types>
+						<ns1:Type>Both</ns1:Type>
+					</ns1:Types>
+				</ns1:LocationService>
+			</ns1:LocationServices>
+			<ns1:LocationFacilities />
+			<ns1:Traits>
+				<ns1:Trait>
+					<ns2:Code xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">3</ns2:Code>
+					<ns2:Description xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">STORE NOT ON RSS
+					</ns2:Description>
+				</ns1:Trait>
+				<ns1:Trait>
+					<ns2:Code xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">7</ns2:Code>
+					<ns2:Description xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">LicensePlatingPilot
+					</ns2:Description>
+				</ns1:Trait>
+				<ns1:Trait>
+					<ns2:Code xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">11</ns2:Code>
+					<ns2:Description xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">Open Stores
+					</ns2:Description>
+				</ns1:Trait>
+				<ns1:Trait>
+					<ns2:Code xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">17</ns2:Code>
+					<ns2:Description xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">LEGACY SYSTEM STORES
+					</ns2:Description>
+				</ns1:Trait>
+				<ns1:Trait>
+					<ns2:Code xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">1001</ns2:Code>
+					<ns2:Description xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">District 1
+					</ns2:Description>
+				</ns1:Trait>
+			</ns1:Traits>
+		</ns1:Location>
+	</ns1:Locations>
+</ns0:RetrieveLocationsResponse>

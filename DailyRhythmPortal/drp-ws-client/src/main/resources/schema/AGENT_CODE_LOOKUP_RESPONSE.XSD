@@ -1,0 +1,129 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:common="http://bestbuy.com/bbym/beast/cap/common"
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:import namespace="http://bestbuy.com/bbym/beast/cap/common" schemaLocation="CAP_COMMON.XSD"/>
+        
+  <xs:complexType name="Header">
+    <xs:sequence>
+      <xs:element name="timestamp" type="xs:dateTime" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+          A timestamp of when the response was sent.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="version" type="xs:string" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+           This is the version of CAP that sent the response.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Body">
+    <xs:sequence>
+      <xs:element name="agentCodes" type="agentCodeListType" maxOccurs="unbounded" minOccurs="1">
+        <xs:annotation>
+        	<xs:documentation>
+        		This complex type that contains a list of the agent code
+        		for a unique storied and carrier combination.
+        	</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AgentCodeLookUpResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Header" type="Header"/>
+        <xs:choice>
+          <xs:element name="Body" type="Body"/>
+          <xs:element name="ResultInfo" type="errorType"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="agentCodeListType">
+    <xs:sequence>
+    	<xs:element name="carrier" type="common:DestinationType">
+    		<xs:annotation>
+    			<xs:documentation>
+    				The code for the wireless carrier. Valid Values: 1.
+    				SPR 2. VEZ 3. ATT
+    			</xs:documentation>
+    		</xs:annotation>
+    	</xs:element>
+    	<xs:element name="storeId" type="xs:string" >
+    		<xs:annotation>
+    			<xs:documentation>
+    				The unique identifier for a store location.
+    			</xs:documentation>
+    		</xs:annotation>
+    	</xs:element>
+    	<xs:element name="agentCode" type="xs:string" minOccurs="0"
+    		maxOccurs="1">
+    		<xs:annotation>
+    			<xs:documentation>
+    				The agent code for the carrier and storeid.
+
+    				This will be empty when the correspoding 'agentCode'
+    				is not present in database.
+    			</xs:documentation>
+    		</xs:annotation>
+    	</xs:element>
+    	<xs:element name="locationCode" maxOccurs="1" minOccurs="0">
+                <xs:annotation>
+                	<xs:documentation>
+                		Location code where the order will be created.
+                	</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+    			<xs:restriction base="xs:string">
+    				<xs:minLength value="1"></xs:minLength>
+    				<xs:maxLength value="10"></xs:maxLength>
+    			</xs:restriction>
+    		</xs:simpleType>
+    	</xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="errorType">
+    <xs:sequence>
+      <xs:element name="resultType" type="xs:string">
+                <xs:annotation>
+                	<xs:documentation>
+                		The error type Error-type = 1: Indicates the
+                		request should be resent due to some
+                		dependencies, i.e. Credit request is not
+                		received prior to Activation Request. Error-type
+                		= 2: Partner needs to research the issue, make
+                		some corrections and resend Error-type = 3: The
+                		request cannot go any further and will be
+                		cancelled.
+                	</xs:documentation>
+                </xs:annotation>
+      </xs:element>
+      <xs:element name="resultCode" type="xs:string">
+                <xs:annotation>
+                	<xs:documentation>
+                		The code of the error
+                	</xs:documentation>
+                </xs:annotation>
+      </xs:element>
+      <xs:element name="categoryCode" minOccurs ="1" type="xs:string">
+                <xs:annotation>
+                	<xs:documentation>
+                		The code of category
+                	</xs:documentation>
+                </xs:annotation>
+      </xs:element>
+      <xs:element name="resultDetails" type="xs:string">
+                <xs:annotation>
+                	<xs:documentation>
+                		The description of the error
+                	</xs:documentation>
+                </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

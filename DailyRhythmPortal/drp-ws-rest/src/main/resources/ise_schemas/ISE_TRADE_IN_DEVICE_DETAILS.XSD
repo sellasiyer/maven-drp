@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:common="http://bestbuy.com/bbym/ise/common" 
+	xmlns="http://bestbuy.com/bbym/beast/portal/tradeindevicedetails/request"
+	targetNamespace="http://bestbuy.com/bbym/beast/portal/tradeindevicedetails/request"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://bestbuy.com/bbym/ise/common"
+		schemaLocation="ISE_COMMON.XSD" />
+
+	<xs:element name="TradeInDeviceDetails">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Line" maxOccurs="unbounded"
+					type="LineType" />
+				<xs:element name="transactionId" minOccurs="0" type="xs:string" />
+				<xs:element name="carrier" minOccurs="0" type="common:CarrierType" />
+				<xs:element name="source" minOccurs="0" type="xs:string" />
+				<xs:element name="storeId" minOccurs="0" type="xs:string" />
+				<xs:element name="createdBy" minOccurs="0" type="xs:string" />
+				<xs:element name="createdDate" minOccurs="0" type="xs:dateTime" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="LineType">
+		<xs:sequence>
+			<xs:element name="handsetIdentifier" minOccurs="0" type="xs:string" />
+			<xs:element name="handsetIdentifierType" minOccurs="0" type="xs:string" />
+			<xs:element name="mobileNumber" minOccurs="0" type="xs:string" />
+			<xs:element name="deviceDescription" minOccurs="0" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

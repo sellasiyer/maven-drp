@@ -1,0 +1,47 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:extend>
+		<div class="modal">
+			<wicket:child />
+			<h1>
+				<wicket:message key="deleteLineDialog.title.label" />
+			</h1>
+			<p>
+				<wicket:message key="deleteLineDialog.question.label" />
+			</p>
+			<div class="detail-list">
+				<ul style="margin-bottom: 20px;">
+					<li class="odd">
+						<div class="view wide">
+							<label><wicket:message
+									key="deleteLineDialog.itemTag.label" /> </label> <span
+								wicket:id="itemTagLabel"></span>
+						</div>
+					</li>
+					<li>
+						<div class="view wide">
+							<label><wicket:message
+									key="deleteLineDialog.serialNum.label" /> </label> <span
+								wicket:id="serialNumLabel"></span>
+						</div>
+					</li>
+					<li class="odd">
+						<div class="view wide">
+							<label><wicket:message
+									key="deleteLineDialog.productDescription.label" /> </label> <span
+								wicket:id="productDescriptionLabel"></span>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="buttons">
+				<a wicket:id="cancelLink" class="button minor"><wicket:message
+						key="cancelLabel" /> </a> <a wicket:id="deleteLink" class="button"><wicket:message
+						key="deleteLabel" /> </a>
+			</div>
+		</div>
+	</wicket:extend>
+</body>
+</html>

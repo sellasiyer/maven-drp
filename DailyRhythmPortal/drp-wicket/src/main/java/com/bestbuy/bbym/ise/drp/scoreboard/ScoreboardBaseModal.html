@@ -1,0 +1,27 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:extend>
+		<div class="new-modal detail v2">
+			<div class="top-buttons">
+				<a wicket:id="exitButton" class="button close">X</a>
+			</div>
+			<form wicket:id="mainform">
+
+				<wicket:child />
+
+				<div wicket:id="tableListingMarkupContainer" class="table_listing">
+					<div class="column first" wicket:id="columnLeft"></div>
+					<div class="column" wicket:id="columnRight"></div>
+				</div>
+
+				<div wicket:id="footer" class="footer">
+					<a class="button" wicket:id="submitButton"> <span
+						wicket:id="submitButtonLabel"></span> </a>
+				</div>
+			</form>
+		</div>
+	</wicket:extend>
+</body>
+</html>

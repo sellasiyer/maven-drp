@@ -1,0 +1,817 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Recommendation Worksheet Landscape" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="0" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#0080FF" fontName="Arial Unicode MS" fontSize="22" isBold="true"/>
+	<style name="SubTitle" mode="Opaque" forecolor="#FFFFFF" backcolor="#0080FF" hAlign="Center" markup="" fontName="Arial Unicode MS" fontSize="12" isBold="true"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial Unicode MS" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial Unicode MS" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<style name="internetCapability" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{internetCapability}]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#0080FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="emailCapability" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{emailCapability}]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#0080FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="musicCapability" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{musicCapability}]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#0080FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="videoCapability" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{videoCapability}]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#0080FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="photoCapability" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{photoCapability}]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#0080FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="tvCapability" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{tvCapability}]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#0080FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="navCapability" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{navCapability}]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#0080FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="gamingCapability" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{gamingCapability}]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#0080FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="textingCapability" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{textingCapability}]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#0080FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="unlockedCapability" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{unlockedCapability}]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#0080FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="dataTransferWOW" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dataTransferWOW}]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#0080FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="emailWOW" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{emailWOW}]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#0080FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="bluetoothWOW" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{bluetoothWOW}]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#0080FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="appsWOW" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{appsWOW}]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#0080FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="softwareUpdatesWOW" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{softwareUpdatesWOW}]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#0080FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="socialWOW" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{socialWOW}]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#0080FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="powerMgmtWOW" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{powerMgmtWOW}]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#0080FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="vmailWOW" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{vmailWOW}]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#0080FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="otherWOW" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{otherWOW}]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#0080FF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="lines">
+		<queryString language="SQL">
+			<![CDATA[]]>
+		</queryString>
+		<field name="mobileNumber" class="java.lang.String"/>
+		<field name="stdEligibilityDate" class="java.util.Date"/>
+		<field name="standardEligible" class="java.lang.Boolean"/>
+	</subDataset>
+	<field name="firstName" class="java.lang.String"/>
+	<field name="lastName" class="java.lang.String"/>
+	<field name="mobileNo" class="java.lang.String"/>
+	<field name="bestTimeToContact" class="java.lang.String"/>
+	<field name="upgradeReminderText" class="java.lang.Boolean"/>
+	<field name="upgradeReminderCall" class="java.lang.Boolean"/>
+	<field name="upgradeEligibilityDate" class="java.util.Date"/>
+	<field name="subscriptionInfo" class="java.lang.String"/>
+	<field name="tradeInValue" class="java.math.BigDecimal"/>
+	<field name="netUseInfo" class="java.lang.String"/>
+	<field name="recommendedSubscription" class="java.lang.String"/>
+	<field name="recommendedDevice" class="java.lang.String"/>
+	<field name="essentials.handsfree" class="java.lang.String"/>
+	<field name="essentials.memory" class="java.lang.String"/>
+	<field name="essentials.shields" class="java.lang.String"/>
+	<field name="essentials.accessories" class="java.lang.String"/>
+	<field name="essentials.chargers" class="java.lang.String"/>
+	<field name="essentials.gsbtp" class="java.lang.String"/>
+	<field name="essentials.buyback" class="java.lang.String"/>
+	<field name="essentials.financing" class="java.lang.String"/>
+	<field name="notes" class="java.lang.String"/>
+	<field name="specialistContactInfo" class="java.lang.String"/>
+	<field name="internetCapability" class="java.lang.Boolean"/>
+	<field name="emailCapability" class="java.lang.Boolean"/>
+	<field name="musicCapability" class="java.lang.Boolean"/>
+	<field name="videoCapability" class="java.lang.Boolean"/>
+	<field name="photoCapability" class="java.lang.Boolean"/>
+	<field name="tvCapability" class="java.lang.Boolean"/>
+	<field name="navCapability" class="java.lang.Boolean"/>
+	<field name="gamingCapability" class="java.lang.Boolean"/>
+	<field name="textingCapability" class="java.lang.Boolean"/>
+	<field name="unlockedCapability" class="java.lang.Boolean"/>
+	<field name="dataTransferWOW" class="java.lang.Boolean"/>
+	<field name="emailWOW" class="java.lang.Boolean"/>
+	<field name="bluetoothWOW" class="java.lang.Boolean"/>
+	<field name="appsWOW" class="java.lang.Boolean"/>
+	<field name="softwareUpdatesWOW" class="java.lang.Boolean"/>
+	<field name="socialWOW" class="java.lang.Boolean"/>
+	<field name="powerMgmtWOW" class="java.lang.Boolean"/>
+	<field name="vmailWOW" class="java.lang.Boolean"/>
+	<field name="otherWOW" class="java.lang.Boolean"/>
+	<field name="createdOn" class="java.util.Date"/>
+	<field name="otherLineList" class="java.util.Collection"/>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="1" y="1" width="250" height="68"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman" pdfEncoding="UTF8"/>
+				</textElement>
+				<text><![CDATA[The Recommendation...
+                ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="261" y="6" width="249" height="60"/>
+				<imageExpression><![CDATA["bbym_logo_black.gif"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="522" y="1" width="250" height="68"/>
+				<textElement textAlignment="Left" markup="none">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Best Buy Mobile promises you:
+•  A better choice of phones and networks
+•  Impartial and informed advice
+•  Straightforward pricing
+•  Someone to be there for the life of your phone]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="490">
+			<rectangle>
+				<reportElement x="261" y="258" width="250" height="90"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="345" width="250" height="40"/>
+			</rectangle>
+			<staticText>
+				<reportElement style="SubTitle" mode="Transparent" x="0" y="68" width="250" height="30" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box padding="1">
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Mobile Number
+
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" mode="Transparent" x="522" y="268" width="236" height="27" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box padding="1">
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Buy Back
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" mode="Transparent" x="1" y="208" width="250" height="79" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box padding="1">
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Current connectivity plan and device(s)
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" mode="Transparent" x="261" y="113" width="250" height="105" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box padding="1">
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Phone/Device
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" mode="Transparent" x="0" y="108" width="250" height="30" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box padding="1">
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Best time to contact
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" mode="Transparent" x="1" y="33" width="250" height="30" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box padding="1">
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Your Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="0" y="0" width="250" height="25"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[You
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="260" y="0" width="250" height="25"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Our Recommendations
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="522" y="0" width="238" height="25"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Essentials
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" mode="Transparent" x="0" y="148" width="250" height="50" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box padding="1">
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[You are eligible for an upgrade on
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" mode="Transparent" x="16" y="185" width="28" height="13" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Text
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" mode="Transparent" x="65" y="185" width="20" height="13" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Call
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="0" y="318" width="250" height="25"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[What would your perfect mobile device do?
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="internetCapability" x="10" y="348" width="42" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Internet
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="1" y="388" width="250" height="25"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[How do you use the internet?
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" mode="Transparent" x="260" y="28" width="250" height="76" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box padding="1">
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Connectivity plan, features and usage 
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" mode="Transparent" x="1" y="293" width="250" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box padding="1">
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Trade-in Value
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="260" y="230" width="250" height="25"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Walk Out Working™
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="260" y="360" width="250" height="25"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Other lines on the account
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="260" y="388" width="250" height="100" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box padding="1">
+					<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Standard Upgrade Eligible On]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement mode="Transparent" x="260" y="410" width="250" height="78" forecolor="#000000" backcolor="#FFFFFF"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="lines">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{otherLineList})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="13">
+						<textField>
+							<reportElement x="2" y="0" width="30" height="13"/>
+							<textElement>
+								<font size="10"/>
+							</textElement>
+							<textFieldExpression><![CDATA[""+$V{REPORT_COUNT}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="30" y="0" width="100" height="13"/>
+							<textElement>
+								<font size="10"/>
+							</textElement>
+							<textFieldExpression><![CDATA[new com.bestbuy.bbym.ise.drp.util.PhoneNumberConverter().convertToString( $F{mobileNumber}, null )]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="140" y="0" width="100" height="13"/>
+							<textElement>
+								<font size="10"/>
+							</textElement>
+							<textFieldExpression><![CDATA[($F{stdEligibilityDate}!=null) ? org.apache.commons.lang.time.FastDateFormat.getInstance("MM/dd/yyyy").format($F{stdEligibilityDate}) :  ($F{standardEligible}) ? "Eligible" : "Unknown"]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement style="SubTitle" x="522" y="31" width="238" height="25"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[ Why/What
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" mode="Transparent" x="522" y="62" width="236" height="26" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box padding="1">
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Hands Free
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" mode="Transparent" x="522" y="297" width="236" height="33" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box padding="1">
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Financing
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" mode="Transparent" x="522" y="230" width="236" height="30" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box padding="1">
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Geek Squad Black Tie Protection
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" mode="Transparent" x="522" y="188" width="236" height="30" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box padding="1">
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Charger
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" mode="Transparent" x="522" y="160" width="236" height="25" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box padding="1">
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Appcessories™
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" mode="Transparent" x="522" y="125" width="236" height="27" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box padding="1">
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Case/Shield
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" mode="Transparent" x="522" y="93" width="236" height="27" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box padding="1">
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Memory
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="522" y="433" width="238" height="25"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Mobile Phone Specialist contact info
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="522" y="338" width="238" height="25"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Notes
+                ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="30" y="45" width="100" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{firstName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="157" y="45" width="105" height="19"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{lastName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="10" y="222" width="235" height="60"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{subscriptionInfo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="16" y="82" width="217" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new com.bestbuy.bbym.ise.drp.util.PhoneNumberConverter().convertToString( $F{mobileNo}, null )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="270" y="132" width="230" height="76"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{recommendedDevice}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="270" y="43" width="230" height="52"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{recommendedSubscription}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="522" y="368" width="236" height="55"/>
+				<box padding="1">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{notes}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="525" y="312" width="230" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{essentials.financing}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="522" y="461" width="236" height="25"/>
+				<box padding="1">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{specialistContactInfo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="525" y="282" width="230" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{essentials.buyback}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="525" y="244" width="230" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{essentials.gsbtp}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="525" y="204" width="230" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{essentials.chargers}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="525" y="171" width="230" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{essentials.accessories}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="525" y="138" width="230" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{essentials.shields}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="525" y="108" width="230" height="23"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{essentials.memory}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="525" y="74" width="230" height="21"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{essentials.handsfree}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1" y="418" width="250" height="43"/>
+				<box padding="1">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{netUseInfo}]]></textFieldExpression>
+			</textField>
+			<image vAlign="Top">
+				<reportElement x="35" y="180" width="20" height="20"/>
+				<imageExpression><![CDATA[$F{upgradeReminderText} ? "ballot_box_with_check.png" : "ballot_box.png"]]></imageExpression>
+			</image>
+			<image vAlign="Top">
+				<reportElement x="83" y="180" width="20" height="20"/>
+				<imageExpression><![CDATA[$F{upgradeReminderCall} ? "ballot_box_with_check.png" : "ballot_box.png"]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement x="13" y="164" width="214" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[org.apache.commons.lang.time.FastDateFormat.getInstance("EEEE MM/dd/yyyy").format($F{upgradeEligibilityDate})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="80" y="294" width="165" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new com.bestbuy.bbym.ise.drp.util.MoneyConverter().convertToString( $F{tradeInValue}, null )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="20" y="120" width="213" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{bestTimeToContact}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="emailCapability" x="57" y="348" width="32" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[E-mail
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="musicCapability" x="105" y="348" width="28" height="13"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Music
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="videoCapability" x="144" y="348" width="34" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Video
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="photoCapability" x="190" y="348" width="32" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Photo
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="tvCapability" x="10" y="363" width="16" height="13"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[TV
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="navCapability" x="44" y="363" width="56" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Navigation
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="gamingCapability" x="105" y="363" width="42" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Gaming
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="textingCapability" x="154" y="363" width="42" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Texting
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="unlockedCapability" x="197" y="363" width="52" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Unlocked
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="dataTransferWOW" x="270" y="265" width="90" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Data Transfer
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="emailWOW" x="270" y="282" width="100" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Personal e-mail setup
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="bluetoothWOW" x="270" y="299" width="90" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Bluetooth Pairing
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="appsWOW" x="270" y="318" width="90" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Applications
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="softwareUpdatesWOW" x="270" y="332" width="90" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Software Updates
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="socialWOW" x="390" y="265" width="90" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Social Networking
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="powerMgmtWOW" x="390" y="282" width="100" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Power Management
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="vmailWOW" x="390" y="300" width="90" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Voicemail Setup
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="otherWOW" x="390" y="318" width="90" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Other
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="0" y="463" width="94" height="25"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Date
+                ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="98" y="464" width="153" height="23"/>
+				<box padding="1">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[org.apache.commons.lang.time.FastDateFormat.getInstance("EEEE MM/dd/yyyy").format($F{createdOn})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="5" y="45" width="23" height="13"/>
+				<textElement/>
+				<text><![CDATA[First:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="132" y="45" width="23" height="17"/>
+				<textElement/>
+				<text><![CDATA[Last:]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" stretchType="RelativeToTallestObject" x="110" y="6" width="600" height="18"/>
+				<textElement textAlignment="Center" markup="none">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Important: Due to the fast changing nature of this market, all offers, prices and availability are subject to change.
+                ]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

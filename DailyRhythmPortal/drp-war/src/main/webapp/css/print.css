@@ -1,0 +1,98 @@
+/*
+*************************************************
+
+BEAST Portal
+Print Styles
+
+Authored by: Nick Hegarty
+
+*************************************************
+*/
+
+/* Hide these things all the time for normal pages */
+.no-print,
+.header,
+.page-header,
+span.damaged,
+span.missing-phone,
+#versionsec{
+	display: none;
+	}
+
+/* Show table cells/heads only in print view */
+td.print-only,
+th.print-only { 
+	display: table-cell;
+	}
+	
+/* Fix margins and hide control buttons on modals */
+.fader .modal {
+	margin: 10px !important;
+	}
+
+.fader .modal .button.close,
+.fader .modal .button.print{
+	display: none;
+	}
+
+/* GSP MODAL */
+/* Convert Device List to no longer have scroll bar */
+.modal.gsp ul.module-list.scrolling{
+	height: auto;
+	overflow-y: visible;
+	}
+	
+/* Remove the selector for GSP transactions */
+.detail-list.sliding .nav{
+	display: none;
+	}
+	
+/* Collapse the border on the device list */
+.modal.gsp ul.module-list li{
+	border: none;
+	margin: 0;
+	}
+	
+/* Shrink the column widths so they fit on the page */
+.modal.gsp div.column{
+	width: 322px;
+	}
+.modal.gsp div.column.last{
+	width: 302px;
+	}
+
+/* Remove the user icon from next to the customer name*/
+.modal .detail-list .view.customer{
+	background: none;
+	padding-left: 0;
+}
+
+/* SHIPPING INVENTORY */
+#shippingTabPanel .tab-row{
+	display: none;
+}
+
+#shippingTabPanel #inventoryFilter{
+	display: none;
+}
+#shippingTabPanel #inventory-filter-copy{
+	display: block !important;
+	font-size: 18px;
+	border-bottom: 1px solid black;
+	font-weight: bold;
+	margin: 10px 10px 20px 10px;
+}
+
+.key .missing-phone {
+	display: inline;
+	float: left;
+	width: default;
+	text-indent: 0;
+	}
+	
+table .missing-phone {
+	display: inline;
+	float: left;
+	width: default;
+	text-indent: 0;
+	}

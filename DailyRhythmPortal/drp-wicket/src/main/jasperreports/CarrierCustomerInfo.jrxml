@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Carrier Customer Info - Portrait" pageWidth="612" pageHeight="792" columnWidth="0" leftMargin="36" rightMargin="36" topMargin="36" bottomMargin="36">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Beast Portal DB"/>
+	<style name="Title" forecolor="#0080FF" fontName="Arial Unicode MS" fontSize="22" isBold="true"/>
+	<style name="SubTitle" mode="Opaque" forecolor="#FFFFFF" backcolor="#0080FF" hAlign="Center" markup="" fontName="Arial Unicode MS" fontSize="12" isBold="true"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial Unicode MS" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial Unicode MS" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="lines">
+		<queryString language="SQL">
+			<![CDATA[]]>
+		</queryString>
+		<field name="mobileNumber" class="java.lang.String"/>
+		<field name="lineStatus" class="java.lang.String"/>
+		<field name="stdEligibilityDate" class="java.util.Date"/>
+                <field name="standardEligible" class="java.lang.Boolean"/>
+		<field name="contractEndDate" class="java.util.Date"/>
+	</subDataset>
+	<field name="firstName" class="java.lang.String"/>
+	<field name="lastName" class="java.lang.String"/>
+	<field name="subscription.carrier" class="java.lang.Enum"/>
+	<field name="subscription.accountNumber" class="java.lang.String"/>
+	<field name="subscription.lines" class="java.util.Collection"/>
+	<title>
+		<band height="72" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="1" y="1" width="309" height="68"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman" pdfEncoding="UTF8"/>
+				</textElement>
+				<text><![CDATA[Current Account Information
+                ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="320" y="6" width="200" height="60"/>
+				<imageExpression><![CDATA["bbym_logo_black.gif"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="50">
+			<textField>
+				<reportElement x="1" y="0" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{firstName} + " " +$F{lastName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="15" width="60" height="20"/>
+				<textElement/>
+				<text><![CDATA[Carrier:
+                ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="14" width="108" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{subscription.carrier}.toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="28" width="90" height="20"/>
+				<textElement/>
+				<text><![CDATA[Account Number:
+                ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="28" width="150" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{subscription.accountNumber}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="550" height="2"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#0080FF"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="10" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Phone Number
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="115" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Line Status
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="212" y="0" width="185" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Standard Eligibility Date
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="387" y="0" width="130" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Contract End Date
+                ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<componentElement>
+				<reportElement style="Row" stretchType="RelativeToBandHeight" x="1" y="0" width="289" height="20"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="lines">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{subscription.lines})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="20">
+						<textField>
+							<reportElement style="Row" x="0" y="0" width="10" height="20"/>
+							<textElement textAlignment="Center"/>
+							<textFieldExpression><![CDATA[""+$V{REPORT_COUNT}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Row" x="10" y="0" width="100" height="20"/>
+							<textElement textAlignment="Center"/>
+							<textFieldExpression><![CDATA[new com.bestbuy.bbym.ise.drp.util.PhoneNumberConverter().convertToString( $F{mobileNumber}, null ) ]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Row" x="112" y="0" width="100" height="20"/>
+							<textElement textAlignment="Center"/>
+							<textFieldExpression><![CDATA[$F{lineStatus}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Row" x="212" y="0" width="185" height="20"/>
+							<textElement textAlignment="Center"/>
+							<textFieldExpression><![CDATA[($F{stdEligibilityDate}!=null) ? org.apache.commons.lang.time.FastDateFormat.getInstance("MM/dd/yyyy").format($F{stdEligibilityDate}) : ($F{standardEligible}) ? "Eligible" : "Unknown"]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Row" x="398" y="0" width="100" height="20"/>
+							<textElement textAlignment="Center"/>
+							<textFieldExpression><![CDATA[($F{contractEndDate}!=null)?org.apache.commons.lang.time.FastDateFormat.getInstance("MM/dd/yyyy").format($F{contractEndDate}) : "Unknown"]]></textFieldExpression>
+                                                        
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="270" y="3" width="94" height="25"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Printed On
+                ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="364" y="4" width="153" height="23"/>
+				<box padding="1">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[org.apache.commons.lang.time.FastDateFormat.getInstance("MM/dd/yyyy").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

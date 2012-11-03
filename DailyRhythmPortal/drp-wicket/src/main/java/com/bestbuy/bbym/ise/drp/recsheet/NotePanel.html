@@ -1,0 +1,20 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:extend>
+             <div class="rec-nav" style="top:210px;">
+                <div class="notes open">
+                    <form name="noteForm" wicket:id="noteForm" autocomplete="off"> 
+		    <div class="notes-header">
+			<h2>Notes</h2>
+			<a class="button" href="#" wicket:id="done">Done</a>
+                    </div>
+		    <textarea wicket:id="notes" maxLength="250" onkeydown="checkMaxLength('notes', 250)"></textarea>
+                    </form> 
+                </div>
+              </div>
+
+	</wicket:extend>
+</body>
+</html>

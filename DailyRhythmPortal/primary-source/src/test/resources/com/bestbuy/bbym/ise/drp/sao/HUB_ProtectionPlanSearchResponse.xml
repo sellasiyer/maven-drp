@@ -1,0 +1,142 @@
+      <ProtectionPlanSearchResponse xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Service/V4">
+         <SystemStatus>
+            <StatusCode xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">0</StatusCode>
+            <StatusMessage xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4"/>
+         </SystemStatus>
+         <ProtectionPlan type="PSP" category="Consumer">
+            <Contract xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Scheme/V4">
+               <SKU>1007143</SKU>
+               <Status>ACTIVE</Status>
+               <EffectiveDate>2012-09-10</EffectiveDate>
+               <ExpirationDate>2014-09-09</ExpirationDate>
+               <SKUDescription>PSP-PRP 2YR IPHONE PREPAID</SKUDescription>
+               <OCISContractID>1600187437</OCISContractID>
+               <SalesChannelNum>1</SalesChannelNum>
+               <GroupContractID>0</GroupContractID>
+               <ContractClassCode>
+                  <Code>X</Code>
+                  <Description>Protection Plan</Description>
+               </ContractClassCode>
+            </Contract>
+            <Product objectID="221977" xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Scheme/V4">
+               <SKU xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">3487675</SKU>
+               <SerialNumber xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">351846030006203</SerialNumber>
+               <PurchaseDate xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">2012-09-10</PurchaseDate>
+               <CoverageStartDate>2012-09-10</CoverageStartDate>
+               <RegistrationDate>2012-09-10</RegistrationDate>
+            </Product>
+            <Owner xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Scheme/V4">
+               <Name xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">
+                  <FirstName>BBYTEST</FirstName>
+                  <LastName>DO NOT TOUCH</LastName>
+               </Name>
+               <Address xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">
+                  <AddressLine1>1765 CRAWFORD RD</AddressLine1>
+                  <AddressLine2/>
+                  <City>CLEVELAND</City>
+                  <State>OH</State>
+                  <PostalCode>44106</PostalCode>
+                  <Country>US</Country>
+               </Address>
+               <Phone type="HOME" primary="true" xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">
+                  <AreaCode>440</AreaCode>
+                  <PhoneNumber>5900237</PhoneNumber>
+               </Phone>
+               <CustomerID xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">1139983837</CustomerID>
+               <EmailAddress xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">
+                  <Email>ABC@ATT.COM</Email>
+               </EmailAddress>
+            </Owner>
+            <ID sourceSystem="OCIS" xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Scheme/V4">4089455999</ID>
+         </ProtectionPlan>
+         <ProtectionPlan type="PSP" category="Consumer">
+            <Contract xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Scheme/V4">
+               <SKU>9109902</SKU>
+               <Status>ACTIVE</Status>
+               <EffectiveDate>2012-09-10</EffectiveDate>
+               <ExpirationDate>2014-09-09</ExpirationDate>
+               <SKUDescription>PSP-PRP MTHLY WIRELESS $35</SKUDescription>
+               <OCISContractID>1600187438</OCISContractID>
+               <SalesChannelNum>1</SalesChannelNum>
+               <GroupContractID>0</GroupContractID>
+               <ContractClassCode>
+                  <Code>H</Code>
+                  <Description>Cell Phone Warranty</Description>
+               </ContractClassCode>
+            </Contract>
+            <Product objectID="221978" xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Scheme/V4">
+               <SKU xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">4034387</SKU>
+               <SerialNumber xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">351846030006203</SerialNumber>
+               <PurchaseDate xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">2012-09-10</PurchaseDate>
+               <CoverageStartDate>2012-09-10</CoverageStartDate>
+               <RegistrationDate>2012-09-10</RegistrationDate>
+            </Product>
+            <Owner xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Scheme/V4">
+               <Name xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">
+                  <FirstName>BBYTEST</FirstName>
+                  <LastName>DONOTTOUCH</LastName>
+               </Name>
+               <Address xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">
+                  <AddressLine1>1765 CRAWFORD RD</AddressLine1>
+                  <AddressLine2/>
+                  <City>CLEVELAND</City>
+                  <State>OH</State>
+                  <PostalCode>44106</PostalCode>
+                  <Country>US</Country>
+               </Address>
+               <Phone type="HOME" primary="true" xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">
+                  <AreaCode>440</AreaCode>
+                  <PhoneNumber>5900236</PhoneNumber>
+               </Phone>
+               <EmailAddress xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">
+                  <Email>BBYTEST@ATT.COM</Email>
+               </EmailAddress>
+            </Owner>
+            <ID sourceSystem="OCIS" xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Scheme/V4">4089470288</ID>
+         </ProtectionPlan>
+         <ProtectionPlan type="PSP" category="Consumer">
+            <Contract xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Scheme/V4">
+               <SKU>9023102</SKU>
+               <Status>ACTIVE</Status>
+               <EffectiveDate>2012-08-31</EffectiveDate>
+               <ExpirationDate>2014-08-30</ExpirationDate>
+               <SKUDescription>PSP-PRP MONTHLY IPHONE ONL</SKUDescription>
+               <OCISContractID>1500007157</OCISContractID>
+               <SalesChannelNum>1</SalesChannelNum>
+               <GroupContractID>0</GroupContractID>
+               <ContractClassCode>
+                  <Code>H</Code>
+                  <Description>Cell Phone Warranty</Description>
+               </ContractClassCode>
+            </Contract>
+            <Product objectID="38470" xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Scheme/V4">
+               <SKU xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">3487675</SKU>
+               <SerialNumber xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">351846030006203</SerialNumber>
+               <PurchaseDate xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">2012-08-31</PurchaseDate>
+               <CoverageStartDate>2012-08-31</CoverageStartDate>
+               <RegistrationDate>2012-09-03</RegistrationDate>
+            </Product>
+            <Owner xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Scheme/V4">
+               <Name xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">
+                  <FirstName>BBYTEST</FirstName>
+                  <LastName>DO NOT TOUCH</LastName>
+               </Name>
+               <Address xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">
+                  <AddressLine1>1765 CRAWFORD RD</AddressLine1>
+                  <AddressLine2/>
+                  <City>CLEVELAND</City>
+                  <State>OH</State>
+                  <PostalCode>44106</PostalCode>
+                  <Country>US</Country>
+               </Address>
+               <Phone type="HOME" primary="true" xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">
+                  <AreaCode>440</AreaCode>
+                  <PhoneNumber>5900237</PhoneNumber>
+               </Phone>
+               <EmailAddress xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">
+                  <Email>ABC@ATT.COM</Email>
+               </EmailAddress>
+            </Owner>
+            <ID sourceSystem="OCIS" xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Scheme/V4">4081930331</ID>
+         </ProtectionPlan>
+      </ProtectionPlanSearchResponse>

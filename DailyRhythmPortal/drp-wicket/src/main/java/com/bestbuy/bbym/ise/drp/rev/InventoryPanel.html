@@ -1,0 +1,98 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<script type="text/javascript">
+		var wicketBehaviorInventory;
+		function setupInventoryTable() {
+			if ($('#inventoryTable').length == 0) {
+				return;
+			}
+			applyRowHighlighting('#inventoryTable');
+			fixTableNoRecords('#inventoryTable', 'No Records Found');
+			fixTableBorders('#inventoryTable');
+		}
+		function setupFilterCopy() {
+			//run the first time
+			copyFilterCriteria();
+
+			//now bind for changes to the filter criteria
+			$(
+					'#inventoryFilter .inputs input[type=text], #inventoryFilter .inputs select')
+					.on('change', function() {
+						copyFilterCriteria();
+					});
+		}
+		//copy whatever is in the filter criteria into hidden fields for use in print layout
+		function copyFilterCriteria() {
+			$('#inventoryFilter li.open').each(function() {
+				var criteria = $(this).children('a').text();
+
+				var input = $(this).children('.inputs').children().first();
+
+				var value = input.val();
+
+				if (input.is('select')) {
+					//get the human readable version
+					value = input.children('option:selected').text();
+				}
+
+				$('#inventory-filter-copy #criteria').text(criteria);
+				$('#inventory-filter-copy #value').text(value);
+			});
+		}
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:panel>
+		<div class="table-wrap">
+			<form wicket:id="inventoryForm" autocomplete="off">
+				<ul id="inventoryFilter" class="table-nav">
+					<li><a wicket:id="inventoryStatusFilterLink"><wicket:message
+								key="inventoryPanel.statusFilter.label" /> </a>
+						<div class="inputs">
+							<select wicket:id="statusFilterSelect">
+							</select> <input type="button" wicket:id="inventoryStatusFilterButton"
+								class="button" />
+						</div>
+					</li>
+					<li><a wicket:id="inventorySerialNumFilterLink"><wicket:message
+								key="inventoryPanel.serialNumFilter.label" /> </a>
+						<div class="inputs">
+							<input type="text" wicket:id="inventorySerialNumFilter"
+								maxlength="20" size="18" /> <input type="button"
+								wicket:id="inventorySerialNumFilterButton" class="button" />
+						</div>
+					</li>
+					<li><a wicket:id="inventoryItemTagFilterLink"><wicket:message
+								key="inventoryPanel.itemTagFilter.label" /> </a>
+						<div class="inputs">
+							<input type="text" wicket:id="inventoryItemTagFilter"
+								maxlength="20" size="18" /> <input type="button"
+								wicket:id="inventoryItemTagFilterButton" class="button" />
+						</div>
+					</li>
+				</ul>
+				<div id="inventory-filter-copy">
+					<span id="criteria"></span> <span id="value"></span>
+				</div>
+			</form>
+			<div wicket:id="shortIndicatorDesc">
+				<div class="key">
+					<div class="missing-phone">
+						<wicket:message key="inventoryPanel.shortIndicator.dataValue" />
+					</div>
+					<wicket:message key="inventoryTable.shortIndicatorDesc.label" />
+				</div>
+			</div>
+			<table class="default-table shipping" wicket:id="inventoryTable">
+			</table>
+
+			<div wicket:id="noInventoryData">
+				<p class="no-results" wicket:id="noInventoryDataLabel"></p>
+			</div>
+		</div>
+	</wicket:panel>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>Manage Hotlinks</title>
+	<script type="text/javascript" src="js/manage_hotlinks.js"></script>
+	<script type="text/javascript" src="js/validation.js"></script>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<div class="pgtitle">
+			<h1>Manage Hotlinks</h1>
+		</div>
+
+		<div class="pgcontent">
+
+			<div class="content_pagetitle_rightcnt" id="add_hotlink_link">
+				<a wicket:id="addHotlinkLink" class="button"><wicket:message
+						key="addHotlinkLink.label" /> </a>
+			</div>
+
+			<div class="pgcontent_white">
+				<div class="page-tr"></div>
+				<div class="page-tl"></div>
+				<div class="page-br"></div>
+				<div class="page-bl"></div>
+
+				<div wicket:id="feedback" class="feedbackmsg"></div>
+
+				<div wicket:id="addEditHotlinkPanel" class="subsection"></div>
+
+				<div wicket:id="hotlinkTablePanel"></div>
+
+			</div>
+		</div>
+	</wicket:extend>
+</body>
+</html>

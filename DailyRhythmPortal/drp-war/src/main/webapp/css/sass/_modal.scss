@@ -1,0 +1,611 @@
+/*
+*************************************************
+
+BEAST Portal
+Modal Screen Styles
+
+Authored by: Nick Hegarty & Tom Benbow
+
+*************************************************
+*/
+
+.fader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	background: url(img/black_transparent_tile.png);
+	width: 100%;
+	height: 100%;
+
+	&.nofade{
+		background: none;
+	}
+}
+
+.new-modal {
+	position: relative;
+	background: #fff;
+	margin: 200px auto 0 auto;
+	padding: 0 15px 15px 15px;
+	width: 500px;
+
+
+	// COLUMNS
+	
+	.column { /* use for 2 column layout in the modal */
+		position: relative;
+		display: block;
+		float: left;
+		margin-top: 10px;
+		margin-left: 15px;
+		width: 362px;
+
+		&.first {
+			margin-left: 0px;
+			}
+		}
+
+
+	// GENERAL TEXT STYLES
+	
+	p, ol li {
+		color: $clr_dark_grey;
+		margin-bottom: 15px;
+		font-size: 14px;
+		line-height: 15px;
+		}
+		
+	ol {
+		list-style-position: inside;
+		}
+		
+	ol li {
+		margin-left:15px;
+		}
+		
+		
+	// TABLE WRAP
+	
+	.table-wrap {
+		margin-left: 0;
+		margin-right: 0;
+		}
+		
+	ul.table-nav {
+		margin-top: 0;
+		}
+		
+		
+	// LOADING SPINNER
+
+	.loading-spinner-big {
+		margin-bottom: 45px;
+		}
+
+
+	// BUTTONS
+
+	.bottom-buttons { /* bottom buttons live at the bottom of the modal, like ok/cancel buttons */
+		clear: both;
+		margin-top: 15px;
+		height: 30px;
+
+		.button {
+			line-height: 28px;
+			height: 28px;
+			min-width: 75px;
+
+			&.minor {
+				line-height: 24px;
+				height: 24px;
+				}
+			}
+		}
+	
+	.top-buttons { /* top buttons live at the top right of the modal, like close/print buttons */
+		position: absolute;
+		top: 0;
+		right: 5px;
+		z-index: 2;
+
+		.button {
+			padding: 0 10px;
+			height: 30px;
+			line-height: 30px;
+			font-size: 14px;
+			margin-right: 10px;
+			@include vertical-gradient-2(#87C3E7, #398CBC, "pie");
+			@include border-radius(0 0 5px 5px);
+			}
+		}
+		
+	.below-bar {
+		left: 640px;
+		min-width: 110px !important;
+		}
+
+
+	// INPUTS
+	
+	label {
+		color: $clr_dark_grey;
+		display: block;
+		margin-bottom: 7px;
+		font-weight: bold;
+		font-size: 13px;
+		}
+	
+	span.radio, span.checkbox {
+		display: block;
+		margin: 0 0 0 15px;
+		line-height: 30px;
+		height: 30px;
+
+		label {
+			display: inline;
+			margin: 0 0 0 6px;
+			font-size: 13px;
+			font-weight: normal;
+			}
+		}
+		
+		
+	// DATA BOX
+	
+	.data-box {
+		width: 738px;
+		margin: 0 0 15px 0;
+		padding: 0;
+		}
+	
+	.data-box .column {
+		width: 346px;
+		}
+		
+	.data-box div.block.width-4 input[type="text"],
+	.data-box div.block.width-4 input[type="password"],
+	.data-box div.block.width-4 textarea {
+		width: 335px;
+		}
+		
+
+	// CUSTOMER BAR
+	
+	.customer-bar {
+		margin: 0 0 15px -15px;
+		width: 620px;
+		
+		label {
+			margin-bottom: 0;
+			}
+		}
+	
+	
+	
+
+	// NOTIFY STYLE MODAL
+	
+	&.notify { /* small modal used to notify user of items or request confirmation */
+		width: 470px;
+		
+		h1 { /* notification modals get a bold bar of color at the top for the headline */
+			color: #fff;
+			padding-left: 15px;
+			line-height: 45px;
+			height: 45px;
+			font-size: 17px;
+			text-transform: uppercase;
+			margin: 0 -10px 20px -10px; /* override the modal padding */
+			position :relative;
+			top: 5px;
+			@include vertical-gradient-2(#3f9ed5, #206e9d, "filter");
+
+			&.wide { /* PRINT HACK */
+				width: 100% !important;
+				}
+			}
+		}
+
+
+	// DETAIL STYLE MODAL
+	
+	&.detail { /* detailed modal to use for forms or showing details on a specific item */
+		width: 745px;
+		margin-top: 15px;
+		overflow: hidden; /* contain floats */
+		max-height: 570px;
+
+		&.v2 {
+			font-size: 13px;
+			height: auto;
+			min-height: none;
+			max-height: none;
+			padding-bottom: 0;
+
+			.error{
+				color: #8c0d0e;
+				font-weight: bold;
+				background-image: url(img/scoreboard/error_arrow.png);
+				background-position: 0px 3px;
+				background-repeat: no-repeat;
+				padding-left: 15px;
+				margin-left: 5px;
+			}
+			h1{
+				color: $clr_dark_blue;
+				display: inline-block;
+				margin-right: 0;
+				background: none;
+				filter: none;
+				margin-top: 20px;
+				padding: 10px 15px 10px 20px;
+
+				&.return{
+					background-color: #8c0d0e;
+					color: white;
+				}
+			}
+
+			.modal-header { /* article headers have a background image at the top with no text */
+				background: url(img/modal_bg.png) no-repeat;
+				width: 760px;
+				height: 63px;
+				margin-left: -15px;
+				padding-left: 15px;
+
+				.button{
+					filter: none;
+					color: $clr_dark_blue;
+					@include vertical-gradient-2(#ffffff, #d9dde2, "pie");
+					@include border-radius(5px);
+					margin-top: 23px;
+					padding: 3px 10px;
+					border: 1px solid #CCC;
+					margin-left: 0;
+					font-size: 13px;
+
+					&.disabled{
+						filter: none;
+						color: #CCC !important;
+					}
+				}
+
+				.last_update{
+					margin-left: 5px;
+					font-size: 11px;
+					margin-top: -5px;
+				}
+			}
+
+			.top-buttons .button.close{
+				@include scoreboard-button-gradient();
+				@include border-radius(0 0 5px 5px);
+			}
+
+			.footer{
+				clear: left;
+				margin-left: -15px;
+				margin-right: -15px;
+				height: 45px;
+				padding-top: 13px;
+				@include vertical-gradient-2(#d9dde2, #ffffff, "pie");
+				text-align: center;
+
+				.button{
+					@include scoreboard-button-gradient();
+					@include border-radius(5px);
+
+					&.return{
+						@include scoreboard-button-return-gradient();
+					}
+				}
+			}
+		}
+		h1 { /* detail modals get a softer headline with a background image */
+			color: $clr_light_blue;
+			background: transparent url(img/modal_bg.png) no-repeat left top;
+			filter: none;
+			padding: 30px 15px;
+			margin: 0 -15px 0 -15px;
+			height: 15px;
+			line-height: 15px;
+			font-size: 19px;
+			}
+
+		h2 { /* h2 used as section heading - uppercase without a huge bottom margin */
+			margin-bottom: 10px;
+			font-size: 17px;
+			}
+
+		h3 { /* h3 used in text docs/articles, large top/bottom margin, normal case */
+			margin-top: 28px;
+			margin-bottom: 20px;
+			font-size: 17px;
+			color: #515151;
+			text-transform: none;
+			}
+
+		.default-table-container{
+			overflow: auto;
+			max-height: 300px;
+		}
+		// ARTICLE STYLE MODAL
+		
+		&.article { /* styles supporting article display, generally for greater readability and scrolling */
+			color: #515151;
+			padding-bottom: 0; /* remove bottom padding because of scrollbar */
+			width: 720px;
+			font-size: 13px;
+			line-height: 20px;
+	
+			p {
+				line-height: inherit;
+				}
+	
+			.scrolling {
+				padding: 0 15px 20px 5px;
+				width: 715px;
+				height: 407px;
+				overflow: auto;
+				position: relative;
+				}
+	
+			ul {
+				margin-left: 30px;
+				margin-bottom: 18px;
+				}
+	
+			li {
+				margin-bottom: 10px;
+				font-size: inherit;
+				line-height: inherit;
+				}
+	
+			.article-tip {
+				font-weight: bold;
+				}
+	
+			
+			.modal-header { /* article headers have a background image at the top with no text */
+				background: url(img/modal_bg.png) no-repeat;
+				width: 750px;
+				height: 63px;
+				margin-left: -15px;
+				}
+	
+			/* the article title will be an h1, but it sits below the header image so that it scrolls with the rest of the article content */
+			h1 {
+				color: $clr_light_blue;
+				filter: none;
+				font-size: 21px;
+				background: none;
+				padding-top: 0;
+				padding-left: 0;
+				margin-top: 0;
+				margin-left: 0;
+				line-height: 16px;
+				height: auto;
+				}
+			}
+		}
+			
+	}
+
+
+.new-modal.gsp .gsbtp-logo {
+	position: absolute;
+	top: 25px;
+	right: 5px;
+	}
+
+
+.dial-modal{
+	display: none;
+	width: 356px;
+	@include border-radius(5px);
+	@include vertical-gradient-2(#ffffff, #e1e1e4, "pie");
+	background-color: white;
+	@include box-shadow(#333 0px 2px 7px);
+	position: absolute;
+	top: 320px;
+	left: 20px;
+	padding: 8px;
+
+	.close{
+		display: block;
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		height: 16px;
+		width: 16px;
+		background-image: url(img/scoreboard/close.png);
+	}
+}
+.sub-metrics{
+	float: left;
+	list-style: none;
+	margin-top: 34px;
+	margin-bottom: 10px;
+
+
+	li{
+		position: relative;
+		margin-bottom: 10px;
+	}
+	.bar{
+		margin-top: 2px;
+		margin-left: 2px;
+		background-image: url(img/scoreboard/progress_tiny_bg.png);
+		width: 257px;
+		height: 7px;
+		position: relative;
+		overflow: hidden;
+
+		.fill{
+			background-image: url(img/scoreboard/progress_tiny.png);
+			background-position: top left;
+			width: 0px;
+			height: 100%;
+			@include inline-block(top);
+		}
+		.shadow{
+			background-image: url(img/scoreboard/progress_tiny_shadow.png);
+			background-position: top left;
+			width: 4px;
+			height: 100%;	
+			@include inline-block(top);
+		}
+	}
+
+	.measure{
+		position: absolute;
+		top: 0px;
+		right: 8px;
+		font-size: 11px;
+		color: #999698;
+
+		.amt{
+			font-size: 11px;
+			color: black;
+		}
+	}
+
+	h5{
+		font-size: 11px;
+		font-weight: normal;
+		color: black;
+	}
+
+}
+
+
+
+.table_listing{
+	overflow: hidden;
+
+	table{
+		width: 100%;
+		text-align: center;
+		border-collapse: collapse;
+		margin-bottom: 20px;
+	}
+
+	td {
+		color: $clr_dark_grey;
+		border: 1px solid #ccc;
+		border-top: none;
+		padding: 0;
+		line-height: 19px;
+		font-size: 12px;
+		
+		&.qty{
+			width: 40px;
+		}
+		&.money{
+			text-align: right;
+			width: 56px;
+			padding-right: 4px;
+		}
+		&.unit-price{
+			width: 68px;
+
+			input{
+				width: 64px;
+			}
+		}
+		&.return{
+			color: red;
+			input{
+				color: red;
+			}
+		}
+		&:first-child{
+			text-align: left;
+			border-left: none;
+			border-right: none;
+			padding: 0 5px;
+			font-weight: bold;
+		}
+	}
+	
+	input{
+		width: 36px;
+		height: 16px;
+		text-align: center;
+
+		&[readonly="readonly"]{
+			border: none;
+		}
+		&.disabled {
+			background: #ddd;
+			}
+
+	}
+	
+	.table_header{
+		margin-bottom: 0;
+		font-weight: bold;
+		font-size: 12px;
+		td{
+			color: $clr_dark_blue;
+			@include vertical-gradient-2(#ffffff, #e1e1e4, "pie");
+
+			&.tall{
+				border-top: 1px solid #ccc;
+				padding-top: 5px;
+				padding-bottom: 5px;
+			}
+			&.money{
+				padding: 0 2px;
+				text-align: center;
+			}
+			&.unit-price{
+				padding: 0 0px;
+				text-align: center;
+			}
+			&:first-child{
+				background: none;
+				filter: none;
+				border: none;
+				-pie-background: none;
+			}
+			&.no-superheader{
+				border-top: 1px solid #ccc;
+			}
+		}
+	}
+
+	th{
+		background-color: $clr_dark_blue;
+		border: none;
+		color: white;
+		text-align: left;
+		border-right: 1px solid $clr_dark_blue;
+		padding: 3px 5px;
+	}
+
+	&.three_col,
+	.three_col{
+		& td:first-child{
+			width: 257px;
+		}
+	}
+	&.two_col,
+	.two_col{
+		& td:first-child{
+			width: 309px;
+		}
+	}
+	&.four_col,
+	.four_col{
+		& td:first-child{
+			width: 207px;
+		}
+	}
+
+
+	ul.notes{
+		list-style: none;
+	}
+}

@@ -1,0 +1,48 @@
+
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$('.radio-group').each(function(){
+		//find each <br/>, remove it and wrap the previous elements in an li
+		
+		//while there's something in the list that's not wrapped
+		while($(this).children(':not(li)').size() > 0){
+			//grab the first group of stuff that has a <br/> after it
+			var firstElement = $(this).children(':not(li)').first();
+			var thisRadioPair = firstElement.nextUntil('br').andSelf();
+			
+			//wrap them in an li
+			thisRadioPair.wrapAll('<li></li>');
+			
+			//then delete the br
+			$(this).children('br').first().remove();
+		}
+	});
+});
+</script>
+</wicket:head>
+<body>
+	<wicket:extend>
+		<div wicket:id="instructionsPanel"></div>
+		<div>
+			<h4 wicket:id="reasonOptionsLabel">Select Option</h4>
+
+			<select wicket:id="optionsDropDown">
+				<option>Option 1</option>
+				<option>Option 2</option>
+			</select>
+			<ul class="radio-group" wicket:id="optionsRadio"></ul>
+
+			<wicket:child />
+
+			<div class="buttons">
+				<input wicket:id="submit" class="button" type="button">
+			</div>
+		</div>
+
+	</wicket:extend>
+</body>
+</html>

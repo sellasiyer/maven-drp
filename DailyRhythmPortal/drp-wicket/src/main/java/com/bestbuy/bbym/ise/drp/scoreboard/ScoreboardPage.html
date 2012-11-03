@@ -1,0 +1,147 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>Scoreboard</title>
+	<script type="text/javascript" src="js/table-prep.js"></script>
+	<script type="text/javascript" src="js/raphael-min.js"></script>
+	<script type="text/javascript" src="js/tach.js"></script>
+	<script type="text/javascript" src="js/progress-meter.js"></script>
+	<script type="text/javascript" src="js/link_dropdown.js"></script>
+	<script type="text/javascript">
+		var employeeSalesTable = {
+			tableID : 'employeeSalesTable',
+			stripHeaderAnchorHref : true,
+			tidyHeader : false,
+			oddClasses : true,
+			lastClasses : true,
+			widths : [ '80', '160', '-', '60', '90', '70' ],
+			textAlignment : [ 'l', 'l', 'l', 'l', 'r', 'r' ],
+			sortable : [ false, false, false, false, false, false ],
+			truncate : [ false, true, true, true, false, true ]
+		};
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<div class="scoreboard">
+			<div class="page-header">
+				<h1>Scoreboard</h1>
+
+				<div wicket:id="sasSettings" class="dropdown large">
+					<a wicket:id="link" class="primary">Settings</a>
+				</div>
+
+				<div wicket:id="swasSettings" class="dropdown large">
+					<a class="primary">Settings</a>
+					<ul>
+						<li class="option"><a wicket:id="mobileLink">Mobile</a>
+						</li>
+						<li class="option"><a wicket:id="computingLink">Computing</a>
+						</li>
+					</ul>
+				</div>
+
+				<ul wicket:id="stateSelector"
+					class="button-selector button-selector-ind">
+					<li wicket:id="mobileSelection" class="first"><a
+						wicket:id="mobileSelectionLink"><wicket:message
+								key="scoreboardPage.mobile.selectionLink.label" /> </a>
+						<div class="indicator"></div>
+					</li>
+					<li wicket:id="computingSelection"><a
+						wicket:id="computingSelectionLink"> <wicket:message
+								key="scoreboardPage.computing.selectionLink.label" /> </a>
+						<div class="indicator"></div>
+					</li>
+					<li wicket:id="cbgSelection" class="last"><a
+						wicket:id="cbgSelectionLink"><wicket:message
+								key="scoreboardPage.cbg.selectionLink.label" /> </a>
+						<div class="indicator"></div>
+					</li>
+				</ul>
+			</div>
+
+			<div wicket:id="feedback" class="required"></div>
+
+			<div wicket:id="scoreboard-container">
+
+				<div wicket:id="topPane" class="top-pane">
+					<div wicket:id="cbgStoreMeter"></div>
+				</div>
+
+				<div wicket:id="mobileStoreColumn" class="left-pane">
+					<div wicket:id="mobileStore" class="store-name">
+						<span wicket:id="mobileStoreNumber" class="number"></span> <span
+							wicket:id="mobileStoreName" class="name"></span> <a
+							wicket:id="mobileStoreLink" class="expand"> </a>
+					</div>
+					<div class="store-data">
+						<div wicket:id="mobileStoreMeter"></div>
+						<div wicket:id="mobileTachDials" class="tach-list"></div>
+					</div>
+				</div>
+
+				<div wicket:id="computingStoreColumn">
+					<div wicket:id="computingStore" class="store-name">
+						<span wicket:id="computingStoreNumber" class="number"></span> <span
+							wicket:id="computingStoreName" class="name"></span> <a
+							wicket:id="computingStoreLink" class="expand"> </a>
+					</div>
+					<div class="store-data">
+						<div wicket:id="computingStoreMeter"></div>
+						<div wicket:id="computingTachDials" class="tach-list"></div>
+					</div>
+				</div>
+
+				<div wicket:id="mobileEmployeeColumn" class="right-pane">
+					<div class="pane-header">
+						<wicket:message
+							key="scoreboardPage.employeeColumn.mobile.title.label" />
+					</div>
+					<div class="button-container">
+						<a wicket:id="mobileSaleLink" class="scoreboard-button"><wicket:message
+								key="scoreboardPage.sale.button" /> </a> <a
+							wicket:id="mobileReturnLink" class="scoreboard-button"> <wicket:message
+								key="scoreboardPage.return.button" /> </a>
+					</div>
+					<!--  	<div class="top-bbym-bar"></div>-->
+					<ul wicket:id="mobileEmployeeProgessMeters" class="employee-list"></ul>
+					<div wicket:id="mobileNoEmployeesSection"
+						class="scoreboard-start-msg">
+						<wicket:message key="scoreboardPage.noEmployees.message.label" />
+					</div>
+				</div>
+
+				<div wicket:id="computingEmployeeColumn" class="right-pane">
+					<div class="pane-header">
+						<wicket:message
+							key="scoreboardPage.employeeColumn.computing.title.label" />
+					</div>
+					<div class="button-container">
+						<a wicket:id="computingSaleLink" class="scoreboard-button"><wicket:message
+								key="scoreboardPage.sale.button" /> </a> <a
+							wicket:id="computingReturnLink" class="scoreboard-button"> <wicket:message
+								key="scoreboardPage.return.button" /> </a>
+					</div>
+					<!-- <div class="top-bbym-bar"></div>  -->
+					<ul wicket:id="computingEmployeeProgessMeters"
+						class="employee-list"></ul>
+					<div wicket:id="computingNoEmployeesSection"
+						class="scoreboard-start-msg">
+						<wicket:message key="scoreboardPage.noEmployees.message.label" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div wicket:id="mobileTachDialModals"></div>
+		<div wicket:id="computingTachDialModals"></div>
+		<div wicket:id="postSalesModalPanel"></div>
+		<div wicket:id="postReturnsModalPanel"></div>
+		<div wicket:id="employeeDetailsModalPanel"></div>
+		<div wicket:id="storeTypeQueryModalPanel"></div>
+		<div wicket:id="storeDetailsModalPanel"></div>
+	</wicket:extend>
+</body>
+</html>

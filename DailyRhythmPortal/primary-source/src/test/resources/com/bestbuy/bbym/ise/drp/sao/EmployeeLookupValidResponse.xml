@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns0:EmployeeLookupResponse 
+    xmlns:ns1="http://www.tsh.bestbuy.com/common/v1" 
+    xmlns:ns0="http://www.tsh.bestbuy.com/parties/employee/lookup/service/v1" ns1:languageCode="?">
+    <ns2:MetaData 
+        xmlns:ns2="http://www.tsh.bestbuy.com/parties/employee/lookup/components/v1" 
+        xmlns:ns1="http://www.tsh.bestbuy.com/common/v1" 
+        xmlns:ns0="http://www.tsh.bestbuy.com/parties/employee/lookup/service/v1" 
+        xmlns:jms1="http://www.tibco.com/namespaces/tnt/plugins/jms">
+        <ns3:Environment 
+            xmlns:ns3="http://www.tsh.bestbuy.com/common/metadata/fields/v1">prodtest
+        </ns3:Environment>
+        <ns3:ResponseTimeStamp 
+            xmlns:ns3="http://www.tsh.bestbuy.com/common/metadata/fields/v1">2012-10-25T16:51:21.952-05:00
+        </ns3:ResponseTimeStamp>
+    </ns2:MetaData>
+    <ns2:EmployeeResponseDetails 
+        xmlns:ns2="http://www.tsh.bestbuy.com/parties/employee/lookup/components/v1" 
+        xmlns:ns1="http://www.tsh.bestbuy.com/common/v1" 
+        xmlns:ns0="http://www.tsh.bestbuy.com/parties/employee/lookup/service/v1" 
+        xmlns:jms1="http://www.tibco.com/namespaces/tnt/plugins/jms">
+        <ns2:Location>
+            <ns2:Department>
+                <ns3:DepartmentID 
+                    xmlns:ns3="http://www.tsh.bestbuy.com/parties/employee/lookup/fields/v1">000004-Ridgedale-Management
+                </ns3:DepartmentID>
+                <ns2:EmployeeInformation>
+                    <ns3:EmployeeID 
+                        xmlns:ns3="http://www.tsh.bestbuy.com/parties/employee/lookup/fields/v1">860196
+                    </ns3:EmployeeID>
+                    <ns1:FirstName>Scott</ns1:FirstName>
+                    <ns1:LastName>Kimber</ns1:LastName>
+                    <ns3:JobTitle 
+                        xmlns:ns3="http://www.tsh.bestbuy.com/parties/employee/lookup/fields/v1">30118.SR, CIA
+                    </ns3:JobTitle>
+                    <ns3:ManagerEmployeeNumber 
+                        xmlns:ns3="http://www.tsh.bestbuy.com/parties/employee/lookup/fields/v1">671281
+                    </ns3:ManagerEmployeeNumber>
+                    <ns3:TransDate 
+                        xmlns:ns3="http://www.tsh.bestbuy.com/parties/employee/lookup/fields/v1">2012-09-07
+                    </ns3:TransDate>
+                    <ns2:StoreInformation>
+                        <ns3:StoreID 
+                            xmlns:ns3="http://www.tsh.bestbuy.com/parties/employee/lookup/fields/v1">4
+                        </ns3:StoreID>
+                        <ns3:StoreDescription 
+                            xmlns:ns3="http://www.tsh.bestbuy.com/parties/employee/lookup/fields/v1">000004-Ridgedale-Svc Tech
+                        </ns3:StoreDescription>
+                        <ns3:DistrictID 
+                            xmlns:ns3="http://www.tsh.bestbuy.com/parties/employee/lookup/fields/v1">2
+                        </ns3:DistrictID>
+                        <ns3:DistrictName 
+                            xmlns:ns3="http://www.tsh.bestbuy.com/parties/employee/lookup/fields/v1">Best Buy District 2 Stores
+                        </ns3:DistrictName>
+                        <ns3:TerritoryID 
+                            xmlns:ns3="http://www.tsh.bestbuy.com/parties/employee/lookup/fields/v1">32
+                        </ns3:TerritoryID>
+                        <ns3:TerritoryName 
+                            xmlns:ns3="http://www.tsh.bestbuy.com/parties/employee/lookup/fields/v1">Best Buy Region 32 Stores
+                        </ns3:TerritoryName>
+                        <ns2:CostLocation>
+                            <ns3:CostLocationID 
+                                xmlns:ns3="http://www.tsh.bestbuy.com/parties/employee/lookup/fields/v1">000004
+                            </ns3:CostLocationID>
+                            <ns3:CostLocationDescription 
+                                xmlns:ns3="http://www.tsh.bestbuy.com/parties/employee/lookup/fields/v1">Minnetonka MN
+                            </ns3:CostLocationDescription>
+                        </ns2:CostLocation>
+                    </ns2:StoreInformation>
+                    <ns2:Contact>
+                        <ns2:Address>
+                            <ns3:AddressLine1 
+                                xmlns:ns3="http://www.tsh.bestbuy.com/common/location/v1">13513 RIDGEDALE DR
+                            </ns3:AddressLine1>
+                            <ns3:City 
+                                xmlns:ns3="http://www.tsh.bestbuy.com/common/location/v1">Minnetonka
+                            </ns3:City>
+                            <ns3:State 
+                                xmlns:ns3="http://www.tsh.bestbuy.com/common/location/v1" name="MN">MN
+                            </ns3:State>
+                            <ns3:PostalCode 
+                                xmlns:ns3="http://www.tsh.bestbuy.com/common/location/v1">55305
+                            </ns3:PostalCode>
+                            <ns3:CountryCode 
+                                xmlns:ns3="http://www.tsh.bestbuy.com/common/location/v1">US
+                            </ns3:CountryCode>
+                            <ns3:CountyName 
+                                xmlns:ns3="http://www.tsh.bestbuy.com/common/location/v1">Hennepin
+                            </ns3:CountyName>
+                        </ns2:Address>
+                        <ns3:Phone 
+                            xmlns:ns3="http://www.tsh.bestbuy.com/common/communication/v1" ns1:type="CellPhone">
+                            <ns3:DialNumber>612-251-1671</ns3:DialNumber>
+                        </ns3:Phone>
+                        <ns3:Phone 
+                            xmlns:ns3="http://www.tsh.bestbuy.com/common/communication/v1" ns1:type="WorkPhone">
+                            <ns3:DialNumber>(952) 544-0377</ns3:DialNumber>
+                        </ns3:Phone>
+                        <ns3:EMail 
+                            xmlns:ns3="http://www.tsh.bestbuy.com/common/communication/v1">
+                            <ns3:EmailID>Scott.Kimber@geeksquad.com</ns3:EmailID>
+                        </ns3:EMail>
+                    </ns2:Contact>
+                </ns2:EmployeeInformation>
+            </ns2:Department>
+        </ns2:Location>
+    </ns2:EmployeeResponseDetails>
+    <ns1:Status>
+        <ns1:Code>TSH-PXY-000000</ns1:Code>
+        <ns1:Description>PXY_GetEmployeeDetails executed successfully</ns1:Description>
+    </ns1:Status>
+</ns0:EmployeeLookupResponse>

@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.sourceforge.net/"
+	xml:lang="en" lang="en">
+<head>
+<title>BEAST-Portal</title>
+<link href="beast-css/screen.css" media="screen" rel="StyleSheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="js/tradein.js"></script>
+<script type="text/javascript" src="js/jquery.fixedheadertable.min.js"></script>
+<script>
+	$(document).ready(function() {
+		fixedHeaderTables();
+
+		function fixedHeaderTables() {
+			$('#fixedHeaderTable01 table').fixedHeaderTable({
+				height : '100',
+				altClass : 'odd'
+			});
+		}
+	});
+
+	function handleNextButtonState(enabled) {
+		var nextButton = $('#nextButton');
+		if (enabled) {
+			nextButton.removeAttr('disabled').parent().removeClass('disabled');
+		} else {
+			nextButton.attr('disabled', true).parent().addClass('disabled');
+		}
+	}
+	
+
+</script>
+</head>
+<body>
+
+	<span wicket:id="border">
+		<div class="wrap">
+			<!-- here to replicate beast frame -->
+			<div id="product-details" wicket:id="product-details">
+				<h1>Your Estimated Trade-In Value</h1>
+				<table class="value-pairs">
+					<tr>
+						<th></th>
+						<th class="last"></th>
+					</tr>
+					<tr wicket:id="questionList">
+						<td><span wicket:id="question"></span>
+						</td>
+						<td class="last"><span wicket:id="answer"></span>
+						</td>
+					</tr>
+				</table>
+				<p class="standout">
+					Your item's value is: $<span wicket:id="finalAdjustedPrice"></span>
+				</p>
+
+				<p class="loose">
+					<input type="checkbox" class="required" wicket:id="customerAgreeChkbox"
+						id="customerAgreeChkbox" /> <label for="customerAgreeChkbox"><Strong> <wicket:message
+								key="tradeInCondition.question.label" /> </strong> </label>
+				</p>
+				
+				<p class="standout">
+					<label wicket:id="note"></label>
+				</p>
+			</div>
+			<div wicket:id="zeroValueCancel"></div>
+		</div> </span>
+
+</body>
+</html>

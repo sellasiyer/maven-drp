@@ -1,0 +1,81 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+<title>BEAST-Portal</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		var wicketBehavior;
+		var continueFunction = function() {
+			wicketBehavior('continue');
+		};
+		var closeFunction = function() {
+			$("#closeButton").trigger("click");
+		};
+		hotKeysConfig = {
+			f2 : {
+				handler : continueFunction,
+				buttonSelector : '#continueButton'
+			},
+			f3 : {
+				handler : closeFunction,
+				buttonSelector : '#closeButton'
+			}
+		};
+		
+		/* $(document).ready(function(){
+			$(".list-item").click(function() {
+				var currentId = $(this).attr('id');
+				$('input:radio[name=catalogRadioGroup]')[currentId].checked = true;
+			});
+		}); */
+		
+		$(".list-item").click(function() {
+			var currentId = $(this).attr('id');
+			$('input:radio[name=catalogRadioGroup]')[currentId].checked = true;
+		});
+		
+		$(document).ready(function() {
+			var fieldId = $("#catalogSearch").val();
+			if (fieldId == null || fieldId == "") {
+				$("#searchButton").attr("disabled", "disabled");
+			}
+		});
+		
+		function enableSearchButton() {
+			$("#searchButton").removeAttr("disabled");
+		}
+	</script>
+</wicket:head>
+
+<body>
+		<span wicket:id="border">
+			<h2><wicket:message key="catalogSearchPage.title.label" /></h2>
+				<div id="product-search">
+					<div class="search">
+						<label><wicket:message
+								key="CatalogSearch.searchForm.label" /> </label> <input
+							class="required" type="text" maxlength="50" wicket:id="catalogSearch" onkeyup="enableSearchButton()"/> <input
+							class="submit" type="button" wicket:id="searchButton" />
+					</div>
+
+					<div wicket:id="feedback" class="feedbackmsg"></div>
+
+					<ul class="product-list" wicket:id="catalogListContainer">
+						<li class="list-item" wicket:id="catalogListView"><input type="radio"
+							wicket:id="catalogItemRadio" name="catalogRadioGroup" /> <img
+							wicket:id="catalogItemImage" />
+							<h4 wicket:id="catalogItemName"></h4>
+						</li>
+					</ul>
+
+					<div wicket:id="noCatalogListContainer">
+						<p class="error">
+							<label wicket:id="noCatalogListLabel"></label>
+						</p>
+					</div>
+				</div>
+		</span>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<title>Customer Benefit Lookup</title> 
+	<link rel="stylesheet" type="text/css" href="css/tom-screen.css"/>
+	<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	
+	<script type="text/javascript">
+	$(document).ready(function() {  
+		$("#printButton").click(function() {
+			window.print();
+		});
+ 
+		$("#closeButton").click(function() {
+			window.close();
+		});
+		window.print();	
+	});
+	</script> 
+	
+</wicket:head>
+
+<body>
+
+<div>
+		<input type="button" style="float: right;" class="button noprint" id="printButton" value="Print" /> 
+		<input type="button" style="float: right;" class="button noprint" id="closeButton" value="Close" />
+</div> 
+ 
+ <form wicket:id="entitlementPrintPageForm">
+<div class="printout">
+	<div class="header">
+		<img class="logo" wicket:id="entitlementImage" />  
+		<h1><span wicket:id="returnsTypeLabel"></span></h1>   
+	</div>   
+	<div class="bar"><h2>Customer Mobile Device</h2></div>
+	<dl class="column">
+		<dt>Name:</dt>
+		<dd><span wicket:id="customerFullName"></span></dd>
+		<br/>
+		<br/>
+		<br/>
+		<br/> 
+		<dt>Carrier:</dt>
+		<dd><span wicket:id="carrier"></span></dd>
+		<dt>IMEI/ESN:</dt>
+		<dd><span wicket:id="serialNumber"></span></dd>
+		<dt>Defective:</dt>
+		<dd><span wicket:id="defectiveDevice"></span></dd>
+	</dl>
+	
+	<dl class="column">
+		<dt class="long">Mobile Phone Number:</dt>
+		<dd><span wicket:id="line.mobileNumber"></span></dd>
+		<dt class="long">Reward Zone Member ID:</dt>
+		<dd><span wicket:id="rzNumber"></span></dd>
+		<dt class="long">Reward Zone Tier:</dt>
+		<dd><span wicket:id="rzTier"></span></dd>
+		<br />
+		<br />
+		<br />
+		<br />
+		<dt class="long">Manufacturer Serial #:</dt>
+		<dd><span wicket:id="manufacturerSerialNumber"></span></dd>
+	</dl>
+	
+	<div class="bar"><h2>Purchase Information</h2></div>
+	<dl class="column">
+		<dt>Description:</dt>
+		<dd><span wicket:id="skuDescription"></span></dd>
+		<dt>SKU:</dt>
+		<dd><span wicket:id="productSku"></span></dd>
+		<br/>
+		<br/> 
+		<dt>Purchased:</dt>
+		<dd><span wicket:id="purchaseDate"></span></dd>
+	</dl>
+	<dl class="column">
+		<dt class="long">GSP Description:</dt>
+		<dd><span wicket:id="gspDescription"></span></dd>
+		<dt class="long">GSP Plan ID:</dt>
+		<dd><span wicket:id="gspNumber"></span></dd>
+		<br />
+		<br />
+			
+		<div wicket:id="storeSkuCointainer">
+		<dt class="short">Store:</dt>
+		<dd class="short"><span wicket:id="storeNum"></span></dd>
+		<dt class="short">Register:</dt>
+		<dd class="short"><span wicket:id="registerNum"></span></dd>
+		<dt class="short">Tran #:</dt>
+		<dd class="short"><span wicket:id="transNum"></span></dd>
+		</div>
+		<div wicket:id="onlineCointainer">
+		<dt class="short">Order#</dt>
+		<dd class="short"><span wicket:id="onlineOrderNum"></span></dd>
+		</div>			  
+	</dl> 
+                     
+     <div wicket:id="selectionPageContainer">         
+                   
+	<div class="bar"><h2>Disclaimer</h2></div>
+	<p>These return/service options are based on customer and purchase information provided, and data provided by the carrier.  These return/service options are date-sensitive, and may not be available at a later date.</p>
+
+	<div class="bar"><h2>Return/Service Options</h2></div>
+	<ol class="nested">            
+		<li wicket:id="listview">
+		    <span wicket:id="displayText"></span>
+			<span wicket:id="details"></span>			
+		</li>
+		
+	</ol>  	   
+	</div> 
+
+	<div wicket:id="nextStepsPageContainer">		
+	<div class="bar"><h2>Next Steps</h2></div>
+	<ol class="spacious" wicket:id="selEntitleLabel">	
+	</ol>
+	</div> 
+	             
+	<div class="footer">Printed: <span class="date" wicket:id="printedDate"></span></div>
+</div>	 
+</form>                 
+
+</body>
+</html>

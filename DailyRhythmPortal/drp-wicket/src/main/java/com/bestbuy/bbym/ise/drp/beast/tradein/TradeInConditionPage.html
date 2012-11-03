@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+ <head>
+<title>BEAST-Portal</title>
+	<link href="../../drp/drp-war/src/main/webapp/beast-css/screen.css" media="screen" rel="StyleSheet" type="text/css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+	<script src="../../drp/drp-war/src/main/webapp/js/jquery.fixedheadertable.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			/*$(window).bind('resize', fixedHeaderTables); -- Not Working */
+			fixedHeaderTables();
+			
+			function fixedHeaderTables(){
+				$('#fixedHeaderTable01 table').fixedHeaderTable({ height: '100', altClass: 'odd' });
+			}
+		});
+</script>	
+</head>
+<body>
+<span wicket:id="border">
+<div class="wrap"><!-- here to replicate beast frame -->
+	<h1 class="left" wicket:id="question"></h1>
+	<h1 class="steps" wicket:id="steps"></h1>
+
+                <div wicket:id="group">
+       	        <div wicket:id="radioGroup">
+
+	<table class="value-pairs">
+		<tr>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tr wicket:id="optionList">
+			<td class="radio"><input type="radio" wicket:id="radio" /></td>
+			<td>
+				<span class="standout" style="text-align:center;" wicket:id="value"></span>
+				<span style="text-align: center; display: block;" wicket:id="description"></span>
+			</td>
+			<td class="last"><span class="standout" wicket:id="adjustmentPrice"></span></td>
+		</tr>
+	</table>
+                </div>
+                </div>
+
+	<p>
+		<strong>Why is this important?</strong></p>
+		<p wicket:id="justification">
+	</p>
+</div>
+</span>
+</body>
+</html>

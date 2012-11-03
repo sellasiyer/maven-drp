@@ -1,0 +1,95 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<script type="text/javascript">
+		var wicketBehaviorCIP;
+		function setupCarrierTable() {
+			// Remove sorting from Opt-In & Actions columns
+			removeColumnSorting('#carrierDataTable', 4);
+			removeColumnSorting('#carrierDataTable', 6);
+			removeColumnSorting('#carrierDataTable', 7);
+			applyRowHighlighting('#carrierDataTable');
+			fixTableNoRecords('#carrierDataTable', 'No Records Found');
+			fixTableBorders('#carrierDataTable');
+		}
+		function setupCarrierPanel() {
+			$('.toolTip').betterTooltip({
+				speed : 150,
+				delay : 300
+			});
+		}
+		function dropdownLaunch(selectID, optionValue, tableID) {
+			wicketBehaviorCIP(selectID + "-" + optionValue);
+		}
+	</script>
+</wicket:head>
+
+
+<body>
+	<wicket:panel>
+		<div class="subsection">
+			<ul class="opt-ins">
+				<li><wicket:message
+						key="carrierPanel.upgradeCheckerStoreCountLabel" /><span
+					class="count" wicket:id="upgradeCheckerStoreCount"></span>
+				</li>
+				<li><wicket:message key="carrierPanel.optInStoreCountLabel" /><span
+					class="count" wicket:id="optInStoreCount"></span>
+				</li>
+			</ul>
+
+			<h2 class="top" wicket:id="header">
+				<wicket:message key="carrierPanel.label" />
+				<span class=”transfer-to-beast”></span> <img
+					wicket:id="transfer-to-beast" />
+			</h2>
+
+			<div wicket:id="carrierInfoFeedback" class="required"></div>
+
+			<form wicket:id="carrierInfoOptinForm" autocomplete="off">
+				<div class="customer-bar">
+					<div wicket:id="carrierLogo"></div>
+					<div class="customer">
+						<label><wicket:message
+								key="carrierPanel.customerDetails.main.label" /> </label> <span
+							wicket:id="customerNameLabel"></span>
+					</div>
+					<div class="phone">
+						<label><wicket:message
+								key="carrierPanel.customerDetails.phone.label" /> </label> <span
+							wicket:id="customerPhoneNumberLabel"></span>
+					</div>
+					<div class="account">
+						<label><wicket:message
+								key="carrierPanel.customerDetails.account.label" /> </label> <span
+							wicket:id="customerAcctNumberLabel"></span>
+					</div>
+				</div>
+
+				<a wicket:id="featuresLink" class="button below-bar"><wicket:message
+						key="carrierPanel.featuresLink.label" /> </a>
+
+				<div class="table-wrap">
+					<table class="default-table" wicket:id="carrierDataTable">
+					</table>
+				</div>
+
+				<div class="disclaimer">
+					<div wicket:id="linesAvailable">
+						<p>
+							<span wicket:id="linesAvailableLabel"></span>
+							<wicket:message key="carrierPanel.optInTerms.label" />
+						</p>
+					</div>
+				</div>
+				<br clear="all" />
+			</form>
+
+		</div>
+		<br clear="all" />
+
+		<div wicket:id="optinNotAllowedModalPanel"></div>
+	</wicket:panel>
+</body>
+</html>

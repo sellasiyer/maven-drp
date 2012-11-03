@@ -1,0 +1,633 @@
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Service/V4" xmlns:s1="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Scheme/V4" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s2="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Service/V4" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Service/V4">
+      <s:import namespace="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Scheme/V4" />
+      <s:import namespace="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4" />
+      <s:element name="ProtectionPlanSearchRequest" type="tns:ProtectionPlanSearchRequestType" />
+      <s:complexType name="ProtectionPlanSearchRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProtectionPlanID" type="s1:ProtectionPlanIDType" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerID" type="s2:CustomerIDType" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionKey" type="s1:TransactionKeyType" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoveredSerialNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoveredSKU" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TypeFilter" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ProtectionPlanSearchResponse" type="tns:ProtectionPlanSearchResponseType" />
+      <s:complexType name="ProtectionPlanSearchResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SystemStatus" type="s2:SystemStatusType" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProtectionPlan" type="s1:ProtectionPlanType" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ProtectionPlanDetailRequest" type="tns:ProtectionPlanDetailRequestType" />
+      <s:complexType name="ProtectionPlanDetailRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProtectionPlanID" type="s1:ProtectionPlanIDType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ActivityLogLimit" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MetaData" type="tns:RequestMetadataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ShowAuthorizeUser" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RequestMetadataType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SourceID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProgramID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RequestTimeStamp" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ProtectionPlanDetailResponse" type="tns:ProtectionPlanDetailResponseType" />
+      <s:complexType name="ProtectionPlanDetailResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SystemStatus" type="s2:SystemStatusType" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProtectionPlanDetail" type="s1:ProtectionPlanDetailType" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ProtectionPlanUpdateRequest" type="tns:ProtectionPlanUpdateRequestType" />
+      <s:complexType name="ProtectionPlanUpdateRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MetaData" type="tns:RequestMetadataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProtectionPlan" type="s1:ProtectionPlanDetailType" />
+          <s:element minOccurs="0" maxOccurs="1" name="TargetOwnerCustomerID" type="s2:CustomerIDType" />
+          <s:element minOccurs="0" maxOccurs="1" name="StateCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InServiceDays" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ProtectionPlanUpdateResponse" type="tns:ProtectionPlanUpdateResponseType" />
+      <s:complexType name="ProtectionPlanUpdateResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SystemStatus" type="s2:SystemStatusType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProtectionPlanID" type="s1:ProtectionPlanIDType" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ProtectionPlanAuthorizeRequest" type="tns:ProtectionPlanAuthorizeRequestType" />
+      <s:complexType name="ProtectionPlanAuthorizeRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProtectionPlanID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SourceSystemCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AuthorizedUserInfo" type="s1:AuthorizeInformationType" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuthorizedSeatsInfo" type="s1:AuthorizeSeatsInformationType" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ProtectionPlanAuthorizeResponse" type="tns:ProtectionPlanAuthorizeResponseType" />
+      <s:complexType name="ProtectionPlanAuthorizeResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SystemStatus" type="s2:SystemStatusType" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuthorizeActionNote" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Scheme/V4">
+      <s:import namespace="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4" />
+      <s:complexType name="ProtectionPlanIDType">
+        <s:simpleContent>
+          <s:extension base="s:string">
+            <s:attribute name="sourceSystem" type="s1:ProtectionPlanSourceSystemEnum" />
+          </s:extension>
+        </s:simpleContent>
+      </s:complexType>
+      <s:simpleType name="ProtectionPlanSourceSystemEnum">
+        <s:restriction base="s:string">
+          <s:enumeration value="" />
+          <s:enumeration value="OCIS" />
+          <s:enumeration value="STAR" />
+          <s:enumeration value="EC" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="TransactionKeyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RetailStoreID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WorkstationID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RegisterTransactionNumber" type="s:unsignedLong" />
+          <s:element minOccurs="1" maxOccurs="1" name="BusinessDayDate" type="s:date" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProtectionPlanType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Contract" type="s1:ContractType" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Product" type="s1:ContractProductType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Owner" type="s2:PersonType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ID" type="s1:ProtectionPlanIDType" />
+        </s:sequence>
+        <s:attribute name="type" type="s1:ProtectionPlanTypeEnum" />
+        <s:attribute name="category" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ContractType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SKU" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s1:ContractStatusEnum" />
+          <s:element minOccurs="0" maxOccurs="1" name="EffectiveDate" type="s:date" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExpirationDate" type="s:date" />
+          <s:element minOccurs="0" maxOccurs="1" name="SKUDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OCISContractID" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="SalesChannelNum" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="GroupContractID" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContractOfferType" type="s1:ContractOfferTypeType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContractClassCode" type="s1:ContractClassCodeType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ContractStatusEnum">
+        <s:restriction base="s:string">
+          <s:enumeration value="ACTIVE" />
+          <s:enumeration value="INACTIVE" />
+          <s:enumeration value="UNKNOWN" />
+          <s:enumeration value="ONHOLD" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ContractOfferTypeType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ContractClassCodeType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ContractProductType">
+        <s:complexContent mixed="false">
+          <s:extension base="s2:ProductInformationType">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="CoverageStartDate" nillable="true" type="s:date" />
+              <s:element minOccurs="0" maxOccurs="1" name="CoverageEndDate" type="s:date" />
+              <s:element minOccurs="0" maxOccurs="1" name="RegistrationDate" type="s:date" />
+              <s:element minOccurs="0" maxOccurs="1" name="ContractProductDetail" type="s1:ContractProductDetailType" />
+            </s:sequence>
+            <s:attribute name="objectID" type="s:long" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ContractProductDetailType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CloseReason" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InspectionDetails" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceEligible" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Replacement" type="s1:ReplacementType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReplacementType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ReasonCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Notes" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReplacementProduct" type="s1:ReplacementProductType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReplacementCredit" type="s1:ReplacementCreditType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReplacementProductType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SKU" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SerialNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="COGS" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="RetailValue" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReplacementCreditType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card" type="s:string" />
+        </s:sequence>
+        <s:attribute name="type" type="s:string" />
+      </s:complexType>
+      <s:simpleType name="ProtectionPlanTypeEnum">
+        <s:restriction base="s:string">
+          <s:enumeration value="PSP" />
+          <s:enumeration value="PRP" />
+          <s:enumeration value="BB" />
+          <s:enumeration value="TS" />
+          <s:enumeration value="AOS" />
+          <s:enumeration value="GSOS" />
+          <s:enumeration value="SPT" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ProtectionPlanDetailType">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ProtectionPlanType">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ContractDetails" type="s1:ContractDetailsType" />
+              <s:element minOccurs="0" maxOccurs="1" name="ActivityLog" type="s1:ArrayOfContractActivityType" />
+              <s:element minOccurs="0" maxOccurs="unbounded" name="AuthorizedUser" type="s1:AuthorizedUserType" />
+              <s:element minOccurs="0" maxOccurs="1" name="Purchaser" type="s2:PersonType" />
+              <s:element minOccurs="0" maxOccurs="unbounded" name="OwnerAccount" type="s1:AccountType" />
+              <s:element minOccurs="0" maxOccurs="1" name="ContractNotes" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="unbounded" name="Transaction" type="s1:TransactionType" />
+              <s:element minOccurs="0" maxOccurs="1" name="PurchaseLocation" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MonthlyPayment" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="StatusReasonCode" type="s2:CodeDescriptionType" />
+              <s:element minOccurs="0" maxOccurs="1" name="CancelRequested" type="s:dateTime" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ContractDetailsType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ContractHours" type="s1:ContractHoursType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContractLicensing" type="s1:ContractLicensingType" />
+          <s:element minOccurs="0" maxOccurs="1" name="FulfillmentInformation" type="s1:FulfillmentInformationType" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ContractDeductions" type="s1:ContractDeductionsType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ContractHoursType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TopLineRevenue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TotalHoursPurchased" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="TotalPendingHours" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="TotalUsedHours" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="TotalRemainingHours" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="HoursDetail" type="s1:HoursDetailType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="HoursDetailType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SalesOrderNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SalesSKU" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderAmount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HoursPurchased" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="AvailableHours" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="HoursEndDate" type="s:date" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ContractLicensingType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="NumberofSeats" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumberofUsers" type="s:integer" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FulfillmentInformationType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ThirdPartyAdministrator" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FulfillmentChannelRestriction" type="s1:FulfillmentChannelRestrictionType" />
+          <s:element minOccurs="0" maxOccurs="1" name="WaitingPeriod" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="ADHEligible" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FeeSKU" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaxBenefit" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RemainingBenefit" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FulfillmentChannelRestrictionType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RestrictInHome" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="RestrictInStore" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="RestrictRemote" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ContractDeductionsType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DeductionOrderNbr" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeductionSourceSystem" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DeductionDate" type="s:date" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeductionType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeductionQty" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeductionStatus" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfContractActivityType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ContractActivity" type="s1:ContractActivityType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ContractActivityType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SysTxnId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SrcSysCd" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserNm" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BusFuncNm" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SysTxnTs" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="MachineNm" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SessionId" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TblNm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EntityId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EntitySeqNum" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ElementNm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Old" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="New" type="s:string" />
+        </s:sequence>
+        <s:attribute name="type" type="s:string" />
+      </s:complexType>
+      <s:complexType name="AuthorizedUserType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Address">
+            <s:complexType>
+              <s:sequence>
+                <s:element minOccurs="0" maxOccurs="1" name="AddressLine1" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="AddressLine2" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="AddressLine3" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="Province" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="County" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+              </s:sequence>
+              <s:attribute name="type" type="s:string" />
+              <s:attribute name="primary" type="s:string" />
+            </s:complexType>
+          </s:element>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Phone">
+            <s:complexType>
+              <s:sequence>
+                <s:element minOccurs="0" maxOccurs="1" name="AreaCode" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="Extension" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+              </s:sequence>
+              <s:attribute name="type" type="s:string" />
+              <s:attribute name="primary" type="s:string" />
+            </s:complexType>
+          </s:element>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EmailAddress">
+            <s:complexType>
+              <s:sequence>
+                <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+              </s:sequence>
+              <s:attribute name="type" type="s:string" />
+              <s:attribute name="primary" type="s:string" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+        <s:attribute name="objectID" type="s:long" />
+      </s:complexType>
+      <s:complexType name="AccountType">
+        <s:simpleContent>
+          <s:extension base="s:string">
+            <s:attribute name="type" type="s1:AccountTypeEnum" />
+          </s:extension>
+        </s:simpleContent>
+      </s:complexType>
+      <s:simpleType name="AccountTypeEnum">
+        <s:restriction base="s:string">
+          <s:enumeration value="RZ" />
+          <s:enumeration value="BBFB" />
+          <s:enumeration value="TEC" />
+          <s:enumeration value="CA" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="TransactionType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SourceSystem" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SourceOrderNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionKey" type="s1:TransactionKeyType" />
+          <s:element minOccurs="0" maxOccurs="1" name="PONumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmployeeID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TermsVersion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ThirdPartyAdmin" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Underwriter" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SKUCost" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="SKUAverageCost" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="SKURegularPrice" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="SKUTermMonths" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ActualPricePaid" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaxPaid" type="s:decimal" />
+        </s:sequence>
+        <s:attribute name="objID" type="s:long" />
+        <s:attribute name="lineCode" type="s1:TransactionLineCodeEnum" />
+      </s:complexType>
+      <s:simpleType name="TransactionLineCodeEnum">
+        <s:restriction base="s:string">
+          <s:enumeration value="S" />
+          <s:enumeration value="R" />
+          <s:enumeration value="PVS" />
+          <s:enumeration value="PVR" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="AuthorizeInformationType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ActionCode" type="s1:ActionCodeEnum" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuthorizedUser" type="s1:AuthorizeUserType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ActionCodeEnum">
+        <s:restriction base="s:string">
+          <s:enumeration value="Add" />
+          <s:enumeration value="Remove" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="AuthorizeUserType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+        </s:sequence>
+        <s:attribute name="partyID" type="s:long" />
+      </s:complexType>
+      <s:complexType name="AuthorizeSeatsInformationType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ManageSeats" type="s:integer" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">
+      <s:complexType name="CustomerIDType">
+        <s:simpleContent>
+          <s:extension base="s:string">
+            <s:attribute name="sourceSystem" type="s2:CustomerSourceEnum" />
+          </s:extension>
+        </s:simpleContent>
+      </s:complexType>
+      <s:simpleType name="CustomerSourceEnum">
+        <s:restriction base="s:string">
+          <s:enumeration value="EC" />
+          <s:enumeration value="STAR" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="SystemStatusType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="StatusCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProductInformationType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SKU" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SerialNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SKUDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Model" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PurchaseDate" type="s:date" />
+          <s:element minOccurs="0" maxOccurs="1" name="NonBBYInfo" type="s2:NonBBYProductType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Detail" type="s2:ProductInformationDetailType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="NonBBYProductType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MarketValue" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="StoreofPurchase" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="POPSource" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="POPTransactionID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="POPPath" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProductInformationDetailType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Department" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Class" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubClass" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="COGS" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="RegularPrice" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="SalePrice" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tax" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryDate" type="s:date" />
+          <s:element minOccurs="0" maxOccurs="1" name="InstallationDate" type="s:date" />
+          <s:element minOccurs="0" maxOccurs="1" name="RemoveDate" type="s:date" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PersonType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s2:PersonNameType" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Address" type="s2:AddressType" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Phone" type="s2:PhoneType" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrganizationName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EmailAddress" type="s2:EmailType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PersonNameType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Prefix" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MiddleName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Suffix" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AddressType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AddressLine1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AddressLine2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AddressLine3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Province" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="County" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+        </s:sequence>
+        <s:attribute name="type" type="s:string" />
+        <s:attribute default="false" name="primary" type="s:boolean" />
+      </s:complexType>
+      <s:complexType name="PhoneType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AreaCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Extension" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+        </s:sequence>
+        <s:attribute name="type" type="s2:PhoneTypeEnum" />
+        <s:attribute default="false" name="primary" type="s:boolean" />
+      </s:complexType>
+      <s:simpleType name="PhoneTypeEnum">
+        <s:restriction base="s:string">
+          <s:enumeration value="HOME" />
+          <s:enumeration value="WORK" />
+          <s:enumeration value="MOBILE" />
+          <s:enumeration value="FAX" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="EmailType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+        </s:sequence>
+        <s:attribute name="type" type="s:string" />
+        <s:attribute default="false" name="primary" type="s:boolean" />
+      </s:complexType>
+      <s:complexType name="CodeDescriptionType">
+        <s:simpleContent>
+          <s:extension base="s:string">
+            <s:attribute name="code" type="s:string" />
+          </s:extension>
+        </s:simpleContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SearchProtectionPlanSoapIn">
+    <wsdl:part name="ProtectionPlanSearchRequest" element="tns:ProtectionPlanSearchRequest" />
+  </wsdl:message>
+  <wsdl:message name="SearchProtectionPlanSoapOut">
+    <wsdl:part name="SearchProtectionPlanResult" element="tns:ProtectionPlanSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProtectionPlanDetailSoapIn">
+    <wsdl:part name="ProtectionPlanDetailRequest" element="tns:ProtectionPlanDetailRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetProtectionPlanDetailSoapOut">
+    <wsdl:part name="GetProtectionPlanDetailResult" element="tns:ProtectionPlanDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProtectionPlanSoapIn">
+    <wsdl:part name="ProtectionPlanUpdateRequest" element="tns:ProtectionPlanUpdateRequest" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProtectionPlanSoapOut">
+    <wsdl:part name="UpdateProtectionPlanResult" element="tns:ProtectionPlanUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthorizeUserSoapIn">
+    <wsdl:part name="ProtectionPlanAuthorizeRequest" element="tns:ProtectionPlanAuthorizeRequest" />
+  </wsdl:message>
+  <wsdl:message name="AuthorizeUserSoapOut">
+    <wsdl:part name="AuthorizeUserResult" element="tns:ProtectionPlanAuthorizeResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ProtectionPlanSOAP">
+    <wsdl:operation name="SearchProtectionPlan">
+      <wsdl:input message="tns:SearchProtectionPlanSoapIn" />
+      <wsdl:output message="tns:SearchProtectionPlanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProtectionPlanDetail">
+      <wsdl:input message="tns:GetProtectionPlanDetailSoapIn" />
+      <wsdl:output message="tns:GetProtectionPlanDetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProtectionPlan">
+      <wsdl:input message="tns:UpdateProtectionPlanSoapIn" />
+      <wsdl:output message="tns:UpdateProtectionPlanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizeUser">
+      <wsdl:input message="tns:AuthorizeUserSoapIn" />
+      <wsdl:output message="tns:AuthorizeUserSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProtectionPlanSOAP" type="tns:ProtectionPlanSOAP">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SearchProtectionPlan">
+      <soap:operation soapAction="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Service/V4/SearchProtectionPlan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProtectionPlanDetail">
+      <soap:operation soapAction="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Service/V4/GetProtectionPlanDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProtectionPlan">
+      <soap:operation soapAction="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Service/V4/UpdateProtectionPlan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizeUser">
+      <soap:operation soapAction="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Service/V4/AuthorizeUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProtectionPlanSOAP">
+    <wsdl:port name="ProtectionPlanSOAP" binding="tns:ProtectionPlanSOAP">
+      <soap:address location="https://crmservices.na.bestbuy.com/PPFServices/ProtectionPlanServiceV4Soap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

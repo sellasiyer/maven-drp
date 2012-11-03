@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<Appointments>
+		<Appointment>
+			<AppointmentId>ISPU-13</AppointmentId>
+			<StoreId>281</StoreId>
+			<OrderNo>124124</OrderNo>
+			<DepartmentName></DepartmentName>
+			<TypeId>2</TypeId>
+			<TypeName>Store-Pickup</TypeName>
+			<Date>04/19/2012</Date>
+			<Time>2:00pm</Time>
+			<FirstName>Bryce</FirstName>
+			<LastName>Levin</LastName>
+			<Phone>(234) 234-2342</Phone>
+			<Email>brycelevin@gmail.com</Email>
+			<Reason>Pickup Store Pickup</Reason>
+			<Status>
+				<ExistingStatus>0</ExistingStatus>
+				<Completed>
+					<item>
+						<StatusId>3</StatusId>
+						<StatusName>Complete w/ Purchase</StatusName>
+					</item>
+					<item>
+						<StatusId>2</StatusId>
+						<StatusName>Complete w/out Purchase</StatusName>
+					</item>
+				</Completed>
+				<Cancelled>
+					<item>
+						<StatusId>1</StatusId>
+						<StatusName>Cancelled</StatusName>
+					</item>
+				</Cancelled>
+				<NoShow>
+					<item>
+						<StatusId>4</StatusId>
+						<StatusName>No Show</StatusName>
+					</item>
+				</NoShow>
+			</Status>
+		</Appointment>
+	</Appointments>
+	<ErrorCode>1</ErrorCode>
+	<ErrorMessage></ErrorMessage>
+</xml>

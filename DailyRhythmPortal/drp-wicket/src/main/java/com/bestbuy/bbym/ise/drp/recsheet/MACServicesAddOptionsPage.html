@@ -1,0 +1,79 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+</wicket:head>
+<body>
+	<wicket:extend>
+		<fieldset id="services-apple-options" class="data-box">
+			<h2 class="tight">
+				<wicket:message key="macAddOptionsPageForm.step.label" />
+			</h2>
+			<h2 class="subhead">
+				<wicket:message key="macAddOptionsPageForm.subtitle.label" />
+			</h2>
+
+			<div class="column width-full">
+				<div class="block nopad width-4">
+					<ul class="checkbox-buttons wide">
+						<li><input type="checkbox" wicket:id="dataBackupCbx">
+							<label for="dataBackup"> <wicket:message
+									key="macAddOptionsPageForm.dataBackup.label" /><br /> <i><wicket:message
+										key="macAddOptionsPageForm.dataBackup.line1.label" /> </i><br />
+								<i><wicket:message
+										key="macAddOptionsPageForm.dataBackup.savings.label" /> </i><br />
+								<i><wicket:message
+										key="macAddOptionsPageForm.dataBackup.sku.label" /> </i> </label></li>
+					</ul>
+				</div>
+				<div class="block nopad width-4">
+					<ul class="checkbox-buttons wide">
+						<li><input type="checkbox" wicket:id="dataBackup500GBCbx">
+							<label for="dataBackup500GGB"> <wicket:message
+									key="macAddOptionsPageForm.dataBackup500GB.label" /><br /> <i><wicket:message
+										key="macAddOptionsPageForm.dataBackup500GB.line1.label" /> </i><br />
+								<i><wicket:message
+										key="macAddOptionsPageForm.dataBackup500GB.savings.label" /> </i><br />
+								<i><wicket:message
+										key="macAddOptionsPageForm.dataBackup500GB.sku.label" /> </i> </label></li>
+					</ul>
+				</div>
+				<div class="block nopad width-4">
+					<ul class="checkbox-buttons wide">
+						<li><input type="checkbox" wicket:id="msOfficeCbx"> <label for="msOffice"><wicket:message
+									key="macAddOptionsPageForm.msOffice.label" /><br /> <i><wicket:message
+										key="macAddOptionsPageForm.msOffice.line1.label" /> </i><br /> <i><wicket:message
+										key="macAddOptionsPageForm.msOffice.savings.label" /> </i><br />
+								<i><wicket:message
+										key="macAddOptionsPageForm.msOffice.sku.label" /> </i> </label></li>
+					</ul>
+				</div>
+				<div class="block nopad width-4">
+					<ul class="checkbox-buttons wide">
+						<li><input type="checkbox" wicket:id="appleTvCbx">
+							<label for="appleTv"> <wicket:message
+									key="macAddOptionsPageForm.appleTv.label" /><br /> <i><wicket:message
+										key="macAddOptionsPageForm.appleTv.line1.label" /> </i><br />
+								<i><wicket:message
+										key="macAddOptionsPageForm.appleTv.sku.label" /> </i> </label></li>
+					</ul>
+				</div>
+			</div>
+			<div class="block nopad width-4">
+				<ul class="checkbox-buttons wide">
+					<li>
+						<input type="checkbox" wicket:id="parallelDesktopCbx">
+						<label for="parallelDesktop">
+							<wicket:message key="macAddOptionsPageForm.parallelDesktop.label" /><br />
+							<i><wicket:message
+								key="macAddOptionsPageForm.parallelDesktop.line1.label" /></i><br />
+							<i><wicket:message
+								key="macAddOptionsPageForm.parallelDesktop.sku.label" /></i>
+						</label>		
+					</li>
+				</ul>
+			</div>
+
+		</fieldset>
+	</wicket:extend>
+</body>
+</html>

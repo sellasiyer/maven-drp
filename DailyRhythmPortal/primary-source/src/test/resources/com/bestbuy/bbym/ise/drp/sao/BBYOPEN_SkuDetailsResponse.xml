@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/v1/xsl/xml_pretty_printer.xsl" type="text/xsl"?>
+<products currentPage="1" totalPages="1" from="1" to="1" total="1"
+	queryTime="0.005" totalTime="0.009"
+	canonicalUrl="/v1/products(sku in(3815245))?show=name,upc,sku,manufacturer,deviceManufacturer&amp;apiKey=khteuyjh88jx2cp4cyfehwsj"
+	partial="false">
+	<product>
+		<name>Apple&#174; - iPhone 4 with 8GB Memory - Black (Verizon Wireless)</name>
+		<upc>885909543267</upc>
+		<sku>3815245</sku>
+		<deviceManufacturer>Apple</deviceManufacturer>
+	</product>
+</products>
+      

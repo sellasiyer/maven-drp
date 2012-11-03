@@ -1,0 +1,472 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+<title>BEAST</title>  
+
+<script type="text/javascript" src="js/validation.js"></script>
+<script type="text/javascript" src="js/jquery.sortelements.js"></script>
+      
+<script type="text/javascript">
+    
+$(document).ready(function() {  
+fixedHeaderTables();  
+installClickHandlers(); 
+toggleResheduleButton(false);
+toggleSubmitButton(false);  
+setTimeout("foucsDateTextField()", 100);
+installSelectPanelClickHandlers(); 
+});    
+
+function foucsDateTextField() {     
+		$('#fromDate').focus(); 
+}
+    
+function fixedHeaderTables() {   
+	var tableHeight = $('#fixedHeaderTable01 table').height();
+	var maxHeight = 180;
+     	  
+	if (tableHeight > maxHeight) {
+		$('#fixedHeaderTable01 table').fixedHeaderTable({ height: maxHeight, altClass: 'odd' });
+	} else {
+		$('#fixedHeaderTable01 table').css('width', '100%');
+	}
+}        
+
+function clearFormFields() { 
+	$('input[type=text]').val("");
+	$('select').prop('selectedIndex', -1); 
+}    
+   
+function setupApptTable(){   
+
+	//zebra stripe
+	$('.appt-search tbody tr:nth-child(even)').addClass("zebra");
+
+	//make columns sortable w/javascript
+	$('.appt-search th').slice(0, 7).addClass("sortable");
+	// adding style to <th>         	  
+	$('.appt-search th').slice(7, 8).addClass("th_cancel");
+	$('.appt-search th').slice(8, 9).addClass("th_complete");
+	$('.appt-search th').slice(9, 10).addClass("th_noshow");
+	                                
+}
+
+                      
+function installClickHandlers() {   
+	 $('.status.wicket-cancelCheckGroup').bind('click',function(){
+		//if they select something in a row, uncheck all the header checkboxes
+		$('.status.master').removeAttr("checked");               
+
+		//and then make sure only one checkbox per row is selected
+		$(this).closest('tr').find('.status.wicket-completeCheckGroup').removeAttr("checked");
+		$(this).closest('tr').find('.status.wicket-noShowCheckGroup').removeAttr("checked");
+	
+		 if($('.status.wicket-cancelCheckGroup:checked').length > 0){
+				toggleSearchButton(false);
+				toggleSubmitButton(true);			
+			}else{
+				toggleSearchButton(true);
+				toggleSubmitButton(false);	
+		}
+	})
+	
+	$('.status.wicket-completeCheckGroup').bind('click',function(){
+		//if they select something in a row, uncheck all the header checkboxes
+		$('.status.master').removeAttr("checked"); 
+
+		//and then make sure only one checkbox per row is selected
+		$(this).closest('tr').find('.status.wicket-cancelCheckGroup').removeAttr("checked");
+		$(this).closest('tr').find('.status.wicket-noShowCheckGroup').removeAttr("checked");
+
+		 if($('.status.wicket-completeCheckGroup:checked').length > 0){
+				toggleSearchButton(false);
+				toggleSubmitButton(true);			
+			}else{
+				toggleSearchButton(true);
+				toggleSubmitButton(false);	
+			}   
+	})     
+	
+	$('.status.wicket-noShowCheckGroup').bind('click',function(){
+		//if they select something in a row, uncheck all the header checkboxes
+		$('.status.master').removeAttr("checked");   
+          
+		//and then make sure only one checkbox per row is selected   
+		$(this).closest('tr').find('.status.wicket-cancelCheckGroup').removeAttr("checked");
+		$(this).closest('tr').find('.status.wicket-completeCheckGroup').removeAttr("checked");
+           
+		 if($('.status.wicket-noShowCheckGroup:checked').length > 0){
+				toggleSearchButton(false);
+				toggleSubmitButton(true);			
+			}else{
+				toggleSearchButton(true);
+				toggleSubmitButton(false);	
+			}
+	}) 
+} 
+
+function installSortableClickHandlers() {
+
+	$('th.sortable').bind('click',function(){
+		var inverse = false;
+		if($(this).data('sorted') === "sort"){
+			inverse = true;
+		}
+		var thIndex = $(this).index();
+
+		//sort the row in the table body
+		var tableBody = $(this).closest('.fht-table-wrapper').find('.fht-tbody table tbody');
+
+		tableBody.find('td').filter(function(){
+            
+            return $(this).index() === thIndex;
+            
+        }).sortElements(function(a, b){
+            
+            return $.text([a]) > $.text([b]) ?
+                inverse ? -1 : 1
+                : inverse ? 1 : -1;
+            
+        }, function(){
+            
+            // parentNode is the element we want to move
+            return this.parentNode; 
+            
+        });
+        if(inverse){
+        	$(this).data('sorted', 'rsort');
+        }else{
+        	$(this).data('sorted', 'sort');
+        }
+
+        //re-zebra stripe
+		$('.appt-search tbody tr').removeClass("zebra");
+		$('.appt-search tbody tr:nth-child(even)').addClass("zebra");
+
+	});
+  	
+}  
+
+                                          
+function toggleResheduleButton(status) {    
+	 if(status) {
+     $('#rescheduleButton').parent().show();   
+	 } else {
+	 $('#rescheduleButton').parent().hide();
+	 }  
+}   
+     
+function toggleSubmitButton(status) {    
+	 if(status) {
+    $('#submitButton').parent().show();   
+	 } else {
+	 $('#submitButton').parent().hide();
+	 }  
+}
+
+function toggleSearchButton(status) {    
+	 if(status) {
+   $('#searchButton').parent().show();   
+	 } else {
+	 $('#searchButton').parent().hide();
+	 }  
+}
+
+function toggleDetailsSearchContainer(status) {
+	if(status) {
+		$('#detailSearchTypeGroupContainer').show();
+	} else {
+		$('#detailSearchTypeGroupContainer').hide();
+	}	
+}
+
+function toggleIdSearchContainer(status) {
+	if(status) {
+		$('#appointmentSearchContainer').show();
+	} else {
+		$('#appointmentSearchContainer').hide();
+	}  	
+}
+
+function doSearchClick() {
+	$('#searchButton').click();
+
+}
+ 
+function toggleSearchSelectionRadio(selector1) {    
+	$(selector1).attr('checked','checked'); 
+}   
+
+</script>	 
+	  
+  
+<script type="text/javascript">
+	    
+	var closeFunction = function() {
+		$('#closeButton').click(); 
+	};
+	var clearFunction = function() {
+		$('#clearButton').click();
+	};
+	var submitFunction = function() {  
+		wicketBehavior('pageSubmit');
+	};
+	
+	var newAppointmentFunction = function() {
+		wicketBehavior('newAppointment');
+	};    
+	
+	var rescheduleFunction = function() {	                                      
+		wicketBehavior('rescheduleAppointment');
+	};    		         
+	
+	var searchFunction = function() {    	                                          
+		wicketBehavior('pageSearch');
+	};    		         
+		
+	hotKeysConfig = {	     
+		f2 : {
+			handler : submitFunction,
+			buttonSelector : '#submitButton'
+		},
+		f3 : {
+			handler : closeFunction,
+			buttonSelector : '#closeButton'
+		},
+		f4 : {
+			handler : clearFunction,
+			buttonSelector : '#clearButton'
+		},
+		f5 : {
+			handler : searchFunction,
+			buttonSelector : '#searchButton'		 
+		},
+		f6: { 
+			handler : rescheduleFunction,
+			buttonSelector : '#rescheduleButton'
+		},
+		f7 : {    
+			handler : newAppointmentFunction,
+			buttonSelector : '#newAppointmentButton'
+		}
+	};  
+  	
+	
+	var handleButtonState = function(enabled) {
+		
+	};
+	var custInfoValidation = {
+		handleButtonState : handleButtonState,
+		fromDate : {
+			type : VALIDATION_TYPE.DATE,
+			valueSelector : '#fromDate',
+			valid : false,
+			ignore : false,
+			optional : false
+		},
+		toDate : {
+			type : VALIDATION_TYPE.DATE,
+			valueSelector : '#toDate',
+			valid : false,
+			ignore : false,
+			optional : false
+		},
+		firstName : {
+			type : VALIDATION_TYPE.NAME,
+			valueSelector : '#firstNameTxt',
+			valid : false,
+			ignore : false,
+			optional : false
+		},
+		lastName : {
+			type : VALIDATION_TYPE.NAME,
+			valueSelector : '#lastNameTxt',
+			valid : false,
+			ignore : false,
+			optional : false
+		}
+	};
+	
+	function bindHotKeys() {
+	
+		$(document).live('keydown', 'f2', function() {
+			$('#submitButton').click();
+			return false;
+		}); 
+		$("input").live('keydown', 'f2', function() {
+			$('#submitButton').click();
+			return false;
+		});
+		$("select").live('keydown', 'f2', function() {
+			$('#submitButton').click();
+			return false;
+		});
+		
+		$(document).live('keydown', 'f3', function() {
+			$('#closeButton').click();
+			return false;
+		});
+		
+		$("input").live('keydown', 'f3', function() {
+			$('#closeButton').click();
+			return false;
+		});
+		$("select").live('keydown', 'f3', function() {
+			$('#closeButton').click();
+			return false;
+		});
+		
+		$(document).live('keydown', 'f4', function() {
+			$('#clearButton').click();
+			return false;
+		});
+
+		$("input").live('keydown', 'f4', function() {
+			$('#clearButton').click();
+			return false;
+		});
+		
+		$("select").live('keydown', 'f4', function() {
+			$('#clearButton').click();
+			return false;
+		});
+		
+		$(document).live('keydown', 'f5', function() {
+			$('#searchButton').click();
+			return false;
+		});
+		
+		$("input").live('keydown', 'f5', function() {
+			$('#searchButton').click();
+			return false;
+		});
+		
+		$("select").live('keydown', 'f5', function() {
+			$('#searchButton').click();
+			return false;
+		});
+		
+		
+		$(document).live('keydown', 'f6', function() {
+			$('#rescheduleButton').click();
+			return false;
+		});
+		
+		$("input").live('keydown', 'f6', function() {
+			$('#rescheduleButton').click();
+			return false;
+		});
+		
+		$("select").live('keydown', 'f6', function() {
+			$('#rescheduleButton').click();
+			return false;
+		});
+		
+		$(document).live('keydown', 'f7', function() {
+			$('#newAppointmentButton').click();  
+			return false; 
+		});
+		
+		$("input").live('keydown', 'f7', function() {
+			$('#newAppointmentButton').click();
+			return false; 
+		});	  
+		$("select").live('keydown', 'f7', function() {
+			$('#newAppointmentButton').click(); 
+			return false;
+		});	  
+	
+	}  
+
+ 
+ </script>
+
+</wicket:head> 
+<body>  
+<wicket:extend>
+	<div wicket:id="feedback" class="error"></div>
+		                    
+	<div class="wrap">
+	<h1 class="highlight">View/Manage Existing Appointments</h1>
+      
+	<wicket:container wicket:id="selectedSearchTypeGroup">
+	<dl class="form search_appt" style="width: 100%">
+		<dt class="tab">  
+			<label>Search by any of the following</label>
+			<input type="radio" name="search-group" checked="checked" wicket:id="detailsSerarchRadio"/>
+		</dt>  
+		<dt class="tab">
+			<label>Search by Appointment Id</label>
+			<input type="radio" name="search-group" wicket:id="aptIdSerarchRadio"/>
+		</dt>
+		  
+		<div wicket:id="detailSearchTypeGroupContainer">
+		<dd class="date-range">                            
+			<label>Date Range</label>    
+			<input type="text" wicket:id="fromDate" onkeypress="return keyEntryValidation(event, 'fromDate', custInfoValidation)" onblur="checkdate(this)" />
+			<input type="text" wicket:id="toDate" onkeypress="return keyEntryValidation(event, 'toDate', custInfoValidation)" onblur="checkdate(this)"/>
+		</dd>                           
+		<dd>
+			<label>First Name</label>
+			<input type="text" wicket:id="firstNameTxt" onkeypress="return keyEntryValidation(event, 'firstName', custInfoValidation)"
+			 onkeyup="fieldValidation(event, 'firstName', custInfoValidation)"/>
+		</dd>
+		<dd>
+			<label>Last Name</label> 
+			<input type="text" wicket:id="lastNameTxt" onkeypress="return keyEntryValidation(event, 'lastName', custInfoValidation)" 
+			onkeyup="fieldValidation(event, 'lastName', custInfoValidation)"/>
+		</dd>
+		<dd>  
+			<label>Status</label>
+			<select wicket:id="statusSelect">
+				<option>Cancelled</option>
+			</select>  
+		</dd> 
+		<dd>
+			<label>Department</label>
+			<select wicket:id="departmentSelect">
+				<option>Mobile</option>
+			</select>
+		</dd>
+		<dd>
+			<label>Appointment Type</label>
+			<select wicket:id="appointmenTypeSelect">
+				<option>Order Pickup</option>
+			</select>
+		</dd> 
+		</div> 
+		  
+		<div wicket:id="appointmentSearchContainer">
+		<dd class="required">
+			<label>Search by Appointment Id</label>
+			<input type="text" wicket:id="appointmentIdTxt" />
+		</dd>  
+		</div>  
+   </dl> 
+   	</wicket:container>	
+	
+	<p class="search-result">Search Results</p>
+	 
+	<div wicket:id="dataDisplayContainer">
+	
+	<wicket:container wicket:id="cancelCheckGroup">
+	<wicket:container wicket:id="completeCheckGroup">
+	<wicket:container wicket:id="noShowCheckGroup">	 
+	 <div id="fixedHeaderTable01" class="appt-search" wicket:id="schedularDisplayContainer">  
+		<table class="fixed-header fht-table" wicket:id="schedulerResultDataTable"> </table>	
+	</div>                                              
+	</wicket:container>
+	</wicket:container>
+	</wicket:container>
+	 
+	<div wicket:id="backLinkContainer"> 
+		  <a href="#" wicket:id="backToPreviousLink">Back To Search Results</a>
+	</div>   
+	<div wicket:id="viewManageSelectAppointmentPanel"></div>
+		
+	</div>
+		
+</div>
+</wicket:extend>
+</body>
+</html>

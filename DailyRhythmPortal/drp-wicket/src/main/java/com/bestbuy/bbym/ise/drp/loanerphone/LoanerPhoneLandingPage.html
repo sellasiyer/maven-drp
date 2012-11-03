@@ -1,0 +1,47 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>Mobile Loaning Service</title>
+	<link href="css/table.css" rel="stylesheet" type="text/css" />
+	
+	<script type="text/javascript" src="js/prefill.js"></script>
+	
+	<script type="text/javascript">
+    	function posModalInit() {
+			$("#storeField").focus();
+			$("#storeField").select();
+		}
+		function gunInit() {
+			var fieldIds = new Array("storeField", "registerField", "transNumField", "transDateField");
+			//listenForGun( $('#' + fieldIds.join(',#')));
+		}
+	</script>
+	<script type="text/javascript" src="./js/drop-down.js" ></script>
+	<script type="text/javascript" src="./js/gun.js" ></script>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<div class="page-header">
+			<div style="float: left;">
+				<h1>Loaner Phone</h1>
+			</div>
+
+			<ul class="quick-actions">
+				<li><a class="button" wicket:id="addPhoneButton"> Add a
+						Phone</a>
+				</li>
+				<li><a class="button" wicket:id="printInventoryButton"
+					target="_blank">Print Inventory</a>
+				</li>
+			</ul>
+
+		</div>
+
+		<div wicket:id="feedback" class="required"></div>
+
+		<div wicket:id="lpTabs"></div>
+	</wicket:extend>
+</body>
+</html>

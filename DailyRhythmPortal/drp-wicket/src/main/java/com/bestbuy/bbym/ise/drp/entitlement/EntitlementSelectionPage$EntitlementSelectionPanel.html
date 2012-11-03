@@ -1,0 +1,42 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Entitlement Selection</title>
+<link href="css/header.css" media="screen" rel="StyleSheet" type="text/css" />
+<link href="css/tom-screen.css" media="screen" rel="StyleSheet" type="text/css" />
+	
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+
+			// DEFINE TABLE PROPERTIES
+			table={};
+			table.tableID = 'SelectEntitlementdataTableDiv';
+			table.stripHeaderAnchorHref = true;
+			table.tidyHeader = false;
+			table.oddClasses = true;
+			table.lastClasses = true;
+			table.widths = ['200','475','-'];
+			table.textAlignment = ['l','l','l']; // FUNCTIONALITY INCOMPLETE
+			table.sortable = [true,true,true];
+			table.truncate = [false,false,false]; // FUNCTIONALITY INCOMPLETE		
+			
+			// RUN CUSTOMER TABLE PREP
+			tablePrep(table);
+					
+		});
+		
+	</script>
+</wicket:head>
+<body>
+
+<wicket:panel>
+
+<div class="table-wrap" id="SelectEntitlementdataTableDiv">
+					<table class="default-table" wicket:id="dataTable">
+					</table>
+				</div>
+</wicket:panel>
+</body>
+</html>

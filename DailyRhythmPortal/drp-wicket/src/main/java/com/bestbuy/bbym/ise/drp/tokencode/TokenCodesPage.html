@@ -1,0 +1,41 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<title>TOKEN CODES</title>
+    <link href="css/header.css" media="screen" rel="StyleSheet" type="text/css" />
+	<link href="css/tom-screen.css" media="screen" rel="StyleSheet" type="text/css" />
+	<!-- <script src="js/jQueryRotateCompressed.2.2.js"></script> -->
+	<script src="../../drp/drp-war/src/main/webapp/js/jquery-1.7.min.js" type="text/javascript" ></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.detail-list ul li:nth-child(odd)').addClass("odd");
+		});
+	</script>
+</wicket:head>
+<body>
+<wicket:extend>
+<div class="page-header">
+			<h1>Get Token Codes - <span wicket:id="carrier"></span></h1>
+</div>
+<div wicket:id="feedback" class="required"></div>
+<div id="content">
+			<div class="token detail-list" wicket:id = "tokenCodeListContainer">
+				<ul style="margin-bottom: 20px;">
+					<li wicket:id="tokenListView">
+					<div class="view wide">
+					<wicket:container wicket:id= "id"></wicket:container>
+					</div>
+					</li>
+				</ul>
+			</div>
+			<div class="token-footer">
+			<label wicket:id = "tokenCodeExpiryLabel"></label><span wicket:id="countdownTimerSeconds"></span>
+			<p></p>
+				<input type="submit" value="Get New Token" wicket:id="getTokenCodesLink" class="button"/>
+			</div>
+</div>
+
+
+</wicket:extend>
+</body>
+</html>

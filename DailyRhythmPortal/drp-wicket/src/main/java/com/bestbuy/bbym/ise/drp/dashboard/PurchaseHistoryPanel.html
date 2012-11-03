@@ -1,0 +1,27 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:panel>
+
+		<h2 class="top" style="margin: 36px 0 15px 15px;">
+			<wicket:message key="purchaseHistoryPanel.label" />
+			<span class=”transfer-to-beast”></span> <img
+				wicket:id="transfer-to-beast" />
+		</h2>
+
+		<div wicket:id="purchaseHistoryFeedback" class="required"></div>
+       
+		<div wicket:id="customerDashboardHeaderPanel"></div>
+		
+		<form wicket:id="purchaseHistoryForm" autocomplete="off">
+
+			<input type="submit" wicket:id="searchAgainButton"
+				class="button below-bar" />
+
+			<div wicket:id="gspPurchaseHistoryTabPanel"></div>
+		</form>
+		<br clear="all" />
+	</wicket:panel>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:panel>
+		<div class="subheader">
+			<h2>
+				<wicket:message key="triageKnowledge.title.label" />
+			</h2>
+			<div class="search-container">
+				<form wicket:id="form">
+					<input type="text" wicket:id="search"></input><a class="go-button"
+						wicket:id="goLink"><wicket:message
+							key="triageKnowledge.goLink.label" /> </a>
+				</form>
+			</div>
+		</div>
+		<div wicket:id="noSearchResultsContainer" class="message">
+			<wicket:message key="triageKnowledge.noRecordFound.label" />
+		</div>
+		<ul wicket:id="searchResultsContainer">
+			<li wicket:id="searchResultsListView"><a wicket:id="link">
+					<h3 wicket:id="title"></h3>
+					<p wicket:id="abstract"></p> </a>
+			</li>
+		</ul>
+	</wicket:panel>
+</body>
+</html>

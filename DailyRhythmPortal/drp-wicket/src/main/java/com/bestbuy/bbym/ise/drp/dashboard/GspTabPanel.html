@@ -1,0 +1,99 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<script type="text/javascript">
+		var wicketBehaviorGTP;
+		function setupGspTable() {
+			if ($('#gspTable').length == 0) {
+				return;
+			}
+
+			removeAllColumnSorting('#gspTable');
+
+			applyRowHighlighting('#gspTable');
+
+			// Add styling classes to cells
+			$('#gspTable tr').each(
+					function(index) {
+						//header cells
+						$(this).find('th:eq(0)').attr("width", "60");
+						$(this).find('th:eq(1)').attr("width", "90");
+						$(this).find('th:eq(2)').attr("width", "180");
+						$(this).find('th:eq(3)').attr("width", "60");
+						$(this).find('th:eq(4)').attr("width", "90");
+						$(this).find('th:last-child').addClass("last").attr(
+								"width", "70");
+						//data cells
+						$(this).find('td:last-child').addClass("last");
+					});
+			$('#gspTable tr:last-child').addClass("last");
+
+			setupGspCellLoading();
+		}
+		function setupGspCellLoading() {
+			$('#gspTable tr')
+					.each(
+							function(index) {
+								$(this)
+										.find('td:eq(4) span a')
+										.click(
+												function() {
+													$(this)
+															.hide()
+															.after(
+																	"<div class='loading-spinner-small'></div>");
+												});
+							});
+			$('#gspTable tr')
+					.each(
+							function(index) {
+								$(this)
+										.find('td:eq(6) span a')
+										.click(
+												function() {
+													$(this)
+															.hide()
+															.after(
+																	"<div class='loading-spinner-small'></div>");
+												});
+							});
+		}
+		function clearGspCellLoading() {
+			$('#gspTable tr').each(
+					function(index) {
+						$(this).find('td:eq(4) div.loading-spinner-small')
+								.each(function(index) {
+									$(this).prev().show();
+									$(this).remove();
+								});
+					});
+			$('#gspTable tr').each(
+					function(index) {
+						$(this).find('td:eq(6) div.loading-spinner-small')
+								.each(function(index) {
+									$(this).remove();
+								});
+					});
+		}
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:panel>
+		<div class="table-wrap">
+			<table class="default-table" wicket:id="gspTable">
+			</table>
+
+			<div wicket:id="noGspData">
+				<p class="no-results" wicket:id="noGspDataLabel"></p>
+			</div>
+
+			<div wicket:id="gspDataLoading" class="loading-spinner-big">
+				<wicket:message key="gspTable.loading.label" />
+			</div>
+		</div>
+		<div wicket:id="gspDetailsModalPanel"></div>
+	</wicket:panel>
+</body>
+</html>

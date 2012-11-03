@@ -1,0 +1,32 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+</wicket:head>
+<body>
+<wicket:panel>
+	<div class="fader">
+		<div class="modal">
+			<h1>Delete Phone</h1>
+			<form wicket:id="confirmationForm" autocomplete="off">
+				<div wicket:id="deletedReasonRadioGroup">
+					<label>Reason for deleting this phone: <span class="required">*</span></label>
+					<span class="radio">
+						<input type="radio" name="deletedReason" value="lost" wicket:id="deletedReasonLostRadio"/>
+						<label><wicket:message key="loanerPhone.condition.lost" /></label>
+					</span>
+					<span class="radio">
+						<input type="radio" name="deletedReason" value="damaged" wicket:id="deletedReasonDamagedRadio" />
+						<label><wicket:message key="loanerPhone.condition.damaged" /></label>
+					</span>
+					<span class="radio" style="margin-bottom:15px">
+						<input type="radio" name="deletedReason" value="other" wicket:id="deletedReasonOtherRadio" />
+						<label>Other</label>
+					</span>
+				</div>
+				<input type="submit" value="Cancel" class="button minor" wicket:id="cancelButton">
+				<input type="submit" value="Delete" class="button" wicket:id="deleteButton">
+			</form>
+		</div>
+	</div>
+</wicket:panel>
+</body>
+</html>

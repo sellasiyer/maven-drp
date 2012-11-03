@@ -1,0 +1,31 @@
+
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:panel>
+		<form wicket:id="triageForm" autocomplete="off">
+			<div class="page-header">
+				<h1>Triage Process</h1>
+				<div>
+					<ul class="quick-actions">
+						<li><input wicket:id="cancel" type="submit" class="button" />
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="triage parent">
+
+				<img class="triage-image" wicket:id="dialog_image" src="#" /> 
+				<div wicket:id="feedback" class="feedbackmsg"></div>
+
+				<wicket:child />
+
+				<input wicket:id="back" class="button minor back" type="submit"
+					name="back" value="Back" />
+			</div>
+
+		</form>
+	</wicket:panel>
+</body>
+</html>

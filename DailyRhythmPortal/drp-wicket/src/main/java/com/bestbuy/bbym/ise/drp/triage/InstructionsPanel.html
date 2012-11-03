@@ -1,0 +1,41 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<script>
+	$(document).ready(function(){
+		$('.triage .info .button').bind('click', toggleInfo);
+		
+		function toggleInfo() {
+			$('.info').toggleClass('open');
+			if ( $('.info').hasClass('open') ) {
+				$(this).text('hide details');
+			} else {
+				$(this).text('view details');
+			}
+		}
+		
+	});
+
+		
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:panel>
+
+
+		<div class="info" wicket:id="viewDetailsLinkContainer">
+			<a class="button" href="#" wicket:id="viewDetailsLink">View
+				Details</a>
+			<h4 wicket:id="instructionLabel"></h4>
+			<div wicket:id="instructionContainer">
+				<div wicket:id="instructionDescriptionContainer">
+					<span wicket:id="instructionDescription"></span>
+				</div>
+			</div>
+		</div>
+	</wicket:panel>
+</body>
+</html>
+

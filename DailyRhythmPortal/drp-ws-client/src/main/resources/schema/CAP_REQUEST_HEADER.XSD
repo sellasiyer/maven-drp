@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://bestbuy.com/bbym/beast/cap/request/header"
+  targetNamespace="http://bestbuy.com/bbym/beast/cap/request/header"
+  xmlns:common="http://bestbuy.com/bbym/beast/cap/common"
+  elementFormDefault="unqualified" attributeFormDefault="unqualified">
+
+    <xs:import namespace="http://bestbuy.com/bbym/beast/cap/common" schemaLocation="CAP_COMMON.XSD"/>
+
+    <xs:complexType name="Header">
+    <xs:annotation>
+      <xs:documentation>Request Message Header</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="destinationId"
+        type="common:DestinationType">
+        <xs:annotation>
+          <xs:documentation>
+            This is the carrier identifier enumeration to
+            indicate which carrier this call applies to.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="transactionId" minOccurs="0" type="common:TransactionIdType">
+        <xs:annotation>
+          <xs:documentation>
+            This is the BEAST specific ID of the transaction
+            that this CAP call is associated with.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="messageType" type="MessageTypes">
+        <xs:annotation>
+          <xs:documentation>
+            The type of message sent. Valid values are listed
+            through Enumeration.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="timestamp" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>
+            The time that the CAP call was called. Format is
+            CCYY-MM-DDThh:mm:ss
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="channelId" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            This is the BBY identifier of the sale location.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="clientIpAddress" type="common:ipAddressType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The IP address of the client location. This is used
+            for debugging purposes.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="serverIPAddress" type="common:ipAddressType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The IP address of the server location. This is used
+            for debugging purposes.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="repId">
+        <xs:annotation>
+          <xs:documentation>
+            The ID of the blue shirt or other agent that
+            assisted in this sale.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="20" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="internationalBusinessHierarchy"
+        type="common:IntlBusinessHierarchyType">
+        <xs:annotation>
+          <xs:documentation>
+            International Business Hierarchy structure
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name="carrierTransactionId" type="xs:string"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            This is the carrier specific indentifier of the
+            transaction. This should be supplied once CAP has
+            returned a carrier transaction id in the response
+            during an activation.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="agentCode" maxOccurs="1" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            Agent code is nothing but a dealerCode and will be
+            used for commission
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="50"></xs:maxLength>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="isTrainingMode" type="xs:boolean"
+        default="false">
+        <xs:annotation>
+          <xs:documentation>
+            Used to specify if the request was generated for
+            training purposes and should not be submitted to the
+            carrier.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="isIphone" type="xs:boolean" default="false"
+        maxOccurs="1" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            Used to indicate if activating an iPhone device. If
+            not provided, will be assumed as false.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="responseReturnURL" type="xs:string"
+        maxOccurs="1" minOccurs="0">
+      </xs:element>
+      <xs:element name="sourceSystem">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Beast"></xs:enumeration>
+            <xs:enumeration value="OLS"></xs:enumeration>
+            <xs:enumeration value="OMS"></xs:enumeration>
+            <xs:enumeration value="Whitelabel"></xs:enumeration>
+            <xs:enumeration value="UpgradeChecker"></xs:enumeration>
+        	<xs:enumeration value="BEAST-iShip"></xs:enumeration>
+        	<xs:enumeration value="Breeze-IVR"></xs:enumeration>
+        	<xs:enumeration value="CPC"></xs:enumeration>
+        	<xs:enumeration value="OCIS"></xs:enumeration>
+        	<xs:enumeration value="RA"></xs:enumeration>
+        	<xs:enumeration value="Beast-Portal"></xs:enumeration>
+        	<xs:enumeration value="MDOT_EUC"></xs:enumeration>
+        	<xs:enumeration value="CUI"></xs:enumeration>
+            <xs:whiteSpace value="collapse"></xs:whiteSpace>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="orderType" type="common:OrderType">
+      	<xs:annotation>
+     		<xs:documentation>
+     			The type of order that is being requested on behalf of
+     			the customer.
+
+    			Valid Values:  NEW,  UPGRADE (replace),  ADD_ON,
+    			CONVERT,  PLAN_CHANGE (svc_change),  ESN_SWAP
+    			(replace)
+    		</xs:documentation>
+     	</xs:annotation>
+     </xs:element>
+    </xs:sequence>
+    </xs:complexType>
+
+  <xs:simpleType name="MessageTypes">
+    <xs:annotation>
+      <xs:documentation>
+        The type of message sent. Valid values are listed
+        through Enumeration.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="POSTPAID_ACTIVATION_REQUEST" />
+      <xs:enumeration value="POSTPAID_CREDIT_CHECK_REQUEST" />
+      <xs:enumeration value="POSTPAID_PLANS_REQUEST" />
+      <xs:enumeration value="POSTPAID_OPTIONS_REQUEST" />
+      <xs:enumeration value="POSTPAID_BILL_SUMMARY_REQUEST" />
+      <xs:enumeration value="POSTPAID_SERVICE_VALIDATION_REQUEST" />
+      <xs:enumeration value="POSTPAID_ACCOUNT_VALIDATION_REQUEST" />
+      <xs:enumeration value="POSTPAID_NPA_NXX_REQUEST" />
+      <xs:enumeration value="POSTPAID_PORT_ELIGIBILITY_REQUEST" />
+      <xs:enumeration value="POSTPAID_CONTRACT_SUBMIT_REQUEST" />
+      <xs:enumeration value="POSTPAID_PAYMENT_REQUEST" />
+      <xs:enumeration value="POSTPAID_ADD_PORT_REQUEST" />
+      <xs:enumeration value="POSTPAID_INQUIRE_MARKET_SERVICE_AREAS_REQUEST" />
+      <xs:enumeration value="POSTPAID_RESERVE_SUBSCRIBER_NUMBER_REQUEST" />
+      <xs:enumeration value="POSTPAID_RELEASE_SUBSCRIBER_NUMBER_REQUEST" />
+      <xs:enumeration value="POSTPAID_ADDRESS_MATCH_REQUEST" />
+      <xs:enumeration value="NC_ACCOUNT_LOOKUP_REQUEST" />
+      <xs:enumeration value="NC_ACTIVATION_REQUEST" />
+      <xs:enumeration value="NC_ACTIVATE_REQUEST" />
+      <xs:enumeration value="NC_BILL_SUMMARY_REQUEST" />
+      <xs:enumeration value="NC_CREATE_ACCOUNT_REQUEST" />
+      <xs:enumeration value="NC_NPA_NXX_REQUEST" />
+      <xs:enumeration value="NC_OPTIONS_REQUEST" />
+      <xs:enumeration value="NC_PLANS_REQUEST" />
+      <xs:enumeration value="NC_PLOPTIONS_REQUEST" />
+      <xs:enumeration value="NC_RELEASE_SUBSCRIBER_NUMBER_REQUEST" />
+      <xs:enumeration value="NC_PORT_ELIGIBILITY_REQUEST" />
+      <xs:enumeration value="NC_ADD_PORT_REQUEST" />
+      <xs:enumeration value="NC_TOPUP_ELIGIBILITY_REQUEST" />
+      <xs:enumeration value="NC_APPLY_TOPUP_REQUEST" />
+      <xs:enumeration value="NC_DIGITAL_PIN_REQUEST" />
+      <xs:enumeration value="POSTPAID_ONLINE_PREACTIVATION_REQUEST" />
+      <xs:enumeration value="EASYPAY_SETUP_REQUEST" />
+      <xs:enumeration value="POSTPAID_TECHNOLOGY_TYPE_LOOKUP_REQUEST" />
+      <xs:enumeration value="POSTPAID_CORPORATE_DISCOUNT_REQUEST" />
+      <xs:enumeration value="POSTPAID_RSA_TOKEN_REQUEST" />
+      <xs:enumeration value="POSTPAID_NEW_BILL_SUMMARY_REQUEST" />
+      <xs:enumeration value="SUBMIT_ACTIVATION_DETAILS_REQUEST" />
+      <xs:enumeration value="COVERAGE_CHECK_REQUEST" />
+      <xs:enumeration value="POSTPAID_CUSTOMER_ACCOUNT_CANCELLATION_REQUEST" />
+      <xs:enumeration value="POSTPAID_UPDATE_CUSTOMER_ACCOUNT_REQUEST" />
+      <xs:enumeration value="SUBMIT_IVR_DETAILS_REQUEST" />
+      <xs:enumeration value="POSTPAID_EID_VALIDATION_REQUEST" />
+      <xs:enumeration value="POSTPAID_OFFLINE_CATALOG_REQUEST" />
+      <xs:enumeration value="POSTPAID_FIND_ONLINE_ORDER_REQUEST" />
+      <xs:enumeration value="POSTPAID_RELEASE_PENDING_ORDER_REQUEST" />
+      <xs:enumeration value="POSTPAID_UPGRADE_VERIFICATION_REQUEST" />
+      <xs:enumeration value="POSTPAID_CONTRACT_REQUEST" />
+      <xs:enumeration value="POSTPAID_CHECK_ORDER_STATUS_REQUEST" />
+      <xs:enumeration value="VERIFY_FRAUD_CHECK_REQUEST" />
+      <xs:enumeration value="DEVICE_UNLOCK_REQUEST" />
+      <xs:enumeration value="NC_PREACTIVATION_REQUEST" />
+      <xs:enumeration value="POSTPAID_EXISTING_CUSTOMER_BUNDLE_REQUEST" />
+      <xs:enumeration value="POSTPAID_ACTIVATION_BUNDLE_REQUEST" />
+      <xs:enumeration value="CHECK_EQUIPMENT_STATUS_REQUEST" />
+	  <xs:enumeration value="POSTPAID_STANDALONE_DEVICE_OR_SERVICE_CHANGE_REQUEST" />
+	  <xs:enumeration value="POSTPAID_IMPORT_SUBSCRIBERS_DETAILS_REQUEST" />
+	  <xs:enumeration value="POSTPAID_LINE_STATUS_CHECK_REQUEST" />
+	  <xs:enumeration value="VALIDATE_HARDWARE_IDENTIFIER_REQUEST" />
+
+
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

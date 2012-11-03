@@ -1,0 +1,537 @@
+import com.bestbuy.bbym.ise.drp.workflow.SingleChoiceWorkflowDialog;
+import com.bestbuy.bbym.ise.drp.workflow.SingleTrueFalseActionWorkflowDialog;
+import com.bestbuy.bbym.ise.drp.workflow.SuccessfulCompletionWorkflowDialog;
+import com.bestbuy.bbym.ise.drp.workflow.triage.TriageWorkflowState;
+import com.bestbuy.bbym.ise.workflow.rules.DialogSelectItem;
+import com.bestbuy.bbym.ise.workflow.rules.DialogItem;
+import com.bestbuy.bbym.ise.workflow.rules.WorkflowDialog;
+import static com.bestbuy.bbym.ise.drp.workflow.DroolsWorkflowService.log;
+
+import java.util.Arrays;
+
+rule "Step 1 - Entry point into Triage"
+    when
+        s: TriageWorkflowState(step == 0)
+    then
+    	// update the dialog to the first screen of the triage
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SingleChoiceWorkflowDialog.class);
+    	DialogSelectItem dialogSelectItem = dialog.addDialogSelectItem("issue_type");
+    	dialogSelectItem.setOptions(Arrays.asList("physical_damage","battery_issue","software_issue","hardware_issue"));
+    	
+		// next step: ask user the type of issue being faced
+        s.setStep(1);
+        update(s);  
+        log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+// *************************************************************************************************
+// Physical/Water damage triage                                                                   *
+// *************************************************************************************************
+rule "Step 101 - we're unsure if customer has Geek Squad Black Tie Protection coverage"
+    when
+        s: TriageWorkflowState( step: step, device.blackTieProtection == null, 
+        	(
+        		//Customer device has physical/water damage 
+	        	(step == 1 && dialog.dialogItems[0].answer == "physical_damage" )
+	        	||
+	        	// Customer has battery issues and with either physical/liquid damage
+	        	(step == 202 && dialog.dialogItems[0].answer in("battery_physical_damage","liquid_damage_indicator"))
+	        	||
+	        	// Customer has battery issues and battery saving settings are already in place
+	        	(step in (203, 204) && dialog.dialogItems[0].answer == "Y")
+	        	||
+	        	// Customer has hardware/software issues that cannot be fixed
+	        	(step in (320, 330) && dialog.dialogItems[0].answer == "N")
+	        )
+        );
+    then
+    	// Remember the problem type
+    	if(step == 1){
+    		s.setIssue(TriageWorkflowState.PROBLEM_TYPE.PHYSICAL_DAMAGE);
+    	}
+    	
+    	// next step: determine if the user has Geek Squad Black Tie Protection coverage on device
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SingleTrueFalseActionWorkflowDialog.class);
+    	DialogItem dialogItem = dialog.addDialogItem("do_u_have_black_tie");
+		s.setStep(101);
+        update(s);  	
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+rule "Step 103 - Offer customer Geek Squad Black Tie Protection coverage for physical/water damage"
+    when
+        s: TriageWorkflowState( step: step, device: device, answer : dialog.dialogItems[0].answer,
+        (step == 1 && dialog.dialogItems[0].answer == "physical_damage" && device.blackTieProtection == true) 
+        ||
+        (step == 101 && issue == TriageWorkflowState.PROBLEM_TYPE.PHYSICAL_DAMAGE && dialog.dialogItems[0].answer == "Y"));
+    then 	    	
+    	// we now know this device has GSBTP definively so remember it
+    	device.setBlackTieProtection(true); 
+
+		// remember the issue if we're coming in from the main screen
+    	if(step == 1){
+			s.setIssue(answer);
+    	}
+    
+    	// next (final) step: present options offered under GSBTP 
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SuccessfulCompletionWorkflowDialog.class);
+    	DialogItem dialogItem = dialog.addDialogItem("gsbtp_next_steps"); 
+		s.setStep(103);
+        update(s);  	
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+rule "Step 102 - Customer device has physical/water damage and does not have Geek Squad Black Tie Protection coverage"
+    when
+        s: TriageWorkflowState( step: step, device : device, answer : dialog.dialogItems[0].answer, 
+        (step == 1 && dialog.dialogItems[0].answer == "physical_damage" && device.blackTieProtection == false) 
+        ||
+        (step == 101 && issue == TriageWorkflowState.PROBLEM_TYPE.PHYSICAL_DAMAGE && dialog.dialogItems[0].answer == "N"));
+    then
+    	// we now know this device has no GSBTP definively so remember it
+    	device.setBlackTieProtection(false);
+    	
+    	// remember the issue if we're coming in from the main screen
+    	if(step == 1){
+			s.setIssue(answer);
+    	}
+    
+    	// next (final) step: present options
+		WorkflowDialog dialog = s.replaceWorkflowDialog(SingleChoiceWorkflowDialog.class);
+    	DialogSelectItem dialogSelectItem = dialog.addDialogSelectItem("no_gsbtp_next_steps");
+    	dialogSelectItem.setOptions(Arrays.asList("eligible_upgrade","purchase_replacement","other"));
+		s.setStep(102);
+        update(s);
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+/**************************************************************************************************/
+/* Battery issues triage	                                                                      */
+/**************************************************************************************************/
+rule "Step 201 - Customer device has either battery, software, or hardware issue and we don't know the os"
+    when
+        s: TriageWorkflowState(step == 1,  device.os == null,
+           	dialog.dialogItems[0].answer in ("battery_issue", "software_issue", "hardware_issue"),
+           	issue: dialog.dialogItems[0].answer );
+    then
+    	// Remember the problem type
+    	s.setIssue(issue);
+    	
+    	// next step: ask the user what the operating system is
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SingleChoiceWorkflowDialog.class);
+   		DialogSelectItem dialogSelectItem = dialog.addDialogSelectItem("os_type");
+    	dialogSelectItem.setOptions(Arrays.asList("ios","blackberry","android","windows", "other"));       
+        s.setStep(201);
+        update(s);  	
+        log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+rule "Step 202 - Inspect battery for damage (non iOS phone)"
+    when
+        s: TriageWorkflowState(device: device, answer: dialog.dialogItems[0].answer, step: step,
+        	(step == 201 && issue == TriageWorkflowState.PROBLEM_TYPE.BATTERY_ISSUE &&
+        	 dialog.dialogItems[0].answer in ("blackberry","android","windows", "other"))
+        	||        	
+        	(step == 1 && device.os in ("blackberry","android","windows", "other") &&
+        	 dialog.dialogItems[0].answer == "battery_issue")
+        	);
+    then
+    	if(step == 1){
+	    	// Remember the problem
+    		s.setIssue(answer);
+    	} else if(step == 201){
+	    	// Remember the OS type
+    		device.setOs(answer);
+    	}
+
+        // next step: remove battery and inspect
+        WorkflowDialog dialog = s.replaceWorkflowDialog(SingleChoiceWorkflowDialog.class);
+    	DialogSelectItem dialogSelectItem = dialog.addDialogSelectItem("battery_condition_choices");
+    	dialogSelectItem.setOptions(Arrays.asList("battery_physical_damage","liquid_damage_indicator","battery_no_physical_damage"));
+		s.setStep(202);
+        update(s);  	
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+rule "Step 204 - No visible battery damage, confirm battery saving settings (non iOS phone)"
+    when
+        s: TriageWorkflowState(step == 202,
+        	dialog.dialogItems[0].answer == "battery_no_physical_damage",
+        	issue == TriageWorkflowState.PROBLEM_TYPE.BATTERY_ISSUE);
+    then
+    	
+        // next step: remove battery and inspect
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SingleTrueFalseActionWorkflowDialog.class);
+    	DialogItem dialogItem = dialog.addDialogItem("have_battery_save_settings");
+		s.setStep(204);
+        update(s);  	
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+rule "Step 203 - Confirm battery savings settings (iPhone)"
+    when
+        s: TriageWorkflowState(step: step, device: device, answer: dialog.dialogItems[0].answer,
+        	(step == 201 && dialog.dialogItems[0].answer == "ios"
+        		&& issue == TriageWorkflowState.PROBLEM_TYPE.BATTERY_ISSUE)
+        	||
+        	(step == 1 && device.os == "ios" 
+        		&& dialog.dialogItems[0].answer == "battery_issue")
+        	);
+    then  
+    	if(step == 1){
+    		// Remember the issue
+    		s.setIssue(answer);
+    	} else if(step == 201){
+    		// Remember the OS type
+    		device.setOs(answer);
+    	}
+    	
+    	// next step: check iphone battery saving settings
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SingleTrueFalseActionWorkflowDialog.class);
+    	DialogItem dialogItem = dialog.addDialogItem("have_battery_save_settings");
+		s.setStep(203);
+        update(s);  	
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+rule "Step 207 - Battery saving settings not enabled, make adjustments"
+    when
+        s: TriageWorkflowState(step in (203, 204), dialog.dialogItems[0].answer == "N");
+    then
+    	// next step: provide instructions for setting battery saving settings
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SuccessfulCompletionWorkflowDialog.class);
+    	DialogItem dialogItem = dialog.addDialogItem("adjust_battery_save_settings");
+		s.setStep(207);
+        update(s);  	
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+rule "Step 208 - Customer has GSBTP, send iPhone in for rapid exchange to resolve battery issue"
+    when
+        s: TriageWorkflowState(device.os == "ios", issue == TriageWorkflowState.PROBLEM_TYPE.BATTERY_ISSUE, device : device,
+        	(step == 101 && dialog.dialogItems[0].answer == "Y")
+        	||
+        	(step == 203 && device.blackTieProtection == true) 
+        );
+    then
+    	// remember GSBTP status
+    	device.setBlackTieProtection(true); 
+	
+    	// next step: initiate rapid exchange
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SuccessfulCompletionWorkflowDialog.class);
+    	DialogItem dialogItem = dialog.addDialogItem("gsbtp_next_steps");
+		s.setStep(208);
+        update(s);  	
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+rule "Step 211 - Customer has GSBTP, device is not iPhone, have new battery shipped to customer"
+    when
+        s: TriageWorkflowState(device.os in ("blackberry","android","windows", "other"), 
+        	issue == TriageWorkflowState.PROBLEM_TYPE.BATTERY_ISSUE, device : device,
+        	(step == 101 && dialog.dialogItems[0].answer == "Y" )
+        	|| 
+        	(step == 204 && device.blackTieProtection == true)
+        	||
+        	(step == 202 && device.blackTieProtection == true && dialog.dialogItems[0].answer in("battery_physical_damage","liquid_damage_indicator"))
+        	);
+    then
+    	// remember GSBTP status
+    	device.setBlackTieProtection(true); 
+	
+    	// next step: initiate rapid exchange
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SuccessfulCompletionWorkflowDialog.class);
+    	DialogItem dialogItem = dialog.addDialogItem("gsbtp_battery_options");
+		s.setStep(211);
+        update(s);  	
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+rule "Step 209 - Customer does not have GSBTP, offer upgrade/full price device to resolve battery issue"
+    when
+        s: TriageWorkflowState(device.os == "ios", issue == TriageWorkflowState.PROBLEM_TYPE.BATTERY_ISSUE, device : device,
+        	(step == 101 && dialog.dialogItems[0].answer == "N")
+        	||
+        	(step in(203) && device.blackTieProtection == false) 
+        );
+    then
+    	// remember GSBTP status
+    	device.setBlackTieProtection(false); 
+	
+    	// next step: offer upgrade
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SingleChoiceWorkflowDialog.class);
+    	DialogSelectItem dialogSelectItem = dialog.addDialogSelectItem("no_gsbtp_next_steps");
+    	dialogSelectItem.setOptions(Arrays.asList("eligible_upgrade", "purchase_replacement", "other"));
+		s.setStep(209);
+        update(s);  	
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+rule "Step 212 - Customer does not have GSBTP, device is not iPhone, offer upgrade/full price device/standalone battery"
+    when
+        s: TriageWorkflowState(device.os in ("blackberry","android","windows", "other"),
+        	issue == TriageWorkflowState.PROBLEM_TYPE.BATTERY_ISSUE, device : device,
+        	(step == 101 && dialog.dialogItems[0].answer == "N")
+        	|| 
+        	(step == 204 && device.blackTieProtection == false)
+        	||
+        	(step == 202 && device.blackTieProtection == false && dialog.dialogItems[0].answer in("battery_physical_damage","liquid_damage_indicator"))
+        	);
+    then
+    	// remember GSBTP status
+    	device.setBlackTieProtection(false); 
+	
+    	// next step: initiate rapid exchange
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SingleChoiceWorkflowDialog.class);
+    	DialogSelectItem dialogSelectItem = dialog.addDialogSelectItem("no_gsbtp_next_steps");
+    	dialogSelectItem.setOptions(Arrays.asList("eligible_upgrade", "purchase_replacement", "purchase_new_battery", "other"));
+    	s.setStep(212);
+        update(s);  	
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+// **************************************************************************************************
+//  Software/Hardware issues triage													                *
+// **************************************************************************************************
+rule "Step 305 - Check that latest software is installed"
+    when
+        s: TriageWorkflowState(device: device, answer: dialog.dialogItems[0].answer, step: step,
+        	// user has identified device OS
+        	(step == 201 && dialog.dialogItems[0].answer != null 
+        		&& issue in(TriageWorkflowState.PROBLEM_TYPE.SOFTWARE_ISSUE, TriageWorkflowState.PROBLEM_TYPE.HARDWARE_ISSUE))
+        	||
+        	(step == 1 && device.os != null && dialog.dialogItems[0].answer in( "software_issue", "hardware_issue"))
+        	||
+        	// problem confirmed with hardware checker app
+        	(step == 405 && dialog.dialogItems[0].answer == "Y")
+        	||
+        	// hardware checker app did not fix the problem
+        	(step == 410 && dialog.dialogItems[0].answer == "Y")
+        	);
+    then
+    	if(step == 201){
+    		// Remember the OS type
+    		device.setOs(answer);
+    	}else if(step == 1){
+    		// Remember the problem type
+    		s.setIssue(answer);
+    	}
+    	
+        // next step: ask if latest updates have been applied
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SingleTrueFalseActionWorkflowDialog.class);
+    	DialogItem dialogItem = dialog.addDialogItem("have_updates_been_applied");
+		s.setStep(305);
+        update(s);  	
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+rule "Step 315 - software updates have not been applied"
+    when
+        s: TriageWorkflowState(step == 305, os: device.os,
+        	dialog.dialogItems[0].answer == "N");
+    then
+        // next step: supply device specific update instructions and check if issue is resolved 
+    	String instructions;
+    	if("ios".equals(os)){
+    		instructions = "ios_update_instructions";
+    	}else if("blackberry".equals(os)){    	
+    		instructions = "blackberry_update_instructions";
+    	}else if("android".equals(os)){
+    		instructions = "android_update_instructions";
+    	}else if("windows".equals(os)){
+    		instructions = "windows_update_instructions";
+    	}else {//catch all for "other"
+    		instructions = "generic_update_instructions";
+    	}
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SingleTrueFalseActionWorkflowDialog.class);
+    	DialogItem dialogItem = dialog.addDialogItem(instructions);
+		s.setStep(315);
+        update(s);  	
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+rule "Step 310 - software updates have been applied so attempt soft reset"
+    when
+        s: TriageWorkflowState(os: device.os,
+        	(step == 305 && dialog.dialogItems[0].answer == "Y")
+        	||
+        	(step == 315 && dialog.dialogItems[0].answer == "N")
+        	);
+    then
+        // next step: supply device specific soft reset instructions and check if issue is resolved 
+    	String instructions;
+    	if("ios".equals(os)){
+    		instructions = "ios_soft_reset_instructions";
+    	}else {
+    		instructions = "generic_soft_reset_instructions";
+    	}
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SingleTrueFalseActionWorkflowDialog.class);
+    	DialogItem dialogItem = dialog.addDialogItem(instructions);
+		s.setStep(310);
+        update(s);  	
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+rule "Step 320 - soft reset failed, ask customer permission for hard reset"
+    when
+        s: TriageWorkflowState(step == 310, dialog.dialogItems[0].answer == "N");
+    then
+        // next step: ask permission for hard reset
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SingleTrueFalseActionWorkflowDialog.class);
+    	DialogItem dialogItem = dialog.addDialogItem("hard_reset_permission");
+		s.setStep(320);
+        update(s);  	
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+rule "Step 330 - perform hard reset"
+    when
+        s: TriageWorkflowState(os: device.os, step == 320, dialog.dialogItems[0].answer == "Y");
+    then
+        // next step: supply device specific hard reset instructions and check if issue is resolved 
+    	String instructions;
+    	if("ios".equals(os)){
+    		instructions = "ios_hard_reset_instructions";
+    	}else if("blackberry".equals(os)){    	
+    		instructions = "blackberry_hard_reset_instructions";
+    	}else if("android".equals(os)){
+    		instructions = "android_hard_reset_instructions";
+    	}else if("windows".equals(os)){
+    		instructions = "windows_hard_reset_instructions";
+    	}else {//catch all for "other"
+    		instructions = "generic_hard_reset_instructions";
+    	}
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SingleTrueFalseActionWorkflowDialog.class);
+    	DialogItem dialogItem = dialog.addDialogItem(instructions);
+		s.setStep(330);
+        update(s);  	
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+rule "Step 335 - Check if device under manufacturer warranty"
+    when
+        s: TriageWorkflowState(device: device,
+			issue in (TriageWorkflowState.PROBLEM_TYPE.SOFTWARE_ISSUE, TriageWorkflowState.PROBLEM_TYPE.HARDWARE_ISSUE),
+        	(step == 101 && dialog.dialogItems[0].answer == "N")
+        	||
+        	// either reset did not fix the problem or customer does not want hard reset 	
+        	(step in(320, 330) && dialog.dialogItems[0].answer == "N" && device.blackTieProtection == false ));
+    then
+    	// remember if device has GSBTP
+    	device.setBlackTieProtection(false);
+    	    	
+        // next step: is device under manufacturer warranty?
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SingleTrueFalseActionWorkflowDialog.class);
+    	DialogItem dialogItem = dialog.addDialogItem("check_device_manufacturer_warranty");
+		s.setStep(335);
+        update(s);  	
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+rule "Step 340 - Offer options for out of warranty device"
+    when
+        s: TriageWorkflowState( step == 335, dialog.dialogItems[0].answer == "N");
+    then    	
+        // next step: offer upgrade/ full price device
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SingleChoiceWorkflowDialog.class);
+    	DialogSelectItem dialogSelectItem = dialog.addDialogSelectItem("no_gsbtp_next_steps");
+    	dialogSelectItem.setOptions(Arrays.asList("eligible_upgrade","purchase_replacement","other"));
+		s.setStep(340);
+        update(s);
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+rule "Step 345 - Offer options for in warranty device"
+    when
+        s: TriageWorkflowState( step == 335, dialog.dialogItems[0].answer == "Y");
+    then    	
+        // next step: offer options for in warranty device"
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SingleChoiceWorkflowDialog.class);
+    	DialogSelectItem dialogSelectItem = dialog.addDialogSelectItem("no_gsbtp_next_steps");
+    	dialogSelectItem.setOptions(Arrays.asList("eligible_upgrade","purchase_replacement","send_to_manufacturer_for_repair","other"));
+		s.setStep(345);
+        update(s);
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+rule "Step 350 - Offer fix options, customer has GSBTP"
+    when
+        s: TriageWorkflowState(device:device, 
+        	issue in(TriageWorkflowState.PROBLEM_TYPE.SOFTWARE_ISSUE, TriageWorkflowState.PROBLEM_TYPE.HARDWARE_ISSUE),
+        	(step == 101 && dialog.dialogItems[0].answer == "Y")
+        	||        	
+        	(step in (320, 330) && device.blackTieProtection == true  && dialog.dialogItems[0].answer == "N"));
+    then
+    	// remember if device has GSBTP
+    	device.setBlackTieProtection(true);
+    	    	
+        // next step: offer GSBTP fix options
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SuccessfulCompletionWorkflowDialog.class);
+    	DialogItem dialogItem = dialog.addDialogItem("gsbtp_next_steps");
+		s.setStep(350);
+        update(s);  	
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+rule "Step 360 - Go back to dashboard"
+    when
+        s: TriageWorkflowState(
+	    	// have logged customer response on next steps
+    	    (step in (102, 209, 212, 340, 345) && dialog.dialogItems[0].answer != null)
+        	|| 
+        	// soft or hard reset successfully resolved issue 
+        	(step in (310, 315, 330) && dialog.dialogItems[0].answer == "Y")
+        	|| 
+        	// hardware tech checker has resolved the problem 
+        	(step == 410 && dialog.dialogItems[0].answer == "N")
+        );
+    then    	
+        // next step: navigate to dashboard - we're done
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SuccessfulCompletionWorkflowDialog.class);
+    	DialogItem dialogItem = dialog.addDialogItem("goto_dashboard");
+		s.setStep(360);
+        update(s);  	
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+// *************************************************************************************************
+// Hardware issues triage - rules specific to hardware issues are covered below	                  *
+// *************************************************************************************************
+rule "Step 405 - Confirm problem with hardware checker app"
+    when
+    	// hardware checker app only supported for some operating systems
+        s: TriageWorkflowState(device: device, answer: dialog.dialogItems[0].answer, step: step,
+        	(step == 201 && issue == TriageWorkflowState.PROBLEM_TYPE.HARDWARE_ISSUE && dialog.dialogItems[0].answer == "android")
+        	||
+        	(step == 1 && device.os == "android" && dialog.dialogItems[0].answer == "hardware_issue")
+        	);
+    then
+    	if(step == 201){
+    		// Remember the OS type
+    		device.setOs(answer);
+    	}else if(step == 1){
+    		// Remember the problem type
+    		s.setIssue(answer);
+    	}
+    	
+        // next step: provide instructions for download & confirm problem with hardware checker app
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SingleTrueFalseActionWorkflowDialog.class);
+    	DialogItem dialogItem = dialog.addDialogItem("run_hardware_checker_app");
+		s.setStep(405);
+        update(s);  	
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end
+
+rule "Step 410 - Has hardware checker app fixed the problem?"
+    when
+    	// problem could not be confirmed with checker app
+        s: TriageWorkflowState( step == 405, issue == TriageWorkflowState.PROBLEM_TYPE.HARDWARE_ISSUE,
+        	dialog.dialogItems[0].answer == "N");
+    then
+        // next step: ask if problem was resolved
+    	WorkflowDialog dialog = s.replaceWorkflowDialog(SingleTrueFalseActionWorkflowDialog.class);
+    	DialogItem dialogItem = dialog.addDialogItem("has_hardware_checker_fixed_issue");
+		s.setStep(410);
+        update(s);  	
+    	log("In: Step {} of Triage:{}\n", s.getStep(), s);
+end

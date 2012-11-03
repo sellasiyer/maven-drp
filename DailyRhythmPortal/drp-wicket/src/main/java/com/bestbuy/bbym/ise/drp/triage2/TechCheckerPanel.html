@@ -1,0 +1,43 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<script type="text/javascript">
+		var wicketBehaviorTCP;
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:panel>
+		<div class="title-row">
+			<h2 wicket:id="techCheckerTitle"></h2>
+			<a class="button small" wicket:id="refreshLink"><wicket:message
+					key="triageTechChecker.refreshLink.label" /> </a>
+		</div>
+		<div class="device-row" wicket:id="deviceInfo">
+			<div class="device-name">
+				<span> <wicket:message
+						key="triageTechChecker.deviceName.label" /> </span> <span
+					wicket:id="deviceName"></span>
+			</div>
+			<div class="last-test">
+				<span> <wicket:message
+						key="triageTechChecker.testedOnDate.label" /> </span> <span
+					wicket:id="testedOnDate"></span>
+			</div>
+		</div>
+
+		<div wicket:id="noTestResults">
+			<p>
+				<wicket:message key="triageTechChecker.noTestResults.label" />
+			</p>
+		</div>
+
+		<div wicket:id="haveTestResults">
+			<ul>
+				<li wicket:id="testResultListView"></li>
+			</ul>
+		</div>
+	</wicket:panel>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<link href="beast-css/screen.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+	<script type="text/javascript" src="js/jquery.fixedheadertable.min.js"></script>
+	<script type="text/javascript" src="js/jquery.hotkeys.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript">
+		var hotKeysConfig = {};
+		var f2ButtonDisabled = false;
+		var f3ButtonDisabled = false;
+		function bindHotKeysNew() {
+			//f2
+			if (hotKeysConfig.f2 && hotKeysConfig.f2.buttonSelector) {
+				$(document).bind('keydown', 'f2', function() {
+					var f2Button = $(hotKeysConfig.f2.buttonSelector);
+					if (f2Button && !f2Button.is(':disabled')) {
+						if (!f2ButtonDisabled) {
+							f2ButtonDisabled = true;
+							setTimeout("f2ButtonDisabled=false", 200);
+							if (isFunction(hotKeysConfig.f2.handler)) {
+								hotKeysConfig.f2.handler();
+							}
+						}
+					}
+					return false;
+				});
+			}
+			//f3
+			if (hotKeysConfig.f3 && hotKeysConfig.f3.buttonSelector) {
+				$(document).bind('keydown', 'f3', function() {
+					var f3Button = $(hotKeysConfig.f3.buttonSelector);
+					if (f3Button && !f3Button.is(':disabled')) {
+						if (!f3ButtonDisabled) {
+							f3ButtonDisabled = true;
+							setTimeout("f3ButtonDisabled=false", 200);
+							if (isFunction(hotKeysConfig.f3.handler)) {
+								hotKeysConfig.f3.handler();
+							}
+						}
+					}
+					return false;
+				});
+			}
+		}
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:child />
+
+	<div wicket:id=loadingModalPanel></div>
+	<div wicket:id=quitModalPanel></div>
+	<div wicket:id=messageModalPanel></div>
+</body>
+</html>

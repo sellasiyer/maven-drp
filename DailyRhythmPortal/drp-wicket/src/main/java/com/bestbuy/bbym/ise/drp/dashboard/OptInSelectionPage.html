@@ -1,0 +1,65 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>E-Sign Verification</title>
+	<script type="text/javascript">
+		var wicketBehavior;
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<div class="page-header">
+			<h1>E-Sign Verification</h1>
+		</div>
+		<div wicket:id="optInSelectionFeedback" class="feedbackmsg"></div>
+
+		<form wicket:id="optInSelectionForm">
+			<h1 class="top gray">
+				<wicket:message key="optInSelectionForm.message1.label" />
+			</h1>
+
+			<div class="esign-box">
+				<h3>
+					<span wicket:id="lineNumber"></span> <span wicket:id="phoneNumber"></span>
+				</h3>
+				<div class="esign">
+					<input type="checkbox" name="esign" value="" wicket:id="esignCbx" />
+					<label for="esign"><wicket:message key="esignTerms.label1" />
+						<a target="_blank" wicket:id="esignTermsLink"></a> <wicket:message
+							key="esignTerms.label2" /> </label>
+				</div>
+				<div class="options" wicket:id="optInRadioGroup">
+					<input class="required" type="radio" wicket:id="optInVoiceRadio" />
+					<label for="voice">Call Me </label> <input class="required"
+						type="radio" wicket:id="optInTextRadio" /> <label for="text">Text
+						Me</label>
+				</div>
+			</div>
+
+			<div class="disclaimer">
+				<p>
+					<wicket:message key="optInSelectionForm.eligibilityDateTerms.label" />
+					<br /> <strong><wicket:message
+							key="optInSelectionForm.callMe.label" /> </strong>
+					<wicket:message key="optInSelectionForm.callMeTerms.label" />
+					<br /> <strong><wicket:message
+							key="optInSelectionForm.textMe.label" /> </strong>
+					<wicket:message key="optInSelectionForm.textMeTerms1.label" />
+					<a target="_blank" wicket:id="textMeTermsLink"> </a>
+					<wicket:message key="optInSelectionForm.textMeTerms2.label" />
+					<strong><wicket:message
+							key="optInSelectionForm.updgradeReminderTerms.label" /> </strong>
+					<wicket:message key="optInSelectionForm.optOutTerms.label" />
+				</p>
+			</div>
+			<div class="buttons">
+				<input class="button minor" wicket:id="backButton" type="button" />
+				<input class="button right" wicket:id="submitButton" type="button" />
+			</div>
+		</form>
+	</wicket:extend>
+</body>
+
+</html>

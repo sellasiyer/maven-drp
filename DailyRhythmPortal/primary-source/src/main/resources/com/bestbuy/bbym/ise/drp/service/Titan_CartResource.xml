@@ -1,0 +1,60 @@
+<CartResource xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xmlns:atom="http://www.w3.org/2005/Atom">
+    <atom:title>Your Cart</atom:title>
+    <atom:link href="http://hydra-pt:8080/store-10/carts/19390?BypassTradeInPlus=False" rel="self" title="Self" />
+    <atom:link href="http://hydra-pt:8080/store-10/carts/19390?BypassTradeInPlus=False" rel="http://hydra-pt:8080/rels/cart" title="cart" />
+    <atom:link href="http://hydra-pt:8080/store-10/catalog/search?CartId=19390" rel="http://hydra-pt:8080/rels/search-catalog" title="search-catalog" />
+    <atom:link href="http://hydra-pt:8080/store-10/catalog?CartId=19390&amp;Page=1&amp;PageSize=25" rel="related" title="Add more items to cart" />
+    <atom:link href="http://hydra-pt:8080/store-10/recycling?CartId=19390&amp;Page=1&amp;PageSize=25" rel="related" title="Add recycling items to cart" />
+    <atom:link href="http://hydra-pt:8080/store-10/carts/19390/customer/search" rel="next" title="Complete Transaction" />
+    <Groups>
+        <CartItemGroupResource>
+            <atom:title />
+            <Items>
+                <CartItemResource>
+                    <atom:title>Apple® - iPhone® 4S with 16GB Memory Mobile Phone - Black (AT&amp;T)</atom:title>
+                    <atom:link href="http://hydra-pt:8080/store-10/carts/items/20808/delete?CartId=19390" rel="http://hydra-pt:8080/rels/delete" title="Remove" />
+                    <Name>Apple® - iPhone® 4S with 16GB Memory Mobile Phone - Black (AT&amp;T)</Name>
+                    <QuoteAmount>240.0000</QuoteAmount>
+                </CartItemResource>
+            </Items>
+            <Subtotal>290.0000</Subtotal>
+            <Name>Mobile Phones</Name>
+            <Promotions>
+                <atom:title>Available Promotions</atom:title>
+                <ConditionalPromotions />
+                <UnconditionalPromotions>
+                    <PromotionItem>
+                        <atom:title>Beast Integration Test Promo 2</atom:title>
+                        <atom:link href="http://hydra-pt:8080/store-10/carts/19390/apply-promotion?PromotionId=27" rel="http://hydra-pt:8080/rels/select" title="Select Promotion" />
+                        <Name>Beast Integration Test Promo 2</Name>
+                        <Description>Promotion for testing Beast integration</Description>
+                        <Value>51.00</Value>
+                        <IsSelected>false</IsSelected>
+                        <Source>
+                            <Id>mobile</Id>
+                            <PromotionCode>ABC456</PromotionCode>
+                        </Source>
+                    </PromotionItem>
+                    <PromotionItem>
+                        <atom:title>Beast Integration Test Promo 1</atom:title>
+                        <Name>Beast Integration Test Promo 1</Name>
+                        <Description>Promotion for testing Beast integration</Description>
+                        <Value>50.00</Value>
+                        <IsSelected>true</IsSelected>
+                        <Source>
+                            <Id>mobile</Id>
+                            <PromotionCode>ABC123</PromotionCode>
+                        </Source>
+                    </PromotionItem>
+                </UnconditionalPromotions>
+            </Promotions>
+            <PromotionsSubtotal>0</PromotionsSubtotal>
+        </CartItemGroupResource>
+    </Groups>
+    <TotalQuoteAmount>290.0000</TotalQuoteAmount>
+    <CartId>19390</CartId>
+    <IsComplete>false</IsComplete>
+    <HasTradeInItems>true</HasTradeInItems>
+    <HasRecyclingItems>false</HasRecyclingItems>
+    <StoreId>10</StoreId>
+</CartResource>

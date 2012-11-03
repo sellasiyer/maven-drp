@@ -1,0 +1,192 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>Customer Dashboard Search</title>
+	<script type="text/javascript" src="js/webticker_lib.js"></script>
+	<script type="text/javascript" src="js/validation.js"></script>
+	<script type="text/javascript">
+		var wicketBehavior;
+		var TICKER_ID = "beastTicker";
+		var TICKER_RIGHTTOLEFT = false;
+		var TICKER_SPEED = 1;
+		var TICKER_PAUSED = false;
+		var handleCustomerSearchButtonState = function(allFormDataValid) {
+			var formButton = $('#search');
+			if (allFormDataValid) {
+				formButton.removeAttr('disabled').removeClass('disabled');
+			} else {
+				formButton.attr('disabled', true).addClass('disabled');
+			}
+		};
+		var custSearchValidation = {
+			handleButtonState : handleCustomerSearchButtonState,
+			phone : {
+				type : VALIDATION_TYPE.NUMERIC,
+				//	feedbackSelector : '#phoneFeedback',
+				valueSelector : '#phoneInput',
+				valid : false,
+				ignore : false,
+				optional : false
+			},
+			zipCode : {
+				type : VALIDATION_TYPE.NUMERIC,
+				//	feedbackSelector : '#zipCodeFeedback',
+				valueSelector : '#zipInput',
+				valid : false,
+				ignore : false,
+				optional : false
+			},
+			carrier : {
+				type : VALIDATION_TYPE.SET_IN_JAVA,
+				// feedbackSelector : '#carrierFeedback',
+				valid : false,
+				ignore : false,
+				optional : false
+			},
+			ssn : {
+				type : VALIDATION_TYPE.NUMERIC,
+				// feedbackSelector : '#ssnFeedback',
+				valueSelector : '#ssnInput',
+				valid : false,
+				ignore : false,
+				optional : false
+			},
+			pin : {
+				type : VALIDATION_TYPE.ALPHANUMERIC,
+				valueSelector : '#pinInput',
+				valid : true,
+				ignore : false,
+				optional : true
+			}
+		};
+		function installCustomerSearchPasteHandlers() {
+			$('#phoneInput').bind('paste', function(e) {
+				var el = $(this);
+				setTimeout(function() {
+					var text = $(el).val();
+					fieldValueValidation(text, 'phone', custSearchValidation);
+					handleValidationDisplay(custSearchValidation);
+				}, 50);
+			});
+			$('#zipInput').bind(
+					'paste',
+					function(e) {
+						var el = $(this);
+						setTimeout(function() {
+							var text = $(el).val();
+							fieldValueValidation(text, 'zipCode',
+									custSearchValidation);
+							handleValidationDisplay(custSearchValidation);
+						}, 50);
+					});
+		}
+		function installCustomerSearchPasteHandler(field) {
+			if (field && field == 'ssn') {
+				$('#ssnInput').bind(
+						'paste',
+						function(e) {
+							var el = $(this);
+							setTimeout(function() {
+								var text = $(el).val();
+								fieldValueValidation(text, 'ssn',
+										custSearchValidation);
+								handleValidationDisplay(custSearchValidation);
+							}, 50);
+						});
+			} else if (field && field == 'pin') {
+				$('#pinInput').bind(
+						'paste',
+						function(e) {
+							var el = $(this);
+							setTimeout(function() {
+								var text = $(el).val();
+								fieldValueValidation(text, 'pin',
+										custSearchValidation);
+								handleValidationDisplay(custSearchValidation);
+							}, 50);
+						});
+			}
+		}
+		$(document).ready(function() {
+			$('#carrierSelect').focus();
+		});
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<div class="page-header">
+			<h1>
+				<wicket:message key="customerSearch.title.label" />
+			</h1>
+		</div>
+
+
+		<div wicket:id="feedback" class="feedbackmsg"></div>
+
+		<form wicket:id="dashboardSearchForm" autocomplete="off">
+			<fieldset>
+				<legend>
+					<wicket:message key="customerSearch.section.label" />
+				</legend>
+				<div class="required">
+					<label wicket:id="carrierLabel"></label> <select
+						wicket:id="carrierSelect">
+					</select>
+				</div>
+
+				<br />
+				<div class="required" wicket:id="phoneData">
+					<label wicket:id="phoneLabel"></label> <input type="text"
+						wicket:id="phoneInput"
+						onkeypress="return keyEntryValidation(event, 'phone', custSearchValidation)"
+						onkeyup="fieldValidation(event, 'phone', custSearchValidation)"
+						maxlength="10"></input>
+				</div>
+				<div class="required quarter" wicket:id="zipCodeData">
+					<label wicket:id="zipCodeLabel"></label> <input type="text"
+						wicket:id="zipCodeInput"
+						onkeypress="return keyEntryValidation(event, 'zipCode', custSearchValidation)"
+						onkeyup="fieldValidation(event, 'zipCode', custSearchValidation)"></input>
+				</div>
+
+				<br />
+				<div class="required quarter" wicket:id="ssnData">
+					<label wicket:id="ssnLabel"></label> <input type="password"
+						wicket:id="ssnInput"
+						onkeypress="return keyEntryValidation(event, 'ssn', custSearchValidation)"
+						onkeyup="fieldValidation(event, 'ssn', custSearchValidation)"></input>
+				</div>
+
+				<br />
+				<div class="quarter" wicket:id="pinData">
+					<label wicket:id="pinLabel"></label> <input type="password"
+						wicket:id="pinInput"
+						onkeypress="return keyEntryValidation(event, 'pin', custSearchValidation)"
+						onkeyup="fieldValidation(event, 'pin', custSearchValidation)"></input>
+				</div>
+
+				<div class="full bottom" wicket:id="noSsn">
+					<label><wicket:message
+							key="dashboardSearchForm.noSsnCbx.label" /> </label> <span
+						class="checkbox"> <input type="checkbox"
+						wicket:id="noSsnCheckbox"></input> <label> <wicket:message
+								key="dashboardSearchForm.noSsnCbx.note" /> </label> </span>
+				</div>
+			</fieldset>
+
+			<div class="buttons">
+				<input type="submit" wicket:id="search" class="button disabled">
+				<input type="submit" wicket:id="cancel" class="button">
+			</div>
+		</form>
+
+		<div id="beastTickerLabel">
+			<wicket:message key="beastTicker.label" />
+			<div wicket:id="beastTicker" style="overflow: hidden; width: 595px;"></div>
+		</div>
+		<br clear="all" />
+	</wicket:extend>
+</body>
+</html>

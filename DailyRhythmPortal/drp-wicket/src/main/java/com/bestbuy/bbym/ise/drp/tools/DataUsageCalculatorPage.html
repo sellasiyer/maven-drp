@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>Customer Dashboard</title>
+	<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+	<script type="text/javascript" src="js/dataUsageCalculator.js"></script>
+	<script type="text/javascript" wicket:id="myScript"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			
+			//fix the width on the number selection boxes
+			$('.num-choices').each(function(){
+				fixListItemWidths($(this));
+			});
+	
+			$('.toggle-switch').click(function(e){
+				var clickedSwitch = $(this);
+				var selector = clickedSwitch.children('.selector');
+				var section = clickedSwitch.parents(".line-item").attr("data-usage-type");
+				
+				if(clickedSwitch.data("val") == "month"){
+					//toggle the value
+					clickedSwitch.data("val", "day");
+					var isMonth = false;
+					setValues( isMonth, section); //in dataUsageCalculator.js
+					//then fix the display
+					selector.animate({ 'left': '-=50' }, 300);
+					
+				}else{
+					//toggle the value
+					clickedSwitch.data("val", "month");
+					var isMonth = true;
+					setValues( isMonth, section); //in dataUsageCalculator.js
+					//then fix the display
+					selector.animate({ 'left': '+=50' }, 300);
+				}
+				
+				if(clickedSwitch.parents('#master-toggle').length > 0){
+					//master switch was flipped
+					var newValue = clickedSwitch.data("val");
+					
+					$('#inputs .toggle-switch').each(function(){
+						var mySection = $(this).parents(".line-item").attr("data-usage-type");
+						//if it has a different value, toggle it
+						if($(this).data("val") != newValue){
+							$(this).data("val", newValue);
+							if(newValue == "month"){
+								$(this).children('.selector').animate({ 'left': '+=50' }, 300);
+								setValues( true, mySection); //in dataUsageCalculator.js
+							}else{
+								$(this).children('.selector').animate({ 'left': '-=50' }, 300);
+								setValues( false, mySection); //in dataUsageCalculator.js
+							}
+						}
+					});
+					refreshAll(); //datausagecalculator.js
+				}
+			});
+		
+			//handles click on ANY (bandwidth or numeric) selectors.
+			$('.button-selector li a').click(function(e){
+				e.preventDefault();
+				var parentList = $(this).closest('.button-selector');
+				if(parentList.is('.disabled')){
+					return;
+				}
+				var parentLi = $(this).closest('li');
+				
+				parentList.children('li').removeClass("selected");
+				parentLi.addClass("selected");
+				
+				if(parentList.hasClass("button-selector-ind")){
+					//handles click on bandwidth selector
+					parentList.find('div.indicator').hide();
+					parentLi.children('.indicator').show();
+					
+					var bwData = $(parentLi).attr("data-type");
+					
+					setBandwidth(bwData);	//in dataUsageCalculator.js
+					if (bwData == "3g") {
+						$("div[data-usage-type='video_lo'] > ul").addClass("disabled");
+					}
+					else	{
+						$("div[data-usage-type='video_lo'] > ul").removeClass("disabled");
+					}
+					refreshAll();	//in dataUsageCalculator.js
+				}
+				
+				if(parentList.hasClass("num-choices")){
+					//make the boxes to the left of the selected one blue as well
+					parentList.children().removeClass("left-of-selected");
+					var selectedIndex = parentLi.index();
+					for(var i = 0; i < selectedIndex; i++){
+						parentList.children().eq(i).addClass("left-of-selected");
+					}
+				}
+			});
+
+		});
+		
+		//make list items grow to equal proportions within a list
+		function fixListItemWidths(list){
+			var numChildren = list.children('li').length;
+			var percentForEach = 100 / numChildren;
+			var fullListPixelWidth = list.width();
+			
+			list.children().each(function(){
+				var uncorrectedPixelWidth = .01 * percentForEach * fullListPixelWidth;
+				//if($(this).is(":last-child")){
+				//	$(this).css("width", percentForEach + "%");
+				//}else{
+					var correctedWidthPct = ((uncorrectedPixelWidth - 1) / fullListPixelWidth) * 100;
+					$(this).css("width", correctedWidthPct + "%");
+				//}
+			});			
+		}
+		
+		function resetPage(){
+			//switch back to 3g/4g
+			$('#data-type-selector .first a').click();
+			
+			//click 0 on each line
+			$('.line-item .num-choices .first a').click();
+			
+			//toggle back to day for all fields
+			if($('#master-toggle .toggle-switch').data("val") == "month"){
+				$('#master-toggle .toggle-switch').click();
+			}else{
+				$('.line-item .toggle-switch').each(function(){
+					if($(this).data("val") == "month"){
+						$(this).click();
+					}
+				});
+			}
+		}
+	</script>	
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<div class="page-header">
+			<h1>Data Usage Calculator</h1>
+			<ul class="quick-actions">
+				<li><a class="button" href="javascript:resetPage();">Reset</a></li>
+			</ul>
+		</div>
+		<div wicket:id="dataUsagePanel">data Usage Panel</div>
+	</wicket:extend>
+</body>
+</html>

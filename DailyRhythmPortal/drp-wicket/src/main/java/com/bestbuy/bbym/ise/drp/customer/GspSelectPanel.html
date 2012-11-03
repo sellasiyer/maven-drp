@@ -1,0 +1,22 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:panel>
+		<div class="table-wrap">
+			<div class="default-table-container">
+				<table class="default-table" wicket:id="gspTable">
+				</table>
+			</div>
+
+			<div wicket:id="noGspData">
+				<p class="no-results" wicket:id="noGspDataLabel"></p>
+			</div>
+
+			<div wicket:id="gspDataLoading" class="loading-spinner-big">
+				<wicket:message key="custInfo.gspTable.loading.label" />
+			</div>
+		</div>
+	</wicket:panel>
+</body>
+</html>

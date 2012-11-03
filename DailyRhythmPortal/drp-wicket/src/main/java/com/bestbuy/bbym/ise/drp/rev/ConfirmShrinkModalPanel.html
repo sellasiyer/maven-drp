@@ -1,0 +1,42 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:extend>
+		<div id="content">
+			<h1>
+				<wicket:message key="inventoryPanel.confirmShrink.title.label" />
+			</h1>
+			<p wicket:id="confirmShrinkQuestion"></p>
+			<div class="detail-list">
+				<ul style="margin-bottom: 20px;">
+					<li class="odd">
+						<div class="view">
+							<label><wicket:message
+									key="inventoryPanel.confirmShrink.itemTag.label" /> </label> <span><p
+									wicket:id="itemTag"></p> </span>
+						</div>
+						<div class="view">
+							<label><wicket:message
+									key="inventoryPanel.confirmShrink.serialNum.label" /> </label> <span><p
+									wicket:id="serialNum"></p> </span>
+						</div>
+					</li>
+					<li>
+						<div class="view">
+							<label><wicket:message
+									key="inventoryPanel.confirmShrink.productDescription.label" />
+							</label> <span><p wicket:id="productDescription"></p> </span>
+						</div>
+						<div class="view">
+							<label><wicket:message
+									key="inventoryPanel.confirmShrink.returnType.label" /> </label> <span><p
+									wicket:id="returnType"></p> </span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</wicket:extend>
+</body>
+</html>

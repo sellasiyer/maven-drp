@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<Reasons>
+		<Reason>
+			<ReasonId>2</ReasonId>
+			<Reason>Pickup Store Pickup</Reason>
+		</Reason>
+		<Reason>
+			<ReasonId>7</ReasonId>
+			<Reason>Prepare walk out working for phone</Reason>
+		</Reason>
+	</Reasons>
+	<ErrorCode>1</ErrorCode>
+	<ErrorMessage></ErrorMessage>
+</xml>

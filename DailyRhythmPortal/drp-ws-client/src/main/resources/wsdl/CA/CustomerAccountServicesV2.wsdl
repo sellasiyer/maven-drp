@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns="http://webservices.bestbuy.com/ca/services/v2" 
+					targetNamespace="http://webservices.bestbuy.com/ca/services/v2" 
+					xmlns:os="http://webservices.bestbuy.com/ca/services/entity/v2" 
+					xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+					xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+					xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+					xmlns:ns="http://schemas.xmlsoap.org/soap/encoding/" 
+					xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" 
+					xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" 
+					name="CustomerAccountServices">
+	<wsdl:documentation>
+Customer Account integrates with multiple applications which want to store customer related information by providing a common storage thus providing a centralized customer view. This WSDL is used to expose services offered by customer account which perform multiple tasks and operate over multiple entities in CA, which includes
+manageAccount
+searchCustomer
+</wsdl:documentation>
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://webservices.bestbuy.com/ca/services/v2">
+			<xsd:import namespace="http://webservices.bestbuy.com/ca/services/entity/v2" 
+						schemaLocation="../CA/CAInternalSchema/CustomerAccountServicesV2.xsd">
+			</xsd:import>
+		</xsd:schema>
+		<xsd:schema elementFormDefault="qualified" 
+				targetNamespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" 
+				xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:element name="Security" type="wsse:Security"/>
+			<xsd:complexType name="Security">
+				<xsd:sequence>
+					<xsd:element name="Base64Assertion" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+					<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="manageAccountRequest">
+		<wsdl:part name="manageAccountRequest" element="os:ManageAccountRequest"/>
+		<wsdl:part name="Security" element="wsse:Security"/>
+	</wsdl:message>
+	<wsdl:message name="manageAccountResponse">
+		<wsdl:part name="manageAccountResponse" element="os:ManageAccountResponse"/>
+	</wsdl:message>
+	<wsdl:message name="matchPartyRequest">
+		<wsdl:part name="matchPartyRequest" element="os:MatchPartyRequest"/>
+		<wsdl:part name="Security" element="wsse:Security"/>
+	</wsdl:message>
+	<wsdl:message name="matchPartyResponse">
+		<wsdl:part name="matchPartyResponse" element="os:MatchPartyResponse"/>
+	</wsdl:message>
+	<wsdl:message name="searchCustomerRequest">
+		<wsdl:part name="searchCustomerRequest" element="os:SearchCustomerRequest"/>
+		<wsdl:part name="Security" element="wsse:Security"/>
+	</wsdl:message>
+	<wsdl:message name="searchCustomerResponse">
+		<wsdl:part name="searchCustomerResponse" element="os:SearchCustomerResponse"/>
+	</wsdl:message>
+	<wsdl:message name="faultMsg">
+		<wsdl:part name="fault" element="os:faultElement"/>
+	</wsdl:message>
+    <wsdl:message name="cleanseCustomerDataRequest">
+        <wsdl:part name="cleanseCustomerDataRequest" element="os:CleanseCustomerDataRequest"/>
+        <wsdl:part name="Security" element="wsse:Security"/>
+    </wsdl:message>
+    <wsdl:message name="cleanseCustomerDataResponse">
+        <wsdl:part name="cleanseCustomerDataResponse" element="os:CleanseCustomerDataResponse"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="transferAccountRequest">
+        <wsdl:part name="transferAccountRequest" element="os:TransferAccountRequest"/>
+        <wsdl:part name="Security" element="wsse:Security"/>
+    </wsdl:message>
+    <wsdl:message name="transferAccountResponse">
+        <wsdl:part name="transferAccountResponse" element="os:TransferAccountResponse"/>
+    </wsdl:message>
+    <wsdl:message name="consolidatePartyRequest">
+        <wsdl:part name="consolidatePartyRequest" element="os:ConsolidatePartyRequest"/>
+        <wsdl:part name="Security" element="wsse:Security"/>
+    </wsdl:message>
+    <wsdl:message name="consolidatePartyResponse">
+        <wsdl:part name="consolidatePartyResponse" element="os:ConsolidatePartyResponse"/>
+    </wsdl:message>        
+    <wsdl:message name="manageSubAccountAttributesRequest">
+    	<wsdl:part name="manageSubAccountAttributesRequest" element="os:ManageSubAccountAttributesRequest"></wsdl:part>
+    	<wsdl:part name="Security" element="wsse:Security"/>
+    </wsdl:message>
+    <wsdl:message name="manageSubAccountAttributesResponse">
+    	<wsdl:part name="mangeSubAccountAttributesResponse" element="os:ManageSubAccountAttributesResponse"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getSubAccountAttributesRequest">
+    	<wsdl:part name="getSubAccountAttributesRequest" element="os:GetSubAccountAttributesRequest"></wsdl:part>
+    	<wsdl:part name="Security" element="wsse:Security"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getSubAccountAttributesResponse">
+    	<wsdl:part name="getSubAccountAttributesResponse" element="os:GetSubAccountAttributesResponse"></wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="CustomerAccountServicesPortType">
+		<wsdl:operation name="manageAccount">
+			<wsdl:input message="manageAccountRequest"/>
+			<wsdl:output message="manageAccountResponse"/>
+			<wsdl:fault name="fault" message="faultMsg"/>
+		</wsdl:operation>
+		<wsdl:operation name="matchAndVerifyParty">
+			<wsdl:input message="matchPartyRequest"/>
+			<wsdl:output message="matchPartyResponse"/>
+			<wsdl:fault name="fault" message="faultMsg"/>
+		</wsdl:operation>
+		<wsdl:operation name="searchCustomer">
+			<wsdl:input message="searchCustomerRequest"/>
+			<wsdl:output message="searchCustomerResponse"/>
+			<wsdl:fault name="fault" message="faultMsg"/>
+		</wsdl:operation>
+        <wsdl:operation name="cleanseCustomerData">
+            <wsdl:input message="cleanseCustomerDataRequest"></wsdl:input>
+            <wsdl:output message="cleanseCustomerDataResponse"></wsdl:output>
+            <wsdl:fault name="fault" message="faultMsg"></wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="transferAccount">
+            <wsdl:input message="transferAccountRequest"/>
+            <wsdl:output message="transferAccountResponse"/>
+            <wsdl:fault name="fault" message="faultMsg"/>
+        </wsdl:operation>
+        <wsdl:operation name="consolidateParty">
+            <wsdl:input message="consolidatePartyRequest"/>
+            <wsdl:output message="consolidatePartyResponse"/>
+            <wsdl:fault name="fault" message="faultMsg"/>
+        </wsdl:operation>                
+        <wsdl:operation name="manageSubAccountAttributes">
+        	<wsdl:input message="manageSubAccountAttributesRequest"/>
+        	<wsdl:output message="manageSubAccountAttributesResponse"/>
+            <wsdl:fault name="fault" message="faultMsg"/>
+        </wsdl:operation>
+        <wsdl:operation name="getSubAccountAttributes">
+        	<wsdl:input message="getSubAccountAttributesRequest"></wsdl:input>
+        	<wsdl:output message="getSubAccountAttributesResponse"></wsdl:output>
+            <wsdl:fault name="fault" message="faultMsg"></wsdl:fault>
+        </wsdl:operation>
+    </wsdl:portType>
+	<wsdl:binding name="CustomerAccountServicesSOAP" type="CustomerAccountServicesPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="manageAccount">
+			<soap:operation soapAction="http://webservices.bestbuy.com/ca/orchestratedservices/manageAccount" style="document"/>
+			<wsdl:input>
+				<soap:header message="manageAccountRequest" part="Security" use="literal"/>
+				<soap:body parts="manageAccountRequest" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="matchAndVerifyParty">
+			<soap:operation soapAction="http://webservices.bestbuy.com/ca/orchestratedservices/matchParty" style="document"/>
+			<wsdl:input>
+				<soap:header message="matchPartyRequest" part="Security" use="literal"/>
+				<soap:body parts="matchPartyRequest" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="searchCustomer">
+			<soap:operation soapAction="http://webservices.bestbuy.com/ca/orchestratedservices/searchParty" style="document"/>
+			<wsdl:input>
+				<soap:header message="searchCustomerRequest" part="Security" use="literal"/>
+				<soap:body parts="searchCustomerRequest" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+        <wsdl:operation name="cleanseCustomerData">
+            <soap:operation soapAction="http://webservices.bestbuy.com/ca/services/cleanseCustomerData" style="document"/>
+            <wsdl:input>
+                <soap:header message="cleanseCustomerDataRequest" part="Security" use="literal"/>
+                <soap:body parts="cleanseCustomerDataRequest" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="transferAccount">
+            <soap:operation soapAction="http://webservices.bestbuy.com/ca/services/transferAccount" style="document"/>
+            <wsdl:input>
+                <soap:header message="transferAccountRequest" part="Security" use="literal"/>
+                <soap:body parts="transferAccountRequest" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="consolidateParty">
+            <soap:operation soapAction="http://webservices.bestbuy.com/ca/services/consolidateParty" style="document"/>
+            <wsdl:input>
+                <soap:header message="consolidatePartyRequest" part="Security" use="literal"/>
+                <soap:body parts="consolidatePartyRequest" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>  
+        <wsdl:operation name="manageSubAccountAttributes">
+			<soap:operation soapAction="http://webservices.bestbuy.com/ca/services/manageSubAccountAttributes" style="document"/>
+			<wsdl:input>
+				<soap:header message="manageSubAccountAttributesRequest" part="Security" use="literal"/>
+				<soap:body parts="manageSubAccountAttributesRequest" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+       <wsdl:operation name="getSubAccountAttributes">
+			<soap:operation soapAction="http://webservices.bestbuy.com/ca/services/getSubAccountAttributes" style="document"/>
+			<wsdl:input>
+				<soap:header message="getSubAccountAttributesRequest" part="Security" use="literal"/>
+				<soap:body parts="getSubAccountAttributesRequest" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+                      
+	</wsdl:binding>
+	<wsdl:service name="CAServicesSOAPV2">
+		<wsdl:port name="CustomerAccountServices" binding="CustomerAccountServicesSOAP">
+			<soap:address location="http://localhost:7001/CustomerAccountServices/SourceData_V2"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

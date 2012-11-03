@@ -1,0 +1,76 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<title>BEAST-Portal</title>
+	<link href="../../drp/drp-war/src/main/webapp/beast-css/screen.css" media="screen" rel="StyleSheet" type="text/css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+	<script src="../../drp/drp-war/src/main/webapp/js/jquery.fixedheadertable.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			/*$(window).bind('resize', fixedHeaderTables); -- Not Working */
+			fixedHeaderTables();
+			
+			function fixedHeaderTables(){
+			   $('#fixedHeaderTable01 table').fixedHeaderTable({ height: '100', altClass: 'odd' });
+			}
+
+                        if ($("#questionsNumber").val() == "0") {
+                           clickButton('#nextButton');
+                        }
+		});
+	   
+	function autoTab(e, element, nextElement){
+		var code;
+		if (!e){
+			var e=window.event;
+		}
+		if (e.which){
+			code = e.which;
+		}else if (e.keyCode){
+			code = e.keyCode;
+		}
+		if ((code>47 && code<91)||(code<95 && code<105)){
+			if (element.value.length == element.maxLength && nextElement != null){
+				nextElement.focus();
+			}
+		}
+		
+		
+	}
+	function autoTabforDropDown(nextElement) {
+	    nextElement.focus();
+	}
+	    
+</script>
+<style>
+ .scrollable {
+ overflow-y: scroll;
+ overflow-x: hidden;
+ border: 1px solid #000;
+ width: 100%;
+ height: 70%;
+ padding-left: 20px;
+ padding-top: 10px;
+ }
+</style>
+</wicket:head>
+
+<body>
+<span wicket:id="border">
+<div class="wrap"><!-- here to replicate beast frame -->
+        <div class="scrollable">
+	<dl class="form" style="width:100%; margin-bottom: 0px;" wicket:id="listview">
+		<dd>
+			<label><span wicket:id="panel"/></label>
+		</dd>
+	</dl>
+	</div>
+
+	<div class="notes">
+		<p><wicket:message key="tradeInCustomerQAPage.note.label" /></p>
+	</div>
+</div>
+<input type="hidden" wicket:id="questionsNumber"/>
+</span>
+</body>
+</html>

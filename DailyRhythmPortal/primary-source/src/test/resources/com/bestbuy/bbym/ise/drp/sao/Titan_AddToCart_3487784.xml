@@ -1,0 +1,44 @@
+<CartResource xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xmlns:atom="http://www.w3.org/2005/Atom">
+    <atom:title>Your Cart</atom:title>
+    <atom:link href="http://hydra-pt:8080/store-10/carts/19109" rel="self" title="Self" />
+    <atom:link href="http://hydra-pt:8080/store-10/carts/19109" rel="http://hydra-pt:8080/rels/cart" title="cart" />
+    <atom:link href="http://hydra-pt:8080/store-10/catalog/search?CartId=19109" rel="http://hydra-pt:8080/rels/search-catalog" title="search-catalog" />
+    <atom:link href="http://hydra-pt:8080/store-10/catalog?CartId=19109&amp;Page=1&amp;PageSize=25" rel="related" title="Add more items to cart" />
+    <atom:link href="http://hydra-pt:8080/store-10/recycling?CartId=19109&amp;Page=1&amp;PageSize=25" rel="related" title="Add recycling items to cart" />
+    <atom:link href="http://hydra-pt:8080/store-10/transactions/product-info/new?CartItemId=20511&amp;CartId=19109" rel="next" title="Complete Transaction" />
+    <Groups>
+        <CartItemGroupResource>
+            <atom:title />
+            <Items>
+                <CartItemResource>
+                    <atom:title>Apple? - iPhone? 4S with 16GB Memory Mobile Phone - Black (AT&amp;T)</atom:title>
+                    <atom:link href="http://hydra-pt:8080/store-10/carts/items/20511/delete?CartId=19109" rel="http://hydra-pt:8080/rels/delete" title="Remove" />
+                    <Name>Apple? - iPhone? 4S with 16GB Memory Mobile Phone - Black (AT&amp;T)</Name>
+                    <QuoteAmount>230</QuoteAmount>
+                </CartItemResource>
+            </Items>
+            <Subtotal>230</Subtotal>
+            <Name>Mobile Phones</Name>
+            <Promotions>
+                <atom:title>Available Promotions</atom:title>
+                <ConditionalPromotions />
+                <UnconditionalPromotions>
+                    <PromotionItemResource>
+                        <atom:title>Mobile Phone Promotion for Skyler</atom:title>
+                        <Name>Mobile Phone Promotion for Skyler</Name>
+                        <Description>Get a coupon for doing nothing but trading in a mobile phone...</Description>
+                        <Value>0</Value>
+                        <IsSelected>true</IsSelected>
+                    </PromotionItemResource>
+                </UnconditionalPromotions>
+            </Promotions>
+            <PromotionsSubtotal>0</PromotionsSubtotal>
+        </CartItemGroupResource>
+    </Groups>
+    <TotalQuoteAmount>230</TotalQuoteAmount>
+    <CartId>19109</CartId>
+    <IsComplete>false</IsComplete>
+    <HasTradeInItems>true</HasTradeInItems>
+    <HasRecyclingItems>false</HasRecyclingItems>
+    <StoreId>10</StoreId>
+</CartResource>

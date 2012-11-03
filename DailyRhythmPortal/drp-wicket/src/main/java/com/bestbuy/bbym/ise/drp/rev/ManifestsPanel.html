@@ -1,0 +1,77 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<script type="text/javascript" src="js/validation.js"></script>
+	<script type="text/javascript">
+		function setupManifestsTable() {
+			if ($('#manifestsTable').length == 0) {
+				return;
+			}
+			removeColumnSorting('#manifestsTable', 5);
+			applyRowHighlighting('#manifestsTable');
+			fixTableNoRecords('#manifestsTable', 'No Records Found');
+			fixTableBorders('#manifestsTable');
+		}
+	</script> 
+</wicket:head>
+
+
+<body>
+	<wicket:panel>
+		<div class="table-wrap">
+			<form wicket:id="manifestsForm" autocomplete="off">
+				<ul id="manifestsFilter" class="table-nav">
+					<li><a wicket:id="manifestsRecentFilterLink"><wicket:message
+								key="manifestsPanel.recentFilter.label" /> </a>
+						<div class="inputs">
+							<input type="button" wicket:id="manifestsRecentFilterButton"
+								class="button" />
+						</div>
+					</li>
+					<li><a wicket:id="manifestsDateRangeFilterLink"><wicket:message
+								key="manifestsPanel.dateRangeFilter.label" /> </a>
+						<div class="inputs">
+							<input type="text" wicket:id="manifestsStartDateFilter"
+								maxlength="8" onblur="checkdate(this)" size="10" /> <span class="divider">to</span> <input
+								type="text" wicket:id="manifestsEndDateFilter" maxlength="8" onblur="checkdate(this)"
+								size="10"  /> <input class="button"
+								wicket:id="manifestsDateRangeFilterButton" type="button" />
+						</div>
+					</li>
+					<li><a wicket:id="manifestsSerialNumFilterLink"><wicket:message
+								key="manifestsPanel.serialNumFilter.label" /> </a>
+						<div class="inputs">
+							<input type="text" wicket:id="manifestsSerialNumFilter"
+								maxlength="20" size="18" /> <input type="button"
+								wicket:id="manifestsSerialNumFilterButton"   onkeypress="submitOnEnter(this, event);" class="button" />
+						</div>
+					</li>
+					<li><a wicket:id="manifestsItemTagFilterLink"><wicket:message
+								key="manifestsPanel.itemTagFilter.label" /> </a>
+						<div class="inputs">
+							<input type="text" wicket:id="manifestsItemTagFilter"
+								maxlength="20" size="18" /> <input type="button"
+								wicket:id="manifestsItemTagFilterButton" class="button" />
+						</div>
+					</li>
+					<li><a wicket:id="manifestsUpsTrackingNumFilterLink"><wicket:message
+								key="manifestsPanel.upsTrackingNumFilter.label" /> </a>
+						<div class="inputs">
+							<input type="text" wicket:id="manifestsUpsTrackingNumFilter"
+								maxlength="22" size="20" /> <input type="button"
+								wicket:id="manifestsUpsTrackingNumFilterButton" class="button" />
+						</div>
+					</li>
+				</ul>
+			</form>
+			<table class="default-table shipping" wicket:id="manifestsTable">
+			</table>
+
+			<div wicket:id="noManifestsData">
+				<p class="no-results" wicket:id="noManifestsDataLabel"></p>
+			</div>
+		</div>
+	</wicket:panel>
+</body>
+</html>

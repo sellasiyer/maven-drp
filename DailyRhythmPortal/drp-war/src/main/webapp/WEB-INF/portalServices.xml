@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd      
+        http://www.springframework.org/schema/context        
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security-3.0.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop 
+     	http://www.springframework.org/schema/aop/spring-aop.xsd"
+	default-autowire="byName">
+
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/InStoreEfficiency" />
+	</bean>
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="dataSource"></constructor-arg>
+	</bean>
+
+	<bean id="namedJdbcTemplate"
+		class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+		<constructor-arg ref="dataSource"></constructor-arg>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="serviceExceptionAspect" class="com.bestbuy.bbym.ise.drp.aop.ServiceExceptionAspect" />
+	<aop:config proxy-target-class="true">
+		<aop:aspect id="daoMethodExecutionAspect" ref="serviceExceptionAspect">
+			<aop:pointcut id="testBeanExecution"
+				expression="execution(* com.bestbuy.bbym.ise.drp.service..*.*(..))" />
+			<aop:around method="log" pointcut-ref="testBeanExecution"></aop:around>
+		</aop:aspect>
+	</aop:config>
+
+	<bean id="profiler" class="com.bestbuy.bbym.ise.drp.aop.TimeProfiler">
+		<property name="order" value="1" />
+	</bean>
+	<aop:config>
+		<aop:aspect id="profilingAspect" ref="profiler">
+			<aop:pointcut id="serviceMethodWithReturnValue"
+				expression="execution(* com.bestbuy.bbym.ise.drp.dao..*.*(..))" />
+			<aop:around method="profile" pointcut-ref="serviceMethodWithReturnValue" />
+		</aop:aspect>
+	</aop:config>
+
+	<tx:annotation-driven transaction-manager="transactionManager"
+		order="200" proxy-target-class="true" />
+
+	<context:component-scan base-package="com.bestbuy.bbym.ise.workflow"/>
+	<context:component-scan base-package="com.bestbuy.bbym.ise.drp.rest.service"/>
+	<context:component-scan base-package="com.bestbuy.bbym.ise.drp"/>
+
+	<bean id="workflowDao" class="com.bestbuy.bbym.ise.workflow.rules.WorkflowDaoImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="schemaName" value="BST_ISE_SCH01" />
+	</bean>
+
+	<bean id="workflowService" class="com.bestbuy.bbym.ise.drp.workflow.DroolsWorkflowService">
+		<constructor-arg value="triage.drl" />
+		<constructor-arg ref="workflowDao" />
+	</bean>
+
+
+
+
+	<bean id="requestMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="contextPath" value="com.bestbuy.bbym.ise.iseclientforcaprequest" />
+		<property name="marshallerProperties">
+			<map>
+				<entry key="com.sun.xml.bind.namespacePrefixMapper" value-ref="namespacePrefixMapper" />
+			</map>
+		</property>
+	</bean>
+	<bean id="responseUnMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="contextPath" value="com.bestbuy.bbym.ise.iseclientforcapresponse" />
+
+	</bean>
+	<bean id="tokenCodeRequestMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="contextPath" value="com.bestbuy.bbym.ise.iseclient.cap.rsa.request" />
+		<property name="marshallerProperties">
+			<map>
+				<entry key="com.sun.xml.bind.namespacePrefixMapper" value-ref="tokenCodeNamespacePrefixMapper" />
+			</map>
+		</property>
+	</bean>
+	<bean id="tokenCodeResponseUnMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="contextPath" value="com.bestbuy.bbym.ise.iseclient.cap.rsa.response" />
+
+	</bean>
+	<bean id="agentRequestMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="contextPath" value="com.bestbuy.bbym.ise.iseclient.cap.agent.request" />
+	</bean>
+	<bean id="agentResponseUnMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="contextPath" value="com.bestbuy.bbym.ise.iseclient.cap.agent.response" />
+
+	</bean>
+
+
+	<bean id="namespacePrefixMapper"
+		class="com.bestbuy.bbym.ise.drp.sao.CapSaoImpl$MyNamespacePrefixMapper">
+		<constructor-arg
+			value="http://bestbuy.com/bbym/beast/cap/request/postpaid/accountValidation" />
+	</bean>
+	
+	<bean id="tokenCodeNamespacePrefixMapper"
+		class="com.bestbuy.bbym.ise.drp.sao.CapSaoImpl$MyNamespacePrefixMapper">
+		<constructor-arg
+			value="http://bestbuy.com/bbym/beast/cap/response/postpaid/rsaToken" />
+	</bean>
+	
+
+	<!-- E-Mail Service -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="mailhost.bestbuy.com" />
+	</bean>
+
+	<!-- The below two blocks are for RestFull Services Security Configuration -->
+	<security:http create-session="never" auto-config="false"
+		realm="Restricted Service">
+		<security:intercept-url pattern="/beast/**"
+			access="ROLE_REST" />
+		<security:http-basic />
+		<security:logout />
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:user-service>
+				<security:user name="beastportal" password="m0bi13i53v3rythin8"
+					authorities="ROLE_REST" />
+			</security:user-service>
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+
+	
+
+<!--  Error Handler for RestTempalte -->
+	<bean id="restErrorHandler" class="com.bestbuy.bbym.ise.drp.sao.RestErrorHandler" />
+	<!--  Log Interceptor for RestTempalte -->
+	<bean id="restLogInterceptor" class="com.bestbuy.bbym.ise.drp.sao.RestMessageInterceptor" />
+
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate"
+		 p:interceptors-ref="restLogInterceptor" p:errorHandler-ref="restErrorHandler">
+		<constructor-arg>
+			<bean
+				class="org.springframework.http.client.SimpleClientHttpRequestFactory"
+				p:connectTimeout="10000" p:readTimeout="10000" />
+		</constructor-arg>
+	</bean>
+
+</beans>

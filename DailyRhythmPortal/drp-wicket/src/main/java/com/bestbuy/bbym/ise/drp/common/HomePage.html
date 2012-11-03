@@ -1,0 +1,69 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>Home</title>
+	<script type="text/javascript" src="js/jquery.tinyscrollbar.min.js"></script>
+	<script type="text/javascript" src="js/webticker_lib.js"></script>
+	<script language="JavaScript">
+		$(document).ready(function() {
+			$('.newscontent_section').tinyscrollbar();
+		});
+		var TICKER_ID = "beastTicker";
+		var TICKER_RIGHTTOLEFT = false;
+		var TICKER_SPEED = 1;
+		var TICKER_PAUSED = false;
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<div class="pgtitle">
+			<h1>BEAST Portal News</h1>
+		</div>
+
+		<div class="pgcontent">
+			<div class="pgcontent_white">
+				<div class="page-tr"></div>
+				<div class="page-tl"></div>
+				<div class="page-br"></div>
+				<div class="page-bl"></div>
+
+				<div id="beastTickerLabel">
+					<wicket:message key="beastTicker.label" />
+					<div wicket:id="beastTicker"
+						style="overflow: hidden; width: 900px;"></div>
+				</div>
+
+				<div class="newstitle"></div>
+
+				<div class="newsBoxes">
+					<ul>
+						<li wicket:id="newsCategoryListView">
+							<div class="newscontent_bottom"></div>
+							<div class="newscontent_title">
+								<h3 wicket:id="title"></h3>
+								<span wicket:id="date"></span>
+							</div>
+							<div class="newscontent_section">
+
+								<div class="scrollbar">
+									<div class="track">
+										<div class="thumb">
+											<div class="end"></div>
+										</div>
+									</div>
+								</div>
+
+								<div class="newscontent_parent">
+									<div class="newscontent" wicket:id="news"></div>
+								</div>
+							</div></li>
+					</ul>
+				</div>
+				<br clear="all" />
+			</div>
+		</div>
+	</wicket:extend>
+</body>
+</html>

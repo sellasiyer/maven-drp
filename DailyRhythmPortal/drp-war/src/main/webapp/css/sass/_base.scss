@@ -1,0 +1,26 @@
+@import "compass";
+@import "compass/css3/pie";
+@import "compass/css3";
+@import "mixins";
+@import "warning";
+
+//don't bother generating hacks for earlier versions of firefox or IE
+$legacy-support-for-mozilla: false;
+$legacy-support-for-ie6: false;
+$legacy-support-for-ie7: false;
+
+//and don't bother prefixing for browsers we don't use
+$experimental-support-for-mozilla: false;
+$experimental-support-for-webkit: true;
+$support-for-original-webkit-gradients: false;
+$experimental-support-for-opera: false;
+$experimental-support-for-microsoft: false;
+
+//location of the actual .htc file, relative to the HTML page
+$pie-behavior: url("/drp-war/pie/PIE.htc");
+
+$pie-base-class: pie-element;
+
+.pie-element {
+  @include pie-element(relative);
+}

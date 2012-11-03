@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<EditCustomerForm xmlns:atom="http://www.w3.org/2005/Atom" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance">
+    <atom:title>Edit Customer Information</atom:title>
+    <atom:link href="http://hydra-pt:8080/store-10/carts/19396/customer" rel="self" title="Self"/>
+    <atom:link href="http://hydra-pt:8080/store-10/carts/19396/customer" rel="http://hydra-pt:8080/rels/update" title="update"/>
+    <atom:link href="http://hydra-pt:8080/store-10/carts/19396/customer-answers" rel="next" title="Next"/>
+    <atom:link href="http://hydra-pt:8080/store-10/carts/19396/items/20814/product" rel="next" title="Next"/>
+    <atom:link href="http://hydra-pt:8080/store-10?CartId=19396" rel="http://hydra-pt:8080/rels/home" title="Return to Home Page"/>
+    <atom:link href="http://hydra-pt:8080/store-10/help?CartId=19396" rel="http://hydra-pt:8080/rels/help" title="Overview"/>
+    <atom:link href="http://hydra-pt:8080/store-10/help/faq?CartId=19396" rel="http://hydra-pt:8080/rels/help" title="FAQs"/>
+    <atom:link href="http://hydra-pt:8080/store-10/help/about?CartId=19396" rel="http://hydra-pt:8080/rels/help" title="About"/>
+    <atom:link href="http://hydra-pt:8080/store-10/devices?CartId=19396" rel="http://hydra-pt:8080/rels/help" title="Biometric Device Validation"/>
+    <atom:link href="http://hydra-pt:8080/store-10/carts/19396?BypassTradeInPlus=False" rel="http://hydra-pt:8080/rels/cart" title="View Cart"/>
+    <atom:link href="http://hydra-pt:8080/store-10/carts/19396/identification?BypassTradeInPlus=False" rel="http://hydra-pt:8080/rels/save-cart" title="Save Cart"/>
+    <atom:link href="http://hydra-pt:8080/store-10/catalog?Page=1&amp;PageSize=25" rel="http://hydra-pt:8080/rels/cancel-cart" title="Cancel Transaction"/>
+    <atom:link href="http://hydra-pt:8080/store-10/carts/search/form" rel="http://hydra-pt:8080/rels/cart-search" title="Search Carts"/>
+    <atom:link href="http://hydra-pt:8080/store-10/feedback/new" rel="http://hydra-pt:8080/rels/feedback" title="Provide Feedback"/>
+    <atom:link href="https://buyback-pl.bestbuytradein.com/bbPlanInfo.cfm?redirect=false" rel="external-buyback" title="Start a New Buy Back"/>
+    <atom:link href="https://buyback-pl.bestbuytradein.com/admin.cfm?redirect=false" rel="external-admin" title="Open Trade In Administration"/>
+    <atom:link href="https://buyback-pl.bestbuytradein.com/manifest.cfm?redirect=false" rel="external-shipping-center" title="Open Shipping Center"/>
+    <atom:link href="http://hydra-pt:8080/metadata/EditCustomerForm" rel="http://hydra-pt:8080/rels/metadata" title="metadata"/>
+    <FirstName xs:nil="true"/>
+    <MiddleName xs:nil="true"/>
+    <LastName xs:nil="true"/>
+    <NameSuffix xs:nil="true"/>
+    <EmailAddress xs:nil="true"/>
+    <PhoneNumber xs:nil="true"/>
+    <AddressLine1 xs:nil="true"/>
+    <AddressLine2 xs:nil="true"/>
+    <City xs:nil="true"/>
+    <State xs:nil="true"/>
+    <PostalCode xs:nil="true"/>
+    <EnterpriseCustomerId xs:nil="true"/>
+</EditCustomerForm>

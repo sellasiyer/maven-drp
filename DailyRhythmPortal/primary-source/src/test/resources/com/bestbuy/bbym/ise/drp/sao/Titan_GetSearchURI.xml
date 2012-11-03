@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CatalogResource xmlns:ns2="http://www.w3.org/2005/Atom">
+    <ns2:title>Browse Trade-In Items</ns2:title>
+    <ns2:link title="Self" rel="self" href="http://hydra-pt:8080/store-271/catalog?Page=1&amp;PageSize=25"/>
+    <ns2:link title="search-catalog" rel="http://hydra-pt:8080/rels/search-catalog" href="http://hydra-pt:8080/store-271/catalog/search"/>
+    <ns2:link title="Search" rel="search" href="http://hydra-pt:8080/store-271/catalog/search"/>
+    <ns2:link title="Return to Home Page" rel="http://hydra-pt:8080/rels/home" href="http://hydra-pt:8080/store-271"/>
+    <ns2:link title="Overview" rel="http://hydra-pt:8080/rels/help" href="http://hydra-pt:8080/store-271/help"/>
+    <ns2:link title="FAQs" rel="http://hydra-pt:8080/rels/help" href="http://hydra-pt:8080/store-271/help/faq"/>
+    <ns2:link title="About" rel="http://hydra-pt:8080/rels/help" href="http://hydra-pt:8080/store-271/help/about"/>
+    <ns2:link title="Biometric Device Validation" rel="http://hydra-pt:8080/rels/help" href="http://hydra-pt:8080/store-271/devices"/>
+    <ns2:link title="Search Carts" rel="http://hydra-pt:8080/rels/cart-search" href="http://hydra-pt:8080/store-271/carts/search/form"/>
+    <ns2:link title="Provide Feedback" rel="http://hydra-pt:8080/rels/feedback" href="http://hydra-pt:8080/store-271/feedback/new"/>
+    <ns2:link title="Start a New Buy Back" rel="external-buyback" href="https://buyback-pl.bestbuytradein.com/bbPlanInfo.cfm?redirect=false"/>
+    <ns2:link title="Open Trade In Administration" rel="external-admin" href="https://buyback-pl.bestbuytradein.com/admin.cfm?redirect=false"/>
+    <ns2:link title="Open Shipping Center" rel="external-shipping-center" href="https://buyback-pl.bestbuytradein.com/manifest.cfm?redirect=false"/>
+    <ns2:link title="metadata" rel="http://hydra-pt:8080/rels/metadata" href="http://hydra-pt:8080/metadata/CatalogResource"/>
+    <ns2:link title="1" rel="http://hydra-pt:8080/rels/page" href="http://hydra-pt:8080/store-271/catalog?page=1&amp;pagesize=25"/>
+    <CurrentPage>1</CurrentPage>
+    <PageSize>25</PageSize>
+    <PageCount>1</PageCount>
+    <ItemCount>23</ItemCount>
+    <CurrentPageFirstItem>1</CurrentPageFirstItem>
+    <CurrentPageLastItem>23</CurrentPageLastItem>
+    <StoreId>271</StoreId>
+    <CartId xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+    <Items>
+        <CatalogItemResource>
+            <ns2:title>All-In-One Computers</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/all-in-one-computers?Page=1&amp;PageSize=25"/>
+            <ns2:link title="All-In-One Computers" rel="image" href="http://hydra-pt:8080/Content/images/categories/all-in-one-computers.png"/>
+            <Name>All-In-One Computers</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>all-in-one-computers</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple Desktop</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/apple-desktop?Page=1&amp;PageSize=25"/>
+            <ns2:link title="Apple Desktop" rel="image" href="http://hydra-pt:8080/Content/images/categories/apple-desktop.png"/>
+            <Name>Apple Desktop</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>apple-desktop</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple iPods</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/apple-ipods?Page=1&amp;PageSize=25"/>
+            <ns2:link title="Apple iPods" rel="image" href="http://hydra-pt:8080/Content/images/categories/apple-ipods.png"/>
+            <Name>Apple iPods</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>apple-ipods</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple Notebook</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/apple-notebook?Page=1&amp;PageSize=25"/>
+            <ns2:link title="Apple Notebook" rel="image" href="http://hydra-pt:8080/Content/images/categories/apple-notebook.png"/>
+            <Name>Apple Notebook</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>apple-notebook</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Camcorders</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/camcorders?Page=1&amp;PageSize=25"/>
+            <ns2:link title="Camcorders" rel="image" href="http://hydra-pt:8080/Content/images/categories/camcorders.png"/>
+            <Name>Camcorders</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>camcorders</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Desktops</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/desktops?Page=1&amp;PageSize=25"/>
+            <ns2:link title="Desktops" rel="image" href="http://hydra-pt:8080/Content/images/categories/desktops.png"/>
+            <Name>Desktops</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>desktops</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>DVD/Blu-ray</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/dvd-and-blu-ray?Page=1&amp;PageSize=25"/>
+            <ns2:link title="DVD/Blu-ray" rel="image" href="http://hydra-pt:8080/Content/images/categories/dvd-and-blu-ray.png"/>
+            <Name>DVD/Blu-ray</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>dvd-and-blu-ray</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>e-Readers</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/e-readers?Page=1&amp;PageSize=25"/>
+            <ns2:link title="e-Readers" rel="image" href="http://hydra-pt:8080/Content/images/categories/e-readers.png"/>
+            <Name>e-Readers</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>e-readers</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Game System Consoles</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/game-system-consoles?Page=1&amp;PageSize=25"/>
+            <ns2:link title="Game System Consoles" rel="image" href="http://hydra-pt:8080/Content/images/categories/game-system-consoles.png"/>
+            <Name>Game System Consoles</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>game-system-consoles</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>GPS Receivers</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/gps-receivers?Page=1&amp;PageSize=25"/>
+            <ns2:link title="GPS Receivers" rel="image" href="http://hydra-pt:8080/Content/images/categories/gps-receivers.png"/>
+            <Name>GPS Receivers</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>gps-receivers</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Handheld Game Consoles</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/nintendo-ds?Page=1&amp;PageSize=25"/>
+            <ns2:link title="Handheld Game Consoles" rel="image" href="http://hydra-pt:8080/Content/images/categories/nintendo-ds.png"/>
+            <Name>Handheld Game Consoles</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>nintendo-ds</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Headphones</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/headphones?Page=1&amp;PageSize=25"/>
+            <ns2:link title="Headphones" rel="image" href="http://hydra-pt:8080/Content/images/categories/headphones.png"/>
+            <Name>Headphones</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>headphones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Mobile Phones</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/mobile-phones?Page=1&amp;PageSize=25"/>
+            <ns2:link title="Mobile Phones" rel="image" href="http://hydra-pt:8080/Content/images/categories/mobile-phones.png"/>
+            <Name>Mobile Phones</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Monitors</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/monitors?Page=1&amp;PageSize=25"/>
+            <ns2:link title="Monitors" rel="image" href="http://hydra-pt:8080/Content/images/categories/monitors.png"/>
+            <Name>Monitors</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>monitors</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Multimedia Projectors</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/multimedia-projectors?Page=1&amp;PageSize=25"/>
+            <ns2:link title="Multimedia Projectors" rel="image" href="http://hydra-pt:8080/Content/images/categories/multimedia-projectors.png"/>
+            <Name>Multimedia Projectors</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>multimedia-projectors</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Networking</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/networking?Page=1&amp;PageSize=25"/>
+            <ns2:link title="Networking" rel="image" href="http://hydra-pt:8080/Content/images/categories/networking.png"/>
+            <Name>Networking</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>networking</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>PC Notebook</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/pc-notebook?Page=1&amp;PageSize=25"/>
+            <ns2:link title="PC Notebook" rel="image" href="http://hydra-pt:8080/Content/images/categories/pc-notebook.png"/>
+            <Name>PC Notebook</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>pc-notebook</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Point &amp; Shoot</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/point-shoot-digital-cameras?Page=1&amp;PageSize=25"/>
+            <ns2:link title="Point &amp; Shoot" rel="image" href="http://hydra-pt:8080/Content/images/categories/point-shoot-digital-cameras.png"/>
+            <Name>Point &amp; Shoot</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>point-shoot-digital-cameras</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Printers</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/printers?Page=1&amp;PageSize=25"/>
+            <ns2:link title="Printers" rel="image" href="http://hydra-pt:8080/Content/images/categories/printers.png"/>
+            <Name>Printers</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>printers</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>SLR Cameras</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/cameras?Page=1&amp;PageSize=25"/>
+            <ns2:link title="SLR Cameras" rel="image" href="http://hydra-pt:8080/Content/images/categories/cameras.png"/>
+            <Name>SLR Cameras</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>cameras</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Tablets</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/tablets?Page=1&amp;PageSize=25"/>
+            <ns2:link title="Tablets" rel="image" href="http://hydra-pt:8080/Content/images/categories/tablets.png"/>
+            <Name>Tablets</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>tablets</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Televisions</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/televisions?Page=1&amp;PageSize=25"/>
+            <ns2:link title="Televisions" rel="image" href="http://hydra-pt:8080/Content/images/categories/televisions.png"/>
+            <Name>Televisions</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>televisions</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Video Games</ns2:title>
+            <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/video-games?Page=1&amp;PageSize=25"/>
+            <ns2:link title="Video Games" rel="image" href="http://hydra-pt:8080/Content/images/categories/video-games.png"/>
+            <Name>Video Games</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>video-games</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+    </Items>
+    <RecyclingItem>
+        <ns2:title>Recycle Your Electronics</ns2:title>
+        <ns2:link title="Browse" rel="self" href="http://hydra-pt:8080/store-271/recycling?Page=1&amp;PageSize=100"/>
+        <ns2:link title="Recycle Your Electronics" rel="image" href="http://hydra-pt:8080/Content/images/categories/recycling.png"/>
+        <Name>Recycle Your Electronics</Name>
+        <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        <Slug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+    </RecyclingItem>
+</CatalogResource>

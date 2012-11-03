@@ -1,0 +1,260 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<title>Loaner Phone Agreement</title>
+
+	<style type="text/css">
+body {
+	width: 700px;
+	max-width: 700px;
+	font-family: Arial;
+}
+
+h1 {
+	font-size: 20px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+h2 {
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #000;
+	/* background-color: #888; hack for printing! haha so trixy*/
+	line-height: 0;
+	border: 10px solid #ddd;
+	text-align: center;
+	clear: both;
+}
+
+.footer {
+	position: fixed;
+	bottom: 0;
+	margin: 10px;
+}
+
+dl.column {
+	float: left;
+	padding-right: 5px;
+	width: 49%;
+}
+
+/* titles of data fields. */
+.column dt {
+	text-align: left;
+	display: inline-block;
+	width: 21%;
+	font-size: 11px;
+	zoom: 1;
+}
+
+/* values of data fields. */
+.column dd {
+	text-align: left;
+	padding-right: 5px;
+	font-weight: bold;
+	display: inline-block;
+	width: 57%;
+	font-size: 13px;
+	zoom: 1;
+}
+
+div.column {
+	width: 49%;
+	display: inline-block;
+}
+
+div.masthead {
+	height: 50px;
+}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
+p {
+	margin-bottom: 14px;
+	font-size: 12px;
+}
+
+div.date p {
+	margin-left: 125px;
+}
+
+.custNameLabelInParagraph {
+	text-decoration: underline;
+	font-weight: bold;
+	font-size: 13px;
+}
+</style>
+</wicket:head>
+
+<body>
+	<div class="masthead">
+		<!-- <img src="../images/agreement_masthead.bmp" />  -->  
+		<div class="left">
+			<h1>BEST BUY Mobile</h1>
+		</div>
+		<div class="right">
+			<h1>
+				<wicket:message key="loanerPhoneCheckoutPrint.masthead" />
+			</h1>
+		</div>
+	</div>
+	<div>
+		<h2>
+			<span><wicket:message key="loanerPhoneCheckoutPrint.headerCustinfo" /> </span>
+		</h2>
+		<dl class="column">
+			<dt>
+				<wicket:message key="loanerPhoneCheckoutPrint.custinfo.name" />
+			</dt>
+			<dd wicket:id="custNameLabel" style="white-space: nowrap; overflow: hidden;"></dd>
+			<dt>
+				<wicket:message key="loanerPhoneCheckoutPrint.custinfo.email" />
+			</dt>
+			<dd wicket:id="custEmailLabel"></dd>
+			<br />
+			<br />
+			<dt>
+				<wicket:message key="loanerPhoneCheckoutPrint.custinfo.serviceOrder" />
+			</dt>
+			<dd wicket:id="serviceOrderLabel"></dd>
+			<dt>
+				<wicket:message key="loanerPhoneCheckoutPrint.custinfo.fulfillment" />
+			</dt>
+			<dd wicket:id="fulfillmentLabel"></dd>
+		</dl>
+
+		<dl class="column">
+			<dt>
+				<wicket:message key="loanerPhoneCheckoutPrint.custinfo.custPhone" />
+			</dt>
+			<dd wicket:id="custPhoneLabel"></dd>
+			<br />
+			<br />
+			<br />
+			<br />
+			<dt class="gsp_dt">
+				<wicket:message key="loanerPhoneCheckoutPrint.custinfo.GSPno" />
+			</dt>
+			<dd wicket:id="gspNumLabel"></dd>
+		</dl>
+	</div>
+
+	<div>
+		<h2>
+			<span><wicket:message key="loanerPhoneCheckoutPrint.headerPhninfo" /> </span>
+		</h2>
+		<dl class="column">
+			<dt>
+				<wicket:message key="loanerPhoneCheckoutPrint.phninfo.carrieros" />
+			</dt>
+			<dd wicket:id="carrierosLabel"></dd>
+			<dt>
+				<wicket:message key="loanerPhoneCheckoutPrint.phninfo.makemodel" />
+			</dt>
+			<dd wicket:id="makemodelLabel"></dd>
+			<dt>
+				<wicket:message key="loanerPhoneCheckoutPrint.phninfo.serial" />
+			</dt>
+			<dd wicket:id="serialLabel"></dd>
+			<dt>
+				<wicket:message key="loanerPhoneCheckoutPrint.phninfo.deposit" />
+			</dt>
+			<dd wicket:id="depositLabel"></dd>
+		</dl>
+		<dl class="column">
+			<dt>
+				<wicket:message key="loanerPhoneCheckoutPrint.phninfo.sku" />
+			</dt>
+			<dd wicket:id="skuLabel"></dd>
+			<dt>
+				<wicket:message key="loanerPhoneCheckoutPrint.phninfo.accessories" />
+			</dt>
+			<dd wicket:id="accessoriesLabel"></dd>
+		</dl>
+	</div>
+
+	<div>
+		<h2>
+			<span><wicket:message key="loanerPhoneCheckoutPrint.headerAgreement" /> </span>
+		</h2>
+		<p>
+			I, <span class="custNameLabelInParagraph" wicket:id="custNameLabelInParagraph"></span>, agree that the above referenced product is property
+			of Best Buy and the product must be returned in the same condition as it was when I received it.
+			I am responsible to pay for any charges due to misuse, neglect, or loss. I consent to have my
+			credit card charged for applicable charges for damages to the product or loss of the product,
+			including my failure to return the product to Best Buy.
+		</p>
+		<p>The above product is due back at the Best Buy store where I picked it up the earlier of (1)
+			within 5 days of Best Buy's notification that my product is ready to be picked up, or (2) within
+			45 days of the loan date. I acknowledge and agree that in the event I fail to return the product
+			within this timeframe specified, my credit card will be charged the replacement value of the
+			product.</p>
+
+		<p>I understand that I am responsible to save and copy any information I put on the above
+			product loaned to me before returning it to the Best Buy store. If I fail to save my information
+			prior to the return of the product to Best Buy, I will be charged the data transfer fee for Best
+			Buy to save and copy the data for me and/or will lose the information.</p>
+
+		<p>I AGREE THAT WHETHER OR NOT I REQUEST BACK-UP SERVICES FROM BEST BUY, NEITHER BEST BUY NOR
+			ITS AFFILIATES NOR ITS THIRD PARTY SERVICE PROVIDER SHALL BE LIABLE UNDER ANY CIRCUMSTANCES FOR
+			LOSS, DISCLOSURE, ALTERATION OR CORRUPTION OF ANY DATA, SOFTWARE, INFORMATION, FILES, VIDEOTAPES,
+			COMPACT DISKS, FLOPPY DISKS, LASER DISKS, CASSETTES, DVDS, FILM OR OTHER MEDIA.</p>
+
+		<div id="signatures">
+			<div class="column">
+				<p>
+					<!-- signature section -->
+					________________________________________________<br />
+					<wicket:message key="loanerPhoneCheckoutPrint.custsig" />
+				</p>
+				<p>
+					________________________________________________<br />
+					<wicket:message key="loanerPhoneCheckoutPrint.mansig" />
+				</p>
+
+			</div>
+			<div class="column date">
+				<p>
+					<!--  date section -->
+					________________________<br />
+					<wicket:message key="loanerPhoneCheckoutPrint.date" />
+				</p>
+				<p>
+					________________________<br />
+					<wicket:message key="loanerPhoneCheckoutPrint.date" />
+				</p>
+			</div>
+		</div>
+
+	</div>
+	<h2>
+		<span><wicket:message key="loanerPhoneCheckoutPrint.headerReturned" /> </span>
+	</h2>
+	<div>
+		<div class="column">
+			<p>
+				________________________________________________<br />
+				<wicket:message key="loanerPhoneCheckoutPrint.mansig" />
+			</p>
+
+		</div>
+		<div class="column date">
+			<p>
+				<!--  date section -->
+				________________________<br />
+				<wicket:message key="loanerPhoneCheckoutPrint.date" />
+			</p>
+		</div>
+	</div>
+
+
+
+</body>
+</html>

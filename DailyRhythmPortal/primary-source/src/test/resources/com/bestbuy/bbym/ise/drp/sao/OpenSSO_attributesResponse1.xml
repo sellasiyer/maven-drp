@@ -1,0 +1,49 @@
+<!-- Attributes response for a 'regular' user (with an a-id) and multiple roles -->
+<attributesResponse xmlns="http://opensso.idsvcs.identity.sun.com/">
+	<return xmlns="">
+		<attributes>
+			<name>telephonenumber</name>
+			<values>(612) 291-4844</values>
+		</attributes>
+		<attributes>
+			<name>bboraclelocid</name>
+			<values>900010</values>
+		</attributes>
+		<attributes>
+			<name>givenName</name>
+			<values>Neville</values>
+		</attributes>
+		<attributes>
+			<name>manager</name>
+			<values>uid=a109249,ou=People,o=bestbuy.com</values>
+		</attributes>
+		<attributes>
+			<name>bboraclehrtype</name>
+			<values>CP</values>
+		</attributes>
+		<attributes>
+			<name>sn</name>
+			<values>Herd</values>
+		</attributes>
+		<attributes>
+			<name>uid</name>
+			<values>a710915</values>
+		</attributes>
+		<attributes>
+			<name>groups</name>
+			<values>cn=beast-super user group,ou=Groups,o=bestbuy.com</values>
+			<values>cn=BEAST_CAP_MONITOR,ou=Groups,o=bestbuy.com</values>
+			<values>cn=tibcoqa,ou=Groups, o=bestbuy.com</values>
+		</attributes>
+		<roles>id=beast-front office group,ou=filteredrole,o=bestbuy.com</roles>
+		<roles>id=svcap others,ou=filteredrole,o=bestbuy.com</roles>
+		<roles>id=promo-tradeinservicecenter,ou=filteredrole,o=bestbuy.com</roles>
+		<roles>id=03lpms-role,ou=filteredrole,o=bestbuy.com</roles>
+		<roles>id=bbym_drp_manager,ou=filteredrole,o=bestbuy.com</roles>
+		<roles>id=ahrs,ou=filteredrole,o=bestbuy.com</roles>
+		<roles>id=beast-super user group,ou=filteredrole,o=bestbuy.com</roles>
+		<token>
+			<id>AQIC5wM2LY4SfcxIghyI0uUkYE6itMszB4pS66dTD/u4DG4=@AAJTMQACMDIAAlNJAAIwMw==#</id>
+		</token>
+	</return>
+</attributesResponse>

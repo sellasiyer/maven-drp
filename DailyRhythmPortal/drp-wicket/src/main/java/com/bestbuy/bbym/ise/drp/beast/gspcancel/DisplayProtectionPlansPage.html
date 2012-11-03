@@ -1,0 +1,123 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>BEAST-Portal</title>
+	<script type="text/javascript">
+		function setupGspPlansTable() {
+			$('#gspPlansContainer table tr').each(function(index) {
+				$(this).find('th:eq(0)').attr("width", "3%");
+				$(this).find('th:eq(1)').attr("width", "8%");
+				$(this).find('th:eq(2)').attr("width", "8%");
+				$(this).find('th:eq(3)').attr("width", "18%");
+				$(this).find('th:eq(4)').attr("width", "10%");
+				$(this).find('th:eq(5)').attr("width", "8%");
+				$(this).find('th:eq(6)').attr("width", "8%");
+				$(this).find('th:eq(7)').attr("width", "18%");
+				$(this).find('th:eq(8)').attr("width", "19%");
+			});
+			// Remove sorting from all columns
+			$('#gspPlansContainer table tr th').each(function(index) {
+				jSpan = $(this).find('a span');
+				$(this).find('a').replaceWith(jSpan);
+			});
+
+			// not applied correctly unless have delay
+			fixGspPlansTable();
+			setTimeout("fixGspPlansTable()", 100);
+		}
+		function fixGspPlansTable() {
+			var tableHeight = $('#gspPlansContainer table').height();
+			var maxHeight = 150;
+			if (tableHeight > maxHeight) {
+				$('#gspPlansContainer table').fixedHeaderTable({
+					height : maxHeight
+				});
+			} else {
+				$('#gspPlansContainer table').css('width', '100%');
+			}
+		}
+		var nextFunction = function() {
+			wicketBehavior('next');
+		};
+		var closeFunction = function() {
+			$('#closeButton').click();
+		};
+		var newSearchFunction = function() {
+			$('#newSearchButton').click();
+		};
+		hotKeysConfig = {
+			f2 : {
+				handler : nextFunction,
+				buttonSelector : '#nextButton'
+			},
+			f3 : {
+				handler : closeFunction,
+				buttonSelector : '#closeButton'
+			},
+			f1 : {
+				handler : newSearchFunction,
+				buttonSelector : '#newSearchButton'
+			}
+		};
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<h1>
+			<wicket:message key="gspCancelDisplayGspPlans.main.label" />
+		</h1>
+
+		<div wicket:id="feedback" class="feedbackmsg"></div>
+
+		<div class="column first">
+			<p>
+				<strong><wicket:message
+						key="gspCancelDisplayGspPlans.customerName.label" /> </strong><label
+					wicket:id="customerNameLabel"></label>
+			</p>
+			<p>
+				<strong><wicket:message
+						key="gspCancelDisplayGspPlans.customerAddress.label" /> </strong><label
+					wicket:id="customerAddressLabel"></label>
+			</p>
+		</div>
+		<div class="column">
+			<p>
+				<strong><wicket:message
+						key="gspCancelDisplayGspPlans.customerEmail.label" /> </strong><label
+					wicket:id="customerEmailLabel"></label>
+			</p>
+		</div>
+
+		<br class="clearer" />
+
+		<div wicket:id="gspPlansContainer">
+			<table wicket:id="gspPlansTable" class="fixed-header fht-table">
+			</table>
+		</div>
+
+		<div wicket:id="noGspPlansContainer">
+			<p class="error">
+				<label wicket:id="noGspPlansLabel"></label>
+			</p>
+		</div>
+
+		<br />
+
+		<div wicket:id="verificationContainer">
+			<p class="loose">
+				<input type="checkbox" wicket:id="verificationCheckbox"
+					id="verificationCheckbox" class="required" /><label
+					for="verificationCheckbox"></label> <strong><label
+					wicket:id="verificationLabel"></label> </strong>
+			</p>
+			<p class="note">
+				<wicket:message
+					key="gspCancelDisplayGspPlansForm.verificationNote.label" />
+			</p>
+		</div>
+	</wicket:extend>
+</body>
+</html>

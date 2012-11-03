@@ -1,0 +1,112 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<title>Promotions Lookup</title>
+	<script type="text/javascript" src="js/prefill.js"></script>
+	<script type="text/javascript" src="js/search-nav.js"></script>
+		    	    	   
+	<script type="text/javascript">
+	var wicketBehavior;
+		function setupSearchCustomersTable() { 
+			$('#searchCustomersContainer table tr').each(
+					function(index) {
+						$(this).find('th:eq(0)').attr("width", "120");
+						$(this).find('td:eq(1)').addClass("wrap");						
+						$(this).find('th:eq(2)').attr("width", "50");
+						$(this).find('th:eq(3)').attr("width", "80");
+						$(this).find('th:eq(4)').attr("width", "100");    
+						$(this).find('th:eq(5)').addClass("wrap");
+						$(this).find('td:last-child').addClass("last");
+					});
+			$('#searchCustomersContainer tr:last-child').addClass("last");
+		}
+		   
+		function setupSearchPromotionsTable() { 
+			$('#searchPromotionsContainer table tr').each(
+					function(index) {
+						$(this).find('th:eq(0)').attr("width", "100");
+						$(this).find('td:eq(1)').addClass("wrap"); 
+						$(this).find('th:eq(2)').attr("width", "44");
+						$(this).find('th:eq(3)').attr("width", "105");
+						$(this).find('th:eq(4)').attr("width", "85");
+						$(this).find('th:last-child').addClass("last")
+						$(this).find('td:last-child').addClass("last");
+					});
+			$('#searchPromotionsContainer tr:last-child').addClass("last");  
+		}
+		
+		function showCustomerPromotionSearchLoading(enabled) {
+			if (enabled) {
+				$('#loading').show();
+				$('#searchCustomersContainer').hide();
+				$('#searchPromotionsContainer').hide();
+				$('#promotionsLookupFilter input.button').attr('disabled', true);
+			} else {
+				$('#loading').hide();
+				$('#searchCustomersContainer').show();
+				$('#searchPromotionsContainer').show();
+				$('#promotionsLookupFilter input.button').removeAttr('disabled');
+			}
+		}
+		
+		function loadData() {
+			setTimeout("wicketBehavior('load')", 50);
+		}
+		
+		function selectSearchPromotionsNavFilter(filter) {
+			$('#promotionsLookupFilter li.open').each(function(index) {
+				$(this).removeClass('open');
+			});
+			if (filter && filter == 'Customer') {
+				$('#promotionsLookupFilter li:eq(0)').addClass('open');
+			} else if (filter && filter == 'PromoCode') {
+				$('#promotionsLookupFilter li:eq(1)').addClass('open');
+			} 
+		}
+	</script>
+</wicket:head>
+<body>
+	<wicket:extend>
+		<div class="page-header">
+			<h1>Promotions Lookup</h1>
+		</div>
+		<div wicket:id="promotionLookupFeedback" class="required"></div>
+		
+		<div class="table-wrap" style="margin: 15px;">
+			<form wicket:id="promotionsLookupForm" autocomplete="off">
+				<ul class="table-nav" id="promotionsLookupFilter">
+					<li  class="open"><a wicket:id="customerSearchLink"><wicket:message
+								key="promotionsLookupForm.customerSearch" /> </a>
+						<div class="inputs">
+							<input wicket:id="phoneNumberSearch" type="text" maxlength="10" class="prefill-hint" />
+							<input wicket:id="emailSearch" type="text" maxlength="50" class="prefill-hint" />
+							<input class="button" wicket:id="customerSearchButton" type="button" /> 
+						</div></li>
+					<li><a wicket:id="promotionSearchLink"><wicket:message
+								key="promotionsLookupForm.promotionSearch" /> </a>
+						<div class="inputs">
+							<input wicket:id="promoCodeSearch" type="text" maxlength="30" class="prefill-hint" />
+							<input class="button" wicket:id="promotionSearchButton"
+								type="button" />
+						</div></li>
+				</ul>
+			</form>
+			
+			<div wicket:id="searchCustomersContainer">
+				<table class="default-table" wicket:id="searchCustomersTable">
+				</table>
+			</div>
+			
+			<div wicket:id="searchPromotionsContainer">
+				<table class="default-table" wicket:id="searchPromotionsTable">
+				</table>
+			</div>
+		</div>
+		
+		<div id="loading" class="loading-spinner-big">
+			<wicket:message key="promotionsLookupForm.loading.label" />
+		</div>
+	</wicket:extend>
+
+</body>
+</html>

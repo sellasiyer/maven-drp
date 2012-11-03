@@ -1,0 +1,47 @@
+<WL5G3N0:definitions name="RZValidateMember" targetNamespace="http://webservices.bestbuy.com/rzServices/service" xmlns="" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="http://webservices.bestbuy.com/rzServices/schema/RZValidateMemberSchema" xmlns:WL5G3N2="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:WL5G3N3="http://webservices.bestbuy.com/rzServices/service" xmlns:WL5G3N4="http://schemas.xmlsoap.org/wsdl/soap/">
+  <WL5G3N0:types>
+    <xsd:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:s0="http://webservices.bestbuy.com/rzServices/schema/RZValidateMemberSchema" xmlns:s1="http://webservices.bestbuy.com/rzServices/service" xmlns:s2="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:saml="urn:oasis:names:tc:SAML:1.0:assertion" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://webservices.bestbuy.com/rzServices/schema/RZValidateMemberSchema" schemaLocation="../RWZ_Points/RWZPointsInternalSchema/ValidateRZMember.xsd"/>
+    </xsd:schema>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:s0="http://webservices.bestbuy.com/rzServices/schema/RZValidateMemberSchema" xmlns:s1="http://webservices.bestbuy.com/rzServices/service" xmlns:s2="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:saml="urn:oasis:names:tc:SAML:1.0:assertion" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="Security" type="wsse:Security"/>
+      <xsd:complexType name="Security">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="Base64Assertion" type="xsd:string"/>
+          <xsd:any maxOccurs="unbounded" minOccurs="0" processContents="lax"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </WL5G3N0:types>
+  <WL5G3N0:message name="RZValidateMemberRequest">
+    <WL5G3N0:part element="WL5G3N1:RZValidateMemberRequest" name="validateMemberRequest"/>
+    <WL5G3N0:part element="WL5G3N2:Security" name="security"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="RZValidateMemberResponse">
+    <WL5G3N0:part element="WL5G3N1:RZValidateMemberResponse" name="validateMemberResponse"/>
+  </WL5G3N0:message>
+  <WL5G3N0:portType name="ValidateRZMember">
+    <WL5G3N0:operation name="validateMember">
+      <WL5G3N0:input message="WL5G3N3:RZValidateMemberRequest" name="validateMemberRequest"/>
+      <WL5G3N0:output message="WL5G3N3:RZValidateMemberResponse" name="validateMemberResponse"/>
+    </WL5G3N0:operation>
+  </WL5G3N0:portType>
+  <WL5G3N0:binding name="ValidateRZMemberBind" type="WL5G3N3:ValidateRZMember">
+    <WL5G3N4:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <WL5G3N0:operation name="validateMember">
+      <WL5G3N4:operation style="document"/>
+      <WL5G3N0:input name="validateMemberRequest">
+        <WL5G3N4:header message="WL5G3N3:RZValidateMemberRequest" part="security" use="literal"/>
+        <WL5G3N4:body parts="validateMemberRequest" use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output name="validateMemberResponse">
+        <WL5G3N4:body use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+  </WL5G3N0:binding>
+  <WL5G3N0:service name="ValidateRZMemberSOAP">
+    <WL5G3N0:port binding="WL5G3N3:ValidateRZMemberBind" name="ValidateRZMember">
+      <WL5G3N4:address location="https://crmservices.na.bestbuy.com/RewardZone/ValidateRZMemberServiceSoap"/>
+    </WL5G3N0:port>
+  </WL5G3N0:service>
+</WL5G3N0:definitions>

@@ -1,0 +1,24 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<link rel="stylesheet" type="text/css" href="css/tom-screen.css" />
+	<link href="css/header.css" rel="stylesheet" type="text/css" />
+	<title>Loaner Phones - Modal Warning</title>
+</wicket:head>
+
+<body class="freeze">
+	<wicket:panel>
+		<div class="fader">
+			<div class="modal">
+				<h1>INCORRECT IMEI / ESN Entered</h1>
+				<form wicket:id="incorrectImeiModalForm" autocomplete="off">
+					<div>
+						<label wicket:id="messageLabel"></label>
+					</div>
+				</form>
+				<input type="submit" value="ok" class="button" wicket:id="okButton" />
+			</div>
+		</div>
+	</wicket:panel>
+</body>
+</html>

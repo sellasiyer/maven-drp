@@ -1,0 +1,41 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>Manage Properties</title>
+	<script type="text/javascript" src="js/manage_properties.js"></script>
+	<script type="text/javascript" src="js/validation.js"></script>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<div class="pgtitle">
+			<h1>Manage Properties</h1>
+		</div>
+
+		<div class="pgcontent">
+
+			<div class="content_pagetitle_rightcnt" id="add_property_link">
+				<a wicket:id="addPropertyLink" class="button"> <wicket:message
+						key="addPropertyLink.label" /> </a> 
+			</div>
+
+			<div class="pgcontent_white">
+				<div class="page-tr"></div>
+				<div class="page-tl"></div>
+				<div class="page-br"></div>
+				<div class="page-bl"></div>
+
+				<div wicket:id="feedback" class="feedbackmsg"></div>
+				
+				<div wicket:id="changeStoreIdPanel"></div>
+				
+				<div wicket:id="addEditPropertyPanel" class="subsection"></div>
+
+				<div wicket:id="propertyTablePanel"></div>
+
+			</div>
+		</div>
+	</wicket:extend>
+</body>
+</html>

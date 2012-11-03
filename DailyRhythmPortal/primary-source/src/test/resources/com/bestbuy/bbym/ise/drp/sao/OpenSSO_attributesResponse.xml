@@ -1,0 +1,40 @@
+<!-- Attributes response for a 'corporate' user -->
+<attributesResponse xmlns="http://opensso.idsvcs.identity.sun.com/">
+	<return xmlns="">
+		<attributes>
+			<name>telephonenumber</name>
+			<values>(612) 291-9526</values>
+		</attributes>
+		<attributes>
+			<name>bboraclelocid</name>
+			<values>0699</values>
+		</attributes>
+		<attributes>
+			<name>givenName</name>
+			<values>IseAdminFirstName</values>
+		</attributes>
+		<attributes>
+			<name>manager</name>
+			<values>uid=a218635,ou=People,o=bestbuy.com</values>
+		</attributes>
+		<attributes>
+			<name>bboraclehrtype</name>
+			<values>ST</values>
+		</attributes>
+		<attributes>
+			<name>sn</name>
+			<values>IseAdminLastName</values>
+		</attributes>
+		<attributes>
+			<name>uid</name>
+			<values>IseAdminUserId</values>
+		</attributes>
+		<attributes>
+			<name>groups</name>
+			<values>cn=BBYM_ISE_ADMIN,ou=groups,o=bestbuy.com</values>
+		</attributes>
+		<token>
+			<id>AQIC5wM2LY4SfcxKYnAISJr76+ZdcgUrSOv1zi55QW2VPv4=@AAJTMQACMDIAAlNJAAIwMw==#</id>
+		</token>
+	</return>
+</attributesResponse>

@@ -1,0 +1,32 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:panel>
+		<div wicket:id="debug"></div>
+		<a wicket:id="homeLink" class="logo">Best Buy Mobile</a>
+		<a class="beast-bot">Beast Portal</a>
+		<div class="customer-panel">
+			<div wicket:id="carrierLogo"></div>
+			<div class="customer">
+				<label>Customer:</label> <span wicket:id="customerName"></span>
+			</div>
+			<div class="phone">
+				<label>Phone #:</label> <span wicket:id="phoneNumber"></span>
+			</div>
+			<div class="account">
+				<label>Account #:</label> <span wicket:id="acctNumber"></span>
+			</div>
+			<a wicket:id="clearCustomerLink" class="button"><wicket:message
+					key="header.clearCustomerLink.label" />
+			</a>
+		</div>
+		<div class="associate-bar">
+			<span wicket:id="userName" class="associate"></span>
+			<a wicket:id="feedbackLink" class="button" target="_new"><wicket:message key="header.feedbackLink.label" /></a>
+		</div>
+
+		<div wicket:id="menuContent" class="menu"></div>
+	</wicket:panel>
+</body>
+</html>

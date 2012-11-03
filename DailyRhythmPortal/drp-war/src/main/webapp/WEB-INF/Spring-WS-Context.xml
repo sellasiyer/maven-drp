@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+">
+    
+    
+  <!-- Hub Webservice-->
+    <bean id="responseBBYUnMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPath" value="com.bestbuy.bbym.ise.iseclienthub"/>
+        <property name="marshallerProperties">
+            <map>
+                <entry key="com.sun.xml.bind.namespacePrefixMapper" value-ref="namespacePrefixMapper1" />
+            </map>
+        </property>
+       
+    </bean>
+  
+    <bean id="namespacePrefixMapper1" class="com.bestbuy.bbym.ise.drp.helpers.MyNamespacePrefixMapper">
+        <constructor-arg value=""/>
+    </bean>
+    
+
+    
+   
+  
+
+    <bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory"/>
+    <bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate" >
+        <constructor-arg ref="messageFactory"/>
+ 
+        <property name="messageSender">
+            <bean class="org.springframework.ws.transport.http.CommonsHttpMessageSender">
+<!--            <property name="credentials">
+                <bean class="org.apache.commons.httpclient.UsernamePasswordCredentials">
+                    <constructor-arg value="john"/>
+                    <constructor-arg value="secret"/>
+                </bean>
+            </property>-->
+            </bean>
+        </property>
+        <property name="defaultUri" value="https://dnd01apl.na.bestbuy.com:8443/PPFServices/ProtectionPlanServiceV2-1Soap?wsdl"/>
+        <property name="marshaller" ref="responseBBYUnMarshaller"/>
+        <property name="unmarshaller" ref="responseBBYUnMarshaller"/>
+    
+    </bean>
+</beans>

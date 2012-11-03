@@ -1,0 +1,99 @@
+<ns0:ParamResponse xmlns:ns0="http://bestbuy.com/bbym/logistics/param/service/v1">
+	<ns0:ResponseMetaData />
+	<ns1:Status xmlns:ns1="http://www.tsh.bestbuy.com/common/v1">
+		<ns1:Code>TSH-PXY-000000</ns1:Code>
+		<ns1:Description>TSH_BBYM_ACDS_Param executed successfully</ns1:Description>
+	</ns1:Status>
+	<ns0:ParamValues xmlns:jms1="http://www.tibco.com/namespaces/tnt/plugins/jms">
+		<ns1:ParamValue xmlns:ns1="http://bestbuy.com/bbym/logistics/param/fields/v1">
+			<ns1:Group>$SHIPMENT_PORTAL$</ns1:Group>
+			<ns1:ParamGroup>
+				<ns1:Type />
+				<ns1:SySCode>$MAX_ITEM_PER_MANIFEST$</ns1:SySCode>
+				<ns1:Value>10</ns1:Value>
+				<ns1:Description>Maximum line items that a manifest can hold</ns1:Description>
+				<ns1:ActivationFlag>1</ns1:ActivationFlag>
+			</ns1:ParamGroup>
+		</ns1:ParamValue>
+		<ns1:ParamValue xmlns:ns1="http://bestbuy.com/bbym/logistics/param/fields/v1">
+			<ns1:Group>$SHIPMENT_PORTAL$</ns1:Group>
+			<ns1:ParamGroup>
+				<ns1:Type />
+				<ns1:SySCode>$RECENT_MANIFEST_NO$</ns1:SySCode>
+				<ns1:Value>15</ns1:Value>
+				<ns1:Description>Number of Manifests displayed for recent manifest search criteria</ns1:Description>
+				<ns1:ActivationFlag>1</ns1:ActivationFlag>
+			</ns1:ParamGroup>
+		</ns1:ParamValue>
+		<ns1:ParamValue xmlns:ns1="http://bestbuy.com/bbym/logistics/param/fields/v1">
+			<ns1:Group>$SHIPMENT_PORTAL$</ns1:Group>
+			<ns1:ParamGroup>
+				<ns1:Type />
+				<ns1:SySCode>$MFST_OPEN_STAT_CODE$</ns1:SySCode>
+				<ns1:Value>Open</ns1:Value>
+				<ns1:Description>Manifest Status Code for OPEN</ns1:Description>
+				<ns1:ActivationFlag>1</ns1:ActivationFlag>
+			</ns1:ParamGroup>
+		</ns1:ParamValue>
+		<ns1:ParamValue xmlns:ns1="http://bestbuy.com/bbym/logistics/param/fields/v1">
+			<ns1:Group>$SHIPMENT_PORTAL$</ns1:Group>
+			<ns1:ParamGroup>
+				<ns1:Type />
+				<ns1:SySCode>$MFST_IN_TRANSIT_STAT_CODE$</ns1:SySCode>
+				<ns1:Value>In-Transit</ns1:Value>
+				<ns1:Description>Manifest Status Code for IN TRANSIT</ns1:Description>
+				<ns1:ActivationFlag>1</ns1:ActivationFlag>
+			</ns1:ParamGroup>
+		</ns1:ParamValue>
+		<ns1:ParamValue xmlns:ns1="http://bestbuy.com/bbym/logistics/param/fields/v1">
+			<ns1:Group>$SHIPMENT_PORTAL$</ns1:Group>
+			<ns1:ParamGroup>
+				<ns1:Type />
+				<ns1:SySCode>$MFST_RECEIVED_STAT_CODE$</ns1:SySCode>
+				<ns1:Value>Received</ns1:Value>
+				<ns1:Description>Manifest Status Code for RECEIVED</ns1:Description>
+				<ns1:ActivationFlag>1</ns1:ActivationFlag>
+			</ns1:ParamGroup>
+		</ns1:ParamValue>
+		<ns1:ParamValue xmlns:ns1="http://bestbuy.com/bbym/logistics/param/fields/v1">
+			<ns1:Group>$SHIPMENT_PORTAL$</ns1:Group>
+			<ns1:ParamGroup>
+				<ns1:Type />
+				<ns1:SySCode>$DEVICE_HOLD_STAT_CODE$</ns1:SySCode>
+				<ns1:Value>NRFSHP</ns1:Value>
+				<ns1:Description>Not Ready For Shipping</ns1:Description>
+				<ns1:ActivationFlag>1</ns1:ActivationFlag>
+			</ns1:ParamGroup>
+		</ns1:ParamValue>
+		<ns1:ParamValue xmlns:ns1="http://bestbuy.com/bbym/logistics/param/fields/v1">
+			<ns1:Group>$SHIPMENT_PORTAL$</ns1:Group>
+			<ns1:ParamGroup>
+				<ns1:Type />
+				<ns1:SySCode>$DEVICE_ELIGIBLE_STAT_CODE$</ns1:SySCode>
+				<ns1:Value>RDYSHP</ns1:Value>
+				<ns1:Description>Ready For Shipping</ns1:Description>
+				<ns1:ActivationFlag>1</ns1:ActivationFlag>
+			</ns1:ParamGroup>
+		</ns1:ParamValue>
+		<ns1:ParamValue xmlns:ns1="http://bestbuy.com/bbym/logistics/param/fields/v1">
+			<ns1:Group>$SHIPMENT_PORTAL$</ns1:Group>
+			<ns1:ParamGroup>
+				<ns1:Type />
+				<ns1:SySCode>$DEVICE_SHIPPED_STAT_CODE$</ns1:SySCode>
+				<ns1:Value>RLSUPS</ns1:Value>
+				<ns1:Description>UPS</ns1:Description>
+				<ns1:ActivationFlag>1</ns1:ActivationFlag>
+			</ns1:ParamGroup>
+		</ns1:ParamValue>
+		<ns1:ParamValue xmlns:ns1="http://bestbuy.com/bbym/logistics/param/fields/v1">
+			<ns1:Group>$SHIPMENT_PORTAL$</ns1:Group>
+			<ns1:ParamGroup>
+				<ns1:Type />
+				<ns1:SySCode>$DEVICE_RECEIVED_STAT_CODE$</ns1:SySCode>
+				<ns1:Value>RECIVD</ns1:Value>
+				<ns1:Description>Received</ns1:Description>
+				<ns1:ActivationFlag>1</ns1:ActivationFlag>
+			</ns1:ParamGroup>
+		</ns1:ParamValue>
+	</ns0:ParamValues>
+</ns0:ParamResponse>

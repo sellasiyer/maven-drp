@@ -1,0 +1,207 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>Loaner Phones - Checkout</title>
+	<script type="text/javascript">
+		var wicketBehavior;
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<div class="grid-"></div>
+		<div class="page-header">
+			<h1>Check Out Loaner Phone</h1>
+		</div>
+		<div wicket:id="feedback" class="required"></div>
+
+		<form wicket:id="loanerPhoneCheckedOutForm" autocomplete="off">
+			<fieldset>
+				<legend>Phone Details</legend>
+				<div class="view quarter">
+					<label><wicket:message
+							key="loanerPhoneCheckedOutForm.carrier.label" /> </label> <span
+						wicket:id="carrierLabel"></span>
+				</div>
+				<div class="view quarter">
+					<label><wicket:message
+							key="loanerPhoneCheckedOutForm.os.label" /> </label> <span
+						wicket:id="osLabel"></span>
+				</div>
+				<div class="view quarter">
+					<label><wicket:message
+							key="loanerPhoneCheckedOutForm.make.label" /> </label> <span
+						wicket:id="makeLabel"></span>
+				</div>
+				<div class="view quarter">
+					<label><wicket:message
+							key="loanerPhoneCheckedOutForm.model.label" /> </label> <span
+						wicket:id="modelLabel"></span>
+				</div>
+				<div class="required bottom full" wicket:id="imeiSearchContainer">
+					<label><wicket:message
+							key="loanerPhoneCheckedOutForm.imei.label" /> </label> <input
+						wicket:id="imeiSearch" type="text" maxlength="20" /> <input
+						type="submit" class="button" wicket:id="goButton" />
+				</div>
+				<div wicket:id="imeiContainer" class="view bottom">
+					<label><wicket:message
+							key="loanerPhoneCheckedOutForm.selectedImei.label" /> </label> <span
+						wicket:id="imeiLabel"></span>
+				</div>
+			</fieldset>
+			<div wicket:id="customerContainer">
+				<fieldset>
+					<legend>Customer</legend>
+
+					<div>
+						<label><wicket:message
+								key="loanerPhoneCheckedOutForm.customer.firstName.label" /> </label> <input
+							wicket:id="firstName" type="text" maxlength="30" />
+					</div>
+					<div class="required">
+						<label><wicket:message
+								key="loanerPhoneCheckedOutForm.customer.lastName.label" /> </label> <input
+							wicket:id="lastName" type="text" maxlength="30" />
+					</div>
+					<div class="required">
+						<label><wicket:message
+								key="loanerPhoneCheckedOutForm.customer.contactNo.label" /> </label> <input
+							wicket:id="contactNo" type="text" maxlength="10" />
+					</div>
+					<div>
+						<label><wicket:message
+								key="loanerPhoneCheckedOutForm.customer.email.label" /> </label> <input
+							wicket:id="email" type="text" maxlength="50" />
+
+					</div>
+
+					<div class="required bottom">
+						<label><wicket:message
+								key="loanerPhoneCheckedOutForm.customer.fulfillmentType.label" />
+						</label> <select wicket:id="fulfillmentType">
+							<option>Rapid Exchange GSP</option>
+							<option>GSP Repair</option>
+						</select>
+
+					</div>
+					<div>
+						<label><wicket:message
+								key="loanerPhoneCheckedOutForm.customer.gspNo.label" /> </label> <input
+							wicket:id="gspNo" type="text" maxlength="10" />
+					</div>
+
+					<div class="bottom">
+						<label><wicket:message
+								key="loanerPhoneCheckedOutForm.customer.serviceOrderNo.label" />
+						</label> <input wicket:id="serviceOrderNo" type="text" maxlength="15" />
+					</div>
+				</fieldset>
+
+			</div>
+			<div wicket:id="checkListContainer">
+				<fieldset>
+					<legend>CheckList</legend>
+					<div class="full">
+						<label><wicket:message
+								key="loanerPhoneCheckedOutForm.checkList.phoneData.label" /> </label><span
+							class="checkbox"> <input wicket:id="phoneData"
+							type="checkbox" /> <label><wicket:message
+									key="loanerPhoneCheckedOutForm.checkList.dataWipedClean.label" />
+								<a href="#" wicket:id="instructionsLink">- Instructions </a> </label> </span>
+					</div>
+					<div class="full required">
+						<div wicket:id="conditionRadioGroup">
+							<label><wicket:message
+									key="loanerPhoneCheckedOutForm.checkList.condition.label" /> </label>
+							<span class="radio"> <input type="radio" name="condition"
+								wicket:id="conditionGoodRadio" /> <label><wicket:message
+										key="loanerPhone.condition.good" /> </label> </span> <span class="radio">
+								<input type="radio" name="condition"
+								wicket:id="conditionFairRadio" /> <label><wicket:message
+										key="loanerPhone.condition.fair" /> </label> </span> <span class="radio">
+								<input type="radio" name="condition"
+								wicket:id="conditionPoorRadio" /> <label><wicket:message
+										key="loanerPhone.condition.poor" /> </label> </span>
+						</div>
+					</div>
+					<div class="full">
+						<label><wicket:message
+								key="loanerPhoneCheckedOutForm.checkList.conditionComment.label" />
+						</label>
+						<textarea rows="3" wicket:id="conditionCommentTextArea"></textarea>
+					</div>
+					<div class="full">
+						<label> <wicket:message
+								key="loanerPhoneCheckedOutForm.checkList.accessories.label" />
+						</label> <span class="checkbox"> <input wicket:id="charger"
+							type="checkbox" /> <label> <wicket:message
+									key="loanerPhoneCheckedOutForm.checkList.accessories.charger.label" />
+						</label> </span> <span class="checkbox"> <input wicket:id="battery"
+							type="checkbox" /> <label> <wicket:message
+									key="loanerPhoneCheckedOutForm.checkList.accessories.battery.label" />
+						</label> </span> <span class="checkbox"> <input wicket:id="adapter"
+							type="checkbox" /> <label> <wicket:message
+									key="loanerPhoneCheckedOutForm.checkList.accessories.adapter.label" />
+						</label> </span>
+					</div>
+					<div class="required bottom">
+						<label><wicket:message
+								key="loanerPhoneCheckedOutForm.checkList.deposit.label" /> </label> <label>$<input
+							style="width: 55px;" wicket:id="deposit" type="text" /> </label>
+					</div>
+				</fieldset>
+			</div>
+
+			<div wicket:id="additionalTaskContainer">
+				<fieldset class="important">
+					<legend>Additional Tasks</legend>
+					<div class="full">
+						<ol>
+							<li><label><wicket:message
+										key="loanerPhoneCheckedOutForm.additionalTask.task1.label" />
+							</label>
+							</li>
+							<li><label><wicket:message
+										key="loanerPhoneCheckedOutForm.additionalTask.task2.label" />
+							</label>
+							</li>
+							<li><label><wicket:message
+										key="loanerPhoneCheckedOutForm.additionalTask.task3.label" />
+							</label>
+							</li>
+						</ol>
+					</div>
+				</fieldset>
+			</div>
+
+			<div class="buttons">
+				<div wicket:id="reprintButtonContainer">
+					<a class="button minor" wicket:id="reprintLink"> <wicket:message
+							key="loanerPhoneCheckedOutForm.reprint.link" /> </a>
+				</div>
+				<div wicket:id="closeButtonContainer">
+					<a class="button" wicket:id="closeLink"> <wicket:message
+							key="loanerPhoneCheckedOutForm.close.link" /> </a>
+				</div>
+				<div wicket:id="cancelButtonContainer">
+					<input type="button" class="button minor" wicket:id="cancelButton" />
+				</div>
+				<div wicket:id="continueButtonContainer">
+					<input type="submit" class="button" wicket:id="continueButton" />
+				</div>
+				<div wicket:id="checkOutButtonContainer">
+					<input type="submit" class="button" wicket:id="checkOutButton" />
+				</div>
+			</div>
+		</form>
+
+		<div wicket:id="checkedOutModal"></div>
+
+		<div wicket:id="incorrectImeiModal"></div>
+
+		<div wicket:id="instructionsModal"></div>
+	</wicket:extend>
+</body>
+</html>

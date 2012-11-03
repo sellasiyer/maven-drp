@@ -1,0 +1,42 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+		
+<wicket:head>
+	<link rel="stylesheet" type="text/css" href="css/tom-screen.css" />
+	<link href="css/header.css" rel="stylesheet" type="text/css" />
+	<title>MODAL - Purchase Selection</title>
+</wicket:head>
+
+<body class="freeze">
+
+<wicket:panel>
+
+<div id="content">
+
+	<div class="fader">
+		<div class="new-modal detail">
+			<div class="top-buttons">
+				<a href="#" class="button close">X</a>
+			</div>
+			<div class="modal-header">
+				<h1>Select a Mobile Purchase</h1>
+			</div>
+			<a href="#" class="button below-bar">New Customer</a>
+			
+			<div wicket:id="purchaseHistoryFeedback" class="required"></div>
+			 
+		   <form wicket:id="purchaseHistoryForm" autocomplete="off">
+				<div wicket:id="gspPurchaseHistoryTabPanel"></div>
+				<!-- Select Button will be displayed as a separate Panel without disturbing existing panel and has the same row selection -->
+				<div wicket:id="purchaseSelectTabPanel"></div>
+			
+			</form>		        		        		        
+		    
+		</div>
+   </div>
+</div>
+
+</wicket:panel>
+
+</body>
+</html>	

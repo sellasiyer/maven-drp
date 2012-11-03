@@ -1,0 +1,53 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:panel>
+
+<div wicket:id="purchaseTransViewContainer">
+
+	<fieldset class="data-box view">
+	<h2>Purchase Transaction</h2>
+	 
+	
+	<div class="column width-full">
+	
+	<div class="block" wicket:id="orderNumBlock">
+		<label><wicket:message key="entitlement.purchasetype.orderNumber"/></label>
+		<span wicket:id="orderNumberLabel"></span>
+	</div>
+	
+	<div wicket:id="fourParyKeyBlock">
+	<div class="block">
+		<label><wicket:message key="entitlement.purchasetype.store"/></label>
+		<span wicket:id="storeLabel"></span>
+	</div>
+	<div class="block">
+		<label><wicket:message key="entitlement.purchasetype.register"/></label>
+		<span wicket:id="registerLabel"></span>
+	</div>
+	<div class="block">
+		<label><wicket:message key="entitlement.purchasetype.trans"/></label>
+		<span wicket:id="transLabel"></span>
+	</div>
+	<div class="block">
+		<label><wicket:message key="entitlement.purchasetype.transDate"/></label>
+		<span wicket:id="transDateLabel"></span>
+	</div>
+	</div> 
+	
+	<div class="block">
+		<label><wicket:message key="entitlement.purchasetype.sku"/></label>
+		<span wicket:id="skuLabel"></span>
+	</div>
+	<div class="block width-6">
+		<label><wicket:message key="entitlement.purchasetype.productDescription"/></label>
+		<span wicket:id="prodDescLabel"></span>
+	</div>
+	
+  </div>
+  </fieldset>
+</div> 
+</wicket:panel>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<title>Mobile Specialist Info</title>	
+</wicket:head>
+<body>
+	<wicket:extend>
+            <h2><div wicket:id="sectionTitle"/></h2>
+			<div class="column width-full">
+
+				<div class="block">
+					<label><wicket:message
+							key="mobileSpecialistInfoSectionForm.firstName.label" /> </label> <input
+						wicket:id="firstName" type="text" maxlength="15" />
+				</div>
+				<div class="block">
+					<label><wicket:message
+							key="mobileSpecialistInfoSectionForm.lastName.label" /> </label> <input
+						wicket:id="lastName" type="text" maxlength="25" />
+				</div>
+				<br />
+				<div class="block">
+					<label><wicket:message
+							key="mobileSpecialistInfoSectionForm.storePhone.label" /> </label> <input
+						wicket:id="storePhoneNumber" type="text" maxlength="10"
+						/>
+				</div>
+				
+				<div class="block">
+					<label><wicket:message
+							key="mobileSpecialistInfoSectionForm.extension.label" /> </label> <input
+						wicket:id="extension" type="text" maxlength="6"
+						/>
+				</div>
+
+			</div>
+
+	</wicket:extend>
+</body>
+
+</html>

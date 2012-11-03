@@ -1,0 +1,397 @@
+#content {
+	margin: 0 auto;
+}
+
+#head {
+	margin: 0 0 10px 0;
+	text-align: center;
+}
+
+.feedbackPanelERROR {
+	padding: 4px 0 0 0;
+	color: #F00;
+}
+
+div {
+	font-family: Helvetica;
+	font-size: 12px;
+}
+
+input,textarea {
+	font-family: Helvetica;
+	font-size: 12px;
+	background: #f2f2f2;
+	padding: 2px;
+	border: 1px solid #cccccc;
+}
+
+input[type=text].required {
+	background: #FFFF80;
+}
+
+input[type=checkbox] {
+	background: #fff;
+	border: none;
+}
+
+h1 {
+	color: white;
+	background-color: #2AAAE1;
+	text-align: center;
+	margin: 2px;
+	font-size: 150%;
+}
+
+h5 {
+	color: #2AAAE1;
+	margin: 0px;
+	padding: 2px;
+}
+
+div#head {
+	height: 30px;
+	padding: 0px;
+}
+
+div#head input {
+	height: 30px;
+}
+
+div#content {
+	width: 1024px;
+	color: #2AAAE1;
+	height: 768px;
+	max-height: 768px;
+}
+
+div.field {
+	border: 1px solid #2AAAE1;
+	margin: 2px;
+}
+
+.multiselect input[type="checkbox"] {
+	width: 0px;
+	/* ie8 hack, display none messes up JS in IE8. works in chrome/ff. */
+	height: 0px;
+	float: right;
+	opacity: 0; /* needed for checkboxes to not show in FF. */
+}
+
+.multiselect label {
+	display: inline-block;
+	padding: 5px 10px;
+	color: #2AAAE1;
+	cursor: pointer;
+	font-weight: bold;
+	border-bottom: 1px solid #fff;
+}
+
+.multiselect label.selected {
+	background-color: #2AAAE1;
+	color: white;
+	border-bottom: 1px solid #fff;
+}
+
+div.section {
+	float: left;
+	border: 1px solid #444;
+	width: 33%;
+	height: 600px;
+}
+
+input[type="text"] { /*border: none;	*/
+	
+}
+
+#right.field {
+	color: #2AAAE1;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+textarea {
+	width: 98%;
+	/*border: none;*/
+	overflow: hidden;
+}
+
+#right input[type="text"] {
+	width: 98%;
+}
+
+#left input[type="text"] {
+	width: 98%;
+}
+
+#middle input[type="text"] {
+	width: 98%;
+}
+
+.wide {
+	width: 98% !important;
+}
+
+.narrow {
+	width: 45% !important;
+}
+
+.whywhat {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.wowdiv {
+	width: 45%;
+	float: left;
+}
+
+div#toolsMenu {
+	width: 200px;
+	float: left;
+	z-index: 100;
+	border: 2px solid #ccc;
+	border-bottom-width: 1px;
+	margin-left: 8px;
+	margin-top: 1px;
+}
+
+.toolsMenuItem {
+	background-color: #EDF8FD; /* light blue */
+	border-bottom: 1px solid #BBB;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 5px;
+}
+
+.toolsMenuItem a {
+	text-decoration: none;
+	color: #2AAAE1;
+}
+
+.button {
+	border: 1px dashed #999;
+	margin-left: 10px;
+	padding: 5px 5px 4px 29px;
+	color: #6d6d6d;
+	font-weight: bold;
+}
+
+.btn_search {
+	background: #fff url(../images/icon_search.png) left top no-repeat;
+}
+
+.btn_clear {
+	background: #fff url(../images/icon_clear.png) left top no-repeat;
+}
+
+.btn_upgradechecker {
+	background: #fff url(../images/icon_upgradechecker.png) left top
+		no-repeat;
+}
+
+.btn_save {
+	background: #fff url(../images/icon_save.png) left top no-repeat;
+}
+
+.btn_printemail {
+	background: #fff url(../images/icon_printemail.png) left top no-repeat;
+}
+
+.btn_tools {
+	background: #fff url(../images/icon_tools.png) left top no-repeat;
+}
+
+.btn_close {
+	background: #fff url(../images/icon_close.png) left top no-repeat;
+}
+
+.yesno_container { /* should really rename this */
+	padding: 10px;
+	font-family: Helvetica;
+	font-size: 14px;
+	color: #2AAAE1;
+	text-align: center;
+}
+
+.yesnobuttons input {
+	padding: 0;
+	width: 65px;
+	height: 29px;
+}
+
+.coveragecheck_buttons a {
+	width: 66px;
+	height: 45px;
+	background: url(../images/carrierSprite.jpg) left top no-repeat;
+	display: inline-block;
+	margin-right: 4px;
+}
+
+.no-contract_buttons
+{
+	text-align: left;
+	margin: auto;
+	width: 60%;
+	}
+
+.no-contract_buttons a {
+	padding-left: 21px;
+	display: block;
+	padding-bottom: 10px;
+	text-decoration: none;
+}
+
+.no-contract_buttons a.trac {
+	background: url( ../images/carrier_logos/tracfone.png ) left top no-repeat;
+	}
+.no-contract_buttons a.boost {
+	background: url( ../images/carrier_logos/boost.png ) left top no-repeat;
+	}
+
+.no-contract_buttons a.tmobile {
+	background: url( ../images/carrier_logos/tmobile.png ) left top no-repeat;
+	}
+
+.no-contract_buttons a.att {
+	background: url( ../images/carrier_logos/att.png ) left top no-repeat;
+	}
+
+.no-contract_buttons a.virgin {
+	background: url( ../images/carrier_logos/virgin.png ) left top no-repeat;
+	}
+
+.no-contract_buttons a.cricket {
+	background: url( ../images/carrier_logos/cricket.png ) left top no-repeat;
+	}
+
+.no-contract_buttons a.verizon {
+	background: url( ../images/carrier_logos/verizon.png ) left top no-repeat;
+	}
+
+.no-contract_buttons a.net10 {
+	background: url( ../images/carrier_logos/net10.png ) left top no-repeat;
+	}
+
+.no-contract_buttons a.jitterbug {
+	background: url(../images/carrier_logos/jitterbug.png) left top
+		no-repeat;
+}
+
+.no-contract_buttons a.metropcs {
+	background: url( ../images/carrier_logos/metropcs.png ) left top no-repeat;
+	} 
+
+/* =================================================*/
+/* TRANSFER TO BEAST
+/*======================================*/ /* @group */
+.transfer-to-beast {
+	display: inline-block;
+	zoom: 1;
+	background: transparent url(img/transfer-to-beast.png) no-repeat left
+		top;
+	margin-left: 10px;
+	margin-bottom: 15px;
+	height: 30px;
+	line-height: 30px;
+	width: 182px;
+}
+
+
+
+
+.fader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 20003; /* needs to be here to be in front of wicket modals */
+	background: url(img/black_transparent_tile.png);
+	width: 100%;
+	height: 100%;
+	}
+
+.fader .modal {
+	position: relative;
+	background: #fff;
+	margin: 200px auto 0 auto;
+	padding: 65px 15px 15px 15px;
+	width: 470px;
+	}
+	
+.modal h1 {
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	color: #fff;
+	background: -moz-linear-gradient(top, #3f9ed5 0%, #206e9d 100%); /* FF3.6+ */
+	background: -webkit-linear-gradient(top, #3f9ed5 0%,#206e9d 100%); /* Chrome10+,Safari5.1+ */
+	background: -ms-linear-gradient(top, #3f9ed5 0%,#206e9d 100%); /* IE10+ */
+	background: linear-gradient(top, #3f9ed5 0%,#206e9d 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f9ed5', endColorstr='#206e9d',GradientType=0 ); /* IE6-9 */
+	margin-bottom: 15px;
+	padding-left: 15px;
+	line-height: 45px;
+	height: 45px;
+	width: 475px;
+	font-size: 17px;
+	text-transform: uppercase;
+	}
+	
+.modal p {
+	color: #4e5054;
+	margin-bottom: 15px;
+	font-size: 14px;
+	line-height: 15px;
+	}
+	
+.modal ol {
+	list-style-position: inside;
+	}
+	
+.modal ol li {
+	color: #4e5054;
+	margin: 0 0 15px 15px;
+	font-size: 14px;
+	line-height: 15px;
+	}
+	
+.modal .buttons {
+	padding: 0;
+	margin: 15px 0 0 0;
+	width: 100%;
+	height: 30px;
+	text-align: left;
+	}
+	
+.modal .buttons .button {
+	line-height: 28px;
+	height: 28px;
+	min-width: 75px;
+	}
+	
+	
+/* INPUTS */
+
+.modal  label {
+	color: #4e5054;
+	display: block;
+	margin-bottom: 7px;
+	font-weight: bold;
+	font-size: 13px;
+	}
+
+.modal  span.radio, .modal  span.checkbox {
+	display: block;
+	margin: 0 0 0 15px;
+	line-height: 30px;
+	height: 30px;
+	}
+	
+.modal  span.radio label, .modal  span.checkbox label {
+	display: inline;
+	margin: 0 0 0 6px;
+	font-size: 13px;
+	font-weight: normal;
+	}
+
+
+/* @end */

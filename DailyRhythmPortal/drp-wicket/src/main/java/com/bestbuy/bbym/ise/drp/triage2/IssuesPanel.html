@@ -1,0 +1,35 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<script type="text/javascript">
+		
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:panel>
+		<fieldset class="data-box">
+			<div class="column radio-group with-info stacked width-4">
+				<label><wicket:message key="triageIssues.selectIssue.label" />
+				</label>
+
+				<wicket:container wicket:id="issuesRadioGroup">
+					<div class="block width-4" wicket:id="issuesRadioChoice">
+						<input type="radio" wicket:id="radio" /> <label wicket:id="label">
+						</label><a class="info" wicket:id="popupLink"></a>
+					</div>
+				</wicket:container>
+			</div>
+
+			<div class="column width-4">
+				<div class="block width-4">
+					<label><wicket:message
+							key="triageIssues.issueComment.label" /></label>
+					<textarea wicket:id="issueComment" class="tall"></textarea>
+				</div>
+			</div>
+		</fieldset>
+	</wicket:panel>
+</body>
+</html>

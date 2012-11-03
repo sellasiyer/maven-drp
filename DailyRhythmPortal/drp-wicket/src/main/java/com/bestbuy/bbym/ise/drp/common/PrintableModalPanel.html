@@ -1,0 +1,22 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<script type="text/javascript">
+		//move the modal to the top level of the DOM to allow it to be printed
+		function makePrintable(){
+			var modalHTML = $('.fader').parent().detach();
+			$('body').children().addClass("no-print");
+			$('body').children(':last-child').after(modalHTML);
+		}
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:panel>
+		<div class="fader">
+			<wicket:child />
+		</div>
+	</wicket:panel>
+</body>
+</html>

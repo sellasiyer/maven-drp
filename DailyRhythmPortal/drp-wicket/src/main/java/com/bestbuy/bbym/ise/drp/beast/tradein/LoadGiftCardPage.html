@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>BEAST-Portal</title>
+<link href="../../drp/drp-war/src/main/webapp/beast-css/screen.css"
+	media="screen" rel="StyleSheet" type="text/css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script
+	src="../../drp/drp-war/src/main/webapp/js/jquery.fixedheadertable.min.js"></script>
+	  <style>
+           .feedbackStyle {
+            color:red;
+           }
+        </style>
+<script>
+	$(document).ready(function() {
+		/*$(window).bind('resize', fixedHeaderTables); -- Not Working */
+		fixedHeaderTables();
+
+		function fixedHeaderTables() {
+			$('#fixedHeaderTable01 table').fixedHeaderTable({
+				height : '100',
+				altClass : 'odd'
+			});
+		}
+ 	//Added in line jscript
+	 $('#barcode').focus();
+	initGiftCardScreen();
+//	
+//	$('#barcode').keyup(function(e){
+//		
+//	});
+//   
+   nextButtonEnableBehavior(false);
+
+	});
+</script>
+</head>
+<body>
+	<span wicket:id="border">
+		<div wicket:id="loadGiftCardId">
+			<div class="wrap">
+				<!-- here to replicate beast frame -->
+				<h1>Load the customer's gift card</h1>
+				<span wicket:id="loadGiftCardFeedback" style="feedbackStyle"></span>
+				<dl class="form" style="width: 100%; margin-bottom: 0px;">
+					<dt>
+						<label><wicket:message
+								key="LoadGiftCardPage.giftCardBarcode.label" />
+						</label>
+					</dt>
+					<dd class="long">
+						<input class="required" type="text" id="barcode"
+							wicket:id="barcode" maxLength="16"  />
+					</dd>
+					<dt>
+						<label><wicket:message key="LoadGiftCardPage.note.label" />
+						</label>
+					</dt>
+				</dl>
+
+				<div class="gift-card-barcode"></div>
+
+				<div wicket:id="failedTradeIn"></div>
+			</div>
+		</div> </span>
+     <div class="fader" style="display:none;">
+           <div class="modal error" style="margin-top: 50px;">
+                <p>Manual entry of gift card number is not allowed.</p>
+                <a href="#" class="button"><span>OK</span></a>
+           </div>
+     </div>
+
+</body>
+</html>

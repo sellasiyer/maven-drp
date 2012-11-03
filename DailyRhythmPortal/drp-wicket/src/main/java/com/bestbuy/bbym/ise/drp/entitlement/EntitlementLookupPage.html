@@ -1,0 +1,85 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+		
+<wicket:head>
+	<title>Customer Benefit Lookup</title>
+	
+	<link rel="stylesheet" type="text/css" href="css/tom-screen.css" />
+	<link rel="stylesheet" type="text/css" href="/css/header.css" />
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/search-nav.js"></script>
+	<script type="text/javascript" src="js/locked-header-width.js"></script>
+	<script type="text/javascript" src="js/custInfoModal.js"></script>
+	<script type="text/javascript" src="js/table-prep.js"></script>
+		 
+	<script type="text/javascript">
+	var wicketBehavior;
+       
+	function scrollTopOnFeedback() {
+		setTimeout(function() {
+		if($(".feedbackmsg").children().length>0) {
+			scrollToTop();  
+		}       			
+		}, 200);
+	}    	
+	
+	function disableContinueButton(status) {  
+		$('#purchaseViewContinueButton').hide();
+	}  
+	
+	function submitButtonClick() {    
+	  $('#entitlementLookupSubmitButton').click();			
+		
+	}	
+	 
+	
+	</script>
+</wicket:head>
+ 
+<body>
+<wicket:extend>
+                     
+<div class="grid-"></div>
+
+<div class="page-header">
+	<h1>Customer Benefit Lookup</h1>
+</div>  
+   
+<div wicket:id="entitlementLookupfeedback" class="feedbackmsg"></div>
+ 
+<div wicket:id="customerDashboardHeaderPanel"></div>
+  
+<form wicket:id="entitlementPurchaseViewForm">
+
+<div wicket:id="purchaseViewPanel"></div>
+
+<div wicket:id="mobileDeviceViewPanel"></div>
+
+<div wicket:id="gspViewPanel"></div>
+
+<div wicket:id="rzViewPanel"></div>
+    
+<div class="buttons">               
+			<input type="button" class="button minor" wicket:id="cancelButton" />
+			<input type="button" value="Back" class="button" wicket:id="backButton">
+			<input type="submit" value="Continue" class="button" wicket:id="purchaseViewContinueButton">
+			              
+			<input type="button" value="Submit" class="button" wicket:id="entitlementLookupSubmitButton">
+			     
+</div> 
+
+              
+</form> 
+
+<div wicket:id="custInfoModalPanel"></div>
+
+<div wicket:id="invalidSerialModalPanel"></div>
+
+<div wicket:id="rewardZoneLookupModal"></div> 
+   
+</wicket:extend>
+
+</body>
+
+</html>
+  

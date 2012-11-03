@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<link href="beast-css/screen.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+	<script type="text/javascript" src="js/jquery.fixedheadertable.min.js"></script>
+	<script type="text/javascript" src="js/jquery.hotkeys.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript">
+		var wicketBehavior;
+		var hotKeysConfig = {};
+		var f1ButtonDisabled = false;
+		var f2ButtonDisabled = false;
+		var f3ButtonDisabled = false;
+		var f4ButtonDisabled = false;
+		var f5ButtonDisabled = false;
+		var f6ButtonDisabled = false;
+		var f7ButtonDisabled = false;
+		function bindHotKeys2() {
+			//f1
+			if (hotKeysConfig.f1 && hotKeysConfig.f1.buttonSelector) {
+				$(document).bind('keydown', 'f1', function() {
+					var f1Button = $(hotKeysConfig.f1.buttonSelector);
+					if (f1Button && !f1Button.is(':disabled')) {
+						if (!f1ButtonDisabled) {
+							f1ButtonDisabled = true;
+							setTimeout("f1ButtonDisabled=false", 200);
+							if (isFunction(hotKeysConfig.f1.handler)) {
+								hotKeysConfig.f1.handler();
+							}
+						}
+					}
+					return false;
+				});
+			}
+			//f2
+			if (hotKeysConfig.f2 && hotKeysConfig.f2.buttonSelector) {
+				$(document).bind('keydown', 'f2', function() {
+					var f2Button = $(hotKeysConfig.f2.buttonSelector);
+					if (f2Button && !f2Button.is(':disabled')) {
+						if (!f2ButtonDisabled) {
+							f2ButtonDisabled = true;
+							setTimeout("f2ButtonDisabled=false", 200);
+							if (isFunction(hotKeysConfig.f2.handler)) {
+								hotKeysConfig.f2.handler();
+							}
+						}
+					}
+					return false;
+				});
+			}
+			//f3
+			if (hotKeysConfig.f3 && hotKeysConfig.f3.buttonSelector) {
+				$(document).bind('keydown', 'f3', function() {
+					var f3Button = $(hotKeysConfig.f3.buttonSelector);
+					if (f3Button && !f3Button.is(':disabled')) {
+						if (!f3ButtonDisabled) {
+							f3ButtonDisabled = true;
+							setTimeout("f3ButtonDisabled=false", 200);
+							if (isFunction(hotKeysConfig.f3.handler)) {
+								hotKeysConfig.f3.handler();
+							}
+						}
+					}
+					return false;
+				});
+			}
+			//f4
+			if (hotKeysConfig.f4 && hotKeysConfig.f4.buttonSelector) {
+				$(document).bind('keydown', 'f4', function() {
+					var f4Button = $(hotKeysConfig.f4.buttonSelector);
+					if (f4Button && !f4Button.is(':disabled')) {
+						if (!f4ButtonDisabled) {
+							f4ButtonDisabled = true;
+							setTimeout("f4ButtonDisabled=false", 200);
+							if (isFunction(hotKeysConfig.f4.handler)) {
+								hotKeysConfig.f4.handler();
+							}
+						}
+					}
+					return false;
+				});
+			}
+			//f5
+			if (hotKeysConfig.f5 && hotKeysConfig.f5.buttonSelector) {
+				$(document).bind('keydown', 'f5', function() {
+					var f5Button = $(hotKeysConfig.f5.buttonSelector);
+					if (f5Button && !f5Button.is(':disabled')) {
+						if (!f5ButtonDisabled) {
+							f5ButtonDisabled = true;
+							setTimeout("f5ButtonDisabled=false", 200);
+							if (isFunction(hotKeysConfig.f5.handler)) {
+								hotKeysConfig.f5.handler();
+							}
+						}
+					}
+					return false;
+				});
+			}
+			//f6
+			if (hotKeysConfig.f6 && hotKeysConfig.f6.buttonSelector) {
+				$(document).bind('keydown', 'f6', function() {
+					var f6Button = $(hotKeysConfig.f6.buttonSelector);
+					if (f6Button && !f6Button.is(':disabled')) {
+						if (!f6ButtonDisabled) {
+							f6ButtonDisabled = true;
+							setTimeout("f6ButtonDisabled=false", 200);
+							if (isFunction(hotKeysConfig.f6.handler)) {
+								hotKeysConfig.f6.handler();
+							}
+						}
+					}
+					return false;
+				});
+			}
+			//f7
+			if (hotKeysConfig.f7 && hotKeysConfig.f7.buttonSelector) {
+				$(document).bind('keydown', 'f7', function() {
+					var f7Button = $(hotKeysConfig.f7.buttonSelector);
+					if (f7Button && !f7Button.is(':disabled')) {
+						if (!f7ButtonDisabled) {
+							f7ButtonDisabled = true;
+							setTimeout("f7ButtonDisabled=false", 200);
+							if (isFunction(hotKeysConfig.f7.handler)) {
+								hotKeysConfig.f7.handler();
+							}
+						}
+					}
+					return false;
+				});
+			}
+		}
+	</script>
+</wicket:head>
+
+<body>
+	<form wicket:id="form" autocomplete="off">
+		<wicket:child />
+
+		<div class="bottom-buttons">
+			<div wicket:id="btn1Container">
+				<span class="key" wicket:id="fctKey1"></span><input type="button"
+					wicket:id="button1" />
+			</div>
+			<div wicket:id="btn2Container">
+				<span class="key" wicket:id="fctKey2"></span><input type="button"
+					wicket:id="button2" />
+			</div>
+			<div wicket:id="btn3Container">
+				<span class="key" wicket:id="fctKey3"></span><input type="button"
+					wicket:id="button3" />
+			</div>
+			<div wicket:id="btn4Container">
+				<span class="key" wicket:id="fctKey4"></span><input type="button"
+					wicket:id="button4" />
+			</div>
+			<div wicket:id="btn5Container">
+				<span class="key" wicket:id="fctKey5"></span><input type="button"
+					wicket:id="button5" />
+			</div>
+			<div wicket:id="btn6Container">
+				<span class="key" wicket:id="fctKey6"></span><input type="button"
+					wicket:id="button6" />
+			</div>
+			<div wicket:id="btn7Container">
+				<span class="key" wicket:id="fctKey7"></span><input type="button"
+					wicket:id="button7" />
+			</div>
+		</div>
+	</form>
+
+	<div wicket:id=loadingModalPanel></div>
+	<div wicket:id=quitModalPanel></div>
+	<div wicket:id=messageModalPanel></div>
+	<div wicket:id=clearModalPanel></div>
+	<div wicket:id=serviceErrorMsgModalPanel></div>
+</body>
+</html>

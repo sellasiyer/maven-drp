@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<Statuses>
+		<Status>
+			<StatusId>1</StatusId>
+			<StatusName>Cancelled</StatusName>
+		</Status>
+		<Status>
+			<StatusId>3</StatusId>
+			<StatusName>Complete w/ Purchase</StatusName>
+		</Status>
+		<Status>
+			<StatusId>2</StatusId>
+			<StatusName>Complete w/out Purchase</StatusName>
+		</Status>
+		<Status>
+			<StatusId>4</StatusId>
+			<StatusName>No Show</StatusName>
+		</Status>
+	</Statuses>
+	<ErrorCode>1</ErrorCode>
+	<ErrorMessage></ErrorMessage>
+</xml>

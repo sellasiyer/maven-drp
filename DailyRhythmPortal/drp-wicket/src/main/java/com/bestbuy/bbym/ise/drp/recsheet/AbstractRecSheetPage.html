@@ -1,0 +1,136 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>Customer Dashboard</title>
+	<link href="css/table.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript">
+		$(document).ready(function() { 
+		
+			
+			// CHECKBOX BUTTONS
+			$('ul.checkbox-buttons li').live('click',function() {
+				$(this).find('label').toggleClass('full');
+				if ( $(this).find('label').hasClass('full') ) {
+					$(this).find(':checkbox').attr('checked', true );
+				} else {
+					$(this).find(':checkbox').attr('checked', false );
+				}
+			});
+			
+			$('input[type="checkbox"]').next().each( function(index) {
+				//console.log(index + ": " + $(this).text());
+				var checkboxId = $(this).attr("for")+"Cbx";
+				var checkbox = $("#" + checkboxId);
+				//console.log(index + ": " + ($("#" + checkboxId).is(":checked")));
+				if ($("#" + checkboxId).is(":checked")) {
+					$(this).addClass("full");
+				}
+			});
+
+		});
+
+function checkMaxLength(textareaID, maxLength){
+        var currentLengthInTextarea = $("#"+textareaID).val().length;
+		if (currentLengthInTextarea > (maxLength)) { 
+			$("#notes").val($("#notes").val().slice(0, maxLength));
+		}
+    }
+
+		
+	</script>
+</wicket:head>
+
+
+<body>
+	<wicket:extend>
+
+
+<form name="recSheetForm" wicket:id="recSheetForm" autocomplete="off">
+            <span wicket:id="feedback"></span>
+<div class="page-header">
+	<h1>Recommendation Worksheet</h1>
+	<ul class="title-actions">
+		<li class="save"><a href="#" wicket:id="saveRecsheetButton"><div wicket:id="saveIndicator"/></a></li>
+		<li class="print"><a href="#" wicket:id="printRecsheetButton"></a></li>
+		<li class="email"><a href="#" wicket:id="mailRecsheetButton"></a></li>
+		<li class="search"><a href="#" wicket:id="searchButton"></a></li>
+		<li class="reset"><a href="#" wicket:id="clearCustomerButton"></a></li>
+	</ul>
+	 
+</div>
+<div class="rec-nav">
+
+
+	<ul class="sec-nav open">
+                <span wicket:id="refreshMenus">
+		<li class="title"><a href="#">Section View/Edit</a></li>
+                    <span wicket:id="sectionMenus0">
+                        <li wicket:id="menuItem" ><a href="#"><div wicket:id="menuLabel"/></a></li>
+                    </span>
+
+                    <span wicket:id="sectionMenus1">
+                       <li wicket:id="menuItem"><a href="#" ><div wicket:id="menuLabel"/></a></li>
+                    </span>
+
+                    <span wicket:id="sectionMenus2">
+                        <li wicket:id="menuItem" ><a href="#" ><div wicket:id="menuLabel"/></a></li>
+                    </span>
+
+                    <span wicket:id="sectionMenus3">
+                       <li wicket:id="menuItem" ><a href="#" ><div wicket:id="menuLabel"/></a></li>
+                    </span>
+                </span>
+
+	</ul>
+	<a class="button" href="#" wicket:id="addNotesButton">Notes</a>
+	<!--div class="notes open">
+		<div class="notes-header">
+			<h2>Notes</h2>
+			<a class="button" href="#">Done</a>
+		</div>
+		<textarea maxlength="250" name=""></textarea>
+	</div-->
+</div>
+<spin wicket:id="recSheetTypes">
+<ul class="button-selector icons">
+	<li data-type="pc" id="pc" class="first icon-pc" onclick="selectType('pc')">
+		<a href="#">PC</a>
+		<div class="indicator"></div>
+	</li>
+	<li data-type="apple" id="mac" class="icon-apple" onclick="selectType('mac')">
+		<a href="#">Apple</a>
+		<div class="indicator"></div>
+	</li>
+	<li data-type="tablet" id="tablet" class="last icon-tablet" onclick="selectType('tablet')">
+		<a href="#">Tablet</a>
+		<div class="indicator" style="display: block"></div>
+	</li>
+</ul>
+</spin>
+
+			<center>
+				<img wicket:id="transfer-to-beast" />
+			</center>
+
+
+			<fieldset id="you" class="data-box">
+
+                        <div class="reset" href="#" wicket:id="clearSectionButton"><a href="#" ></a></div>
+
+
+	              <wicket:child/>
+		</fieldset>
+		
+	<div wicket:id="printOrEmailModal"></div>	
+
+	</form>
+
+	<div wicket:id="clearSection"></div>
+	<div wicket:id="clearCustomerData"></div>
+
+	<div wicket:id="notePanel"></div>
+		
+	</wicket:extend>
+</body>
+</html>

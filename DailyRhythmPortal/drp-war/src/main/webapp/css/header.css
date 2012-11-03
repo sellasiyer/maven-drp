@@ -1,0 +1,351 @@
+
+/*
+*************************************************
+
+BEAST Portal
+Header Screen Styles
+
+Authored by: Tom Benbow
+
+*************************************************
+*/
+
+
+/* =================================================*/
+/* BASE STYLES FOR TRANSITION
+/* Temporary styles for the header that will be
+/* covered by the main style sheet after transition
+/* to the new design is complete.
+/*======================================*//* @group */
+	
+body {
+	margin: 0;
+	padding: 0;
+	}
+	
+.header a, a:hover {
+	text-decoration: none;
+	}
+
+.header .button {
+	display: inline-block;
+	zoom: 1; /* ie 7-8 inline block fix */
+	color: #fff;	
+	background: -moz-linear-gradient(top, #83c0e5 0%, #3c8dbd 100%); /* FF3.6+ */
+	background: -webkit-linear-gradient(top, #83c0e5 0%,#3c8dbd 100%); /* Chrome10+,Safari5.1+ */
+	background: -ms-linear-gradient(top, #83c0e5 0%,#3c8dbd 100%); /* IE10+ */
+	background: linear-gradient(top, #83c0e5 0%,#3c8dbd 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#83c0e5', endColorstr='#3c8dbd',GradientType=0 ); /* IE6-9 */
+	padding: 0 5px;
+	border-top: 1px solid #b2d9f0;
+	border-right: 1px solid #5b9abe;
+	border-bottom: 1px solid #347ea9;
+	border-left: 1px solid #a2cde7;
+	line-height: 24px;
+	height: 23px;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: 'arial',sans-serif;
+	text-transform: uppercase;
+	text-align: center;
+	cursor: pointer;
+	}
+
+
+/* =================================================*/
+/* HEADER
+/*======================================*//* @group */
+
+.header {
+	position: relative;
+	z-index: 2;
+	background: transparent url('img/header/background.png') no-repeat left top;
+	height: 113px;
+	font-family: 'Arial',sans-serif;
+	}
+	
+.header .logo {
+	display: block;
+	position: absolute;
+	top: 11px;
+	left: 11px;
+	background: url('img/header/bby_mobile_logo.png') no-repeat left top;
+	width: 187px;
+	height: 42px;
+	text-indent: -9999px;
+	}
+	
+.header .beast-bot {
+	display: block;
+	position: absolute;
+	top: 11px;
+	right: 11px;
+	background: url('img/header/beast_portal_logo.png') no-repeat left top;
+	width: 269px;
+	height: 50px;
+	text-indent: -9999px;
+	}
+	
+	
+/* CUSTOMER PANEL
+/* =================================================*/
+	
+.header .customer-panel {
+	position: absolute;
+	bottom: 4px;
+	left: 0;
+	z-index: 3;
+	background: url('img/header/customer_panel.png') no-repeat right top;
+	padding: 12px 13px 0 10px;
+	height: 35px;
+	}
+	
+.header .customer-panel > div {
+	display: block;
+	float: left;
+	height: 25px;
+	margin-right: 10px;
+	}
+
+.header .customer-panel > div.carrier-logo {
+	display: none;
+	color: #cce2ef;
+	background-color: #fff;
+	background-position: 4px 4px;
+	border: 1px solid #2d749e;
+	width: 24px;
+	height: 24px;
+	line-height: 24px;
+	}
+
+.header .customer-panel > div label {
+	display: block;
+	color: #cce2ef;
+	font-size: 12px;
+	line-height: 12px;
+	}
+	
+.header .customer-panel > div span {
+	display: block;
+	color: #fff;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 13px;
+	}
+	
+.header .customer-panel .button {
+	color: #000;
+	background: -moz-linear-gradient(top, #fef796 0%, #feec02 100%); /* FF3.6+ */
+	background: -webkit-linear-gradient(top, #fef796 0%,#feec02 100%); /* Chrome10+,Safari5.1+ */
+	background: -ms-linear-gradient(top, #fef796 0%,#feec02 100%); /* IE10+ */
+	background: linear-gradient(top, #fef796 0%,#feec02 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fef796', endColorstr='#feec02',GradientType=0 ); /* IE6-9 */
+	border-top: 1px solid #f6ee81;
+	border-right: 1px solid #b1a501;
+	border-bottom: 1px solid #b1a501;
+	border-left: 1px solid #f6ee81;
+	}
+	
+
+/* CARRIER ICONS
+/* =================================================*/
+
+/* FOR TABLES */
+
+.att {
+	background: transparent url('img/carrier_logos/att.png') no-repeat;
+	}
+
+.tmobile {
+	background: transparent url('img/carrier_logos/tmobile.png') no-repeat;
+	}
+	
+.sprint {
+	background: transparent url('img/carrier_logos/sprint.png') no-repeat;
+	}
+	
+.verizon {
+	background: transparent url('img/carrier_logos/verizon.png') no-repeat;
+	}
+	
+	
+/* FOR HEADER */
+
+.header .customer-panel > div.carrier-logo.att {
+	display: block;
+	background: #fff url('img/carrier_logos/att.png') no-repeat 4px 4px;
+	}
+
+.header .customer-panel > div.carrier-logo.tmobile {
+	display: block;
+	background: #fff url('img/carrier_logos/tmobile.png') no-repeat 4px 4px;
+	}
+	
+.header .customer-panel > div.carrier-logo.sprint {
+	display: block;
+	background: #fff url('img/carrier_logos/sprint.png') no-repeat 4px 4px;
+	}
+	
+.header .customer-panel > div.carrier-logo.verizon {
+	display: block;
+	background: #fff url('img/carrier_logos/verizon.png') no-repeat;
+	}
+
+/* @end */
+
+	
+
+/* ASSOCIATE BAR
+/* =================================================*/
+	
+.header .associate-bar {
+	position: absolute;
+	bottom: 4px;
+	left: 0;
+	color: #fff;
+	background: url('img/header/associate_bar.png') no-repeat right top;
+	padding-top: 9px;
+	width: 100%;
+	height: 35px;
+	line-height: 35px;
+	text-align: right;
+	font-size: 0;
+	}
+
+.header .associate-bar .associate {
+	margin: 0 10px 0 0;
+	font-size: 13px;
+	font-weight: bold;
+	}	
+
+.header .associate-bar .button {
+	margin: 5px 10px 0 0;
+	}
+	
+.header .associate-bar .button.first {
+	margin: 0;
+	}
+	
+	
+/* MENU
+/* =================================================*/
+	
+.header div.menu {
+	position: absolute;
+	top: 112px;
+	right: 10px;
+	z-index: 1;
+	background: transparent url('img/header/nav_shadow_right.png') no-repeat right bottom;
+	padding-right: 5px;
+	font-size: 0;
+	}
+
+.header .menu > ul {
+	background: transparent url('img/header/nav_shadow_left.png') no-repeat left bottom;
+	padding: 0 0 4px 4px;
+	}
+	
+.header .menu img {
+	border: 0;
+	}
+	
+	
+/* NAV BUTTONS */
+
+.header .menu > ul > li { 
+	position: relative;
+	display: inline-block;
+	zoom: 1;
+	border-left: 1px solid #70aed2;
+	border-right: 1px solid #317197;
+	border-bottom: 1px solid #317197;
+	}
+	
+.header .menu > ul > li > a {
+	display: inline-block;
+	color: #fff;
+	background: url('img/header/nav_bar_bg.png');
+	padding: 0 10px;
+	line-height: 26px;
+	height: 26px;
+	font-size: 12px;
+	font-weight: 700;
+	}
+	
+.header .menu > ul > li > ul { /* HIDE DROPDOWNS */
+	display: none;
+	list-style: none;
+	}
+	
+	
+/* NAV DROPDOWN LEVEL 1 */
+		
+.header .menu > ul > li:hover > ul {
+	display: block;
+	position: absolute;
+	top: 26px;
+	right: -1px;
+	background: url('img/header/nav_dropdown_bg.png') no-repeat right top;
+	padding: 20px 0 5px 0;
+	border: 1px solid #ccc;
+	border-top: 0;
+	}
+	
+.header .menu > ul > li > ul > li {
+	position: relative;
+	}
+	
+.header .menu > ul > li:hover > ul li a {
+	display: block;
+	color: #4f4f4f;
+	padding: 0 15px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	white-space: nowrap;
+	width: auto;
+	}
+	
+.header .menu > ul > li:hover > ul > li:hover > a {
+	color: #fff;
+	background: #409ed4;
+	}
+	
+	
+/* NAV DROPDOWN LEVEL 2 */
+
+.header .menu > ul > li > ul > li > ul { /* HIDE DROPDOWNS */
+	display: none;
+	}
+
+.header .menu > ul > li > ul > li:hover > ul {
+	display: block;
+	position: absolute;
+	top: -1px;
+	left: -227px;
+	background: #fbfbfb;
+	padding: 0;
+	border: 1px solid #ccc;
+	width: 225px;	
+	}
+	
+.header .menu > ul > li > ul > li:hover > ul > li:hover a { /* HIGHLIGHT LINKS */
+	color: #fff;
+	background: #409ed4;
+	}
+	
+/* =================================================*/
+/* VERSION SEC (TECHNICALLY THIS IS THE FOOTER)
+/*======================================*//* @group */
+
+#versionsec span {
+	clear: both;
+	display: block;
+	padding: 15px 15px 0 0;
+	line-height: 30px;
+	height: 30px;
+	font-size: 12px;
+	text-align: right;
+	}

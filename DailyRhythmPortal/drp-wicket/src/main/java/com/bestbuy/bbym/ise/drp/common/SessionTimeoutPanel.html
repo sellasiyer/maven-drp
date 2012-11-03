@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<!--  we are assuming jquery is available -->
+	<script type="text/javascript" src="js/sessionTracking.js"></script>
+
+	<style type="text/css">
+#countdown {
+	width: 150px;
+	height: 60px;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	background-color: white;
+	border: 1px solid #ddd;
+	color: black;
+	display: none;
+}
+</style>
+
+</wicket:head>
+<body class="freeze">
+	<wicket:panel>
+
+		<div class="fader" id="SESS_TIMEOUT_POPUP" style="display:none;">
+			<div class="modal">
+				<h1>Session Timeout</h1>
+				<p>
+					<wicket:message key="sessionTimeout.warning.label1" />
+					<strong><span id="SESS_TIMEOUT_CNTDOWN">00:00</span>
+					</strong>
+					<wicket:message key="sessionTimeout.warning.label2" />
+				</p>
+				<a class="button" wicket:id="refreshLink"><wicket:message key="sessionTimeout.refresh.button" /></a>
+				<a class="button" wicket:id="logoutLink"><wicket:message key="sessionTimeout.logout.button" /></a>
+			</div>
+		</div>
+
+</wicket:panel>
+</body>
+</html>

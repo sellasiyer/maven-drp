@@ -1,0 +1,63 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+	<wicket:panel>
+
+		<div class="page-header">
+			<h1>Recommendation Sheet</h1>
+		</div>
+
+
+		<div class="content_pagetitle_rightcnt" id="add_hotlink_link"></div>
+
+  
+		<div wicket:id="feedback" class="feedbackmsg"></div>
+
+		<form name="recSheetSearchForm" wicket:id="recSheetSearchForm"
+			autocomplete="off">
+			<fieldset class="important">
+				<legend>
+					<wicket:message key="searchForRecSheet" />
+				</legend>
+				<div class="required full">
+					<label>Search By...</label>
+
+					<ul class="table-nav">
+						<li class="open"><a wicket:id="lastNameSearchLink"><wicket:label
+									for="lastName" /> </a>
+							<div class="inputs">
+								<input wicket:id="lastName" maxlength="25" type="text"
+									name="last_name" value="Last Name" />
+							</div>
+						</li>
+						<li><a wicket:id="phoneNumSearchLink"><wicket:label
+									for="phoneNum" /> </a>
+							<div class="inputs">
+								<input maxlength="10" wicket:id="phoneNum" type="text"
+									name="phone_number" value="Phone Number" />
+							</div>
+						</li>
+					</ul>
+
+				</div>
+				<div class="full bottom">
+					<span class="checkbox"> <input
+						wicket:id="searchAllStoresToggle" type="checkbox" name="data"
+						value="data" checked /> <label for="searchAllStoresToggle">
+							<wicket:message key="msw.searchAllStores" /> </label> </span>
+				</div>
+			</fieldset>
+    
+			<div class="buttons">  
+				<a wicket:id="createNewRecSheetLink" class="button minor"
+					href="#"><wicket:message key="createNewRecSheetLink.label" />
+				</a>
+				<input type="submit" wicket:id="submitSearchButton" value="Search"
+					class="button">
+			</div>
+
+		</form>
+
+	</wicket:panel>
+</body>
+</html>

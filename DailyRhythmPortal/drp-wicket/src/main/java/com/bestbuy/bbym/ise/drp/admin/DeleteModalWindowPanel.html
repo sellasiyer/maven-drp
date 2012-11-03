@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<link rel="stylesheet" type="text/css" href="css/tom-screen.css" />
+	<link href="css/header.css" rel="stylesheet" type="text/css" />
+	<title>Delete Window</title>
+</wicket:head>
+
+<body class="freeze">
+	<wicket:panel>
+		<div class="fader">
+			<div class="modal">
+				<h1>Delete Confirmation</h1>
+				<form wicket:id="deleteModalWindowForm">
+					<div>
+						<label wicket:id="confirmationLabel"></label>
+					</div>
+				</form>
+				<input type="submit" value="Yes" class="button" wicket:id="yesButton" />
+				<input type="submit" value="No" class="button" wicket:id="noButton" />
+			</div>
+		</div>
+	</wicket:panel>
+</body>
+</html>

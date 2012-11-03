@@ -1,0 +1,34 @@
+
+<v2:SearchCustomerResponse
+	xmlns:v2="http://webservices.bestbuy.com/ca/services/entity/v2">
+	<v2:Environment>QUAL</v2:Environment>
+	<v2:RequestId>ISE20120810084905009</v2:RequestId>
+	<v2:Customer>
+		<v2:CustomerId>19207676</v2:CustomerId>
+		<v2:Name>
+			<v2:FirstName>RONALD</v2:FirstName>
+			<v2:LastName>SPURGEON</v2:LastName>
+		</v2:Name>
+		<v2:PhoneAddress>
+			<v2:Type>HOME</v2:Type>
+			<v2:AreaCode>316</v2:AreaCode>
+			<v2:Number>6483472</v2:Number>
+		</v2:PhoneAddress>
+		<v2:PhoneAddress>
+			<v2:Type>WORK</v2:Type>
+			<v2:AreaCode>316</v2:AreaCode>
+			<v2:Number>7331300</v2:Number>
+		</v2:PhoneAddress>
+		<v2:PostalAddress>
+			<v2:AddressLine1>209 W 7TH AVE</v2:AddressLine1>
+			<v2:AddressLine2>APT APT</v2:AddressLine2>
+			<v2:City>AUGUSTA</v2:City>
+			<v2:State>KS</v2:State>
+			<v2:Zip>
+				<v2:Zip>67010</v2:Zip>
+				<v2:Zip4>1305</v2:Zip4>
+			</v2:Zip>
+			<v2:Country>USA</v2:Country>
+		</v2:PostalAddress>
+	</v2:Customer>
+</v2:SearchCustomerResponse>

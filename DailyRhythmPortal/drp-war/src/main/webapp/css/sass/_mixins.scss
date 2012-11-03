@@ -1,0 +1,26 @@
+@mixin vertical-gradient-2($top-color, $bottom-color, $method: pie) {
+	@if($method == pie){
+		@include pie;
+		@include background(linear-gradient($top-color, $bottom-color));
+	}@else{
+		@include filter-gradient($top-color, $bottom-color);
+		@include background(linear-gradient($top-color, $bottom-color));
+	}
+}
+
+@mixin my-inner-shadow($shadow-color, $regular-color){
+	@include pie;
+	@include background(linear-gradient($shadow-color, $regular-color 20%, $regular-color 80%, $shadow-color));
+}
+
+@mixin scoreboard-button-gradient(){
+	filter: none;
+	@include pie;
+	@include background(linear-gradient(#749bd0, #3d649a 40%, #2c5184 45%, #233f65));
+}
+
+@mixin scoreboard-button-return-gradient(){
+	filter: none;
+	@include pie;
+	@include background(linear-gradient(#dc0000, #9a0e0f 45%, #8c0d0e));
+}

@@ -1,0 +1,96 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+</wicket:head>
+<body>
+	<wicket:extend>
+		<fieldset id="services-pc-options" class="data-box">
+			<h2 class="tight">
+				<wicket:message key="pcAddOptionsPageForm.step.label" />
+			</h2>
+			<h2 class="subhead">
+				<wicket:message key="pcAddOptionsPageForm.subtitle.label" />
+			</h2>
+
+			<div class="column width-full">
+				<div class="block nopad width-4">
+					<ul class="checkbox-buttons wide">
+						<li><input type="checkbox" wicket:id="dataBackupCbx">
+							<label for="dataBackup"> <wicket:message
+									key="pcAddOptionsPageForm.dataBackup.label" /><br /> <i><wicket:message
+										key="pcAddOptionsPageForm.dataBackup.line1.label" /> </i><br />
+								<i><wicket:message
+										key="pcAddOptionsPageForm.dataBackup.savings.label" /> </i><br />
+								<i><wicket:message
+										key="pcAddOptionsPageForm.dataBackup.sku.label" /> </i> </label></li>
+					</ul>
+				</div>
+				<div class="block nopad width-4">
+					<ul class="checkbox-buttons wide">
+						<li><input type="checkbox" wicket:id="dataBackup500GBCbx">
+							<label for="dataBackup500GB"> <wicket:message
+									key="pcAddOptionsPageForm.dataBackup500GB.label" /><br /> <i><wicket:message
+										key="pcAddOptionsPageForm.dataBackup500GB.line1.label" /> </i><br />
+								<i><wicket:message
+										key="pcAddOptionsPageForm.dataBackup500GB.savings.label" /> </i><br />
+								<i><wicket:message
+										key="pcAddOptionsPageForm.dataBackup500GB.sku.label" /> </i> </label></li>
+					</ul>
+				</div>
+				<div class="block nopad width-4">
+					<ul class="checkbox-buttons wide">
+						<li><input type="checkbox" wicket:id="msOfficeCbx"> <label for="msOffice"><wicket:message
+									key="pcAddOptionsPageForm.msOffice.label" /><br /> <i><wicket:message
+										key="pcAddOptionsPageForm.msOffice.line1.label" /> </i><br /> <i><wicket:message
+										key="pcAddOptionsPageForm.msOffice.savings.label" /> </i><br />
+								<i><wicket:message
+										key="pcAddOptionsPageForm.msOffice.sku.label" /> </i> </label></li>
+					</ul>
+				</div>
+				<div class="block nopad width-4">
+					<ul class="checkbox-buttons wide">
+						<li><input type="checkbox" wicket:id="restoreMediaCbx">
+							<label for="restoreMedia"> <wicket:message
+									key="pcAddOptionsPageForm.restoreMedia.label" /><br /> <i><wicket:message
+										key="pcAddOptionsPageForm.restoreMedia.line1.label" /> </i><br />
+								<i><wicket:message
+										key="pcAddOptionsPageForm.restoreMedia.savings.label" /> </i><br />
+								<i><wicket:message
+										key="pcAddOptionsPageForm.restoreMedia.sku.label" /> </i> </label></li>
+					</ul>
+				</div>
+			</div>
+			<div class="column width-full isolated">
+				<div class="block description width-full">
+					<h3>
+						<wicket:message key="pcAddOptionsPageForm.personalizedSetup.label" />
+					</h3>
+					<ul>
+						<li><wicket:message
+								key="pcAddOptionsPageForm.personalizedSetup.line1.label" />
+						</li>
+						<li><wicket:message
+								key="pcAddOptionsPageForm.personalizedSetup.line2.label" />
+						</li>
+						<li><wicket:message
+								key="pcAddOptionsPageForm.personalizedSetup.line3.label" />
+						</li>
+					</ul>
+				</div>
+				<div class="block nopad width-4">
+					<ul class="checkbox-buttons wide">
+						<li><input type="checkbox" wicket:id="personalizedSetupCbx">
+							<label for="personalizedSetup"> <wicket:message
+									key="pcAddOptionsPageForm.personalizedSetup.subTitle.label" /><br />
+								<i><wicket:message
+										key="pcAddOptionsPageForm.personalizedSetuprestoreMedia.savings.label" />
+							</i><br /> <i><wicket:message
+										key="pcAddOptionsPageForm.personalizedSetup.sku.label" /> </i> </label></li>
+					</ul>
+				</div>
+			</div>
+
+		</fieldset>
+	</wicket:extend>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<Types>
+		<Type>
+			<TypeId>2</TypeId>
+			<TypeName>Store-Pickup</TypeName>
+		</Type>
+	</Types>
+	<ErrorCode>1</ErrorCode>
+	<ErrorMessage></ErrorMessage>
+</xml>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:common="http://bestbuy.com/bbym/ise/common" 
+	xmlns="http://bestbuy.com/bbym/beast/portal/datasummary/response"
+	targetNamespace="http://bestbuy.com/bbym/beast/portal/datasummary/response"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://bestbuy.com/bbym/ise/common"
+		schemaLocation="ISE_COMMON.XSD" />
+
+	<xs:element name="DataTransferSummaryList">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="dataTransferSummary" maxOccurs="unbounded"
+					type="DataTransferSummaryType" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="DataTransferSummaryType">
+		<xs:sequence>
+			<xs:element name="dataSharingKey" type="common:DataSharingKeyType" />
+			<xs:element name="detailsUrl" type="xs:string" />
+			<xs:element name="firstName" minOccurs="0"
+				type="common:FirstNameType" />
+			<xs:element name="lastName" minOccurs="0"
+				type="common:LastNameType" />
+			<xs:element name="phoneNumber" minOccurs="0"
+				type="common:PhoneNumberType" />
+			<xs:element name="transferFlag" minOccurs="0"
+				type="common:TransferFlagType" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

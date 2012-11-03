@@ -1,0 +1,32 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>Legacy Rechseet Import</title>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<div wicket:id="feedback" class="error"></div>
+		
+		<form wicket:id="legacyRecSheetForm">			
+	    <div class="pgtitle">
+			<h1>Legacy Rech Sheet Import</h1>
+		</div>
+
+		<div class="pgcontent">
+		  
+		  <input type="text" wicket:id="fromDate"/>
+		  <br/>
+		  <input type="text" wicket:id="toDate"/>
+		  <br/>  
+		  <input type="submit" wicket:id="submitButton"/>
+		   		    
+		</div>
+		 
+		</form>
+		
+</wicket:extend>
+</body>
+
+</html>

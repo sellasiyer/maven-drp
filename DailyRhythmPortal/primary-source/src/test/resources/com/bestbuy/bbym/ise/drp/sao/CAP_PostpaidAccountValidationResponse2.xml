@@ -1,0 +1,20 @@
+<!-- Failure response -->
+
+<cap:PostpaidAccountValidationResponse
+	xmlns:cap="http://bestbuy.com/bbym/beast/cap/response/postpaid/accountValidation">
+	<Header>
+		<destinationId>VEZ</destinationId>
+		<transactionId>ISE20120906101247647</transactionId>
+		<messageType>POSTPAID_ACCOUNT_VALIDATION_RESPONSE</messageType>
+		<timestamp>2012-09-06T10:12:48</timestamp>
+		<channelId>0699</channelId>
+		<carrierTransactionId />
+		<capVersion>V17-0-0_US_PRODTEST_CAS_08022012_69</capVersion>
+	</Header>
+	<resultInfo>
+		<resultType>1</resultType>
+		<resultCode>00608</resultCode>
+		<categoryCode>CTC</categoryCode>
+		<resultDetails>Customer_ID_Conflict [UAT02:MS_PRP1_EROES_01:01]Customer Mobile Number not found.</resultDetails>
+	</resultInfo>
+</cap:PostpaidAccountValidationResponse>

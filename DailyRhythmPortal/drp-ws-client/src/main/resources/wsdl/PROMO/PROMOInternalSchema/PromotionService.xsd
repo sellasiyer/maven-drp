@@ -1,0 +1,806 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Oracle JAX-WS 2.1.3-07/10/2008 08:41 PM(bt). --><xs:schema xmlns:tns="http://bestbuy.com/bbym/promo" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://bestbuy.com/bbym/promo">
+
+<xs:element name="DuplicatePhoneNumberException" type="tns:DuplicatePhoneNumberException" />
+
+<xs:element name="EGiftCardReservationHasExpiredException" type="tns:EGiftCardReservationHasExpiredException" />
+
+<xs:element name="InvalidArgumentException" type="tns:InvalidArgumentException" />
+
+<xs:element name="InvalidTokenException" type="tns:InvalidTokenException" />
+
+<xs:element name="InvalidTransactionIDException" type="tns:InvalidTransactionIDException" />
+
+<xs:element name="OutOfCouponsException" type="tns:OutOfCouponsException" />
+
+<xs:element name="OutOfEGiftCardsException" type="tns:OutOfEGiftCardsException" />
+
+<xs:element name="PermissionDeniedException" type="tns:PermissionDeniedException" />
+
+<xs:element name="TokenAlreadyClaimedException" type="tns:TokenAlreadyClaimedException" />
+
+<xs:element name="TokenNotCurrentlyValidException" type="tns:TokenNotCurrentlyValidException" />
+
+<xs:element name="UnknownFailureException" type="tns:UnknownFailureException" />
+
+<xs:element name="UnsupportedOperationException" type="tns:UnsupportedOperationException" />
+
+<xs:element name="claimToken" type="tns:claimToken" />
+
+<xs:element name="claimTokenResponse" type="tns:claimTokenResponse" />
+
+<xs:element name="fulfillTransaction" type="tns:fulfillTransaction" />
+
+<xs:element name="fulfillTransactionResponse" type="tns:fulfillTransactionResponse" />
+
+<xs:element name="getEGiftCard" type="tns:getEGiftCard" />
+
+<xs:element name="getEGiftCardResponse" type="tns:getEGiftCardResponse" />
+
+<xs:element name="getFulfillmentContent" type="tns:getFulfillmentContent" />
+
+<xs:element name="getFulfillmentContentResponse" type="tns:getFulfillmentContentResponse" />
+
+<xs:element name="getRelatedPromotions" type="tns:getRelatedPromotions" />
+
+<xs:element name="getRelatedPromotionsResponse" type="tns:getRelatedPromotionsResponse" />
+
+<xs:element name="getToken" type="tns:getToken" />
+
+<xs:element name="getTokenResponse" type="tns:getTokenResponse" />
+
+<xs:element name="getUnissuedCouponCount" type="tns:getUnissuedCouponCount" />
+
+<xs:element name="getUnissuedCouponCountResponse" type="tns:getUnissuedCouponCountResponse" />
+
+<xs:element name="issueCoupon" type="tns:issueCoupon" />
+
+<xs:element name="issueCouponResponse" type="tns:issueCouponResponse" />
+
+<xs:element name="referAFriendFind" type="tns:referAFriendFind" />
+
+<xs:element name="referAFriendFindFriend" type="tns:referAFriendFindFriend" />
+
+<xs:element name="referAFriendFindFriendResponse" type="tns:referAFriendFindFriendResponse" />
+
+<xs:element name="referAFriendFindResponse" type="tns:referAFriendFindResponse" />
+
+<xs:element name="referAFriendRegister" type="tns:referAFriendRegister" />
+
+<xs:element name="referAFriendRegisterFriend" type="tns:referAFriendRegisterFriend" />
+
+<xs:element name="referAFriendRegisterFriendResponse" type="tns:referAFriendRegisterFriendResponse" />
+
+<xs:element name="referAFriendRegisterResponse" type="tns:referAFriendRegisterResponse" />
+
+<xs:element name="referAFriendUpdate" type="tns:referAFriendUpdate" />
+
+<xs:element name="referAFriendUpdateResponse" type="tns:referAFriendUpdateResponse" />
+
+<xs:element name="register" type="tns:register" />
+
+<xs:element name="registerResponse" type="tns:registerResponse" />
+
+<xs:element name="validateTransaction" type="tns:validateTransaction" />
+
+<xs:element name="validateTransactionResponse" type="tns:validateTransactionResponse" />
+
+<xs:complexType name="validateTransaction">
+<xs:sequence>
+<xs:element name="request" type="tns:ValidateTransactionRequestType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ValidateTransactionRequestType">
+<xs:sequence>
+<xs:element name="orderType" type="tns:orderType" />
+<xs:element name="lines" type="tns:TransactionLine" maxOccurs="unbounded" />
+<xs:element name="locationId" type="xs:int" />
+<xs:element name="internationalBusinessHierarchy" type="tns:InternationalBusinessHierarchy" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TransactionLine">
+<xs:sequence>
+<xs:element name="skuID" type="xs:long" />
+<xs:element name="phoneNumber" type="xs:string" />
+<xs:element name="promotions" type="tns:transactionLinePromotion" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="transactionLinePromotion">
+<xs:sequence>
+<xs:element name="promotionCode" type="xs:string" />
+<xs:element name="tradeInDeviceSku" type="xs:long" minOccurs="0" />
+<xs:element name="tradeInDeviceValue" type="xs:decimal" minOccurs="0" />
+<xs:element name="additionalValues" type="tns:AdditionalValue" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AdditionalValue">
+<xs:sequence>
+<xs:element name="additionalFieldID" type="xs:long" />
+<xs:element name="value" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="InternationalBusinessHierarchy">
+<xs:sequence>
+<xs:element name="enterprise" type="xs:string" />
+<xs:element name="tradingArea" type="xs:string" />
+<xs:element name="company" type="xs:string" />
+<xs:element name="brand" type="xs:string" />
+<xs:element name="businessUnit" type="xs:string" />
+<xs:element name="channel" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="validateTransactionResponse">
+<xs:sequence>
+<xs:element name="response" type="tns:ValidateTransactionResponseType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ValidateTransactionResponseType">
+<xs:sequence>
+<xs:element name="lines" type="tns:TransactionLineValidationResponse" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TransactionLineValidationResponse">
+<xs:sequence>
+<xs:element name="skuID" type="xs:long" minOccurs="0" />
+<xs:element name="phoneNumber" type="xs:string" />
+<xs:element name="promotions" type="tns:PromotionValidationResponse" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="PromotionValidationResponse">
+<xs:complexContent>
+<xs:extension base="tns:transactionLinePromotion">
+<xs:sequence>
+<xs:element name="status" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="UnknownFailureException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="InvalidArgumentException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="referAFriendRegister">
+<xs:sequence>
+<xs:element name="request" type="tns:ReferAFriendRegisterRequestType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ReferAFriendRegisterRequestType">
+<xs:sequence>
+<xs:element name="phoneNumber" type="xs:string" />
+<xs:element name="emailAddress" type="xs:string" />
+<xs:element name="fullName" type="xs:string" />
+<xs:element name="allowContact" type="xs:boolean" />
+<xs:element name="friendEmails" type="xs:string" maxOccurs="unbounded" />
+<xs:element name="postBackUrl" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="referAFriendRegisterResponse">
+<xs:sequence>
+<xs:element name="response" type="tns:ReferAFriendRegisterResponseType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ReferAFriendRegisterResponseType">
+<xs:sequence>
+<xs:element name="successful" type="xs:boolean" />
+<xs:element name="exceptionType" type="tns:referAFriendExceptionType" minOccurs="0" />
+<xs:element name="exception" type="xs:string" minOccurs="0" />
+<xs:element name="exceptionSubject" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="referAFriendUpdate">
+<xs:sequence>
+<xs:element name="request" type="tns:ReferAFriendUpdateRequestType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ReferAFriendUpdateRequestType">
+<xs:sequence>
+<xs:element name="phoneNumber" type="xs:string" />
+<xs:element name="friendEmails" type="xs:string" maxOccurs="unbounded" />
+<xs:element name="postBackUrl" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="referAFriendUpdateResponse">
+<xs:sequence>
+<xs:element name="response" type="tns:ReferAFriendUpdateResponseType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ReferAFriendUpdateResponseType">
+<xs:sequence>
+<xs:element name="successful" type="xs:boolean" />
+<xs:element name="exceptionType" type="tns:referAFriendExceptionType" minOccurs="0" />
+<xs:element name="exception" type="xs:string" minOccurs="0" />
+<xs:element name="exceptionSubject" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="referAFriendFind">
+<xs:sequence>
+<xs:element name="request" type="tns:ReferAFriendFindRequestType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ReferAFriendFindRequestType">
+<xs:sequence>
+<xs:element name="phoneNumber" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="referAFriendFindResponse">
+<xs:sequence>
+<xs:element name="response" type="tns:ReferAFriendFindResponseType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ReferAFriendFindResponseType">
+<xs:sequence>
+<xs:element name="successful" type="xs:boolean" />
+<xs:element name="exceptionType" type="tns:referAFriendExceptionType" minOccurs="0" />
+<xs:element name="exception" type="xs:string" minOccurs="0" />
+<xs:element name="exceptionSubject" type="xs:string" minOccurs="0" />
+<xs:element name="token" type="xs:string" minOccurs="0" />
+<xs:element name="phoneNumber" type="xs:string" minOccurs="0" />
+<xs:element name="emailAddress" type="xs:string" minOccurs="0" />
+<xs:element name="fullName" type="xs:string" minOccurs="0" />
+<xs:element name="friendEmails" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="issueCoupon">
+<xs:sequence>
+<xs:element name="request" type="tns:IssueCouponRequestType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="IssueCouponRequestType">
+<xs:complexContent>
+<xs:extension base="tns:GetTokenRequestType">
+<xs:sequence>
+<xs:element name="emailAddress" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="GetTokenRequestType">
+<xs:sequence>
+<xs:element name="token" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="issueCouponResponse">
+<xs:sequence>
+<xs:element name="response" type="tns:token" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="token">
+<xs:sequence>
+<xs:element name="token_id" type="xs:long" />
+<xs:element name="token_text" type="xs:string" minOccurs="0" />
+<xs:element name="token_begin_ts" type="xs:dateTime" minOccurs="0" />
+<xs:element name="token_end_ts" type="xs:dateTime" minOccurs="0" />
+<xs:element name="promotion_id" type="xs:long" />
+<xs:element name="token_create_ts" type="xs:dateTime" minOccurs="0" />
+<xs:element name="isIssued" type="xs:boolean" minOccurs="0" />
+<xs:element name="isApplied" type="xs:boolean" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="InvalidTokenException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="OutOfCouponsException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="UnsupportedOperationException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getRelatedPromotions">
+<xs:sequence>
+<xs:element name="request" type="tns:GetRelatedPromotionsRequestType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GetRelatedPromotionsRequestType">
+<xs:sequence>
+<xs:element name="searchStrings" type="tns:searchParameter" maxOccurs="unbounded" />
+<xs:element name="locationId" type="xs:int" />
+<xs:element name="tradeInDeviceSku" type="xs:long" minOccurs="0" />
+<xs:element name="tradeInDeviceValue" type="xs:decimal" minOccurs="0" />
+<xs:element name="internationalBusinessHierarchy" type="tns:InternationalBusinessHierarchy" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="searchParameter">
+<xs:simpleContent>
+<xs:extension base="xs:string">
+<xs:attribute name="type" type="tns:searchParameterType" />
+</xs:extension>
+</xs:simpleContent>
+</xs:complexType>
+
+<xs:complexType name="getRelatedPromotionsResponse">
+<xs:sequence>
+<xs:element name="response" type="tns:GetRelatedPromotionsResponseType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GetRelatedPromotionsResponseType">
+<xs:sequence>
+<xs:element name="relatedPromotions" type="tns:relatedPromotion" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="relatedPromotion">
+<xs:sequence>
+<xs:element name="searchString" type="xs:string" />
+<xs:element name="promotion" type="tns:Promotion" />
+<xs:element name="promotionAvailable" type="xs:boolean" />
+<xs:element name="status" type="xs:string" />
+<xs:element name="customer" type="tns:Customer" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Promotion">
+<xs:sequence>
+<xs:element name="promotionID" type="xs:long" minOccurs="0" />
+<xs:element name="promotionCode" type="xs:string" />
+<xs:element name="name" type="xs:string" minOccurs="0" />
+<xs:element name="promotionDescription" type="xs:string" />
+<xs:element name="promotionBeginDate" type="xs:dateTime" />
+<xs:element name="promotionEndDate" type="xs:dateTime" />
+<xs:element name="registrationBeginDate" type="xs:dateTime" minOccurs="0" />
+<xs:element name="registrationEndDate" type="xs:dateTime" minOccurs="0" />
+<xs:element name="promotionSKU" type="xs:long" />
+<xs:element name="promotionType" type="tns:promotionType" />
+<xs:element name="promotionValue" type="xs:decimal" />
+<xs:element name="promotionApprover" type="xs:string" />
+<xs:element name="promotionAffiliate" type="xs:string" />
+<xs:element name="promotionCostCenter" type="xs:string" />
+<xs:element name="promotionCirculationQuantity" type="xs:long" />
+<xs:element name="promotionExpense" type="xs:long" />
+<xs:element name="promotionDeviceLogicRule" type="tns:deviceLogicRule" />
+<xs:element name="promotionCardinality" type="tns:promotionCardinality" />
+<xs:element name="promotionStackable" type="xs:boolean" />
+<xs:element name="fulfillmentType" type="tns:fulfillmentType" />
+<xs:element name="promotionContentFilename" type="xs:string" minOccurs="0" />
+<xs:element name="promotionContentType" type="xs:string" minOccurs="0" />
+<xs:element name="promotionContentURL" type="xs:string" minOccurs="0" />
+<xs:element name="devices" type="tns:Device" minOccurs="0" maxOccurs="unbounded" />
+<xs:element name="additionalFields" type="tns:AdditionalField" minOccurs="0" maxOccurs="unbounded" />
+<xs:element name="validOrderTypes" type="tns:orderType" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Device">
+<xs:sequence>
+<xs:element name="skuID" type="xs:long" />
+<xs:element name="skuDescription" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AdditionalField">
+<xs:sequence>
+<xs:element name="additionalFieldID" type="xs:long" />
+<xs:element name="additionalFieldName" type="xs:string" />
+<xs:element name="additionalFieldType" type="xs:string" />
+<xs:element name="label" type="xs:string" minOccurs="0" />
+<xs:element name="defaultText" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Customer">
+<xs:sequence>
+<xs:element name="customerID" type="xs:long" />
+<xs:element name="phoneNumber" type="xs:string" />
+<xs:element name="allowContact" type="xs:boolean" />
+<xs:element name="customerCreateTimestamp" type="xs:dateTime" />
+<xs:element name="emailAddress" type="xs:string" minOccurs="0" />
+<xs:element name="fullName" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getEGiftCard">
+<xs:sequence>
+<xs:element name="request" type="tns:GetEGiftCardRequestType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GetEGiftCardRequestType">
+<xs:sequence>
+<xs:element name="token" type="xs:string" />
+<xs:element name="phoneNumber" type="xs:string" />
+<xs:element name="customerIPAddress" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getEGiftCardResponse">
+<xs:sequence>
+<xs:element name="response" type="tns:GetEGiftCardResponseType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GetEGiftCardResponseType">
+<xs:sequence>
+<xs:element name="content" type="tns:fulfillmentContent" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="fulfillmentContent">
+<xs:sequence>
+<xs:element name="promotionContentType" type="xs:string" />
+<xs:element name="promotionContent" type="xs:base64Binary" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="PermissionDeniedException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="OutOfEGiftCardsException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TokenNotCurrentlyValidException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="EGiftCardReservationHasExpiredException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="referAFriendRegisterFriend">
+<xs:sequence>
+<xs:element name="request" type="tns:ReferAFriendRegisterFriendRequestType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ReferAFriendRegisterFriendRequestType">
+<xs:sequence>
+<xs:element name="token" type="xs:string" minOccurs="0" />
+<xs:element name="phoneNumber" type="xs:string" minOccurs="0" />
+<xs:element name="fullName" type="xs:string" />
+<xs:element name="emailAddress" type="xs:string" />
+<xs:element name="allowContact" type="xs:boolean" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="referAFriendRegisterFriendResponse">
+<xs:sequence>
+<xs:element name="response" type="tns:ReferAFriendRegisterFriendResponseType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ReferAFriendRegisterFriendResponseType">
+<xs:sequence>
+<xs:element name="successful" type="xs:boolean" />
+<xs:element name="exceptionType" type="tns:referAFriendExceptionType" minOccurs="0" />
+<xs:element name="exception" type="xs:string" minOccurs="0" />
+<xs:element name="exceptionSubject" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="register">
+<xs:sequence>
+<xs:element name="request" type="tns:RegisterRequestType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="RegisterRequestType">
+<xs:sequence>
+<xs:element name="promotionCode" type="xs:string" />
+<xs:element name="phoneNumber" type="xs:string" />
+<xs:element name="emailAddress" type="xs:string" />
+<xs:element name="allowContact" type="xs:boolean" />
+<xs:element name="customerIPAddress" type="xs:string" />
+<xs:element name="fullName" type="xs:string" minOccurs="0" />
+<xs:element name="internationalBusinessHierarchy" type="tns:InternationalBusinessHierarchy" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="registerResponse">
+<xs:sequence>
+<xs:element name="response" type="tns:RegisterResponseType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="RegisterResponseType">
+<xs:sequence />
+</xs:complexType>
+
+<xs:complexType name="DuplicatePhoneNumberException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getUnissuedCouponCount">
+<xs:sequence>
+<xs:element name="request" type="tns:GetTokenRequestType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getUnissuedCouponCountResponse">
+<xs:sequence>
+<xs:element name="response" type="xs:int" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="fulfillTransaction">
+<xs:sequence>
+<xs:element name="request" type="tns:FulfillTransactionRequestType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="FulfillTransactionRequestType">
+<xs:complexContent>
+<xs:extension base="tns:ValidateTransactionRequestType">
+<xs:sequence>
+<xs:element name="transactionID" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="fulfillTransactionResponse">
+<xs:sequence>
+<xs:element name="response" type="tns:FulfillTransactionResponseType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="FulfillTransactionResponseType">
+<xs:sequence>
+<xs:element name="lines" type="tns:TransactionLineFulfillmentResponse" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TransactionLineFulfillmentResponse">
+<xs:sequence>
+<xs:element name="skuID" type="xs:long" minOccurs="0" />
+<xs:element name="phoneNumber" type="xs:string" />
+<xs:element name="promotions" type="tns:PromotionFulfillmentResponse" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="PromotionFulfillmentResponse">
+<xs:sequence>
+<xs:element name="promotionCode" type="xs:string" />
+<xs:element name="status" type="xs:string" />
+<xs:element name="additionalValues" type="tns:AdditionalValue" minOccurs="0" maxOccurs="unbounded" />
+<xs:element name="promotionContentType" type="xs:string" minOccurs="0" />
+<xs:element name="promotionContent" type="xs:base64Binary" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="InvalidTransactionIDException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getToken">
+<xs:sequence>
+<xs:element name="request" type="tns:GetTokenRequestType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getTokenResponse">
+<xs:sequence>
+<xs:element name="response" type="tns:GetTokenResponseType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GetTokenResponseType">
+<xs:sequence>
+<xs:element name="token" type="xs:string" />
+<xs:element name="tokenBeginTimestamp" type="xs:dateTime" />
+<xs:element name="tokenEndTimestamp" type="xs:dateTime" />
+<xs:element name="issued" type="xs:boolean" minOccurs="0" />
+<xs:element name="claimed" type="xs:boolean" />
+<xs:element name="applied" type="xs:boolean" minOccurs="0" />
+<xs:element name="phoneNumber" type="xs:string" minOccurs="0" />
+<xs:element name="emailAddress" type="xs:string" minOccurs="0" />
+<xs:element name="fullName" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="claimToken">
+<xs:sequence>
+<xs:element name="request" type="tns:ClaimTokenRequestType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ClaimTokenRequestType">
+<xs:sequence>
+<xs:element name="token" type="xs:string" />
+<xs:element name="phoneNumber" type="xs:string" />
+<xs:element name="emailAddress" type="xs:string" minOccurs="0" />
+<xs:element name="fullName" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="claimTokenResponse">
+<xs:sequence>
+<xs:element name="response" type="tns:ClaimTokenResponseType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ClaimTokenResponseType">
+<xs:sequence />
+</xs:complexType>
+
+<xs:complexType name="TokenAlreadyClaimedException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getFulfillmentContent">
+<xs:sequence>
+<xs:element name="request" type="tns:GetFulfillmentContentRequestType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GetFulfillmentContentRequestType">
+<xs:sequence>
+<xs:element name="transactionID" type="xs:string" />
+<xs:element name="locationId" type="xs:int" />
+<xs:element name="userID" type="xs:string" />
+<xs:element name="internationalBusinessHierarchy" type="tns:InternationalBusinessHierarchy" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getFulfillmentContentResponse">
+<xs:sequence>
+<xs:element name="response" type="tns:GetFulfillmentContentResponseType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GetFulfillmentContentResponseType">
+<xs:sequence>
+<xs:element name="content" type="tns:fulfillmentContent" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="referAFriendFindFriend">
+<xs:sequence>
+<xs:element name="request" type="tns:ReferAFriendFindFriendRequestType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ReferAFriendFindFriendRequestType">
+<xs:sequence>
+<xs:element name="token" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="referAFriendFindFriendResponse">
+<xs:sequence>
+<xs:element name="response" type="tns:ReferAFriendFindFriendResponseType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ReferAFriendFindFriendResponseType">
+<xs:sequence>
+<xs:element name="successful" type="xs:boolean" />
+<xs:element name="emailAddress" type="xs:string" minOccurs="0" />
+<xs:element name="exceptionType" type="tns:referAFriendExceptionType" minOccurs="0" />
+<xs:element name="exception" type="xs:string" minOccurs="0" />
+<xs:element name="exceptionSubject" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:simpleType name="orderType">
+<xs:restriction base="xs:string">
+<xs:enumeration value="NEW" />
+<xs:enumeration value="UPGRADE" />
+<xs:enumeration value="ADD_ON" />
+<xs:enumeration value="ESN_SWAP" />
+<xs:enumeration value="PLAN_CHANGE" />
+<xs:enumeration value="CONVERT" />
+<xs:enumeration value="QUERY" />
+<xs:enumeration value="TOPUP" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="referAFriendExceptionType">
+<xs:restriction base="xs:string">
+<xs:enumeration value="ALREADY_REGISTERED" />
+<xs:enumeration value="DUPLICATE_FRIEND" />
+<xs:enumeration value="REFERRER_SENT_AS_FRIEND" />
+<xs:enumeration value="REQUIRES_AT_LEAST_ONE_FRIEND" />
+<xs:enumeration value="TOO_MANY_FRIENDS_REFERRED" />
+<xs:enumeration value="FRIEND_ALREADY_REGISTERED" />
+<xs:enumeration value="EXISTING_FRIEND_HAS_BEEN_DELETED" />
+<xs:enumeration value="FRIEND_ALREADY_CONFIRMED" />
+<xs:enumeration value="TOKEN_IS_EXPIRED" />
+<xs:enumeration value="INVALID_TOKEN" />
+<xs:enumeration value="DUPLICATE_PHONE" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="searchParameterType">
+<xs:restriction base="xs:string">
+<xs:enumeration value="ACTIVATION_PHONE_NUMBER" />
+<xs:enumeration value="EMAIL_ADDRESS" />
+<xs:enumeration value="PROMOTION_CODE" />
+<xs:enumeration value="DEVICE_SKU" />
+<xs:enumeration value="TRADEIN_SKU" />
+<xs:enumeration value="ORDER_TYPE" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="promotionType">
+<xs:restriction base="xs:string">
+<xs:enumeration value="STANDARD" />
+<xs:enumeration value="RAF_REFER" />
+<xs:enumeration value="RAF_REDEEM" />
+<xs:enumeration value="FIXED_TRADE_IN" />
+<xs:enumeration value="VAR_TRADE_IN" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="deviceLogicRule">
+<xs:restriction base="xs:string">
+<xs:enumeration value="DEVICES_ARE_INCLUDED" />
+<xs:enumeration value="DEVICES_ARE_EXCLUDED" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="promotionCardinality">
+<xs:restriction base="xs:string">
+<xs:enumeration value="SINGLE_USE" />
+<xs:enumeration value="MULTI_USE" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="fulfillmentType">
+<xs:restriction base="xs:string">
+<xs:enumeration value="NONE" />
+<xs:enumeration value="EGIFTCARD" />
+<xs:enumeration value="DOCUMENT" />
+<xs:enumeration value="ASYNC_EGIFTCARD" />
+</xs:restriction>
+</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<script>
+	var scrollAreaTable;
+	var headers;
+	var shiftLeftButton;
+	var shiftRightButton
+	var currentIndex;
+	var maxIndex;
+	var animating = false;
+	$(document).ready(function() {
+		scrollAreaTable = $(".scroll-area table");
+		headers = scrollAreaTable.find("thead > tr > th");
+		shiftLeftButton = $("a.shift-left");
+		shiftRightButton = $("a.shift-right");
+		currentIndex = 0;
+		// This is a trick that forces the browser to ignore the width of the parent when sizing the table. 
+		// This causes the columns to remain the same width after shift area resizing.
+		scrollAreaTable.css("width", "0px");
+		adjustShiftAreaWidth();
+		setScrollButtonState();
+	});
+	$(window).resize(function() {
+		adjustShiftAreaWidth();
+		setScrollButtonState(scrollAreaTable.position().left);
+	});
+	function shiftLeft() {
+		if (animating || currentIndex <= 0) {
+			return;
+		}
+		animating = true;
+		try {
+			var currentLeft = scrollAreaTable.position().left;
+			var newLeft = currentLeft + (headers.eq(currentIndex).position().left - headers.eq(currentIndex - 1).position().left);
+			--currentIndex;
+			disableScrollButtons();
+			scrollAreaTable.animate({left : newLeft + "px"}, 150, function() {
+				setScrollButtonState();
+				animating = false;
+			});
+		}
+		catch (ex) {
+			animating = false;
+			throw ex;
+		}
+	}
+	function shiftRight() {
+		if (animating || currentIndex >= maxIndex) {
+			return;
+		}
+		animating = true;
+		try {
+			var currentLeft = scrollAreaTable.position().left;
+			var newLeft = currentLeft - (headers.eq(currentIndex + 1).position().left - headers.eq(currentIndex).position().left);
+			++currentIndex;
+			setScrollButtonState(newLeft);
+			disableScrollButtons();
+			scrollAreaTable.animate({left : newLeft + "px"}, 150, function() {
+				setScrollButtonState();
+				animating = false;
+			});
+		}
+		catch (ex) {
+			animating = false;
+			throw ex;
+		}
+	}
+	function setScrollButtonState() {
+		if (currentIndex <= 0) {
+			disableLeftScrollButton();
+		}
+		else {
+			enableLeftScrollButton();			
+		}
+		if (currentIndex >= maxIndex) {
+			disableRightScrollButton();
+		}
+		else {
+			enableRightScrollButton();
+		}
+	}
+	function enableScrollButtons() {
+		enableLeftScrollButton();
+		enableRightScrollButton();
+	}
+	function disableScrollButtons() {
+		disableLeftScrollButton();
+		disableRightScrollButton();
+	}
+	function enableLeftScrollButton() {
+		shiftLeftButton.removeClass("disabled");			
+		shiftLeftButton.bind("click", shiftLeft);
+	}
+	function enableRightScrollButton() {
+		shiftRightButton.removeClass("disabled");			
+		shiftRightButton.bind("click", shiftRight);
+	}
+	function disableLeftScrollButton() {
+		shiftLeftButton.addClass("disabled");		
+		shiftLeftButton.unbind("click", shiftLeft);
+	}
+	function disableRightScrollButton() {
+		shiftRightButton.addClass("disabled");		
+		shiftRightButton.unbind("click", shiftRight);
+	}
+	function adjustShiftAreaWidth() {
+		var viewportWidth = $(".plan-features").width();
+		var left = $(".plan-features div.shift-area").position().left;
+		var featuresWidth = $(".plan-features .features").outerWidth(true);
+		var totalsWidth = $(".plan-features .totals").outerWidth(true);
+		var maxShiftAreaWidth = viewportWidth - left - totalsWidth;
+		$(".plan-features div.shift-area").width(maxShiftAreaWidth);
+		var shiftAreaWidth = 0;
+		if (scrollAreaTable.outerWidth() > maxShiftAreaWidth) {
+			var i;
+			for (i = 1; i < headers.length && headers.eq(i).position().left <= maxShiftAreaWidth; ++i) { }
+			if (i == 1) {
+				shiftAreaWidth = headers.eq(1).position().left;
+				maxIndex = headers.length - 1;
+			}
+			else {
+				shiftAreaWidth = headers.eq(i-1).position().left;
+				maxIndex = headers.length - i + 1;
+			}
+		}
+		else {
+			shiftAreaWidth = scrollAreaTable.outerWidth();
+			maxIndex = 0;			
+		}
+		var totalTableWidth = featuresWidth + shiftAreaWidth + totalsWidth;
+		$(".plan-features-table").width(totalTableWidth);
+		$(".plan-features div.shift-area").width(shiftAreaWidth);
+		if (currentIndex > maxIndex) {
+			var newLeft = scrollAreaTable.position().left + (headers.eq(currentIndex).position().left - headers.eq(maxIndex).position().left);			
+			scrollAreaTable.css("left", newLeft);
+			currentIndex = maxIndex;
+		}
+	}
+</script>
+
+
+<style type="text/css" media="print">
+
+.noprint {
+	display: none;
+	}
+
+.customer-bar div.carrier-logo {
+	background: none;
+	border: 0;
+	width: auto !important;
+	}
+	
+.customer-bar div.carrier-logo > span {
+	display: block;
+	}
+	
+.customer-bar div.carrier-logo > label {
+	display: block;
+	}
+	
+</style>     
+
+</wicket:head>
+
+
+
+<wicket:panel>    
+	<div class="customer-bar"> 
+		<div class="carrier-logo" wicket:id="carrierLogo"> 
+			<label>Carrier:</label> <span wicket:id="carrierHiddenLogo"/>
+		</div>      	                                                          
+		<div class="customer">   
+			<label>Customer:</label> <span wicket:id="customerNameLabel" />
+		</div>  
+		<!--<div class="phone">
+			<label>Email Address:</label> <span wicket:id="customerEmailLabel" />
+		</div>-->
+		<div class="phone">
+			<label>Phone #:</label> <span wicket:id="customerContactPhoneLabel" />
+		</div>
+		<div class="account">
+			<label>Account #:</label> <span wicket:id="customerAcctNumberLabel" />
+		</div>
+		<div class="price">
+			<label>Total MRC:</label> <span wicket:id="totalMrcLabel" />
+		</div>
+	</div>
+
+	<div class="plan-features">
+		<div class="plan-features-table">
+
+			<table class="features default-table">
+				<thead>
+					<tr>
+						<th>FEATURES / PLANS</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr wicket:id="featureRowRepeater"></tr>
+				</tbody>
+			</table>
+
+			<div class="shift-area">
+				<a class="shift-left"></a> <a class="shift-right"></a>
+				<div class="scroll-area">
+					<table class="default-table">
+						<thead>
+							<tr>
+								<th wicket:id="headerRepeater"></th>
+							</tr>
+						</thead>
+						<tbody> 
+							<tr wicket:id="rowRepeater"></tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td wicket:id="footerRepeater"></td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+
+			<table class="totals default-table">
+				<thead>
+					<tr>
+						<th>TOTALS</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr wicket:id="totalsRepeater"></tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td><span wicket:id="totalMrcLabel" />
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+
+		</div>
+	</div>
+</wicket:panel>
+</html>

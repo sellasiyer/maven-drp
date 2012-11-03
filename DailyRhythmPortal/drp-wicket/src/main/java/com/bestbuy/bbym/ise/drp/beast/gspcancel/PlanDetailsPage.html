@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>BEAST-Portal</title>
+	<script type="text/javascript">
+		var wicketBehavior;
+		var displayPlanDetailsSubmitButtonDisabled = false;
+		var displayPlanDetailsBackButtonDisabled = false;
+		function bindHotKeys() {
+			//submit
+			$(document)
+					.bind(
+							'keydown',
+							'f2',
+							function() {
+								var jSubmitButton = $('#submitButton');
+								if (jSubmitButton
+										&& !jSubmitButton.is(':disabled')) {
+									if (!displayPlanDetailsSubmitButtonDisabled) {
+										displayPlanDetailsSubmitButtonDisabled = true;
+										setTimeout(
+												"displayPlanDetailsSubmitButtonDisabled=false",
+												200);
+										wicketBehavior('submit');
+									}
+								}
+								return false;
+							});
+
+			//cancel
+			$(document).bind('keydown', 'f3', function() {
+				$('#closeButton').click();
+				return false;
+			});
+
+			//back
+			$(document)
+					.bind(
+							'keydown',
+							'f1',
+							function() {
+								var jBackButton = $('#backButton');
+								if (jBackButton && !jBackButton.is(':disabled')) {
+									if (!displayPlanDetailsBackButtonDisabled) {
+										displayPlanDetailsBackButtonDisabled = true;
+										setTimeout(
+												"displayPlanDetailsBackButtonDisabled=false",
+												200);
+										jBackButton.click();
+									}
+								}
+								return false;
+							});
+		}
+		function handlePlanDetailsSubmitButtonState(enabled) {
+			var submitButton = $('#submitButton');
+			if (enabled) {
+				submitButton.removeAttr('disabled').parent().removeClass(
+						'disabled');
+			} else {
+				submitButton.attr('disabled', true).parent().addClass(
+						'disabled');
+			}
+		}
+		function clickPlanDetailsSubmitButton() {
+			$('#submitButton').click();
+		}
+		function clickPlanDetailsCloseButton() {
+			$('#closeButton').click();
+		}
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<div wicket:id="feedback" class="feedbackmsg"></div>
+
+		<div class="column first top">
+			<dl class="info">
+				<dt>
+					<wicket:message key="gspPlanDetails.owner.label" />
+				</dt>
+				<dd wicket:id="planOwnerLabel"></dd>
+
+				<dt>
+					<wicket:message key="gspPlanDetails.planNumber.label" />
+				</dt>
+				<dd wicket:id="planNumberLabel"></dd>
+
+				<dt>
+					<wicket:message key="gspPlanDetails.expires.label" />
+				</dt>
+				<dd wicket:id="expiresLabel"></dd>
+
+				<dt>
+					<wicket:message key="gspPlanDetails.description.label" />
+				</dt>
+				<dd wicket:id="descriptionLabel"></dd>
+			</dl>
+		</div>
+
+		<div class="column top">
+			<dl class="info">
+				<dt>
+					<wicket:message key="gspPlanDetails.sku.label" />
+				</dt>
+				<dd wicket:id="skuLabel"></dd>
+
+				<dt>
+					<wicket:message key="gspPlanDetails.planType.label" />
+				</dt>
+				<dd wicket:id="planTypeLabel"></dd>
+
+				<dt>
+					<wicket:message key="gspPlanDetails.status.label" />
+				</dt>
+				<dd wicket:id="statusLabel"></dd>
+			</dl>
+		</div>
+
+		<div class="clearer"></div>
+		<!-- clear columns of different heights -->
+
+		<div class="column first details-box">
+			<h3>
+				<wicket:message key="gspPlanDetails.trans.label" />
+			</h3>
+			<dl class="info">
+				<dt>
+					<wicket:message key="gspPlanDetails.trans.type.label" />
+				</dt>
+				<dd wicket:id="trans.typeLabel"></dd>
+				<dt>
+					<wicket:message key="gspPlanDetails.trans.storeNumber.label" />
+				</dt>
+				<dd wicket:id="trans.storeNumberLabel"></dd>
+				<dt>
+					<wicket:message key="gspPlanDetails.trans.registerNumber.label" />
+				</dt>
+				<dd wicket:id="trans.registerNumberLabel"></dd>
+				<dt>
+					<wicket:message key="gspPlanDetails.trans.transactionNumber.label" />
+				</dt>
+				<dd wicket:id="trans.transactionNumberLabel"></dd>
+				<dt>
+					<wicket:message key="gspPlanDetails.trans.purchaseDate.label" />
+				</dt>
+				<dd wicket:id="trans.purchaseDateLabel"></dd>
+				<dt>
+					<wicket:message key="gspPlanDetails.trans.purchasePrice.label" />
+				</dt>
+				<dd wicket:id="trans.purchasePriceLabel"></dd>
+			</dl>
+		</div>
+
+		<div class="column details-box">
+			<h3>
+				<wicket:message key="gspPlanDetails.devices.label" />
+			</h3>
+			<div class="scroll">
+				<div wicket:id="productListView">
+					<h4 wicket:id="devices.phoneLabel"></h4>
+					<dl class="info">
+						<dt>
+							<wicket:message key="gspPlanDetails.devices.sku.label" />
+						</dt>
+						<dd wicket:id="devices.skuLabel"></dd>
+						<dt>
+							<wicket:message key="gspPlanDetails.devices.modelNumber.label" />
+						</dt>
+						<dd wicket:id="devices.modelNumberLabel"></dd>
+						<dt>
+							<wicket:message key="gspPlanDetails.devices.serialNumber.label" />
+						</dt>
+						<dd wicket:id="devices.serialNumberLabel"></dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+
+		<form wicket:id="gspPlanDetailsForm" autocomplete="off">
+			<p class="loose">
+				<input type="checkbox" wicket:id="verifyCheckbox" class="required" />
+				<label for="verifyCheckbox"></label> <label for="verifyCheckbox">
+					<strong> <wicket:message
+							key="gspPlanDetails.verifyCheckbox.label" /> </strong> </label>
+			</p>
+
+			<div class="bottom-buttons">
+				<div class="button left">
+					<span class="key">F3</span><input type="button"
+						wicket:id="closeButton" />
+				</div>
+				<div class="button right">
+					<span class="key">F2</span><input type="button"
+						wicket:id="submitButton" />
+				</div>
+				<div class="button right">
+					<span class="key">F1</span><input type="button"
+						wicket:id="backButton" />
+				</div>
+			</div>
+		</form>
+	</wicket:extend>
+</body>
+</html>

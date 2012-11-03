@@ -1,0 +1,425 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<title>Daily Schedule</title>
+	
+	<style type="text/css"><!--
+	
+	* {
+		color: #56555b;
+		margin: 0;
+		padding: 0;
+		font-family: arial, helvetica, sans-serif;
+		}
+
+	#page {
+		background: #fff;
+		margin: 10px auto 0 auto;
+		width: 700px;
+		height: 900px;
+		}
+		
+	
+	/* HEADER */
+	
+	h1 {
+		float: left;
+		font-size: 19px;
+		text-transform: uppercase;
+		line-height: 48px;
+		height: 48px;
+		}
+		
+	span.date {
+		float: right;
+		font-size: 19px;
+		font-weight: bold;
+		line-height: 48px;
+		height: 48px;
+		}
+		
+		
+	/* STORE INFO */
+	
+	.store {
+		position: relative;
+		clear: both;
+		background: #efefef;
+		border: 1px solid #ccc;
+		height: 48px;
+		}
+	
+	.store span.number {
+		display: block;
+		margin: 8px 0 0 8px;
+		font-size: 13px;
+		text-transform: uppercase;
+		}
+		
+	.store h2.name {
+		display: block;
+		margin-left: 8px;
+		font-size: 17px;
+		text-transform: uppercase;
+		}
+		
+		
+	/* STORE GOALS */
+		
+	.store ul.goals {
+		position: absolute;
+		top: 5px;
+		right: 0;
+		list-style: none;
+		}
+		
+	.store .goals li {
+		float: left;
+		display: block;
+		background: #fff;
+		margin-right: 5px;
+		padding: 5px;
+		border: 1px solid #ccc;
+		text-align: center;
+		height: 26px;
+		}
+		
+	.store .goals li label {
+		display: block;
+		font-size: 11px;
+		}
+		
+	.store .goals li span.goal {
+		display: block;
+		font-size: 13px;
+		font-weight: bold;
+		}
+	
+	
+	/* SCHEDULE */
+	
+	.schedule {
+		position: relative;
+		margin-top: 20px;
+		width: 100%;
+		overflow: hidden;
+		}
+
+		
+		
+	/* SCHEDULE TIMES */
+
+	.schedule ul.times {
+		position: absolute;
+		top: 0;
+		right: 0;
+		list-style: none;
+		}
+		
+       .schedule ul.times li {
+                     position: relative;
+                     display: block;
+                     float: left;
+                     border-left: 1px solid #d3d3d3;
+                     width: 29px;
+                     height: 10px;
+                     font-size: 11px;
+                     text-align: center;
+                     }
+
+		
+	.schedule ul.times li span {
+		position: absolute;
+		top: 0;
+		left: -15px;
+		display: block;
+		background: #fff;
+		width: 30px;
+		height: 15px;
+		}
+		
+	.schedule ul.times li.last {
+		width: 0;
+		}
+		
+		
+	/* SCHEDULE EMPLOYEES */
+	
+	.schedule ul.employees {
+		position: relative;
+		padding-top: 15px;
+		list-style: none;
+		}
+	
+	.schedule .employees li {
+		position: relative;
+		padding: 5px 0 5px 5px;
+		height: 24px;
+		line-height: 10px;
+		font-size: 15px;
+		}
+		
+	.schedule .employees li.alt {
+		background: #efefef;
+		}
+		
+	.schedule .employees .zone {
+		line-height: 20px;
+		font-size: 11px;
+		}
+		
+	.schedule .employees .zone .secondary {
+		color: #a9a9a9;
+		}
+		
+	.schedule .employees .bar {
+		position: absolute;
+		top: 5px;
+		left: 280px;
+		z-index: 5;
+		color: #fff;
+		background: #56555b;
+		width: 30px;
+		height: 24px;
+		line-height: 24px;
+		text-align: center;
+		font-size: 13px;
+		}
+		
+	 .schedule .employees .start-8a.bar { margin-left: 0px; }
+	.schedule .employees .start-9a.bar { margin-left: 30px; }
+	.schedule .employees .start-10a.bar { margin-left: 60px; }
+	.schedule .employees .start-11a.bar { margin-left: 90px; }
+	.schedule .employees .start-12a.bar { margin-left: 120px; }
+	.schedule .employees .start-1p.bar { margin-left: 150px; }
+	.schedule .employees .start-2p.bar { margin-left: 180px; }
+	.schedule .employees .start-3p.bar { margin-left: 210px; }
+	.schedule .employees .start-4p.bar { margin-left: 240px; }
+	.schedule .employees .start-5p.bar { margin-left: 270px; }
+	.schedule .employees .start-6p.bar { margin-left: 300px; }
+	.schedule .employees .start-7p.bar { margin-left: 330px; }
+	.schedule .employees .start-8p.bar { margin-left: 360px; }
+	.schedule .employees .start-9p.bar { margin-left: 390px; }
+	
+	.schedule .employees .length-1.bar { width: 30px; }
+	.schedule .employees .length-2.bar { width: 60px; }
+	.schedule .employees .length-3.bar { width: 90px; }
+	.schedule .employees .length-4.bar { width: 120px; }
+	.schedule .employees .length-5.bar { width: 150px; }
+	.schedule .employees .length-6.bar { width: 180px; }
+	.schedule .employees .length-7.bar { width: 210px; }
+	.schedule .employees .length-8.bar { width: 240px; }
+	.schedule .employees .length-9.bar { width: 270px; }
+	.schedule .employees .length-10.bar { width: 300px; }
+	.schedule .employees .length-11.bar { width: 330px; }
+	.schedule .employees .length-12.bar { width: 360px; }
+	.schedule .employees .length-13.bar { width: 390px; }
+	.schedule .employees .length-14.bar { width: 420px; } 
+	
+	.schedule .employees .start-800a.bar { margin-left: 0px; }
+	.schedule .employees .start-815a.bar { margin-left: 7px; }
+	.schedule .employees .start-830a.bar { margin-left: 15px; }
+	.schedule .employees .start-845a.bar { margin-left: 22px; }
+	.schedule .employees .start-900a.bar { margin-left: 30px; }
+	.schedule .employees .start-915a.bar { margin-left: 37px; }
+	.schedule .employees .start-930a.bar { margin-left: 45px; }
+	.schedule .employees .start-945a.bar { margin-left: 52px; }
+	.schedule .employees .start-1000a.bar { margin-left: 60px; }
+	.schedule .employees .start-1015a.bar { margin-left: 67px; }
+	.schedule .employees .start-1030a.bar { margin-left: 75px; }
+	.schedule .employees .start-1045a.bar { margin-left: 82px; }
+	.schedule .employees .start-1100a.bar { margin-left: 90px; }
+	.schedule .employees .start-1115a.bar { margin-left: 97px; }
+	.schedule .employees .start-1130a.bar { margin-left: 105px; }
+	.schedule .employees .start-1145a.bar { margin-left: 112px; }
+	.schedule .employees .start-1200a.bar { margin-left: 120px; }
+	.schedule .employees .start-1215a.bar { margin-left: 127px; }
+	.schedule .employees .start-1230a.bar { margin-left: 135px; }
+	.schedule .employees .start-1245a.bar { margin-left: 142px; }
+	.schedule .employees .start-1300p.bar { margin-left: 150px; }
+	.schedule .employees .start-1315p.bar { margin-left: 157px; }
+	.schedule .employees .start-1330p.bar { margin-left: 165px; }
+	.schedule .employees .start-1345p.bar { margin-left: 172px; }
+	.schedule .employees .start-1400p.bar { margin-left: 180px; }
+	.schedule .employees .start-1415p.bar { margin-left: 187px; }
+	.schedule .employees .start-1430p.bar { margin-left: 195px; }
+	.schedule .employees .start-1445p.bar { margin-left: 202px; }
+	.schedule .employees .start-1500p.bar { margin-left: 210px; }
+	.schedule .employees .start-1515p.bar { margin-left: 217px; }
+	.schedule .employees .start-1530p.bar { margin-left: 225px; }
+	.schedule .employees .start-1545p.bar { margin-left: 232px; }
+	.schedule .employees .start-1600p.bar { margin-left: 240px; }
+	.schedule .employees .start-1615p.bar { margin-left: 247px; }
+	.schedule .employees .start-1630p.bar { margin-left: 255px; }
+	.schedule .employees .start-1645p.bar { margin-left: 262px; }
+	.schedule .employees .start-1700p.bar { margin-left: 270px; }
+	.schedule .employees .start-1715p.bar { margin-left: 277px; }
+	.schedule .employees .start-1730p.bar { margin-left: 285px; }
+	.schedule .employees .start-1745p.bar { margin-left: 292px; }
+	.schedule .employees .start-1800p.bar { margin-left: 300px; }
+	.schedule .employees .start-1815p.bar { margin-left: 307px; }
+	.schedule .employees .start-1830p.bar { margin-left: 315px; }
+	.schedule .employees .start-1845p.bar { margin-left: 322px; }
+	.schedule .employees .start-1900p.bar { margin-left: 330px; }
+	.schedule .employees .start-1915p.bar { margin-left: 337px; }
+	.schedule .employees .start-1930p.bar { margin-left: 345px; }
+	.schedule .employees .start-1945p.bar { margin-left: 352px; }
+	.schedule .employees .start-2000p.bar { margin-left: 360px; }
+	.schedule .employees .start-2015p.bar { margin-left: 367px; }
+	.schedule .employees .start-2030p.bar { margin-left: 375px; }
+	.schedule .employees .start-2045p.bar { margin-left: 382px; }
+	.schedule .employees .start-2100p.bar { margin-left: 390px; }
+	.schedule .employees .start-2115p.bar { margin-left: 397px; }
+	.schedule .employees .start-2130p.bar { margin-left: 405px; }
+	.schedule .employees .start-2145p.bar { margin-left: 412px; }
+ 
+	.schedule .employees .length-015.bar { width: 7px; }
+	.schedule .employees .length-030.bar { width: 15px; }
+	.schedule .employees .length-045.bar { width: 22px; }
+	.schedule .employees .length-100.bar { width: 30px; }
+	.schedule .employees .length-115.bar { width: 37px; }
+	.schedule .employees .length-130.bar { width: 45px; }
+	.schedule .employees .length-145.bar { width: 52px; }
+	.schedule .employees .length-200.bar { width: 60px; }
+	.schedule .employees .length-215.bar { width: 67px; }
+	.schedule .employees .length-230.bar { width: 75px; }
+	.schedule .employees .length-245.bar { width: 82px; }
+	.schedule .employees .length-300.bar { width: 90px; }
+	.schedule .employees .length-315.bar { width: 97px; }
+	.schedule .employees .length-330.bar { width: 105px; }
+	.schedule .employees .length-345.bar { width: 112px; }
+	.schedule .employees .length-400.bar { width: 120px; }
+	.schedule .employees .length-415.bar { width: 127px; }
+	.schedule .employees .length-430.bar { width: 135px; }
+	.schedule .employees .length-445.bar { width: 142px; }
+	.schedule .employees .length-500.bar { width: 150px; }
+	.schedule .employees .length-515.bar { width: 157px; }
+	.schedule .employees .length-530.bar { width: 165px; }
+	.schedule .employees .length-545.bar { width: 172px; }
+	.schedule .employees .length-600.bar { width: 180px; }
+	.schedule .employees .length-615.bar { width: 187px; }
+	.schedule .employees .length-630.bar { width: 195px; }
+	.schedule .employees .length-645.bar { width: 202px; }
+	.schedule .employees .length-700.bar { width: 210px; }
+	.schedule .employees .length-715.bar { width: 217px; }
+	.schedule .employees .length-730.bar { width: 225px; }
+	.schedule .employees .length-745.bar { width: 232px; }
+	.schedule .employees .length-800.bar { width: 240px; }
+	.schedule .employees .length-815.bar { width: 247px; }
+	.schedule .employees .length-830.bar { width: 255px; }
+	.schedule .employees .length-845.bar { width: 262px; }
+	.schedule .employees .length-900.bar { width: 270px; }
+	.schedule .employees .length-915.bar { width: 277px; }
+	.schedule .employees .length-930.bar { width: 285px; }
+	.schedule .employees .length-945.bar { width: 292px; }
+	.schedule .employees .length-1000.bar { width: 300px; }
+	.schedule .employees .length-1015.bar { width: 307px; }
+	.schedule .employees .length-1030.bar { width: 315px; }
+	.schedule .employees .length-1045.bar { width: 322px; }
+	.schedule .employees .length-1100.bar { width: 330px; }
+	.schedule .employees .length-1115.bar { width: 337px; }
+	.schedule .employees .length-1130.bar { width: 345px; }
+	.schedule .employees .length-1145.bar { width: 352px; }
+	.schedule .employees .length-1200.bar { width: 360px; }
+	.schedule .employees .length-1215.bar { width: 367px; }
+	.schedule .employees .length-1230.bar { width: 375px; }
+	.schedule .employees .length-1245.bar { width: 382px; }
+	.schedule .employees .length-1300.bar { width: 390px; }
+	.schedule .employees .length-1315.bar { width: 397px; }
+	.schedule .employees .length-1330.bar { width: 405px; }
+	.schedule .employees .length-1345.bar { width: 412px; }
+	.schedule .employees .length-1400.bar { width: 420px; }
+	.schedule .employees .length-1400.bar { width: 427px; }
+	.schedule .employees .length-1400.bar { width: 435px; }
+	.schedule .employees .length-1400.bar { width: 442px; }
+	
+	
+	.total-hours {
+		color: #56555b;
+		background: #efefef;
+		margin: 20px 0 0 280px;
+		height: 36px;
+		line-height: 36px;
+		width: 420px;
+		text-align: center;
+		font-weight: bold;
+		font-size: 13px;
+		}
+	
+	/* NOTES */
+	
+	.notes {
+		margin-top: 20px;
+		border-bottom: 2px solid #ccc;
+		height: 24px;
+		}
+	
+	.notes h2 {
+		line-height: 24px;
+		font-size: 17px;
+		}
+	
+	
+	--></style>
+	<script type="text/javascript">
+	.schedule .employees li:nth-child(even) {
+	    background: #efefef;
+	    } 
+	</script>
+</wicket:head>
+<body>
+
+<div id="page">
+
+	<h1 wicket:id = "heading"></h1>
+	<span class="date" wicket:id = "currentDate"></span>
+	
+	<div class="store" wicket:id = "storeGoalsContainer">
+		<span class="number" wicket:id="storeId"></span>
+		<h2 class="name" wicket:id="storeName"></h2>
+		<ul class="goals">
+			<li wicket:id="storeGoalsView"><label wicket:id = "goalLabel"></label>
+			<span class="goal" wicket:id = "goalValue"></span></li>
+			<!-- <li><label>Laptops</label><span class="goal">Goal: 23</span></li>
+			<li><label>Desktops</label><span class="goal">Goal: 23</span></li>
+			<li><label>Tablets</label><span class="goal">Goal: 23</span></li>
+			<li><label>eReaders</label><span class="goal">Goal: 23</span></li> -->
+		</ul>
+	</div>
+	
+	<div class="schedule" wicket:id="storeEmployeesContainer">
+		<ul class="times">
+			<li><span>8am</span></li>
+			<li><span>9</span></li>
+			<li><span>10</span></li>
+			<li><span>11</span></li>
+			<li><span>noon</span></li>
+			<li><span>1</span></li>
+			<li><span>2</span></li>
+			<li><span>3</span></li>
+			<li><span>4</span></li>
+			<li><span>5</span></li>
+			<li><span>6</span></li>
+			<li><span>7</span></li>
+			<li><span>8</span></li>
+			<li><span>9</span></li>
+			<li class="last"><span>10</span></li>
+		</ul>
+		<ul class="employees">
+			<li wicket:id="storeEmployeesView">
+				<label wicket:id="employeeNameNotionalMargin"></label>
+				<div class="zone" wicket:id="employeeZone"></div>
+				<div wicket:id="employeeShiftDuration"></div>
+			</li>
+		</ul>
+	</div>
+	
+	<div class="total-hours" wicket:id = "totalScheduledHours"></div>
+	
+	<div class="notes">
+		<h2>Notes</h2>
+	</div>
+	
+</div>
+
+</body>
+</html>

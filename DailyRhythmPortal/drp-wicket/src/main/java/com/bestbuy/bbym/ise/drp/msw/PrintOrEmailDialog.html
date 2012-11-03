@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<link rel="stylesheet" type="text/css" href="css/popup.css" />
+</wicket:head>
+
+<body>
+	<div class="pgwrapper">
+		<div class="pgcontainer">
+			<div class="pgcontent_popup">
+				<div class="pgcontent_blue">
+					<div class="page-tr"></div>
+					<div class="page-tl"></div>
+					<div class="page-br"></div>
+					<div class="page-bl"></div>
+
+					<form wicket:id="printEmailRecSheetForm" autocomplete="off">
+						<div class="pgcontent_content">
+							<h2>
+								<wicket:message key="printEmailRecSheetForm.title.label" />
+							</h2>
+
+							<div wicket:id="feedback"></div>
+
+							<wicket:message key="printEmailRecSheetForm.email.label" />
+							<input type="text" name="email" wicket:id="email" />
+
+							<div class="pgcontent_content_btnsec">
+								<a wicket:id="printLink" class="button"><wicket:message key="printEmailRecSheetForm.printLink.label" /></a>
+								<input type="submit" wicket:id="emailBtn" class="button"/>
+							</div>
+							<span style="color: red;" wicket:id="emailMsg" >Message goes here</span><br/>
+						</div>
+					</form>
+					<br clear="all" />
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

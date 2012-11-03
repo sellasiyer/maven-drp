@@ -1,0 +1,164 @@
+<NewCartItemResource xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xmlns:atom="http://www.w3.org/2005/Atom">
+    <atom:title>New Cart Item</atom:title>
+    <atom:link href="http://hydra-pt:8080/store-271/catalog/search" rel="http://hydra-pt:8080/rels/search-catalog" title="search-catalog"/>
+    <atom:link href="http://hydra-pt:8080/store-271/carts/new?Sku=3487784" rel="self" title="Self"/>
+    <atom:link href="http://hydra-pt:8080/store-271/carts/new" rel="http://hydra-pt:8080/rels/results" title="Results"/>
+    <atom:link href="http://hydra-pt:8080/store-271" rel="http://hydra-pt:8080/rels/home" title="Return to Home Page"/>
+    <atom:link href="http://hydra-pt:8080/store-271/help" rel="http://hydra-pt:8080/rels/help" title="Overview"/>
+    <atom:link href="http://hydra-pt:8080/store-271/help/faq" rel="http://hydra-pt:8080/rels/help" title="FAQs"/>
+    <atom:link href="http://hydra-pt:8080/store-271/help/about" rel="http://hydra-pt:8080/rels/help" title="About"/>
+    <atom:link href="http://hydra-pt:8080/store-271/devices" rel="http://hydra-pt:8080/rels/help" title="Biometric Device Validation"/>
+    <atom:link href="http://hydra-pt:8080/store-271/carts/search/form" rel="http://hydra-pt:8080/rels/cart-search" title="Search Carts"/>
+    <atom:link href="http://hydra-pt:8080/store-271/feedback/new" rel="http://hydra-pt:8080/rels/feedback" title="Provide Feedback"/>
+    <atom:link href="https://buyback-pl.bestbuytradein.com/bbPlanInfo.cfm?redirect=false" rel="external-buyback" title="Start a New Buy Back"/>
+    <atom:link href="https://buyback-pl.bestbuytradein.com/admin.cfm?redirect=false" rel="external-admin" title="Open Trade In Administration"/>
+    <atom:link href="https://buyback-pl.bestbuytradein.com/manifest.cfm?redirect=false" rel="external-shipping-center" title="Open Shipping Center"/>
+    <atom:link href="http://hydra-pt:8080/metadata/NewCartItemResource" rel="http://hydra-pt:8080/rels/metadata" title="metadata"/>
+    <StoreId>271</StoreId>
+    <CartId xs:nil="true"/>
+    <Sku>3487784</Sku>
+    <RecyclingCategorySlug>recycling-mobile-phones</RecyclingCategorySlug>
+    <CategorySlug>mobile-phones</CategorySlug>
+    <Name>
+        Apple® - iPhone® 4S with 16GB Memory Mobile Phone - Black (AT&amp;T)
+    </Name>
+    <Estimate>
+        <BuyPrice>241.5</BuyPrice>
+        <Questions>
+            <BuyPriceQuestion>
+                <Name>cell-phones-7</Name>
+                <Value xs:nil="true"/>
+                <Text>
+                    Is Water Damage Indicator Active (Battery or Body)?
+                </Text>
+                <Justification>
+                    If the phone has water/moisture damage, we cannot accept the phone.
+                </Justification>
+                <Options>
+                    <BuyPriceQuestionOption>
+                        <Value>No</Value>
+                        <Description>
+                            Phone has no signs of being exposed to water or moisture; indicator has not been triggered.
+                        </Description>
+                        <AdjustmentDisplayText>$241.50</AdjustmentDisplayText>
+                    </BuyPriceQuestionOption>
+                    <BuyPriceQuestionOption>
+                        <Value>Yes</Value>
+                        <Description>
+                            Phone has been exposed to water or moisture. We cannot accept the phone.
+                        </Description>
+                        <AdjustmentDisplayText>$0.00</AdjustmentDisplayText>
+                    </BuyPriceQuestionOption>
+                </Options>
+            </BuyPriceQuestion>
+            <BuyPriceQuestion>
+                <Name>cell-phones-8</Name>
+                <Value xs:nil="true"/>
+                <Text>Is Serial Number or MEID/IMEI Present &amp; Complete?</Text>
+                <Justification>
+                    If the ESN / serial number is not clear and legible, we cannot accept the phone.
+                </Justification>
+                <Options>
+                    <BuyPriceQuestionOption>
+                        <Value>No</Value>
+                        <Description>
+                            Serial Number or MEID / IMEI is missing and/or not legible.
+                        </Description>
+                        <AdjustmentDisplayText>= $0.00</AdjustmentDisplayText>
+                    </BuyPriceQuestionOption>
+                    <BuyPriceQuestionOption>
+                        <Value>Yes</Value>
+                        <Description>Serial Number or MEID / IMEI is clear and legible.</Description>
+                        <AdjustmentDisplayText>+ 0.00 %</AdjustmentDisplayText>
+                    </BuyPriceQuestionOption>
+                </Options>
+            </BuyPriceQuestion>
+            <BuyPriceQuestion>
+                <Name>cell-phones-9</Name>
+                <Value xs:nil="true"/>
+                <Text>Is the AC adapter / charger included?</Text>
+                <Justification>
+                    Cell phone AC adapters are specific. While it can be replaced, not including it reduces the value of the phone.
+                </Justification>
+                <Options>
+                    <BuyPriceQuestionOption>
+                        <Value>Yes</Value>
+                        <Description>
+                            The AC adapter / charger for the phone is included.
+                        </Description>
+                        <AdjustmentDisplayText>+ $0.00</AdjustmentDisplayText>
+                    </BuyPriceQuestionOption>
+                    <BuyPriceQuestionOption>
+                        <Value>No</Value>
+                        <Description>
+                            The AC adapter / charger for the phone is not included.
+                        </Description>
+                        <AdjustmentDisplayText>($5.00)</AdjustmentDisplayText>
+                    </BuyPriceQuestionOption>
+                </Options>
+            </BuyPriceQuestion>
+            <BuyPriceQuestion>
+                <Name>cell-phones-10</Name>
+                <Value xs:nil="true"/>
+                <Text>
+                    Is the user lock and master reset codes cleared (or set to 1234)?
+                </Text>
+                <Justification>
+                    If user codes are set to anything but 1234, we will not be able to clear the phone.
+                </Justification>
+                <Options>
+                    <BuyPriceQuestionOption>
+                        <Value>No</Value>
+                        <Description>
+                            User / master reset codes are not set to 1234 or are unknown.
+                        </Description>
+                        <AdjustmentDisplayText>= $0.00</AdjustmentDisplayText>
+                    </BuyPriceQuestionOption>
+                    <BuyPriceQuestionOption>
+                        <Value>Yes</Value>
+                        <Description>
+                            All user code / master reset codes have been cleared or set to 1234.
+                        </Description>
+                        <AdjustmentDisplayText>+ 0.00 %</AdjustmentDisplayText>
+                    </BuyPriceQuestionOption>
+                </Options>
+            </BuyPriceQuestion>
+            <BuyPriceQuestion>
+                <Name>cellphone-condition1</Name>
+                <Value>Perfect</Value>
+                <Text>What is the condition of the item?</Text>
+                <Justification>
+                    The condition of the item will affect the resale value of the item.
+                </Justification>
+                <Options>
+                    <BuyPriceQuestionOption>
+                        <Value>Perfect</Value>
+                        <Description>Like New Condition. No Signs of Use.</Description>
+                        <AdjustmentDisplayText>+ 5.00 %</AdjustmentDisplayText>
+                    </BuyPriceQuestionOption>
+                    <BuyPriceQuestionOption>
+                        <Value>Good</Value>
+                        <Description>
+                            Normal wear and tear. 9 out of 10 Phones are in Good Contition! Runs Off Battery Power. Light scratches ok on case back. No Scratches on Screen.
+                        </Description>
+                        <AdjustmentDisplayText>+ $0.00</AdjustmentDisplayText>
+                    </BuyPriceQuestionOption>
+                    <BuyPriceQuestionOption>
+                        <Value>Poor</Value>
+                        <Description>
+                            Won't Run Off Battery Power. Deep Scratches or Dents on Phone. Scratches or Cracks on Screen. Parts broken off, seriously damaged, or missing. Personalize/Engraved.
+                        </Description>
+                        <AdjustmentDisplayText>-55.00 %</AdjustmentDisplayText>
+                    </BuyPriceQuestionOption>
+                </Options>
+            </BuyPriceQuestion>
+        </Questions>
+        <PriceCurve/>
+    </Estimate>
+    <EmailAddress xs:nil="true"/>
+    <Phone xs:nil="true"/>
+    <Category>
+        <atom:title>Category Reference</atom:title>
+        <Slug>mobile-phones</Slug>
+    </Category>
+</NewCartItemResource>

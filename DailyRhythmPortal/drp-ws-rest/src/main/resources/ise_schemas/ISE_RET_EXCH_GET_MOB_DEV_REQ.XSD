@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:common="http://bestbuy.com/bbym/ise/common" xmlns="http://bestbuy.com/bbym/beast/portal/retexch/getmobdev/request"
+	targetNamespace="http://bestbuy.com/bbym/beast/portal/retexch/getmobdev/request"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://bestbuy.com/bbym/ise/common"
+		schemaLocation="ISE_COMMON.XSD" />
+
+	<xs:element name="GetMobileDeviceRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="handsetIdentifier" minOccurs="0" type="xs:string" />
+				<xs:element name="mobileNumber" minOccurs="0" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,901 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by Vinay (Wipro) -->
+<xs:schema xmlns="http://webservices.bestbuy.com/ca/services/entity/v2" 
+            xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+            targetNamespace="http://webservices.bestbuy.com/ca/services/entity/v2" 
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation> 
+            Version: 1.1
+            Version   Date        Changed By        Changes
+            ========================================================================================
+              1.1     02/11/2010  Vidya Seetharaman - 1. Added explicit String Type declaration for 
+                                                      the following elements - AccountNumber, 
+                                                      AccountCategory, StoreNumber in
+                                                      SearchCustomerRequestType; CustomerId in 
+                                                      SearchCustomerResponseType; partyId in 
+                                                      MatchPartyResponseType; Primary attribute in 
+                                                      BaseAddressType
+                                                      2. Removed Security element from PartyIdentity
+                                                      3. Removed following complextypes from Schema-
+                                                      ValidatePinRequestType, 
+                                                      ValidatePinResponseType, 
+                                                      GetAllPartyRequestType, 
+                                                      GetAllPartyResponseType, CreditCardType, 
+                                                      AccountInfoType, PinType
+            1.2    24/03/2010  Balakrishna K    -     Added the time period Type for sub account and
+                                                      dirty status for preference.
+            1.3    08/09/2010  Ajay Vasagiri    -     Added the SubAccountAttributes for a Subaccount. 
+        	1.4	   10/05/2010  Umashankar Tiwari	- Modified the SubAccountAttributes Type. 
+        											- Added additional attributes under the SubAccountAttributesType
+        											- Defined a new type - PartyAccountAttributeDetailsType, to manage the party structure for multiple sub account attributes
+        											- Added Request and response elements for the new service to manage SubAccount attributes - ManageSubAccountAttributes
+        
+         	1.5	   10/28/2010  Umashankar Tiwari	- Removed the AccountAttributeType. 
+        											-  Updated the type - PartyAccountAttributeDetailsType. 
+        											  		Renamed "DeleteAllAttributesFlag" to "AllAttributesFlag" to make it generic so that it
+        											  		can be used to deleteAll and GetALL attributes in the request
+        											 - Added Request and response elements for the new service to Get SubAccount attributes - GetSubAccountAttributes
+            1.6	   02/11/2010   Binoj    		- Updated AllAttributesFlag boolean to AllAttributesCode String for Get/Manage SubAccountAttributes API - used to delete All and Get All attributes in the request GET / DELETE  
+        </xs:documentation>
+    </xs:annotation>
+    <xs:complexType name="BaseRequestType">
+        <xs:sequence>
+            <xs:element name="SourceId" type="xs:string" minOccurs="0"/>
+            <xs:element name="UserId" type="xs:string" minOccurs="0"/>
+            <xs:element name="ProgramId" type="xs:string" minOccurs="0"/>
+            <xs:element name="RequestId" type="xs:string" minOccurs="0"/>
+            <xs:element name="Version" type="xs:int"  minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BaseResponseType">
+        <xs:sequence>
+            <xs:element name="Environment" type="xs:string" minOccurs="0"/>
+            <xs:element name="RequestId" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="AllSearchPlansType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="caPortalSearchPlan"/>
+            <xs:enumeration value="caPortalSearchandVerifyPlan"/>
+            <xs:enumeration value="caDefaultPlan"/>
+            <xs:enumeration value="ecByAccount"/>
+            <xs:enumeration value="ecByAccountAndName"/>
+            <xs:enumeration value="ecByEmail"/>
+            <xs:enumeration value="ecByEmailAndFirstAndLastName"/>
+            <xs:enumeration value="ecByFirstAndLastName"/>
+            <xs:enumeration value="ecByAddress1LastNamePostalCode"/>
+            <xs:enumeration value="ecByPhone"/>
+            <xs:enumeration value="ecByPhoneAndAreaCode"/>
+            <xs:enumeration value="ecByFirstAndLastNamePhoneEmail"/>
+            <xs:enumeration value="ecByFirstAndLastNamePhone"/>
+            <xs:enumeration value="ecByFirstAndLastNamePhoneAndAreaCode"/>
+            <xs:enumeration value="ecByTransaction"/>
+            <xs:enumeration value="ecByFirstAndLastNamePostalCode"/>
+            <xs:enumeration value="ecByFirstAndLastNameState"/>
+            <xs:enumeration value="ecByFirstAndLastNameStoreNumber"/>
+            <xs:enumeration value="demoByFirstandLastName"/>
+            <xs:enumeration value="demoByAddress1LastNamePostalCode"/>
+            <xs:enumeration value="demoByPhone"/>
+            <xs:enumeration value="demoByPhoneAndAreaCode"/>
+            <xs:enumeration value="demoByFirstAndLastNamePhone"/>
+            <xs:enumeration value="demoByFirstAndLastNamePhoneAndAreaCode"/>
+            <xs:enumeration value="ecByCustomerID"/>
+            <xs:enumeration value="searchPlan1"/>
+            <xs:enumeration value="searchPlan2"/>
+            <xs:enumeration value="searchPlan3"/>
+            <xs:enumeration value="searchPlan4"/>
+            <xs:enumeration value="searchPlan5"/>
+            <xs:enumeration value="searchPlan6"/>
+            <xs:enumeration value="searchPlan7"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="CustomerSearchConfigType">
+        <xs:sequence>
+            <xs:element name="MaxRows" type="xs:int" default="100" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Default 100</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CrossReferenceAppID" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Doesn't retrieve cross refferences by default.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="SearchTimeLimitMS" type="xs:int" default="3000" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Describes the maximum time taken for a search in milliseconds. Default 3000</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="SearchTypeToPerform" type="AllSearchPlansType" default="searchPlan7" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Default searchPlan7</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DiscardResult" type="xs:boolean" default="false" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Only aplicaple when maxRows have been exceeded.If set to true, results are discarded and error will be set.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PerformDrillDown" type="xs:boolean" default="false" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Default: false</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="RetrieveForOrgID" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Default 100</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:annotation>
+                        <xs:documentation>100 - POS 120 - Reward Zone</xs:documentation>
+                    </xs:annotation>
+                    <xs:restriction base="xs:int">
+                        <xs:enumeration value="100"/>
+                        <xs:enumeration value="120"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DateOfBirthType">
+        <xs:sequence>
+            <xs:element name="Month" type="xs:string" minOccurs="0"/>
+            <xs:element name="Date" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="PartyTypeCodeType">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:complexType name="PartyType">
+        <xs:sequence>
+            <xs:element name="Type" type="PartyTypeCodeType" minOccurs="0"/>
+            <xs:element name="StatusCode" type="StatusCodeType" minOccurs="0"/>
+            <xs:element name="LanguagePreference" type="xs:string" minOccurs="0"/>
+            <xs:element name="Registration" type="RegistrationType" minOccurs="0"/>
+            <xs:element name="AliasList" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Alias" type="AliasType" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Name" type="NameType" minOccurs="0"/>
+            <xs:element name="DOB" type="DateOfBirthType" minOccurs="0"/>
+            <xs:element name="SubAccountList" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="SubAccount" type="AccountType" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="PaymentAccountList" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="PaymentAccount" type="PaymentAccountType" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Id" type="IdType"/>
+    </xs:complexType>
+    <xs:complexType name="NameType">
+        <xs:sequence>
+            <xs:element name="FirstName" type="xs:string" minOccurs="0"/>
+            <xs:element name="LastName" type="xs:string" minOccurs="0"/>
+            <xs:element name="MiddleInitial" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:length value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="MiddleName" type="xs:string" minOccurs="0"/>
+            <xs:element name="Suffix" type="xs:string" minOccurs="0"/>
+            <xs:element name="Prefix" type="xs:string" minOccurs="0"/>
+            <xs:element name="NickName" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AddressType">
+        <xs:complexContent>
+            <xs:extension base="BaseAddressType">
+                <xs:sequence>
+                    <xs:element name="AddressLine1" type="xs:string" minOccurs="0"/>
+                    <xs:element name="AddressLine2" type="xs:string" minOccurs="0"/>
+                    <xs:element name="AddressLine3" type="xs:string" minOccurs="0"/>
+                    <xs:element name="City" type="xs:string" minOccurs="0"/>
+                    <xs:element name="State" type="xs:string" minOccurs="0"/>
+          <xs:element name="Zip" minOccurs="0">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Zip" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:length value="5"/>
+                      <xs:whiteSpace value="collapse"/>
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Zip4" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:length value="4"/>
+                      <xs:whiteSpace value="collapse"/>
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>                    
+          <xs:element name="Country" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="EmailType">
+        <xs:complexContent>
+            <xs:extension base="BaseAddressType">
+                <xs:sequence>
+                    <xs:element name="EmailAddress" minOccurs="0">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string"/>
+                        </xs:simpleType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="PhoneType">
+        <xs:complexContent>
+            <xs:extension base="BaseAddressType">
+                <xs:sequence>
+                    <xs:element name="CountryCode" minOccurs="0">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:minLength value="3"/>
+                                <xs:maxLength value="3"/>
+                                <xs:whiteSpace value="collapse"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="AreaCode" minOccurs="0">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:length value="3"/>
+                                <xs:whiteSpace value="collapse"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="Number" minOccurs="0">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:length value="7"/>
+                                <xs:whiteSpace value="collapse"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="Ext" minOccurs="0">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:whiteSpace value="collapse"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="AliasType">
+        <xs:sequence>
+            <xs:element name="SystemId" type="xs:string" minOccurs="0"/>
+            <xs:element name="EntityId" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="SourceIdType">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="UserIdType">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="ProgramIdType">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="RequestIdType">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="IdType">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="CustomerAccountFlagType">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:complexType name="CommunicationPreferenceType">
+        <xs:sequence>
+            <xs:element name="DirtyStatus" type="DirtyStatusType" minOccurs="0"/>
+            <xs:element name="StatusCode" type="StatusCodeType" minOccurs="0"/>
+            <xs:element name="PurposeCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="CommunicationAddress" minOccurs="0">
+                <xs:complexType>
+                    <xs:choice>
+                        <xs:element name="PhoneAddress" minOccurs="0">
+                            <xs:complexType>
+                                <xs:complexContent>
+                                    <xs:extension base="PhoneType"/>
+                                </xs:complexContent>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="PostalAddress" minOccurs="0">
+                            <xs:complexType>
+                                <xs:complexContent>
+                                    <xs:extension base="AddressType"/>
+                                </xs:complexContent>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="EmailAddress" minOccurs="0">
+                            <xs:complexType>
+                                <xs:complexContent>
+                                    <xs:extension base="EmailType"/>
+                                </xs:complexContent>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PaymentPreferenceType">
+        <xs:sequence>
+            <xs:element name="PaymentId" type="xs:integer" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="Category" type="xs:string" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="Number" type="xs:string" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="RelationshipCode" type="xs:string" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="StatusCode" type="xs:string" maxOccurs="1" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PaymentPreferenceListType">
+        <xs:sequence>
+            <xs:element name="PaymentPreference" type="PaymentPreferenceType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+         
+    <xs:complexType name="SubAccountAttributesType">
+        <xs:sequence>
+            <xs:element name="AttributeNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="AttributeType" type="xs:string" minOccurs="0"/>
+            <xs:element name="AttributeName" type="xs:string" minOccurs="0"/> 
+            <xs:element name="CarrierPhoneNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="HardwareType" type="xs:string" minOccurs="0"/>
+            <xs:element name="CarrierCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="ContractExpirationDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="Channel" type="xs:string" minOccurs="0"/>
+            <xs:element name="StatusCode" type="StatusCodeType" minOccurs="0"/>
+            <xs:element name="TransactionType" type="xs:string" minOccurs="0"/>
+            <xs:element name="DirtyStatus" type="DirtyStatusType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="AttributeId" type="IdType"/>
+    </xs:complexType>
+    <xs:complexType name="SubAccountAttributeListType">
+        <xs:sequence>
+            <xs:element name="SubAccountAttributes" type="SubAccountAttributesType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+           
+     <xs:complexType name="AccountType">
+        <xs:sequence>
+            <xs:element name="AcctType" type="xs:string" minOccurs="0"/>
+            <xs:element name="Category" type="AccountCategoryType" minOccurs="0"/>
+            <xs:element name="Number" type="xs:string" minOccurs="0"/>
+            <xs:element name="StatusCode" type="StatusCodeType" minOccurs="0"/>
+            <xs:element name="Preference" type="CommunicationPreferenceType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="RoleList" type="RoleTypeList" minOccurs="0"/>
+            <xs:element name="EffectiveBeginDate" type="TimePeriodType" minOccurs="0"/>
+            <xs:element name="PaymentPreferenceList" type="PaymentPreferenceListType" minOccurs="0"/>            
+        </xs:sequence>
+        <xs:attribute name="Id" type="IdType"/>
+    </xs:complexType>
+    <xs:complexType name="PaymentAccountType">
+        <xs:sequence>
+            <xs:element name="Type" type="xs:string" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="Category" type="xs:string" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="StatusCode" type="xs:string" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="Name" type="xs:string" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="Number" type="xs:string" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="ExpiryYear" type="xs:int" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="ExpiryMonth" type="xs:int" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="Preference" type="CommunicationPreferenceType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="RoleList" type="RoleTypeList" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="EffectiveDate" type="TimePeriodType" maxOccurs="1" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:string"/>
+    </xs:complexType>
+    <xs:complexType name="AccountCategoryType">
+        <xs:sequence>
+            <xs:element name="Type" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="IdentityType">
+        <xs:sequence>
+            <xs:element name="Credentials" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Pin" minOccurs="0">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:minLength value="4"/>
+                                    <xs:maxLength value="20"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="faultElement" type="FaultType"/>
+    <xs:complexType name="FaultType">
+        <xs:sequence>
+            <xs:element name="errorCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="errorMessage" type="xs:string" minOccurs="0"/>
+            <xs:element name="errorDetail" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BaseAddressType" abstract="true">
+        <xs:sequence>
+            <xs:element name="StatusCode" type="StatusCodeType" minOccurs="0"/>
+            <xs:element name="DeliveryStatus" type="DeliveryStatusType" minOccurs="0"/>
+            <xs:element name="Type" type="TypeCodeType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="IdType"/>
+        <xs:attribute name="Primary" type="xs:string"/>
+    </xs:complexType>
+    <xs:simpleType name="TransactionTypesType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="POS"/>
+            <xs:enumeration value="ORDER"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TransactionSourceType">
+        <xs:annotation>
+            <xs:documentation>
+                67 - LEGACY DOTCOM TRANSACTIONS 
+                68 - DOTCOM TRANSACTIONS
+                19 - Point Of Sale Transactions 
+                58 - COMERGENT TRANSACTIONS
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:int">
+            <xs:enumeration value="67"/>
+            <xs:enumeration value="68"/>
+            <xs:enumeration value="19"/>
+            <xs:enumeration value="58"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="RegistrationType">
+        <xs:sequence>
+            <xs:element name="SourceId" type="xs:string" minOccurs="0"/>
+            <xs:element name="Timestamp" type="xs:dateTime" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="RoleType">
+        <xs:sequence>
+            <xs:element name="Id" type="xs:integer" minOccurs="0"/>
+            <xs:element name="Name" type="xs:string" minOccurs="0"/>
+            <xs:element name="Description" type="xs:string" minOccurs="0"/>
+            <xs:element name="TypeCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="StatusCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="NickName" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="CustomerSearchTransactionType">
+        <xs:sequence>
+            <xs:element name="TransactionKey" type="xs:string" minOccurs="0"/>
+            <xs:element name="TransactionSource" type="TransactionSourceType" minOccurs="0"/>
+            <xs:element name="TransactionType" type="TransactionTypesType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="RoleTypeList">
+        <xs:sequence>
+            <xs:element name="Role" type="RoleType" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TimePeriodType">
+        <xs:sequence>
+            <xs:element name="StartTime" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="EndTime" type="xs:dateTime" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="DirtyStatusType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="EXCLUDE" />
+            <xs:enumeration value="UPDATE" />
+            <xs:enumeration value="CREATE" />
+            <xs:enumeration value="DELETE" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="StatusCodeType">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="TypeCodeType">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="DeliveryStatusType">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="MatchPartyResponseLevelType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ALL"/>
+            <xs:enumeration value="MINIMUM"/>
+            <xs:enumeration value="RELEVANT"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="MatchPartyRequestType">
+        <xs:complexContent>
+            <xs:extension base="BaseRequestType">
+                <xs:sequence>
+                    <xs:element name="Party" minOccurs="0">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="PartyIdentity" type="IdentityType" minOccurs="0"/>
+                                <xs:element name="PartyDetail" minOccurs="0">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="Alias" type="AliasType" minOccurs="0"/>
+                                            <xs:element name="Name" type="NameType" minOccurs="0"/>
+                                            <xs:element name="CommunicationAddress" minOccurs="0" maxOccurs="unbounded">
+                                                <xs:complexType>
+                                                    <xs:choice>
+                                                        <xs:element name="PhoneAddress" type="PhoneType" minOccurs="0"/>
+                                                        <xs:element name="PostalAddress" type="AddressType" minOccurs="0"/>
+                                                        <xs:element name="EmailAddress" type="EmailType" minOccurs="0"/>
+                                                    </xs:choice>
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                            <xs:attribute name="Id" type="IdType"/>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Configuration" minOccurs="0">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="ResponseLevel" type="MatchPartyResponseLevelType" minOccurs="0"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="MatchPartyResponseType">
+        <xs:complexContent>
+            <xs:extension base="BaseResponseType">
+                <xs:choice>
+                    <xs:element name="PartyDetail" type="PartyType" minOccurs="0"/>
+                    <xs:element name="Party" minOccurs="0">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="PartyId" type="IdType" minOccurs="0"/>
+                                <xs:element name="Alias" type="AliasType" maxOccurs="unbounded" minOccurs="0"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="SearchCustomerRequestType">
+        <xs:complexContent>
+            <xs:extension base="BaseRequestType">
+                <xs:sequence>
+                    <xs:element name="Configuration" type="CustomerSearchConfigType" minOccurs="0"/>
+                    <xs:element name="SearchParameters" minOccurs="0">
+                    <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="Customer" minOccurs="0">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="Name" type="NameType" minOccurs="0"/>
+                                            <xs:element name="Phone" type="PhoneType" minOccurs="0"/>
+                                            <xs:element name="EmailAddress" type="EmailType" minOccurs="0"/>
+                                            <xs:element name="PostalAddress" type="AddressType" minOccurs="0"/>
+                                            <xs:element name="Alias" minOccurs="0">
+                                                <xs:complexType>
+                                                    <xs:sequence>
+                                                        <xs:element name="SystemId" type="xs:string" minOccurs="0"/>
+                                                        <xs:element name="EntityId" type="xs:string" minOccurs="0"/>
+                                                    </xs:sequence>
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="Account" minOccurs="0">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="AccountNumber"  type="xs:string" minOccurs="0"/>
+                                            <xs:element name="AccountCategory"  type="xs:string" minOccurs="0"/>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="StoreNumber" type="xs:string" minOccurs="0"/>
+                                <xs:element name="Transaction" type="CustomerSearchTransactionType" minOccurs="0"/>
+                                <xs:element name="PartyIdentity" type="IdentityType" minOccurs="0"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="SearchCustomerResponseType">
+        <xs:complexContent>
+            <xs:extension base="BaseResponseType">
+                <xs:sequence>
+                    <xs:element name="Customer" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="CustomerId" type="IdType" minOccurs="0"/>
+                                <xs:element name="Name" type="NameType" minOccurs="0"/>
+                                <xs:element name="PhoneAddress" type="PhoneType" minOccurs="0" maxOccurs="unbounded"/>
+                                <xs:element name="EmailAddress" type="EmailType" minOccurs="0"/>
+                                <xs:element name="PostalAddress" type="AddressType" minOccurs="0"/>
+                                <xs:element name="Account" minOccurs="0" maxOccurs="unbounded">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="AccountNumber" type="xs:string" minOccurs="0"/>
+                                            <xs:element name="AccountCategory" type="xs:string" minOccurs="0"/>
+                                            <xs:element name="Status" type="StatusCodeType" minOccurs="0"/>
+                                            <xs:element name="AccountId" type="xs:string" minOccurs="0"/>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="Alias" minOccurs="0" maxOccurs="unbounded">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="SystemId" type="xs:string" minOccurs="0"/>
+                                            <xs:element name="EntityId" type="xs:string" minOccurs="0"/>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="IsCustomerAccount" type="xs:boolean" minOccurs="0"/>
+                                <xs:element name="IsDynamicParty" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="ManageAccountRequestType">
+        <xs:complexContent>
+            <xs:extension base="BaseRequestType">
+                <xs:sequence>
+                    <xs:element name="partyDetail" type="PartyType" minOccurs="0"/>
+                    <xs:element name="PartyIdentity" type="IdentityType" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="ManageAccountResponseType">
+        <xs:complexContent>
+            <xs:extension base="BaseResponseType">
+                <xs:sequence>
+                    <xs:element name="Party" minOccurs="0">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="PartyId" type="IdType" minOccurs="0"/>
+                                <xs:element name="Type" type="PartyTypeCodeType" minOccurs="0"/>
+                                <xs:element name="StatusCode" type="StatusCodeType" minOccurs="0"/>
+                                <xs:element name="Alias" type="AliasType" minOccurs="0"/>
+                                <xs:element name="Account" minOccurs="0">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="AccountId" type="IdType" minOccurs="0"/>
+                                            <xs:element name="StatusCode" type="StatusCodeType" minOccurs="0"/>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="PhoneIdListType">
+        <xs:sequence>
+            <xs:element name="PhoneId" type="IdType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="CleanseActionIndicator" type="xs:string" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="EmailAddressIDListType">
+        <xs:sequence>
+            <xs:element name="EmailAddressId" type="IdType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="CleanseActionIndicator" type="xs:string" use="optional"/>
+     </xs:complexType>
+     <xs:complexType name="PostalAddressIdListType">
+        <xs:sequence>
+            <xs:element name="PostalAddressId" type="IdType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="CleanseActionIndicator" type="xs:string" use="optional"/>
+     </xs:complexType>
+    <xs:complexType name="CleanseCustomerDataRequestType">
+        <xs:complexContent>
+            <xs:extension base="BaseRequestType">
+                <xs:sequence>
+                    <xs:element name="Party" type="ThinPartyType" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="PhoneIdList" type="PhoneIdListType" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="EmailIdList" type="EmailAddressIDListType" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="PostalAddressIdList" type="PostalAddressIdListType" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="CleanseCustomerDataResponseType">
+        <xs:complexContent>
+            <xs:extension base="BaseResponseType">
+                <xs:sequence>
+                    <xs:element name="Success" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>    
+    <xs:complexType name="ThinPartyType">
+        <xs:sequence>
+            <xs:element name="Alias" type="AliasType" minOccurs="0" maxOccurs="1"/>        
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:string"/>
+    </xs:complexType>    
+    <xs:complexType name="ThinAccountType">
+        <xs:sequence>
+            <xs:element name="Category" type="xs:string" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="Type" type="xs:string" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="Number" type="xs:string" maxOccurs="1" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:string"/>
+    </xs:complexType>
+    <xs:complexType name="ThinAccountListType">
+        <xs:sequence>
+            <xs:element name="Account" type="ThinAccountType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ThinPartyListType">
+        <xs:sequence>
+            <xs:element name="Party" type="ThinPartyType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ConsolidatePartyRequestType">
+        <xs:complexContent>
+            <xs:extension base="BaseRequestType">
+                <xs:sequence>
+                    <xs:element name="PartyList" type="ThinPartyListType" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="ConsolidatePartyResponseType">
+        <xs:complexContent>
+            <xs:extension base="BaseResponseType">
+                <xs:sequence>
+                    <xs:element name="ConsolidatedParty" type="ThinPartyType" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>    
+    <xs:complexType name="TransferAccountRequestType">
+        <xs:complexContent>
+            <xs:extension base="BaseRequestType">
+                <xs:sequence>
+                    <xs:element name="SourceParty" type="ThinPartyType" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="DestinationParty" type="ThinPartyType" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="AccountList" type="ThinAccountListType" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="TransferAccountResponseType">
+        <xs:complexContent>
+            <xs:extension base="BaseResponseType">
+                <xs:sequence>
+                    <xs:element name="Success" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>    
+
+	<xs:complexType name="PartyAccountAttributeDetailsType">
+		<xs:sequence>
+                 <xs:element name="Party" minOccurs="0">
+                      <xs:complexType>
+                          <xs:sequence>
+                              <xs:element name="Alias" type="AliasType" minOccurs="0" maxOccurs="1"/>
+                              <xs:element name="SubAccountWithAttributesList" minOccurs="0" maxOccurs="1">
+                                  <xs:complexType>
+                                  	<xs:sequence>
+                                   	<xs:element name="SubAccount" minOccurs="0" maxOccurs="unbounded">
+                                    	<xs:complexType>
+	                                        <xs:sequence>
+	                                               <xs:element name="Category" type="xs:string" maxOccurs="1" minOccurs="0"/>
+											            <xs:element name="Type" type="xs:string" maxOccurs="1" minOccurs="0"/>
+										            <xs:element name="Number" type="xs:string" maxOccurs="1" minOccurs="0"/>                                         
+	 							                    <xs:element name="SubAccountAttributeList" type="SubAccountAttributeListType" minOccurs="0" maxOccurs="1"/>
+	                                        		<xs:element name="AllAttributesCode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	                                         </xs:sequence>
+	                                        	<xs:attribute name="AccountId" type="IdType"/>
+                                    	</xs:complexType>                                    
+                               		</xs:element>
+                          			</xs:sequence>
+                          		</xs:complexType> 
+                          	</xs:element>
+                          </xs:sequence>
+                        		<xs:attribute name="PartyId" type="IdType"/>
+                      </xs:complexType>
+                  </xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+    <xs:complexType name="ManageSubAccountAttributesRequestType">
+        <xs:complexContent>
+            <xs:extension base="BaseRequestType">
+                    <xs:sequence>
+                    <xs:element name="PartyAccountAttributeDetails" type="PartyAccountAttributeDetailsType" minOccurs="0"/>
+                   </xs:sequence>
+             </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="ManageSubAccountAttributesResponseType">
+        <xs:complexContent>
+            <xs:extension base="BaseResponseType">
+                    <xs:sequence>
+                    	<xs:element name="Success" type="xs:boolean" minOccurs="0" maxOccurs="1"/> 
+                    	<xs:element name="PartyAccountAttributeDetails" type="PartyAccountAttributeDetailsType" minOccurs="0"/>
+                	</xs:sequence>
+             </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+   <xs:complexType name="GetSubAccountAttributesRequestType">
+        <xs:complexContent>
+            <xs:extension base="BaseRequestType">
+                    <xs:sequence>
+                    <xs:element name="PartyAccountAttributeDetails" type="PartyAccountAttributeDetailsType" minOccurs="0"/>
+                   </xs:sequence>
+             </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="GetSubAccountAttributesResponseType">
+        <xs:complexContent>
+            <xs:extension base="BaseResponseType">
+                    <xs:sequence>
+                    	<xs:element name="PartyAccountAttributeDetails" type="PartyAccountAttributeDetailsType" minOccurs="0"/>
+                	</xs:sequence>
+             </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+
+
+
+
+    <xs:element name="ManageAccountRequest" type="ManageAccountRequestType"/>
+    <xs:element name="ManageAccountResponse" type="ManageAccountResponseType"/>
+    <xs:element name="MatchPartyRequest" type="MatchPartyRequestType"/>
+    <xs:element name="MatchPartyResponse" type="MatchPartyResponseType"/>
+    <xs:element name="SearchCustomerRequest" type="SearchCustomerRequestType"/>
+    <xs:element name="SearchCustomerResponse" type="SearchCustomerResponseType"/>
+    <xs:element name="CleanseCustomerDataRequest" type="CleanseCustomerDataRequestType"/>  
+    <xs:element name="CleanseCustomerDataResponse" type="CleanseCustomerDataResponseType"/>      
+    <xs:element name="TransferAccountRequest" type="TransferAccountRequestType"/>  
+    <xs:element name="TransferAccountResponse" type="TransferAccountResponseType"/>      
+    <xs:element name="ConsolidatePartyRequest" type="ConsolidatePartyRequestType"/>  
+    <xs:element name="ConsolidatePartyResponse" type="ConsolidatePartyResponseType"/>      
+	<xs:element name="ManageSubAccountAttributesRequest" type="ManageSubAccountAttributesRequestType"/>  
+    <xs:element name="ManageSubAccountAttributesResponse" type="ManageSubAccountAttributesResponseType"/>   
+ 	<xs:element name="GetSubAccountAttributesRequest" type="GetSubAccountAttributesRequestType"/>  
+    <xs:element name="GetSubAccountAttributesResponse" type="GetSubAccountAttributesResponseType"/>   
+    
+</xs:schema>

@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<title>GSP Plan Details Print Page</title>
+	<link href="css/tom-screen.css" rel="stylesheet" type="text/css" />
+	<link href="css/header.css" rel="stylesheet" type="text/css" />
+</wicket:head>
+<body>
+
+	<div class="modal gsp">
+
+		<h1 class="wide">Plan Details</h1>
+
+		<div class="column">
+			<h2>
+				<wicket:message key="gspDetails.plan.label" />
+			</h2>
+			<div class="gsbtp-logo"></div>
+			<div class="detail-list">
+				<ul>
+					<li>
+						<div class="view customer">
+							<label><wicket:message
+									key="gspDetails.planOwnerName.label" /> </label> <span
+								wicket:id="planOwnerName"></span>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="detail-list">
+				<ul style="margin-bottom: 20px;">
+					<li class="odd">
+						<div class="view">
+							<label><wicket:message key="gspDetails.planType.label" />
+							</label> <span wicket:id="planType"></span>
+						</div>
+						<div class="view">
+							<label><wicket:message key="gspDetails.planNumber.label" />
+							</label> <span wicket:id="planNumber"></span>
+						</div>
+					</li>
+					<li>
+						<div class="view">
+							<label><wicket:message
+									key="gspDetails.planExpiration.label" /> </label> <span
+								wicket:id="planExpiration"></span>
+						</div>
+						<div class="view">
+							<label><wicket:message key="gspDetails.planSku.label" />
+							</label> <span wicket:id="planSku"></span>
+						</div>
+					</li>
+					<li class="odd">
+						<div class="view full">
+							<label><wicket:message
+									key="gspDetails.planDescription.label" /> </label> <span
+								wicket:id="planDescription"></span>
+						</div>
+					</li>
+					<li>
+						<div class="view">
+							<label><wicket:message key="gspDetails.planStatus.label" />
+							</label> <span wicket:id="planStatus"></span>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<h2>
+				<wicket:message key="gspDetails.transactionList.label" />
+			</h2>
+			<div class="detail-list sliding">
+				<div class="slide-area">
+					<ul wicket:id="transactionListView" style="width: 352px;">
+						<li class="odd">
+							<div class="view">
+								<label><wicket:message
+										key="gspDetails.transactionType.label" /> </label> <span
+									wicket:id="transactionType"></span>
+							</div>
+							<div class="view">
+								<label><wicket:message
+										key="gspDetails.transactionStore.label" /> </label> <span
+									wicket:id="transactionStore"></span>
+							</div>
+						</li>
+						<li>
+							<div class="view">
+								<label><wicket:message
+										key="gspDetails.transactionRegister.label" /> </label> <span
+									wicket:id="transactionRegister"></span>
+							</div>
+							<div class="view">
+								<label><wicket:message
+										key="gspDetails.transactionNumber.label" /> </label> <span
+									wicket:id="transactionNumber"></span>
+							</div>
+						</li>
+						<li class="odd">
+							<div class="view full">
+								<label><wicket:message
+										key="gspDetails.transactionPurchaseDate.label" /> </label> <span
+									wicket:id="transactionPurchaseDate"></span>
+							</div>
+							<div class="view">
+								<label><wicket:message
+										key="gspDetails.transactionPurchasePrice.label" /> </label> <span
+									wicket:id="transactionPurchasePrice"></span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="column last">
+			<h2>
+				<wicket:message key="gspDetails.productList.label" />
+			</h2>
+			<ul class="module-list no-scrolling">
+				<li wicket:id="productListView">
+					<h3 wicket:id="productDescription"></h3>
+					<div class="view">
+						<label><wicket:message key="gspDetails.productSku.label" />
+						</label> <span wicket:id="productSku"></span>
+					</div>
+					<div class="view">
+						<label><wicket:message key="gspDetails.productModel.label" />
+						</label> <span wicket:id="productModel"></span>
+					</div>
+					<div class="view">
+						<label><wicket:message
+								key="gspDetails.productSerialNumber.label" /> </label> <span
+							wicket:id="productSerialNumber"></span>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+</body>
+</html>

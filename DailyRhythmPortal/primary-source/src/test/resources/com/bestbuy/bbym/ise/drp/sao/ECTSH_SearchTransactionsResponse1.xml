@@ -1,0 +1,19 @@
+
+<ns0:SearchTransactionsResponse
+	xmlns:ns0="http://www.tsh.bestbuy.com/sales/search/service/v1">
+	<ns1:MetaData xmlns:jms1="http://www.tibco.com/namespaces/tnt/plugins/jms"
+		xmlns:ns1="http://www.tsh.bestbuy.com/sales/common/components/v1">
+		<ns2:SourceID xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/fields/v1">ISE</ns2:SourceID>
+		<ns2:UserID xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/fields/v1">a008938</ns2:UserID>
+		<ns2:ProgramID xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/fields/v1">Beast-Portal</ns2:ProgramID>
+		<ns2:Environment
+			xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/fields/v1">prodtest</ns2:Environment>
+		<ns2:ResponseTimeStamp
+			xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/fields/v1">2012-09-06T11:10:13.432-05:00</ns2:ResponseTimeStamp>
+	</ns1:MetaData>
+	<ns1:Status xmlns:ns1="http://www.tsh.bestbuy.com/common/v1">
+		<ns1:Code>TSH-INT-100005</ns1:Code>
+		<ns1:Description>SearchTransaction invocation error</ns1:Description>
+		<ns1:ReasonCode>INT-EC-100005</ns1:ReasonCode>
+	</ns1:Status>
+</ns0:SearchTransactionsResponse>

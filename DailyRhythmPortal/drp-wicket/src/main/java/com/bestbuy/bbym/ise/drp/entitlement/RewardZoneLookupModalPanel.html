@@ -1,0 +1,151 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>MODAL - RZ Lookup</title>
+	<link href="../../drp/drp-war/src/main/webapp/css/header.css" media="screen" rel="StyleSheet" type="text/css" />
+	<link href="../../drp/drp-war/src/main/webapp/css/tom-screen.css" media="screen" rel="StyleSheet" type="text/css" />
+	<script src="../../drp/drp-war/src/main/webapp/js/jquery-1.7.min.js"></script>
+	<script type="text/javascript" src="../js/search-nav.js"></script>
+	<script type="text/javascript" src="../../drp/drp-war/src/main/webapp/js/table-prep.js"></script>
+	
+	<script type="text/javascript">
+		var wicketBehaviorRZP;
+		function setupSearchCustomersTable() {
+			if ($('#searchRzCustomersContainer table').length == 0) {
+				return;
+			}
+
+			// Remove sorting from Action column
+			removeColumnSorting('#searchRzCustomersContainer table', 6);
+
+			applyRowHighlighting('#searchRzCustomersContainer table');
+
+			// Add styling classes to cells
+			$('#searchRzCustomersContainer table tr').each(
+					function(index) {
+						$(this).find('th:eq(0)').attr("width", "300");
+						$(this).find('th:eq(1)').attr("width", "100");
+						$(this).find('th:eq(3)').attr("width", "100");
+						$(this).find('th:eq(4)').attr("width", "60");
+						$(this).find('th:eq(5)').attr("width", "125");
+						$(this).find('th:last-child').addClass("last").attr(
+								"width", "65");
+						$(this).find('td:last-child').addClass("last")
+								.addClass("txt-right");
+					});
+			$('#searchCustomersContainer tr:last-child').addClass("last");
+		}
+		function showBestBuyCustomerSearchLoading(enabled) {
+			if (enabled) {
+				$('#loading').show();
+				$('#searchRzCustomersContainer').hide();
+				$('#noSearchRzCustomersContainer').hide();
+				$('#searchCustomersFilter input.button').attr('disabled', true);
+			} else {
+				$('#loading').hide();
+				$('#searchRzCustomersContainer').show();
+				$('#noSearchRzCustomersContainer').show();
+				$('#searchCustomersFilter input.button').removeAttr('disabled');
+			}
+		} 
+		function setupSelectBestBuyCustomerLoading() {
+			$("#searchRzCustomersContainer table tr td:last-child span a").click(
+					function() {
+						$(this).replaceWith(
+								"<div class='loading-spinner-small'></div>");
+					});
+		}
+		function selectSearchCustomersNavFilter(filter) {
+			$('#searchCustomersFilter li.open').each(function(index) {
+				$(this).removeClass('open');
+			});
+			if (filter && filter == 'PHONE_NUMBER') {
+				$('#searchCustomersFilter li:eq(0)').addClass('open');
+			} else if (filter && filter == 'FN_LN_ZIP') {
+				$('#searchCustomersFilter li:eq(1)').addClass('open');
+			} else if (filter && filter == 'EMAIL') {
+				$('#searchCustomersFilter li:eq(2)').addClass('open');
+			}
+
+			//bind enter to submit form + start search
+			$('.inputs input').keypress(function(e) {
+				if (e.which == 13) {
+					$(this).siblings('.button').click();
+					$('form#login').submit();
+				}
+			});
+
+			//give the first search box focus
+			$('#searchCustomersFilter li.open .inputs input').first().focus();
+		}
+		function loadData() {
+			setTimeout("wicketBehaviorRZP('load')", 50);
+		}
+	</script>
+</wicket:head>
+
+<body class="freeze">
+	<wicket:panel>
+	<div class="fader">
+			<div class="new-modal detail">
+				<div class="top-buttons">
+				<a wicket:id="closeLink" class="button close"><wicket:message
+						key="rzInfo.closeLink.label" /> </a>
+			</div>
+		<div class="modal-header">
+				<h1>Reward Zone Customer Search</h1>
+			</div>	
+
+		<div wicket:id="searchCustomerFeedback" class="required"></div>
+
+		<div class="table-wrap">
+			<form wicket:id="searchRzCustomerForm" autocomplete="off">
+				<ul class="table-nav" id="searchCustomersFilter">
+					<li><a wicket:id="phoneSearchLink"><wicket:message
+								key="searchCustomerForm.phoneSearch" /> </a>
+						<div class="inputs">
+							<input wicket:id="phoneSearch" type="text" maxlength="10" /> <input
+								class="button" wicket:id="phoneSearchButton" type="button" />
+						</div></li>
+					<li><a wicket:id="nameZipSearchLink"><wicket:message
+								key="searchCustomerForm.nameZipSearch" />
+					</a>
+						<div class="inputs">
+							<input wicket:id="firstNameSearch" type="text" maxlength="30" />
+							<input wicket:id="lastNameSearch" type="text" maxlength="30" />
+							<input wicket:id="zipCodeSearch" type="text" maxlength="5" /><input
+								class="button" wicket:id="nameZipSearchButton" type="button" />
+						</div></li>
+					<li><a wicket:id="emailSearchLink"><wicket:message
+								key="searchCustomerForm.emailSearch" /> </a>
+						<div class="inputs">
+							<input wicket:id="emailSearch" type="text" maxlength="50" /> <input
+								class="button" wicket:id="emailSearchButton" type="button" />
+						</div></li>
+				</ul>
+				
+			</form>
+			<!-- <div class="buttons">
+				<a wicket:id = "cancelButton" class="button minor">Cancel</a>
+				</div> -->
+			<div wicket:id="searchRzCustomersContainer">
+				<table class="default-table" wicket:id="searchRzCustomersTable">
+				</table>
+			</div>
+		</div>
+
+		<div wicket:id="noSearchRzCustomersContainer">
+			<p class="no-results" wicket:id="noSearchRzCustomersLabel"></p>
+		</div>
+
+		<!-- <div id="loading" class="loading-spinner-big">
+			<wicket:message key="searchCustomerPanel.loading.label" />
+		</div> -->
+		<br clear="all" />
+		</div>
+		</div>
+		
+	</wicket:panel>
+</body>
+</html>

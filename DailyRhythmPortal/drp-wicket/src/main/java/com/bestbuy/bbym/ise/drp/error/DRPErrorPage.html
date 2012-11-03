@@ -1,0 +1,38 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>System Error</title>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<div class="pgtitle">
+			<h1>System Error</h1>
+		</div>
+
+		<div class="pgcontent error_page">
+			<div class="pgcontent_white">
+				<div class="page-tr"></div>
+				<div class="page-tl"></div>
+				<div class="page-br"></div>
+				<div class="page-bl"></div>
+
+				<div class="msg_error">
+					<span wicket:id="message" class="errorMessage">Message</span>
+					<p>
+						<span wicket:id="exceptionCodeLabel" class="errorlabel">Exception Code Label</span>
+						<span wicket:id="exceptionCodeValue">Exception Code Value</span>
+					</p>
+					<p>
+						<span wicket:id="exceptionCodeDescriptionLabel" class="errorlabel">Exception Code Description Label</span>
+						<span wicket:id="exceptionCodeDescription">Exception Code Description</span>
+					</p>
+					<wicket:child />
+				</div>
+				<a href="#" wicket:id="homePageLink" class="button"><span wicket:id="returnMainScreen">Return Main Screen</span></a>
+			</div>
+		</div>
+	</wicket:extend>
+</body>
+</html>

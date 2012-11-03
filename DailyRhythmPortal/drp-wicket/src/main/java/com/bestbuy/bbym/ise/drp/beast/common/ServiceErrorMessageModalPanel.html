@@ -1,0 +1,16 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:extend>
+		<div class="modal error">
+			<wicket:child />
+			<p wicket:id="messageLabel"></p>
+			<textarea class="issue" wicket:id="errorMessageText" rows="6"
+				cols="20"></textarea>
+			<a wicket:id="okLink" class="button"><span
+				wicket:id="okLinkLabel"></span> </a>
+		</div>
+	</wicket:extend>
+</body>
+</html>

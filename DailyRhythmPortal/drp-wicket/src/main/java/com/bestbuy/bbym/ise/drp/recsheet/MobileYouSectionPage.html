@@ -1,0 +1,66 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+</wicket:head>
+<body>
+	<wicket:extend>
+			<h2 wicket:id="sectionTitle"></h2>
+			<div class="column width-full">
+
+				<div class="block required">
+					<label><wicket:message
+							key="mobileYouSectionForm.firstName.label" /> </label> <input
+						wicket:id="firstName" type="text" maxlength="15" />
+				</div>
+				<div class="block required">
+					<label><wicket:message
+							key="mobileYouSectionForm.lastName.label" /> </label> <input
+						wicket:id="lastName" type="text" maxlength="25" />
+				</div>
+				<br />
+				<div class="block required">
+					<label><wicket:message
+							key="mobileYouSectionForm.phone.label" /> </label> <input
+						wicket:id="phoneNumber" type="text" maxlength="14" onblur="handlePhoneOnBlur(this)"
+						class="required" />
+				</div>
+				<div class="block">
+					<label><wicket:message
+							key="mobileYouSectionForm.upgrade.label" /> </label> <input type="text"
+						wicket:id="upgradeEligibilityDate" maxlength="10" onblur="checkdate(this)" />
+				</div>
+				<div class="block width-full">
+					<label><wicket:message
+							key="mobileYouSectionForm.contact.label" /> </label>
+					<ul class="checkbox-buttons">
+						<li><input type="checkbox" wicket:id="upgradetext" /><label
+							for="upgradeText" > <wicket:message key="mobileYouSectionForm.upgradetext.label"/></label>
+						</li>
+						<li><input type="checkbox" wicket:id="upgradecall" /> <label
+							for="upgradeCall"> <wicket:message key="mobileYouSectionForm.upgradecall.label"/></label>
+						</li>
+					</ul>
+				</div>
+				<br />
+				<div class="block width-6">
+					<label><wicket:message
+							key="mobileYouSectionForm.connectivity.label" /> </label>
+					<textarea wicket:id="subscriptionInfo"></textarea>
+				</div>
+				<div style="width: 560px;" align='right'>
+					<p>
+						(<span wicket:id="characterCountLabel"></span>)
+					</p>
+				</div>
+				<div class="block">
+					<label><wicket:message
+							key="mobileYouSectionForm.tradeIn.label" /> </label> <label>$<input
+						style="width: 55px;" wicket:id="tradeInValue" type="text" maxlength="8" /> </label>
+				</div>
+
+			</div>
+
+	</wicket:extend>
+</body>
+
+</html>

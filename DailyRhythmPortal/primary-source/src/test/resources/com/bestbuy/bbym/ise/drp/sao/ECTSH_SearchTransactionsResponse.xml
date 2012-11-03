@@ -1,0 +1,105 @@
+<ns0:SearchTransactionsResponse xmlns:ns0="http://www.tsh.bestbuy.com/sales/search/service/v1">
+   <ns1:MetaData xmlns:jms1="http://www.tibco.com/namespaces/tnt/plugins/jms" xmlns:ns1="http://www.tsh.bestbuy.com/sales/common/components/v1">
+      <ns2:SourceID xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/fields/v1">EC</ns2:SourceID>
+      <ns2:UserID xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/fields/v1">a008753</ns2:UserID>
+      <ns2:ProgramID xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/fields/v1">Beast-Portal</ns2:ProgramID>
+      <ns2:Environment xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/fields/v1">prodtest</ns2:Environment>
+      <ns2:ResponseTimeStamp xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/fields/v1">2012-08-01T15:34:41.352-05:00</ns2:ResponseTimeStamp>
+   </ns1:MetaData>
+   <ns1:SystemStatus xmlns:jms1="http://www.tibco.com/namespaces/tnt/plugins/jms" xmlns:ns1="http://www.tsh.bestbuy.com/sales/common/components/v1">
+      <ns2:ServerName xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">dlg02app</ns2:ServerName>
+      <ns2:Environment xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">QUAL</ns2:Environment>
+      <ns2:Rows xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">1</ns2:Rows>
+   </ns1:SystemStatus>
+   <ns1:Transaction xmlns:jms1="http://www.tibco.com/namespaces/tnt/plugins/jms" xmlns:ns1="http://www.tsh.bestbuy.com/sales/common/components/v1">
+      <ns1:TransactionHeader>
+         <ns2:TransactionDate xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">2012-08-01-05:00</ns2:TransactionDate>
+         <ns2:TransactionType xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">01</ns2:TransactionType>
+         <ns1:TransactionKey>
+            <ns2:TransactionSourceSystem xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">19</ns2:TransactionSourceSystem>
+            <ns2:TransactionKeyType xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">FourPartKey</ns2:TransactionKeyType>
+            <ns2:SourceTransactionKey xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">1983^20120801^70^36</ns2:SourceTransactionKey>
+         </ns1:TransactionKey>
+         <ns2:ECTransactionID xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">3927237904</ns2:ECTransactionID>
+         <ns2:EmployeeID xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">3111</ns2:EmployeeID>
+         <ns2:PurchasedEmployeeID xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">0</ns2:PurchasedEmployeeID>
+         <ns2:BBYCreateTimeStamp xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">2012-08-01T00:00:00-05:00</ns2:BBYCreateTimeStamp>
+         <ns2:BBYUpdateTimeStamp xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">2012-08-01T00:00:00-05:00</ns2:BBYUpdateTimeStamp>
+         <ns2:ECAuditTimeStamp xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">2012-08-01T00:00:00-05:00</ns2:ECAuditTimeStamp>
+         <ns2:TransactionVersion xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">10</ns2:TransactionVersion>
+         <ns2:TransactionLocation xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">1983</ns2:TransactionLocation>
+         <ns2:PCardIndicator xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">false</ns2:PCardIndicator>
+      </ns1:TransactionHeader>
+      <ns1:TransactionLineItem>
+         <ns2:TransactionLineNumber xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">3</ns2:TransactionLineNumber>
+         <ns2:TransactionLineType xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">SL</ns2:TransactionLineType>
+         <ns1:Item>
+            <ns2:SKU xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">3562379</ns2:SKU>
+            <ns2:SkuDescription xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">MTHLY WIRELESS $350 AND UP BTP</ns2:SkuDescription>
+            <ns2:SkuPLUText xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">MTHLY WIRE</ns2:SkuPLUText>
+         </ns1:Item>
+         <ns1:ProductCategory>
+            <ns2:DeptID xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">7</ns2:DeptID>
+            <ns2:DeptName xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">WARRANTY</ns2:DeptName>
+            <ns2:ClassID xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">333</ns2:ClassID>
+            <ns2:ClassName xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">WIRELESS WARRANTY</ns2:ClassName>
+            <ns2:SubClassID xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">212</ns2:SubClassID>
+            <ns2:SubClassName xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">TEST_02292012</ns2:SubClassName>
+         </ns1:ProductCategory>
+         <ns2:UnitQuantity xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">1</ns2:UnitQuantity>
+         <ns2:EligibleFlag xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">X</ns2:EligibleFlag>
+         <ns2:AverageCost xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">6.49E2</ns2:AverageCost>
+         <ns2:RetailPrice xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">6.9999E2</ns2:RetailPrice>
+         <ns2:SalePrice xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">6.9999E2</ns2:SalePrice>
+         <ns2:ReshippedItem xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">false</ns2:ReshippedItem>
+         <ns2:MarketPlaceIndicator xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">false</ns2:MarketPlaceIndicator>
+      </ns1:TransactionLineItem>
+      <ns1:TransactionLineItem>
+         <ns2:TransactionLineNumber xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">4</ns2:TransactionLineNumber>
+         <ns2:TransactionLineType xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">SL</ns2:TransactionLineType>
+         <ns1:Item>
+            <ns2:SKU xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">2053218</ns2:SKU>
+            <ns2:SkuDescription xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">RETAIL SALES</ns2:SkuDescription>
+         </ns1:Item>
+         <ns1:ProductCategory>
+            <ns2:DeptID xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">0</ns2:DeptID>
+            <ns2:ClassID xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">0</ns2:ClassID>
+            <ns2:SubClassID xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">0</ns2:SubClassID>
+         </ns1:ProductCategory>
+         <ns2:UnitQuantity xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">1</ns2:UnitQuantity>
+         <ns2:EligibleFlag xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">X</ns2:EligibleFlag>
+         <ns2:AverageCost xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">0.0E0</ns2:AverageCost>
+         <ns2:RetailPrice xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">0.0E0</ns2:RetailPrice>
+         <ns2:SalePrice xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">0.0E0</ns2:SalePrice>
+         <ns2:ReshippedItem xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">false</ns2:ReshippedItem>
+         <ns2:MarketPlaceIndicator xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">false</ns2:MarketPlaceIndicator>
+      </ns1:TransactionLineItem>
+      <ns1:TransactionLineItem>
+         <ns2:TransactionLineNumber xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">8</ns2:TransactionLineNumber>
+         <ns2:TransactionLineType xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">TX</ns2:TransactionLineType>
+         <ns1:Item>
+            <ns2:SKU xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">0</ns2:SKU>
+            <ns2:SkuDescription xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">XXX</ns2:SkuDescription>
+         </ns1:Item>
+         <ns1:ProductCategory>
+            <ns2:DeptID xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">8</ns2:DeptID>
+            <ns2:DeptName xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">VIDEO/COMPACT DISC</ns2:DeptName>
+            <ns2:ClassID xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">77</ns2:ClassID>
+            <ns2:ClassName xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">COMPACT DISC</ns2:ClassName>
+            <ns2:SubClassID xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">1005</ns2:SubClassID>
+            <ns2:SubClassName xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">COUNTRY</ns2:SubClassName>
+         </ns1:ProductCategory>
+         <ns2:UnitQuantity xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">1</ns2:UnitQuantity>
+         <ns2:EligibleFlag xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">X</ns2:EligibleFlag>
+         <ns2:AverageCost xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">0.0E0</ns2:AverageCost>
+         <ns2:RetailPrice xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">0.0E0</ns2:RetailPrice>
+         <ns2:SalePrice xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">1.0E1</ns2:SalePrice>
+         <ns2:ReshippedItem xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">false</ns2:ReshippedItem>
+         <ns2:MarketPlaceIndicator xmlns:ns2="http://www.tsh.bestbuy.com/sales/common/fields/v1">false</ns2:MarketPlaceIndicator>
+      </ns1:TransactionLineItem>
+   </ns1:Transaction>
+   <ns1:Status xmlns:ns1="http://www.tsh.bestbuy.com/common/v1">
+      <ns1:Code>TSH-PXY-000000</ns1:Code>
+      <ns1:Description>SearchTransaction executed successfully</ns1:Description>
+   </ns1:Status>
+</ns0:SearchTransactionsResponse>

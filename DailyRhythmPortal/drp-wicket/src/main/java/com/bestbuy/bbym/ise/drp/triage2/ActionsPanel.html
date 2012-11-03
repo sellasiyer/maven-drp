@@ -1,0 +1,22 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:panel>
+		<div id="summary">
+			<span wicket:id="issueLabel"></span>
+			<div wicket:id="suggestionLabel" class="suggestion"></div>
+		</div>
+		<ol wicket:id="actionsListViewContainer">
+			<li wicket:id="actionsListView"><span wicket:id="label"></span>
+			</li>
+		</ol>
+		<div class="buttons">
+			<a class="button" wicket:id="resolvedLink"><wicket:message
+					key="triageActionsPanel.resolvedLink.label" /> </a> <a
+				class="button last" wicket:id="checkOptionsLink"><wicket:message
+					key="triageActionsPanel.checkOptionsLink.label" /> </a>
+		</div>
+	</wicket:panel>
+</body>
+</html>

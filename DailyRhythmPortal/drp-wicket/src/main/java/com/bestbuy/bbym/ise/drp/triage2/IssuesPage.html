@@ -1,0 +1,145 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>Device Triage Issues</title>
+	<link href="css/table.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/search-nav.js"></script>
+	<script type="text/javascript" src="js/table-prep.js"></script>
+	<script type="text/javascript" src="js/custInfoModal.js"></script>
+	<script type="text/javascript">
+		var deviceModalTable = {
+			tableID : 'devicesTable',
+			stripHeaderAnchorHref : true,
+			tidyHeader : false,
+			oddClasses : true,
+			lastClasses : true,
+			widths : [ '-', '100' ],
+			textAlignment : [ 'l', 'l' ],
+			sortable : [ true, true ],
+			truncate : [ true, true ]
+		};
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<div class="page-header">
+			<h1>Device Triage</h1>
+		</div>
+
+		<div wicket:id="feedback" class="required"></div>
+
+		<form wicket:id="triageIssuesForm" autocomplete="off">
+			<fieldset class="data-box" wicket:id="enterDeviceContainer">
+				<h2>Device</h2>
+				<div class="column width-full">
+					<div class="block">
+						<label><wicket:message
+								key="triageIssuesForm.enterDeviceContainer.deviceName" /> </label>
+						<div class="required">
+							<input type="text" wicket:id="deviceName" />
+						</div>
+					</div>
+					<div class="block">
+						<label><wicket:message
+								key="triageIssuesForm.enterDeviceContainer.deviceSerialNum" />
+						</label>
+						<div class="required">
+							<input type="text" wicket:id="deviceSerialNum" class="inset"
+								maxlength="22" />
+						</div>
+					</div>
+					<div class="block">
+						<label><wicket:message
+								key="triageIssuesForm.enterDeviceContainer.devicePhoneNum" /> </label>
+						<div class="required">
+							<input type="text" wicket:id="devicePhoneNum" class="inset"
+								maxlength="10" />
+						</div>
+					</div>
+				</div>
+			</fieldset>
+
+			<fieldset class="data-box view" wicket:id="viewDeviceContainer">
+				<h2>Device</h2>
+				<div class="column width-full">
+					<div class="block">
+						<label><wicket:message
+								key="triageIssuesForm.enterDeviceContainer.deviceName" /> </label> <span
+							wicket:id="deviceNameLabel"></span>
+					</div>
+					<div class="block">
+						<label><wicket:message
+								key="triageIssuesForm.enterDeviceContainer.deviceSerialNum" />
+						</label> <span wicket:id="deviceSerialNumLabel"></span>
+					</div>
+					<div class="block">
+						<label><wicket:message
+								key="triageIssuesForm.enterDeviceContainer.devicePhoneNum" /> </label>
+						<span wicket:id="devicePhoneNumLabel"></span>
+					</div>
+				</div>
+			</fieldset>
+
+			<fieldset class="data-box" wicket:id="findGspContainer">
+				<h2>GSP</h2>
+				<a class="button top" wicket:id="lookupGspLink"><wicket:message
+						key="triageIssues.searchGspLink.label" /> </a>
+				<div class="column width-full">
+					<div class="block">
+						<label><wicket:message
+								key="triageIssuesForm.findGspContainer.deviceGspNum" /> </label>
+						<div>
+							<input type="text" wicket:id="deviceGspNum" />
+						</div>
+					</div>
+				</div>
+			</fieldset>
+
+			<fieldset class="data-box view" wicket:id="viewGspContainer">
+				<h2>GSP</h2>
+				<div class="column width-full">
+					<div class="block">
+						<label><wicket:message
+								key="triageIssuesForm.findGspContainer.deviceGspNum" /> </label> <span
+							wicket:id="deviceGspNumLabel"></span>
+					</div>
+					<div class="block">
+						<label><wicket:message key="triageIssues.gspStatus.label" />
+						</label> <span wicket:id="deviceGspStatusLabel"></span>
+					</div>
+					<div class="block">
+						<label><wicket:message
+								key="triageIssues.gspExpirationDate.label" /> </label> <span
+							wicket:id="deviceGspExpirationDateLabel"></span>
+					</div>
+				</div>
+			</fieldset>
+
+			<fieldset class="data-box view" wicket:id="noGspContainer">
+				<h2>GSP</h2>
+				<div class="column width-full">
+					<div class="block">
+						<label><wicket:message
+								key="triageIssues.noGspSelected.label" /> </label>
+					</div>
+				</div>
+			</fieldset>
+
+			<div wicket:id="issuesPanel"></div>
+
+			<div class="buttons">
+				<input type="button" wicket:id="cancelButton" class="button minor" />
+				<input type="button" wicket:id="backButton" class="button" /> <input
+					type="button" wicket:id="submitButton" class="button right" /> <input
+					type="button" wicket:id="continueButton" class="button right" />
+			</div>
+		</form>
+		<div wicket:id="custInfoModalPanel"></div>
+		<div wicket:id="okDialog"></div>
+		<div wicket:id="issuePopupDialog"></div>
+		<div wicket:id="deviceModalPanel"></div>
+	</wicket:extend>
+</body>
+</html>

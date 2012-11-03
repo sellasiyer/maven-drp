@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://bestbuy.com/bbym/ise/common"
+	targetNamespace="http://bestbuy.com/bbym/ise/common"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified">
+
+	<xs:simpleType name="FirstNameType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="50" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="LastNameType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1" />
+			<xs:maxLength value="50" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="EmailIdType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="80" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="AccountNumberType">
+		<xs:annotation>
+			<xs:documentation>
+				Account number for an existing account.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DataSharingKeyType">
+		<xs:annotation>
+			<xs:documentation>
+				Data sharing key between Beast and Beast portal.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="40" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TransferFlagType">
+		<xs:annotation>
+			<xs:documentation>
+				Transfer Flag to indicate the hand over from Beast
+				portal to Beast.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:boolean">
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CustomerIdType">
+		<xs:annotation>
+			<xs:documentation>
+				Customer id.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="PhoneNumberType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{10}" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ZipCodeType">
+		<xs:annotation>
+			<xs:documentation>zip code (first 5).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse" />
+			<xs:pattern value="\d{5}" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="CustomerProfileType">
+		<xs:sequence>
+			<xs:element name="firstName" minOccurs="0" type="FirstNameType" />
+			<xs:element name="lastName" minOccurs="0" type="LastNameType" />
+			<xs:element name="phoneNumber" minOccurs="0" type="PhoneNumberType">
+				<xs:annotation>
+					<xs:documentation>
+						Any active phone number on the account.
+				</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="emailId" minOccurs="0" type="EmailIdType">
+				<xs:annotation>
+					<xs:documentation>
+						customer’s email address
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="address" minOccurs="0" type="AddressType">
+				<xs:annotation>
+					<xs:documentation>
+						Customer address on the account.
+				</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DOB" minOccurs="0" type="xs:date" />
+			<xs:element name="idType" minOccurs="0" type="xs:string" />
+			<xs:element name="idIssuer" minOccurs="0" type="xs:string" />
+			<xs:element name="idCode" minOccurs="0" type="xs:string" />
+			<xs:element name="idExpirationDate" minOccurs="0" type="xs:date" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AddressType">
+		<xs:sequence>
+			<xs:element name="streetAddress1" maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The customer&apos;s street address line 1.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="100" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="streetAddress2" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The customer&apos;s street address line 2.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="city">
+				<xs:annotation>
+					<xs:documentation>
+						The customer&apos;s city.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="stateCode">
+				<xs:annotation>
+					<xs:documentation>
+						The customer&apos;s state.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="zipCode" type="ZipCodeType">
+				<xs:annotation>
+					<xs:documentation>
+						zip code (first 5).
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="zipCode4" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The customer&apos;s zip code (last 4).
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:whiteSpace value="collapse" />
+						<xs:pattern value="\d{4}" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="countryCode" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The customer&apos;s country.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="US" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="urbanizationCode" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						This descriptor, commonly used in Puerto Rican
+						urban
+						areas, is an important part of the addressing
+						format as it
+						describes the location of a given
+						street.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="IntlBusinessHierarchyType">
+		<xs:sequence>
+			<xs:element name="enterprise">
+				<xs:annotation>
+					<xs:documentation>
+						The overall Best Buy. INC Corporation
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50" />
+						<xs:enumeration value="Best Buy Enterprise" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="tradingArea">
+				<xs:annotation>
+					<xs:documentation>
+						A distinct Geographic region comprising of one
+						or
+						more countries: US, Canada, China, UK,
+						Mexico. 
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="2" />
+						<xs:enumeration value="US" />
+						<xs:enumeration value="CA" />
+						<xs:enumeration value="CN" />
+						<xs:enumeration value="GB" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="company">
+				<xs:annotation>
+					<xs:documentation>
+						One or more legal entities which reside /
+						operate
+						in the particular countries under a
+						given Trading Area.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50" />
+						<xs:enumeration value="Best Buy LLP" />
+						<xs:enumeration value="Pacific Sales" />
+						<xs:enumeration value="Five-Star Appliance" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="brand">
+				<xs:annotation>
+					<xs:documentation>
+						A distinct banner under which business is
+						operated (usually visible to the customer)
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="businessUnit">
+				<xs:annotation>
+					<xs:documentation>
+						An organizational sub unit which may hold
+						P&amp;L
+						responsibility
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="channel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						The medium under which business is operated
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="LineType">
+		<xs:sequence>
+			<xs:element name="phoneNumber" type="PhoneNumberType">
+				<xs:annotation>
+					<xs:documentation>
+						The subscriber&apos;s phone number.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lineStatus" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						The status of the line. ACTIVE, CANCELLED,
+						RESERVED, and SUSPENDED
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="deviceDetails" type="DeviceDetailsType" />
+			<xs:element name="planType" type="PricePlanType">
+				<xs:annotation>
+					<xs:documentation>
+						Individual, Family Primary, Family Secondary
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="upgradeInfo" type="UpgradeInfoType">
+				<xs:annotation>
+					<xs:documentation>
+						Complex type for describing each
+						subscriber&apos;s upgrade eligibility.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="options" type="OptionType" minOccurs="0"
+				maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						Complex type containing information about each
+						feature that is currently attached to the
+						subscriber.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="contractEndDate" type="xs:string"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Subscriber&apos;s current contract end Date.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PricePlanType">
+		<xs:sequence>
+			<xs:element name="planType" maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Valid Values: INDIVIDUAL, FAMILY_PRIMARY,
+						FAMILY_SECONDARY, ACCOUNT_LEVEL_PLAN,
+						ACCOUNT_LEVEL_DATA,
+						ACCOUNT_LEVEL_VOICE
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="planCode">
+				<xs:annotation>
+					<xs:documentation>
+						The carrier&apos;s unique identifier for a plan
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="250" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="planName">
+				<xs:annotation>
+					<xs:documentation>
+						The plan name or short description of the plan.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="200"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="planMRC" type="CurrencyAmountInfo"
+				maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The monthly recurring charge for the plan.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="planDescription" type="xs:string"
+				maxOccurs="1" minOccurs="0">
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UpgradeInfoType">
+		<xs:sequence>
+			<xs:element name="earlyEligible" minOccurs="0" type="xs:boolean" />
+			<xs:element name="standardEligible" minOccurs="0" type="xs:boolean" />
+			<xs:element name="earlyEligibleDate" minOccurs="0" type="xs:string" />
+			<xs:element name="standardEligibleDate" minOccurs="0"
+				type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="OptionType">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="code" type="xs:string" />
+			<xs:element name="description" type="xs:string" minOccurs="0" />
+			<xs:element name="price" type="CurrencyAmountInfo"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The option monthly recurring price.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="CurrencyAmountInfo">
+		<xs:annotation>
+			<xs:documentation>
+				A monetary currency value
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:pattern value="\-?\d{0,9}(\.\d{1,2})?" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="DeviceDetailsType">
+		<xs:sequence>
+			<xs:element name="technologyType" type="TechnologyType"
+				maxOccurs="1" minOccurs="0" />
+			<xs:element name="handsetIdentifier" type="HandsetIdentifiersType"
+				maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The unique identifier for the hardware:
+						ESN(11 digit), IMEI, or MEID(14 digit).
+						</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="deviceModelNumber" type="xs:string"
+				maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The carrier&apos;s unique identifier for
+						the model. 
+							</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="phoneName" maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The phone name. 
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="100" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="deviceManufacturerName" maxOccurs="1"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The phone name. 
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="100" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="deviceDescription" maxOccurs="1"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The phone description. 
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="100" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="deviceSKU" maxOccurs="1"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Device SKU. 
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="100" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="RecommendationType">
+		<xs:sequence>
+			<xs:element name="buybackInfo" minOccurs="0" type="xs:string" />
+			<xs:element name="deviceInfo" minOccurs="0" type="xs:string" />
+			<xs:element name="gspInfo" minOccurs="0" type="xs:string" />
+			<xs:element name="planInfo" minOccurs="0" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="InternationalMobileEquipmentIdentityType">
+		<xs:annotation>
+			<xs:documentation>
+				The equipment identification number used to
+				identify a
+				mobile station.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="16"></xs:maxLength>
+			<xs:minLength value="14"></xs:minLength>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="HandsetIdentifiersType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="18" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TechnologyType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CDMA" />
+			<xs:enumeration value="IDEN" />
+			<xs:enumeration value="GSM" />
+			<xs:enumeration value="UMTS" />
+			<xs:enumeration value="LTE" />
+			<xs:enumeration value="WiMAX" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="FourPartKeyType">
+		<xs:sequence>
+			<xs:element name="storeId" minOccurs="0" type="xs:string" />
+			<xs:element name="workStationId" minOccurs="0" type="xs:string" />
+			<xs:element name="registerTransactionNum" minOccurs="0"
+				type="xs:string" />
+			<xs:element name="businessDate" minOccurs="0" type="xs:date" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:simpleType name="CarrierType">
+		<xs:annotation>
+			<xs:documentation>This is vendor code</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SPR"></xs:enumeration>
+			<xs:enumeration value="VEZ"></xs:enumeration>
+			<xs:enumeration value="ATT"></xs:enumeration>
+			<xs:enumeration value="VRM"></xs:enumeration>
+			<xs:enumeration value="TMO"></xs:enumeration>
+			<xs:enumeration value="TMP"></xs:enumeration>
+			<xs:enumeration value="MTP"></xs:enumeration>
+			<xs:enumeration value="CON"></xs:enumeration>
+			<xs:enumeration value="CLW"></xs:enumeration>
+			<xs:enumeration value="ICM"></xs:enumeration>
+			<xs:enumeration value="CAP"></xs:enumeration>
+			<xs:enumeration value="BST"></xs:enumeration>
+			<xs:enumeration value="ATG"></xs:enumeration>
+			<xs:enumeration value="N10"></xs:enumeration>
+			<xs:enumeration value="COP"></xs:enumeration>
+			<xs:enumeration value="CKT"></xs:enumeration>
+			<xs:enumeration value="VZP"></xs:enumeration>
+			<xs:length value="3"></xs:length>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

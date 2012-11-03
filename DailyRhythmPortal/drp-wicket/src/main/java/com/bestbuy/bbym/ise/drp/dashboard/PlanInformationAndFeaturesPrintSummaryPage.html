@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<link rel="stylesheet" type="text/css" href="css/tom-screen.css" />
+	<link rel="stylesheet" type="text/css" href="css/header.css" />
+	<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Plan Information and Features</title>
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("#printButton").click(function() {
+			window.print();
+		});
+ 
+		$("#closeButton").click(function() {
+			window.close();
+		});
+	});
+</script>
+</wicket:head>
+<body>
+	<div>
+		<input type="button" style="float: right;" class="button noprint" id="printButton" value="Print" /> 
+		<input type="button" style="float: right;" class="button noprint" id="closeButton" value="Close" />
+	</div>
+	<div wicket:id="panel"></div>
+</body>
+</html>

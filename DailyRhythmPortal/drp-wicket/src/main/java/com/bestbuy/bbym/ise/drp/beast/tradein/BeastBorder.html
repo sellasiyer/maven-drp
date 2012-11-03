@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.sourceforge.net/"
+	xml:lang="en" lang="en">
+	
+<wicket:head>
+<meta http-equiv="Content-Type"
+content="text/html;charset=UTF-8"/>
+	<link href="beast-css/screen.css" media="screen" rel="StyleSheet" type="text/css" />
+	<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+	<script type="text/javascript" src="js/tradein.js"></script>
+	<script type="text/javascript" src="js/jquery.fixedheadertable.min.js"></script>
+	<script type="text/javascript" src="js/jquery.hotkeys.js"></script>
+	<script type="text/javascript" src="js/jquery.dateFormat-1.0.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/validation.js"></script>
+        <style>
+           .feedbackPanelERROR {
+            color:white;
+           }
+        </style>
+	<script>
+		function toggleButtonEnabledCss(buttonId) {
+			$("#" + buttonId).toggleClass("disabled");
+		}
+
+		$(document).ready(function() {
+			/*$(window).bind('resize', fixedHeaderTables); -- Not Working */
+			fixedHeaderTables();
+
+			function fixedHeaderTables() {
+				$('#fixedHeaderTable01 table').fixedHeaderTable({
+					height : '100',
+					altClass : 'odd'
+				});
+			}
+
+			/*
+			if (tradeInScreen == "TradeInTradabilityCheck") {
+				initTradeInTradabilityCheck();
+			}*/
+		});
+
+		function bindHotKeys() {
+			//next
+			$(document).bind('keydown', 'f2', function() {
+				$('#nextButton').click();
+				return false;
+			});
+
+			$("input").bind('keydown', 'f2', function() {
+				$('#nextButton').click();
+				return false;
+			});
+
+			$("select").bind('keydown', 'f2', function() {
+				$('#nextButton').click();
+				return false;
+			});
+
+
+			$(document).bind('keydown', 'f4', function() {
+				$('#clearButton').click();
+				return false;
+			});
+
+			$("input").bind('keydown', 'f4', function() {
+				$('#clearButton').click();
+				return false;
+			});
+
+			$("select").bind('keydown', 'f4', function() {
+				$('#clearButton').click();
+				return false;
+			});
+
+
+			$(document).bind('keydown', 'f1', function() {
+				$('#backButton').click();
+				return false;
+			});
+
+			$("input").bind('keydown', 'f1', function() {
+				$('#backButton').click();
+				return false;
+			});
+
+			$("select").bind('keydown', 'f1', function() {
+				$('#backButton').click();
+				return false;
+			});
+
+
+			//Close
+			$(document).bind('keydown', 'f3', function() {
+				$('#closeButton').click();
+				return false;
+			});
+
+			$("input").bind('keydown', 'f3', function() {
+				$('#closeButton').click();
+				return false;
+			});
+
+			$("select").bind('keydown', 'f3', function() {
+				$('#closeButton').click();
+				return false;
+			});
+
+
+			//Skip Trade-In
+			$(document).bind('keydown', 'f6', function() {
+				$('#closeButton').click();
+				return false;
+			});
+
+			$("input").bind('keydown', 'f6', function() {
+				$('#closeButton').click();
+				return false;
+			});
+
+			$("select").bind('keydown', 'f6', function() {
+				$('#closeButton').click();
+				return false;
+			});
+
+
+		}
+	</script>
+
+<title>BEAST-Portal</title>
+</wicket:head>
+<body>
+	<wicket:border>
+		<form name="tradeInHotKeysForm" wicket:id="tradeInHotKeysForm" autocomplete="off">
+                        <span wicket:id="feedback"></span>
+			<div class="wrap">
+				<h2 wicket:id="pageTitleLabel"></h2>
+				<!-- here to replicate beast frame -->
+
+				<wicket:body />
+
+			</div>
+
+
+
+			<div class="bottom-buttons">
+
+				<a class="button left" href="#" wicket:id="closeButton"><span class="key">F3</span>Close</a> <a
+					class="button left" href="#" wicket:id="clearButton"><span class="key">F4</span>Clear</a> <a
+					class="button right" href="#" wicket:id="nextButton"><span class="key">F2</span>Continue</a> <a
+					class="button right" href="#" wicket:id="backButton"><span class="key">F1</span>Back</a> <a
+					class="button right" href="#" wicket:id="skipTradeInButton"><span class="key">F6</span>Skip Trade-In</a>
+			</div>
+
+
+		</form>
+
+		<div wicket:id="quitModalPanel"></div>
+		<div wicket:id="clearForm"></div>
+		<div wicket:id="messageModalPanel" />
+		<div wicket:id=loadingModalPanel></div>
+		
+	</wicket:border>
+</body>
+</html>

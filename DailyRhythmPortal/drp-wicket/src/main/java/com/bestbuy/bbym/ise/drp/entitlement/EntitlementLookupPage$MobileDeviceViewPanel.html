@@ -1,0 +1,70 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:panel>
+
+<div wicket:id="mobileDeviceSearchViewContainer">
+<!-- MOBILE DEVICE - VIEW -->
+		
+	<fieldset class="data-box" wicket:id="mobileSearchContainer">
+		<h2>Mobile Device</h2>
+		<div class="column width-full">
+			<div class="block shrink">
+				<label><wicket:message key="entitlement.mobiledeviceview.devicebeingreturned"/></label>
+				<span wicket:id="deviceReturnedLabel"></span>
+			</div> 
+			<div class="block width-1 required">
+					<label><wicket:message key="entitlement.mobiledeviceview.carrier"/></label>
+						<select
+						wicket:id="carrierSelect">
+						<option>Verizon</option>
+						</select>        
+			</div>                       	           
+			<div class="block width-1 required grow">
+				<label><wicket:message key="entitlement.mobiledeviceview.defectiveDevice"/></label>
+				<select wicket:id="deviceStatusType">
+					<option>Yes</option>	  
+					<option>No</option>   
+				</select>
+			</div>               		   
+			<div class="block required">
+				<label><wicket:message key="entitlement.mobiledeviceview.imeiesn"/></label>
+				<input wicket:id="imeiesnTxt" type="text" maxlength="30" />
+			</div>			 
+			<div class="block" wicket:id="serialNumContainer">
+				<label><wicket:message key="entitlement.mobiledeviceview.manufacturerSerialNum"/></label>
+				<input wicket:id="manufacturerImeiTxt" type="text" maxlength="30" />
+			</div>
+	  </div>	
+	</fieldset>
+	
+	<fieldset class="data-box view" wicket:id="mobileViewContainer">
+		<h2>Mobile Device</h2>
+		<div class="column width-full">
+			<div class="block">
+				<label><wicket:message key="entitlement.mobiledeviceview.devicebeingreturned"/></label>
+				<span wicket:id="deviceReturnedViewLabel"></span>
+			</div>
+			<div class="block width-1">
+				<label><wicket:message key="entitlement.mobiledeviceview.carrier"/></label>
+				<span wicket:id="carrierSelectedLabel"></span>
+			</div>
+			<div class="block width-1">
+				<label><wicket:message key="entitlement.mobiledeviceview.defectiveDevice"/></label>
+				<span wicket:id="defectiveDeviceLabel"></span>
+			</div>
+			<div class="block">
+				<label><wicket:message key="entitlement.mobiledeviceview.imeiesn"/></label>
+				<span wicket:id="imeiESNLabel"></span>
+			</div>
+			<div class="block">   
+				<label><wicket:message key="entitlement.mobiledeviceview.manufacturerSerialNum"/></label>
+				<span wicket:id="manufacturerSerialNumLabel"></span>
+			</div> 
+	  </div>
+	</fieldset>	
+</div>
+</wicket:panel>
+</body>
+</html>

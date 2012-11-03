@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/v1/xsl/xml_pretty_printer.xsl" type="text/xsl"?>
+<products currentPage="1" totalPages="1" from="1" to="1" total="1"
+	queryTime="0.039" totalTime="0.046"
+	canonicalUrl="/v1/products(sku in(6699308)&amp;active=*)?show=name,sku,accessories&amp;apiKey=khteuyjh88jx2cp4cyfehwsj"
+	partial="false">
+	<product>
+		<name>Apple&#174; - iPhone&#174; 5 with 16GB Memory Mobile Phone - Black &amp; Slate (AT&amp;T)</name>
+		<sku>6699308</sku>
+		<accessories>
+			<sku>8948847</sku>
+			<sku>2908168</sku>
+			<sku>1074217</sku>
+			<sku>1074244</sku>
+			<sku>5619255</sku>
+		</accessories>
+	</product>
+</products>

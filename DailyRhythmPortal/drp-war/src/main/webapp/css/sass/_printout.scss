@@ -1,0 +1,107 @@
+.printout {
+	width: 670px;
+	font: 12px Arial;
+	margin-left: 15px;
+
+	.header{
+		height: 80px;
+		width: 100%;
+
+		.logo{
+			float: left;
+			margin: 20px 0 0 20px;
+		}
+		h1{
+			float: right;
+			margin: 40px 20px 0 0;
+			font-size: 16px;
+			font-weight: bold;
+			color: black;
+			text-transform: uppercase;
+		}
+	}
+
+	.bar{
+		border-top: 20px solid #CCC;
+		// border-top: 20px solid #FFF;
+		position: relative;
+		clear: left;
+		text-align: center;	
+		margin-bottom: 15px;
+
+	}
+	h2{
+		font-size: 11px;
+		font-weight: bold;
+		text-transform: uppercase;
+		color: white;
+		//L337 hack to make the background color print - copyright Mike D.
+		line-height: 0;
+		position: absolute;
+		top: -10px;
+		width: 100%;
+		display: block;
+		
+	}
+	ol{
+		padding-left: 25px;
+
+		&.nested{
+			font-weight: bold;
+		}
+
+		&.spacious li{
+			margin-bottom: 15px;
+		}
+	}
+	ul{
+		padding-left: 25px;
+		font-weight: normal;
+		margin-bottom: 15px;
+	}
+
+	.column {
+		float: left;
+		width: 50%;
+		margin-bottom: 15px;
+	}
+
+	.column dt {
+		text-align: left;
+		display: inline-block;
+		width: 70px;
+		font-size: 11px;
+		zoom: 1;
+
+		&.long{
+			width: 130px;
+		}
+		&.short{
+			width: auto;
+		}
+	}
+
+	.column dd {
+		text-align: left;
+		padding-right: 5px;
+		font-weight: bold;
+		display: inline-block;
+		width: 57%;
+		font-size: 12px;
+		zoom: 1;
+
+		&.short{
+			width: auto;
+		}
+	}
+
+	.footer {
+		position: fixed;
+		bottom: 0;
+		margin: 10px;
+
+		.date{
+			margin-right: 20px;
+		}
+	}
+}

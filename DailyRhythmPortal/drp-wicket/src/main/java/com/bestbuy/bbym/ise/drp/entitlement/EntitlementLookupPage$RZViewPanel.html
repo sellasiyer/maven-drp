@@ -1,0 +1,49 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:panel>
+
+<div wicket:id="rzSearchViewContainer">
+<!-- REWARD ZONE - ENTER -->
+	<fieldset class="data-box" wicket:id="rzSearchContainer">
+		<h2>Reward Zone</h2>
+		<a class="button top" wicket:id="rzLookupLink">Lookup</a>
+		<div class="column width-full">
+			<div class="block">
+				<label><wicket:message key="entitlement.rewardzone.rewardZoneNumber"/></label>
+				<input wicket:id="rzNumTxt" type="text" maxlength="30" />
+			</div>		
+		</div> 
+	</fieldset>	
+		
+	<fieldset class="data-box view" wicket:id="rzViewContainer">
+		<h2>Reward Zone</h2>   
+		<div class="column width-full" wicket:id="rzDataViewContainer">
+			<div class="block">
+				<label><wicket:message key="entitlement.rewardzone.rewardZoneNumber"/></label>
+				<span wicket:id="rzNumberLabel"></span>
+			</div>
+			<div class="block">
+				<label><wicket:message key="entitlement.rewardzone.rewardZoneTier"/></label>
+				<span wicket:id="rewardZoneTier"></span>
+			</div>
+			<div class="block">
+				<label><wicket:message key="entitlement.rewardzone.rewardZonePoints"/></label>
+				<span wicket:id="rewardZonePoints"></span>
+			</div>
+			<div class="block"> 
+				<label><wicket:message key="entitlement.rewardzone.rewardZoneMember"/></label>
+				<span wicket:id="rzFirstName"></span><span wicket:id="rzLastName"></span>			
+			</div>			  
+		</div>	 
+		<div class="column width-full" wicket:id="rzNoDataViewContainer">
+		<div class="block width-full">
+		  <span wicket:id="rzNoDataLabel"></span>
+		  </div>
+		</div>				
+	</fieldset>	           
+</div>	 
+</wicket:panel>
+</body>
+</html>

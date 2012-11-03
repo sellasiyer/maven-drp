@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:header="http://bestbuy.com/bbym/beast/cap/request/header"
+	xmlns:common="http://bestbuy.com/bbym/beast/cap/common"
+	xmlns="http://bestbuy.com/bbym/beast/cap/request/postpaid/accountValidation"
+	targetNamespace="http://bestbuy.com/bbym/beast/cap/request/postpaid/accountValidation"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified">
+
+	<xs:import
+		namespace="http://bestbuy.com/bbym/beast/cap/request/header"
+		schemaLocation="CAP_REQUEST_HEADER.XSD" />
+	<xs:import namespace="http://bestbuy.com/bbym/beast/cap/common"
+		schemaLocation="CAP_COMMON.XSD" />
+
+	<xs:complexType name="Body">
+		<xs:sequence>
+			<xs:element name="lastName" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The last name of an authorized user on the
+						wireless account. Used by sprint
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="2" />
+						<xs:maxLength value="50" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="firstName" maxOccurs="1" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="accountPhoneNumber"
+					type="common:PhoneNumberType" maxOccurs="1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>
+							Any active phone number on the account.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="handsetIdentifier" maxOccurs="1"
+					minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>
+							This can contain the info of either MacId,
+							IMEI or ESN.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="20"></xs:maxLength>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="customerType" type="common:CustomerType"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Describes the type of customer that is
+						activating the device. Most are Individual
+
+						• Individual • Corporate_Individual •
+						Corporate_Business – NOT SUPPORTED • Business
+
+						Used by verizon
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ssn" type="common:SsnType" minOccurs="0"
+				maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						The last four SSN of an authorized user on the
+						wireless account
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="zipCode" type="common:zipCodeType"
+				minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						The account holder&apos;s billing account zip
+						code.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="showExistingFeatures" type="xs:boolean"
+				default="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Verizon Only. Used to specifically request
+						existing features.
+
+						This value may only be set to True if the credit
+						check has been performed.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="secPin" minOccurs="0"
+				type="common:SecPinType">
+				<xs:annotation>
+					<xs:documentation>
+						The security password on the customer&apos;s
+						account. Most accounts do not have a passcode.
+
+						If not provided and passcode protected an error
+						will be received. Vez only
+
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="secAnswer" minOccurs="0"
+				type="common:SecAnswerType">
+				<xs:annotation>
+					<xs:documentation>
+						The customer’s secret question answer for their
+						wireless account. Connditionally required, see
+						the doc for more information.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="accountNumber"
+					type="common:AccountNumberType" maxOccurs="1" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>
+							Account Number for an existing customer. If
+							account number is provided, accountPhoneNumber
+							will be ignore account number is provided,
+	
+							SPRINT Length MIN 1, MAX 10
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="accountName" type="xs:string"
+					maxOccurs="1" minOccurs="0">
+                    <xs:annotation>
+                    	<xs:documentation>CLW Only : Account Name that was created during the validate Account. </xs:documentation>
+                    </xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="singleSubscriber" type="xs:boolean"
+				maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						ATT ONLY
+
+						Boolean
+
+						This Identifies the granularity of account
+						information that should be returned in the
+						response.
+
+						Can be used by all channels.
+
+						If selected send value of SN:UE which will
+						request the detail Information for the
+						subscriber passed in the request and their price
+						plan and upgrade eligibility info
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="emailAddress" maxOccurs="1"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						CON ONLY The customer’s email address
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="useExistingBillingInfo" type="xs:boolean" 
+						maxOccurs="1" minOccurs="0">
+                <xs:annotation>
+                	<xs:documentation>
+                		CLW Only : This element is used to indicate this existing Billing and credit card info.
+                	</xs:documentation>
+                </xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PostpaidAccountValidationRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Header" type="header:Header" />
+				<xs:element name="Body" type="Body" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

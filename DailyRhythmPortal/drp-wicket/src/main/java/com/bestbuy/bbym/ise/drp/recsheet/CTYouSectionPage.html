@@ -1,0 +1,70 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+</wicket:head>
+<body>
+	<wicket:extend>
+			<h2 wicket:id="sectionTitle"></h2>
+			<div class="column width-full">
+				<div class="block required">
+					<label><wicket:message
+							key="mobileYouSectionForm.firstName.label" /> </label> <input
+						wicket:id="firstName" type="text" maxlength="15" />
+				</div>
+				<div class="block required">
+					<label><wicket:message
+							key="mobileYouSectionForm.lastName.label" /> </label> <input
+						wicket:id="lastName" type="text" maxlength="25" />
+				</div>
+				<br />
+				<div class="block">
+					<label><wicket:message key="ctYouSectionForm.address.label" />
+					</label> <input wicket:id="address" type="text" maxlength="40" />
+				</div>
+				<div class="block">
+					<label><wicket:message key="ctYouSectionForm.city.label" />
+					</label> <input wicket:id="city" type="text" maxlength="35" />
+				</div>
+				<div class="block">
+					<label><wicket:message key="ctYouSectionForm.state.label" />
+					</label> <select wicket:id="state"></select>
+				</div>
+				<div class="block width-1">
+					<label><wicket:message key="ctYouSectionForm.zip.label" />
+					</label> <input wicket:id="zip" type="text" maxlength="5" />
+				</div>
+				<br />
+				<div class="block width-4">
+					<label><wicket:message key="ctYouSectionForm.email.label" />
+					</label> <input wicket:id="email" type="text" maxlength="75" />
+				</div>
+				<br />
+				<div class="block required">
+					<label><wicket:message
+							key="mobileYouSectionForm.phone.label" /> </label> <input
+						wicket:id="phoneNumber" type="text" maxlength="14"
+						class="required" />
+				</div>
+				<div class="block">
+					<label><wicket:message
+							key="mobileYouSectionForm.upgrade.label" /> </label> <input type="text"
+						wicket:id="upgradeEligibilityDate" onblur="checkdate(this)" />
+				</div>
+				<div class="block width-full">
+					<label><wicket:message
+							key="mobileYouSectionForm.contact.label" /> </label>
+					<ul class="checkbox-buttons">
+						<li><input type="checkbox" wicket:id="upgradetext" /><label
+							for="upgradeText"> <wicket:message key="mobileYouSectionForm.upgradetext.label"/></label>
+						</li>
+						<li><input type="checkbox" wicket:id="upgradecall" /> <label
+							for="upgradeReminderCall"> <wicket:message key="mobileYouSectionForm.upgradecall.label"/></label>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+	</wicket:extend>
+</body>
+
+</html>

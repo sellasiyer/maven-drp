@@ -1,0 +1,114 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>Scoreboard Settings</title>
+	<script type="text/javascript">
+		function initSettingsPage() {
+			$('.employees input[type=checkbox]').click(
+					function() {
+						if ($(this).attr("checked")) {
+							//enable all the select boxes in the row
+							$(this).closest('tr').find('select').removeAttr(
+									"disabled");
+							$(this).siblings('label').removeClass("disabled");
+						} else {
+							//disable all the select boxes in the row
+							$(this).closest('tr').find('select').attr(
+									"disabled", "disabled");
+							$(this).siblings('label').addClass("disabled");
+						}
+					});
+			$('.employees input[type=checkbox]:checked').each(function(){
+				$(this).closest('tr').find('select').removeAttr("disabled");
+				$(this).siblings('label').removeClass("disabled");
+			});
+		}
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<div id="content" class="scoreboard-settings">
+			<div class="page-header">
+				<h1 wicket:id="pageHeader">Scoreboard Settings</h1>
+				<div class="date" wicket:id="currentDate">Tuesday, September
+					12, 2012</div>
+			</div>
+			<div wicket:id="feedback" class="required"></div>
+			<form wicket:id="settingsForm">
+				<fieldset wicket:id="goalContainer">
+					<legend><wicket:message key="scoreboardPage.goals.for.today.label" /></legend>
+					<div class="column">
+						<span wicket:id="goalColumn0"> <label for="upgrade"
+							wicket:id="name">Upgrade Checks</label> <input id="upgrade"
+							class="required" type="text" wicket:id="goalValue" /> </span>
+					</div>
+					<div class="column">
+						<span wicket:id="goalColumn1"> <label for="upgrade"
+							wicket:id="name">Upgrade Checks</label> <input id="upgrade"
+							class="required" type="text" wicket:id="goalValue" /> </span>
+					</div>
+				</fieldset>
+				<fieldset class="employees">
+					<form wicket:id="addEmpForm">
+					<legend><wicket:message key="scoreboardPage.employees.for.today.label" /></legend>
+					<table wicket:id="listContainer">
+						<thead>
+							<tr>
+								<th></th>
+								<th></th>
+								<th><wicket:message key="scoreboardPage.start.time.label" /></th>
+								<th><wicket:message key="scoreboardPage.end.time.label" /></th>
+								<th><wicket:message key="scoreboardPage.primary.zone.label" /></th>
+								<th><wicket:message key="scoreboardPage.secondary.zone.label" /></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr wicket:id="listView">
+								<td><input type="checkbox" name="emp" id="leslie"
+									wicket:id="selected"/><label for="leslie"
+									wicket:id="empFullName">Leslie Nielsen</label>
+								</td>
+								<td><label wicket:id="empId" style="font-weight:normal;">A1003810</label>
+								</td>
+								<td><select name="start_time" wicket:id="shiftStartTime">
+										<option>9:00 AM</option>
+										<option>9:15 AM</option>
+								</select></td>
+								<td><select name="start_time" wicket:id="shiftEndTime">
+										<option>9:30 AM</option>
+										<option>9:45 AM</option>
+								</select></td>
+								<td><select name="primary" wicket:id="primaryZone">
+										<option>Post-Paid</option>
+										<option>MP3</option>
+								</select></td>
+								<td><select name="secondary" wicket:id="secondaryZone">
+										<option>Post-Paid</option>
+										<option>MP3</option>
+								</select></td>
+								<td class="delete"><a wicket:id="removeLink">sdf</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div>
+						
+							<label for="add_emp"><wicket:message key="scoreboardPage.add.employee.label" /></label><br /> <input
+								type="text" id="add_emp"  wicket:id="addEmpText" />
+							<a class="button" wicket:id="submitAddEmpLink"><wicket:message key="scoreboardPage.add.label" /></a>
+						
+					</div>
+					</form>
+				</fieldset>
+				<a  class="button minor" wicket:id="cancelLink"><wicket:message key="scoreboardPage.cancel.label" /></a> <a
+					 class="button" wicket:id="saveLink"><wicket:message key="scoreboardPage.save.label" /></a>
+			</form>
+		</div>
+		<div wicket:id="confirmDialog"></div>
+	</wicket:extend>
+</body>
+</html>

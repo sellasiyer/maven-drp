@@ -1,0 +1,71 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<script type="text/javascript">
+		var wicketBehaviorPHTP;
+		function setupPurchaseHistoryTable(tableSelector) {
+			if ($('#purchasesTable').length == 0) {
+				return;
+			}
+
+			removeAllColumnSorting('#purchasesTable');
+
+			applyRowHighlighting('#purchasesTable');
+
+			// Add styling classes to cells
+			$('#purchasesTable tr').each(
+					function(index) {
+						//header cells
+						$(this).find('th:eq(0)').attr("width", "90");
+						$(this).find('th:eq(1)').attr("width", "100");
+						$(this).find('th:eq(2)').attr("width", "100");
+						$(this).find('th:eq(4)').attr("width", "130");
+						$(this).find('th:eq(5)').attr("width", "70")
+						$(this).find('th:last-child').attr("width", "70")
+								.addClass("last");
+						// data cells
+						$(this).find('td:eq(5)').addClass("txt-right");
+						$(this).find('td:last-child').addClass("last")
+								.addClass("txt-right");
+					});
+			$('#purchasesTable tr:last-child').addClass("last");
+		}
+
+		$(document).bind('keypress', function(e) {
+			if (e.which === 13) { // return
+				$('#searchPurchasesButton').trigger('click');
+			}
+		});
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:panel>
+		<div class="table-wrap">
+			<ul class="table-nav">
+				<li>
+					<div class="inputs">
+						<input type="text" wicket:id="startDateFilter" maxlength="10"
+							onblur="checkdate(this)" size="10" /> <span class="divider">to</span>
+						<input type="text" wicket:id="endDateFilter" maxlength="10"
+							onblur="checkdate(this)" size="10" /> <input class="button"
+							id="searchPurchasesButton" wicket:id="searchPurchasesButton"
+							type="button" />
+					</div>
+				</li>
+			</ul>
+			<table class="default-table" wicket:id="purchasesTable">
+			</table>
+
+			<div wicket:id="noPurchasesData">
+				<p class="no-results" wicket:id="noPurchasesDataLabel"></p>
+			</div>
+
+			<div wicket:id="purchasesDataLoading" class="loading-spinner-big">
+				<label wicket:id="purchasesDataLoadingLabel"></label>
+			</div>
+		</div>
+	</wicket:panel>
+</body>
+</html>

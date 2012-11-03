@@ -1,0 +1,40 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+	<wicket:extend>
+		<div class="modal">
+			<div class="modaltitle">
+				<wicket:message key="loanerphone.4partkey.modaltitle" />
+				<span wicket:id="titleLabel"></span>
+			</div>
+
+			<form wicket:id="form1">
+				<div wicket:id="feedback"></div>
+
+				<ul class="cell">
+					<li><wicket:message key="loanerphone.4partkey.storeLabel" /><br /> <input type="text"
+						wicket:id="storeField" class="required" maxlength="4"/>
+					</li>
+					<li><wicket:message key="loanerphone.4partkey.registerLabel" /><br /> <input type="text"
+						wicket:id="registerField" class="required" maxlength="3"/>
+					</li>
+					<li><wicket:message key="loanerphone.4partkey.transNumLabel" /><br /> <input type="text"
+						wicket:id="transNumField" class="required" maxlength="4"/>
+					</li>
+					<li><wicket:message key="loanerphone.4partkey.transDateLabel" /><br /> <input
+						type="text" wicket:id="transDateField" class="required" maxlength="10"/>
+					</li>
+				</ul>
+				<br style="clear: both;" />
+				<div class="links">
+					<a wicket:id="cancelLink" class="button"><span><wicket:message key="cancelLabel" />
+					</span> </a>
+					<a wicket:id="okLink" class="button"><span><wicket:message key="okLabel" />
+					</span></a>
+					
+				</div>
+
+			</form>
+		</div>
+	</wicket:extend>
+</body>
+</html>

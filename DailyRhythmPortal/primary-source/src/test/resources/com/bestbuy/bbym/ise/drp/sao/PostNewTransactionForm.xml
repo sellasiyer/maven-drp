@@ -1,0 +1,56 @@
+<TransactionResource xmlns:atom="http://www.w3.org/2005/Atom" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance">
+  <atom:title>Trade-In Receipt</atom:title>
+  <atom:link href="http://localhost:2279/store-271/transactions/2" rel="self" title="Self" />
+  <atom:link href="http://localhost:2279/store-271/transactions/2/email-receipt" rel="http://localhost:2279/rels/new-email" title="Email Customer Copy" />
+  <atom:link href="http://localhost:2279/store-271/catalog?Page=1&amp;PageSize=20" rel="http://localhost:2279/rels/browse-catalog" title="browse-catalog" />
+  <atom:link href="http://localhost:2279/store-271" rel="http://localhost:2279/rels/home" title="Return to Home Page" />
+  <atom:link href="http://localhost:2279/store-271/help" rel="http://localhost:2279/rels/help" title="Overview" />
+  <atom:link href="http://localhost:2279/store-271/help/faq" rel="http://localhost:2279/rels/help" title="FAQs" />
+  <atom:link href="http://localhost:2279/store-271/help/about" rel="http://localhost:2279/rels/help" title="About" />
+  <atom:link href="http://localhost:2279/store-271/carts/search/form" rel="http://localhost:2279/rels/cart-search" title="Search Carts" />
+  <atom:link href="http://localhost:2279/store-271/feedback/new" rel="http://localhost:2279/rels/feedback" title="Provide Feedback" />
+  <atom:link href="http://buyback-pl.bestbuytradein.com/bbPlanInfo.cfm?redirect=false" rel="external-buyback" title="Start a New Buy Back" />
+  <atom:link href="http://buyback-pl.bestbuytradein.com/videoGameSearch.cfm?redirect=false" rel="external-video-games" title="Start a New Video Game Cart" />
+  <atom:link href="http://buyback-pl.bestbuytradein.com/admin.cfm?redirect=false" rel="external-admin" title="Open Trade In Administration" />
+  <atom:link href="http://buyback-pl.bestbuytradein.com/manifest.cfm?redirect=false" rel="external-shipping-center" title="Open Shipping Center" />
+  <atom:link href="http://localhost:2279/metadata/TransactionResource" rel="http://localhost:2279/rels/metadata" title="metadata" />
+  <Items>
+    <TransactionGroupResource>
+      <atom:title />
+      <Items>
+        <TransactionItemResource>
+          <atom:title>AppleÂ® - iPhoneÂ® 4S with 16GB Memory Mobile Phone - Black (AT&amp;T)</atom:title>
+          <atom:link href="http://localhost:2279/barcode?Data=2035073" rel="http://localhost:2279/rels/barcode" title="barcode" />
+          <DtmsTradeInItemId>2035073</DtmsTradeInItemId>
+          <Name>AppleÂ® - iPhoneÂ® 4S with 16GB Memory Mobile Phone - Black (AT&amp;T)</Name>
+          <SerialNumber>11111</SerialNumber>
+          <ItemAmount>350.0000</ItemAmount>
+          <ReleaseOn>2012-04-30T03:10:11.86</ReleaseOn>
+        </TransactionItemResource>
+      </Items>
+      <Subtotal>350.0000</Subtotal>
+      <Name>Mobile Phones</Name>
+    </TransactionGroupResource>
+  </Items>
+  <Id>2</Id>
+  <ReceiptTransactionId>271-52197-885378</ReceiptTransactionId>
+  <StoreId>271</StoreId>
+  <PrintedAt>2012-04-30T05:24:03.1992187Z</PrintedAt>
+  <CreatedAt>2012-04-30T03:10:11.853</CreatedAt>
+  <AuthorizedByUserId>A999999</AuthorizedByUserId>
+  <TotalAmount>350.0000</TotalAmount>
+  <GiftCardTotal>350.0000</GiftCardTotal>
+  <TenderNumber>... 7777</TenderNumber>
+  <StoreInformation>
+    <StoreId>271</StoreId>
+    <Name>Mayfield Rd</Name>
+    <AddressLine1>1417 Golden Gate Blvd</AddressLine1>
+    <City>Mayfield Heights</City>
+    <State>OH</State>
+    <PostalCode>44124-1808</PostalCode>
+    <PhoneNumber>440-449-9150</PhoneNumber>
+    <OwnershipDeclaration>I, the undersigned, hereby represent and certify under penalty of perjury that I am the sole and rightful owner of the items described above and that I have full authority to sell or otherwise dispose of the items. Further, to the best of my knowledge, all information offered in association with the transactions listed on this document is true and complete.</OwnershipDeclaration>
+    <CustomerAgreement>By accepting the compensation offered (a Best Buy gift card or a check in the amount of a lower dollar value), I accept the offer and I irrevocably transfer all rights and title to the items described above to Best Buy in exchange for the gift card or other compensation indicated above. Upon accepting the compensation, I acknowledge and agree that this transaction is final and cannot be cancelled or rescinded and that no further compensation is owed to me by Best Buy, its parent company or affiliates. In addition, I acknowledge that it is my responsibility to remove all personal data (e.g., files, photos, videos, music, etc.) from the items (e.g., PCs, laptops, wireless phones, DVD/CD players, memory cards, iPods, MP3 players, etc.) I agree that Best Buy, its parent company and affiliates, is not responsible for the loss or destruction of the hardware or media containing any personal data left on or in the items. I understand and agree that any data or files stored within the items will be unrecoverable. To the extent permitted by applicable law, I hereby release Best Buy, its parent company and affiliates, from and against any liability arising out of or related to the deletion or non-deletion of any data or files from the items and the non-availability of the items after they have been accepted by Best Buy. Best Buy may be required to share personal information in response to a valid court order, subpoena, government investigation, or as otherwise required by law. Best Buy reserves the right to report, and may be required to report, to law enforcement agencies any activities that Best Buy believes to be unlawful. Best Buy may share certain information when we believe that such release is reasonably necessary to protect  the rights, property, and safety of others and ourselves.</CustomerAgreement>
+  </StoreInformation>
+  <Coupons />
+</TransactionResource>

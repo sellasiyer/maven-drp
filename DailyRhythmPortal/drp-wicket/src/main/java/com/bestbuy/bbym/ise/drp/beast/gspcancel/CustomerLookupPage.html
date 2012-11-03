@@ -1,0 +1,232 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>BEAST-Portal</title>
+	<script type="text/javascript" src="js/validation.js"></script>
+	<script type="text/javascript">
+		function setupSearchCustomersTable() {
+			$('#searchCustomersContainer table tr').each(function(index) {
+				$(this).find('th:eq(0)').attr("width", "4%");
+				$(this).find('th:eq(1)').attr("width", "15%");
+				$(this).find('th:eq(2)').attr("width", "15%");
+				$(this).find('th:eq(3)').attr("width", "31%");
+				$(this).find('th:eq(4)').attr("width", "16%");
+				$(this).find('th:eq(5)').attr("width", "5%");
+				$(this).find('th:eq(6)').attr("width", "14%");
+			});
+			// Remove sorting from all columns
+			$('#searchCustomersContainer table tr th').each(function(index) {
+				jSpan = $(this).find('a span');
+				$(this).find('a').replaceWith(jSpan);
+			});
+
+			// not applied correctly unless have delay
+			fixSearchCustomersTable();
+			setTimeout("fixSearchCustomersTable()", 100);
+		}
+		function fixSearchCustomersTable() {
+			var tableHeight = $('#searchCustomersContainer table').height();
+			var maxHeight = 150;
+			if (tableHeight > maxHeight) {
+				$('#searchCustomersContainer table').fixedHeaderTable({
+					height : maxHeight
+				});
+			} else {
+				$('#searchCustomersContainer table').css('width', '100%');
+			}
+		}
+		var nextFunction = function() {
+			wicketBehavior('next');
+		};
+		var closeFunction = function() {
+			$('#closeButton').click();
+		};
+		var searchFunction = function() {
+			wicketBehavior('search');
+		};
+		hotKeysConfig = {
+			f2 : {
+				handler : nextFunction,
+				buttonSelector : '#nextButton'
+			},
+			f3 : {
+				handler : closeFunction,
+				buttonSelector : '#closeButton'
+			},
+			f5 : {
+				handler : searchFunction,
+				buttonSelector : '#searchButton'
+			}
+		};
+		function handleCustLookupFieldMarkup(state, phoneEmailSetting) {
+			if (state && state == 'phone') {
+				$('#phoneEmailSelect').removeAttr('disabled').removeClass(
+						'disabled');
+				$('#phoneSearch').addClass('required').removeAttr('disabled')
+						.removeClass('disabled').show();
+				$('#emailSearch').hide();
+				$('#firstNameSearch').removeClass('required').attr('disabled',
+						true).addClass('disabled');
+				$('#lastNameSearch').removeClass('required').attr('disabled',
+						true).addClass('disabled');
+				$('#zipSearch').removeClass('required').attr('disabled', true)
+						.addClass('disabled');
+
+			} else if (state && state == 'email') {
+				$('#phoneEmailSelect').removeAttr('disabled').removeClass(
+						'disabled');
+				$('#emailSearch').addClass('required').removeAttr('disabled')
+						.removeClass('disabled').show();
+				$('#phoneSearch').hide();
+				$('#firstNameSearch').removeClass('required').attr('disabled',
+						true).addClass('disabled');
+				$('#lastNameSearch').removeClass('required').attr('disabled',
+						true).addClass('disabled');
+				$('#zipSearch').removeClass('required').attr('disabled', true)
+						.addClass('disabled');
+
+			} else if (state && state == 'nameZip') {
+				$('#phoneEmailSelect').attr('disabled', true).addClass(
+						'disabled');
+				if (phoneEmailSetting && phoneEmailSetting == 'email') {
+					$('#emailSearch').removeClass('required').attr('disabled',
+							true).addClass('disabled').show();
+					$('#phoneSearch').hide();
+				} else {
+					$('#phoneSearch').removeClass('required').attr('disabled',
+							true).addClass('disabled').show();
+					$('#emailSearch').hide();
+				}
+				$('#firstNameSearch').addClass('required').removeAttr(
+						'disabled').removeClass('disabled');
+				$('#lastNameSearch').addClass('required')
+						.removeAttr('disabled').removeClass('disabled');
+				$('#zipSearch').addClass('required').removeAttr('disabled')
+						.removeClass('disabled');
+			}
+		}
+		var handleCustLookupSearchButtonState = function(enabled) {
+			var searchButton = $('#searchButton');
+			if (enabled) {
+				searchButton.removeAttr('disabled').parent().removeClass(
+						'disabled');
+			} else {
+				searchButton.attr('disabled', true).parent().addClass(
+						'disabled');
+			}
+		};
+		var custLookupValidation = {
+			handleButtonState : handleCustLookupSearchButtonState,
+			phone : {
+				type : VALIDATION_TYPE.PHONE,
+				valueSelector : '#phoneSearch',
+				valid : false,
+				ignore : false,
+				optional : false
+			},
+			email : {
+				type : VALIDATION_TYPE.EMAIL,
+				valueSelector : '#emailSearch',
+				valid : false,
+				ignore : false,
+				optional : false
+			},
+			firstName : {
+				type : VALIDATION_TYPE.NAME,
+				valueSelector : '#firstNameSearch',
+				valid : false,
+				ignore : false,
+				optional : false
+			},
+			lastName : {
+				type : VALIDATION_TYPE.NAME,
+				valueSelector : '#lastNameSearch',
+				valid : false,
+				ignore : false,
+				optional : false
+			},
+			zip : {
+				type : VALIDATION_TYPE.NUMERIC,
+				valueSelector : '#zipSearch',
+				valid : false,
+				ignore : false,
+				optional : false
+			}
+		};
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<h1>
+			<wicket:message key="gspCancelCustomerLookup.title.label" />
+		</h1>
+
+		<div wicket:id="feedback" class="feedbackmsg"></div>
+		<wicket:container wicket:id="searchByFieldRadioGroup">
+			<dl class="form">
+				<dt>
+					<label><wicket:message
+							key="gspCancelCustomerLookupForm.searchByFieldRadioGroup.phoneEmailRadio" />
+					</label> <input wicket:id="phoneEmailRadio" type="radio" />
+				</dt>
+				<dd>
+					<select wicket:id="phoneEmailSelect">
+					</select>
+				</dd>
+				<dd>
+					<input wicket:id="phoneSearch" type="text" size="20"
+						onkeypress="return keyEntryValidation(event, 'phone', custLookupValidation)"
+						onkeyup="fieldValidation(event, 'phone', custLookupValidation)" />
+					<input wicket:id="emailSearch" type="text" size="20"
+						onkeypress="return keyEntryValidation(event, 'email', custLookupValidation)"
+						onkeyup="fieldValidation(event, 'email', custLookupValidation)" />
+				</dd>
+			</dl>
+
+			<dl class="form">
+				<dt>
+					<label><wicket:message
+							key="gspCancelCustomerLookupForm.searchByFieldRadioGroup.nameZipRadio" />
+					</label> <input wicket:id="nameZipRadio" type="radio" />
+				</dt>
+				<dd>
+					<label><wicket:message
+							key="gspCancelCustomerLookupForm.searchByFieldRadioGroup.firstNameSearch" />
+					</label> <input wicket:id="firstNameSearch" type="text"
+						onkeypress="return keyEntryValidation(event, 'firstName', custLookupValidation)"
+						onkeyup="fieldValidation(event, 'firstName', custLookupValidation)" />
+				</dd>
+				<dd>
+
+					<label><wicket:message
+							key="gspCancelCustomerLookupForm.searchByFieldRadioGroup.lastNameSearch" />
+					</label> <input wicket:id="lastNameSearch" type="text"
+						onkeypress="return keyEntryValidation(event, 'lastName', custLookupValidation)"
+						onkeyup="fieldValidation(event, 'lastName', custLookupValidation)" />
+				</dd>
+				<dd>
+					<label> <wicket:message
+							key="gspCancelCustomerLookupForm.searchByFieldRadioGroup.zipSearch" />
+					</label> <input wicket:id="zipSearch" type="text" size="5"
+						onkeypress="return keyEntryValidation(event, 'zip', custLookupValidation)"
+						onkeyup="fieldValidation(event, 'zip', custLookupValidation)" />
+				</dd>
+			</dl>
+		</wicket:container>
+
+		<div wicket:id="searchCustomersContainer">
+			<table wicket:id="searchCustomersTable"
+				class="fixed-header fht-table">
+			</table>
+		</div>
+
+		<div wicket:id="noSearchCustomersContainer">
+			<p class="error">
+				<label wicket:id="noSearchCustomersLabel"></label>
+			</p>
+		</div>
+	</wicket:extend>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:panel>
+		<form wicket:id="addEditPropertyForm" autocomplete="off">
+			<div class="subsection_title">
+				<h2 wicket:id="sectionTitleLabel"></h2>
+				<br clear="all" />
+			</div>
+			<table id="addEditPropertyTable" cellpadding="10">
+				<tr>
+					<td width="3%" wicket:id="propertyNameLabel" nowrap="nowrap"></td>
+					<td><input type="text" size="60" wicket:id="propertyName"
+						tabindex="1" />
+					</td>
+				</tr>
+				<tr>
+					<td wicket:id="propertyValueLabel" nowrap="nowrap"></td>
+					<td><input tabindex="2" type="text" size="120"
+						wicket:id="propertyValue" />
+					</td>
+				</tr>
+				<tr>
+					<td wicket:id="propertyWicketFlagLabel" nowrap="nowrap"></td>
+					<td><input tabindex="3" type="checkbox"
+						wicket:id="propertyWicketFlag" />
+					</td>
+				</tr>
+				<tr>
+					<td wicket:id="descriptionLabel" nowrap="nowrap"></td>
+					<td><input tabindex="4" type="text" size="170"
+						wicket:id="description" />
+					</td>
+					<br>
+				</tr>
+			</table>
+			<input type="submit" wicket:id="submitButton"
+				class="btnfixed_1 btnactive" /> <input type="button"
+				wicket:id="cancelButton" class="btnfixed_1 btnactive" />
+		</form>
+		<br clear="all" />
+	</wicket:panel>
+</body>
+</html>

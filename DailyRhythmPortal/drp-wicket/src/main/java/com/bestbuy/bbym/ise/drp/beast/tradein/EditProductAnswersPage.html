@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+  <title>BEAST-Portal</title>
+
+<style>
+ .scrollable {
+ overflow-y: scroll;
+ overflow-x: hidden;
+ border: 1px solid #000;
+ width: 100%;
+ height: 70%;
+ padding-left: 20px;
+ padding-top: 10px;
+ }
+</style>
+
+</wicket:head>
+	
+
+
+
+<script type="text/javascript">
+	
+	$(document).ready( function() {
+            initEditProductAnswersPage()
+	});
+
+	function hideFourPartKey() {
+	     document.getElementById("fourpartkey").style.display="none";
+	     $('#fourpartkey').attr("disabled", "disabled");
+             $('#hiddenReceiptRequired').val("No");
+	}
+		
+	function displayFourPartKey() {
+           document.getElementById("fourpartkey").style.display="inline";
+           $('#hiddenReceiptRequired').val("Yes");
+	}
+
+</script>
+
+
+<body>
+<span wicket:id="border">
+<div class="wrap" style="height:350px"><!-- here to replicate beast frame -->
+        <div class="scrollable">
+	<h1 wicket:id="productName"/>
+
+	<dl class="form wide" style=" margin-bottom: 0px;" wicket:id="listview">
+		<dd>
+			<label><span wicket:id="panel"/></label>
+		</dd>
+	</dl>
+
+	<dl class="form wide" style="margin-bottom: 20px;">
+		<dd class="long">
+		    <label><wicket:message key="TradeInProductQAPage.receipt.number.label" /></label>
+			<label><wicket:message key="TradeInProductQAPage.receiptQuestion.label" /></label>
+			<span wicket:id="group">
+			<input type="radio" name="group1" value="Yes" checked wicket:id="yes" onclick="displayFourPartKey()"> Yes
+			<input style="margin-left: 20px;" type="radio" name="group1" value="No" wicket:id="no" onclick="hideFourPartKey()"> No
+			</span>
+		</dd>
+	</dl>
+	<div id="fourpartkey">
+	<p><strong><wicket:message key="TradeInProductQAPage.fourPartKey.label" /></strong></p>
+        <dl class="form" style="width:100%; margin: 0 0 20px 0;">
+
+            <dd class="short">
+                <label>Store</label>
+		<input class="required" name="store" id="store" type="text" maxlength = "4" size="20" wicket:id="store" onkeyup="autoTab(event, this, register);" onblur="lpadding(this)" onchange="validateForm()"/>
+	    </dd>
+		
+
+	    <dd class="short">
+	      <label>Register</label>
+              <input class="required" name="register" id="register" type="text" maxlength = "3" size="20" wicket:id="register" onkeyup="autoTab(event, this, tranId);" onblur="lpadding(this)" onchange="validateForm()"/>
+	    </dd>
+
+            <dd class="short">
+	      <label>Tran ID</label>
+              <input class="required" name="tranId" id="tranId" type="text" wicket:id="tranId" maxlength = "4" onkeyup="autoTab(event, this, businessDate);" onblur="lpadding(this)" onchange="validateForm()"/>
+	    </dd>
+
+	    <dd>
+	      <label for="businessDate">Date</label>
+              <input class="required" style="width:67px" name="businessDate" id="businessDate" type="text" wicket:id="businessDate" maxlength="8" onblur="tradeincheckdate(this);" onkeyup="autoTab(event, this, nextButton);" onchange="validateForm()"/>
+	    </dd>
+	</dl>
+	</div>
+
+
+
+	
+	<div class="notes">
+		<p>
+                  <wicket:message key="editProductAnswersPage.note.label" />
+                </p>
+	</div>
+        </div>
+</div>
+<input type="hidden" wicket:id="hiddenReceiptRequired"/>
+</span>
+</body>
+</html>

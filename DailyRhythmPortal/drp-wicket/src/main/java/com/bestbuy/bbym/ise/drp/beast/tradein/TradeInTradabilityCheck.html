@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+<title>BEAST-Portal</title>
+</wicket:head>
+
+<script type="text/javascript">
+//putting this in w-head causes it to load before the tradein.js file has been loaded. I'm not sure why.  	
+//assume it's because tradabilitycheck gets made, calls parent, then border gets added after. 
+	$(document).ready( function() {
+       		tradeInScreen = "TradeInTradabilityCheck";
+       		initTradeInTradabilityCheck();
+	});
+</script>
+<body>
+	<span wicket:id="border">
+		<div wicket:id="tradabilityCheckId">
+			<div wicket:id="selLastFourContainer">
+				<dl class="form" style="width: 100%; margin-bottom: 0px;">
+					<dt>
+						<label>Enter the last four characters of the Trade-In device's serial number
+							(IMEI/ESN)</label>
+					</dt>
+
+					<dd>
+						<input wicket:id="selLastFour" class="required small" maxlength="4" type="text" onkeyup="checkAlphaNumeric(this)"/>
+					</dd>
+				</dl>
+			</div>
+
+			<div wicket:id="selFullSerialContainer" >
+				<dl class="form" style="width: 100%; margin-bottom: 0px;">
+					<dt>
+						<label>Enter the complete serial number (IMEI/ESN) of the device being traded in</label>
+					</dt>
+					<dd>
+						<input class="required" wicket:id="selFullSerial" type="text" maxlength="20" onkeyup="checkAlphaNumeric(this)"/>
+					</dd>
+				</dl>
+			</div>
+
+			<div wicket:id="non-tradable">
+				<p class="error"><wicket:message key="tradabilityCheckPage.error.non.tradable" /></p>
+				<p class="error"><wicket:message key="tradabilityCheckPage.error.purchased.last.30" /></p>
+			</div>
+			<div class="notes">
+				<p>
+					<wicket:message key="tradabilityCheckPage.note.label" />
+				</p>
+			</div>
+
+		</div> </span>
+</body>
+</html>

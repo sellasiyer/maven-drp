@@ -1,0 +1,32 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:panel>
+		<form wicket:id="addEditHotlinkForm" autocomplete="off">
+			<div class="subsection_title">
+				<h2 wicket:id="sectionTitleLabel"></h2>
+				<br clear="all" />
+			</div>
+			<table id="addEditHotlinkTable">
+				<tr>
+					<td width="8%" wicket:id="websiteNameLabel" nowrap="nowrap"></td>
+					<td width="20%"><input type="text" size="40"
+						class="required" maxlength="25" wicket:id="websiteName" />
+					</td>
+					<td width="8%" wicket:id="websiteUrlLabel" nowrap="nowrap"
+						align="right"></td>
+					<td width="43%"><input type="text" size="90"
+						class="required" wicket:id="websiteUrl" />
+					</td>
+					<td width="22%"><input type="submit" wicket:id="submitButton"
+						class="btnfixed_1" /> <input type="submit"
+						wicket:id="cancelButton" class="btnfixed_1" />
+					</td>
+				</tr>
+			</table>
+		</form>
+		<br clear="all" />
+	</wicket:panel>
+</body>
+</html>

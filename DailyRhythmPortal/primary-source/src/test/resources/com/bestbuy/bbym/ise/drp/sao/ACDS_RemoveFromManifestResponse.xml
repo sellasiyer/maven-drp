@@ -1,0 +1,10 @@
+
+<ns0:RemoveFromManifestResponse
+	xmlns:jms1="http://www.tibco.com/namespaces/tnt/plugins/jms" xmlns:ns0="http://bestbuy.com/bbym/logistics/manifest/service/v1">
+	<ns1:Status xmlns:ns1="http://www.tsh.bestbuy.com/common/v1">
+		<ns1:Code>TSH-SRV-000000</ns1:Code>
+		<ns1:Description>RemoveManifestLine executed successfully
+		</ns1:Description>
+	</ns1:Status>
+	<ns0:ManifestDeleted>true</ns0:ManifestDeleted>
+</ns0:RemoveFromManifestResponse>

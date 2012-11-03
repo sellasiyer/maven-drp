@@ -1,0 +1,38 @@
+<EditCustomerAnswersForm xmlns:atom="http://www.w3.org/2005/Atom" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance">
+  <atom:title>Edit Customer Answers Form</atom:title>
+  <atom:link href="http://localhost:2279/store-271/carts/31/customer-answers" rel="self" title="Self" />
+  <atom:link href="http://localhost:2279/store-271/carts/31/customer-answers" rel="http://localhost:2279/rels/update" title="update" />
+  <atom:link href="http://localhost:2279/store-271/carts/31/complete-tradein" rel="next" title="Next" />
+  <atom:link href="http://localhost:2279/" rel="http://localhost:2279/rels/home" title="Return to Home Page" />
+  <atom:link href="http://buyback-pl.bestbuytradein.com/bbPlanInfo.cfm?redirect=false" rel="external-buyback" title="Start a New Buy Back" />
+  <atom:link href="http://buyback-pl.bestbuytradein.com/videoGameSearch.cfm?redirect=false" rel="external-video-games" title="Start a New Video Game Cart" />
+  <atom:link href="http://buyback-pl.bestbuytradein.com/admin.cfm?redirect=false" rel="external-admin" title="Open Trade In Administration" />
+  <atom:link href="http://buyback-pl.bestbuytradein.com/manifest.cfm?redirect=false" rel="external-shipping-center" title="Open Shipping Center" />
+  <atom:link href="http://localhost:2279/metadata/EditCustomerAnswersForm" rel="http://localhost:2279/rels/metadata" title="metadata" />
+  <Questions>
+    <CustomerQuestion>
+      <Name>QuestionWithoutOptions</Name>
+      <Source>SourceOfQuestion</Source>
+      <Text>Describe the customer's foo.</Text>
+      <Value />
+      <Options />
+    </CustomerQuestion>
+    <CustomerQuestion>
+      <Name>QuestionWithOptions</Name>
+      <Source>SourceOfQuestion</Source>
+      <Text>1st ID Type</Text>
+      <Value />
+      <Options>
+        <CustomerQuestionOption>
+          <Value>Drivers License</Value>
+        </CustomerQuestionOption>
+        <CustomerQuestionOption>
+          <Value>Military ID</Value>
+        </CustomerQuestionOption>
+        <CustomerQuestionOption>
+          <Value>Passport</Value>
+        </CustomerQuestionOption>
+      </Options>
+    </CustomerQuestion>
+  </Questions>
+</EditCustomerAnswersForm>

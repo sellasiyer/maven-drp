@@ -1,0 +1,27 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>Device Triage Dashboard</title>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<div class="page-header">
+			<h1>Device Triage Dashboard</h1>
+		</div>
+
+		<div wicket:id="feedback" class="required"></div>
+
+		<div wicket:id="deviceInfoPanel"></div>
+
+		<div class="triage-wrap">
+			<div wicket:id="steps"></div>
+			<div wicket:id="knowledgebase"></div>
+			<div wicket:id="tech-checker-results"></div>
+		</div>
+
+		<div wicket:id="rslnCaptureModalPanel"></div>
+	</wicket:extend>
+</body>
+</html>

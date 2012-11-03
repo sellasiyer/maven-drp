@@ -1,0 +1,42 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:panel>
+		<div id="device-history-container" wicket:id="historyContainer">
+			<ul id="device-history">
+				<li wicket:id="listEvents">
+					<div class="data reported-issue">Customer Reported Issue:
+						<div class="value" wicket:id="reportedIssue">5/1/12 - Software Issue, try to fix in department</div>
+					</div>
+					<div class="data tc-issue">Tech Checker Issue Found:
+						<div class="value" wicket:id="techCheckerIssue">Bluetooth Error</div>
+					</div>
+					<div class="data action">Action:
+						<div class="value" wicket:id="action">Resolved</div>
+					</div>
+					<div class="data triage-recommendation">Recommendation from Triage:
+						<div class="value" wicket:id="recommendation">Fix in Department (Creating a service tag may result in a store charge back)</div>
+					</div>
+					<div class="data issue-detail">Issue:
+						<div class="value">
+							<span wicket:id="issueComment">I told him to let his phone soak in a bag of uncooked rice.</span>
+							<span wicket:id="deleteIssueCommentLink"></span>
+						</div> 
+					</div>
+					<div class="data resolution-detail">Resolution:
+						<div class="value">
+							<span wicket:id="rslnComment">I told him to let his phone soak in a bag of uncooked rice.</span> 
+							<span wicket:id="deleteRslnCommentLink"></span>
+						</div>
+					</div>
+					<div style="clear: left;"></div>
+				</li>
+			</ul>
+			<div style="clear: left;"></div>
+			<div class="shadow">&nbsp;</div>
+		</div>
+		<div wicket:id="deleteConfirmationDlg"></div>
+	</wicket:panel>
+</body>
+</html>

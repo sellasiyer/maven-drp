@@ -1,0 +1,45 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>Digital Recommendation Sheet Search</title>
+	
+	<script src="js/jquery-1.7.min.js"></script>
+	<script src="js/search-nav.js"></script>
+
+	<script language="JavaScript">
+
+
+		function setupRecSheetTable() {
+			// Remove sorting from Action column
+			var jSpan = $('#recSheetTable tr th:eq(4) a span');
+			$('#recSheetTable tr th:eq(4) a').replaceWith(jSpan);
+
+			// Row highlighting on mouse over
+			$('#recSheetTable tr:[class="odd"]').mouseover(function() {
+				$(this).removeClass('even').addClass('row_highlight');
+			}).mouseout(function() {
+				$(this).removeClass('row_highlight').addClass('odd');
+			});
+			$('#recSheetTable tr:[class="even"]').mouseover(function() {
+				$(this).removeClass('even').addClass('row_highlight');
+			}).mouseout(function() {
+				$(this).removeClass('row_highlight').addClass('even');
+			});
+
+			// Add styling classes to cells
+			$('#recSheetTable tr').each(function(index) {
+				$(this).find('th:last-child').addClass("last");
+				$(this).find('td:last-child').addClass("last");
+			});
+			$('#recSheetTable tr:last-child').addClass("last");
+		}
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<div wicket:id="digitalRecSheetSearchPanel"></div>
+	</wicket:extend>
+</body>
+</html>

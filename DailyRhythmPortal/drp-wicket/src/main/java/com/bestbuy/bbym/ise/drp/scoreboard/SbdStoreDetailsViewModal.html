@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+	<wicket:extend>
+		<div class="modal-header">
+			<h1>
+				<wicket:message key="scoreboardModal.storeDetails.label" />
+			</h1>
+			<a class="button minor" wicket:id="editButton" id="edit"> <wicket:message
+					key="scoreboardModal.storeDetails.editreturns.button" /> </a>
+		</div>
+
+		<div wicket:id="returnsContainer" class="table-wrap" style="margin: 0 0 15px 0;">
+			<table id="journal" class="default-table">
+				<thead>
+					<tr>
+						<th><span>Posted</span>
+						</th>
+						<th><span>Group</span>
+						</th>
+						<th><span>Item</span>
+						</th>
+						<th><span>Quantity</span>
+						</th>
+						<th><span>Unit Price</span>
+						</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr wicket:id="tableListView">
+						<td wicket:id="postedTimeLabel"></td>
+						<td wicket:id="groupLabel">Laptops</td>
+
+						<td wicket:id="itemNameLabel">Laptop &lt; $500</td>
+						<td wicket:id="qtyLabel">1</td>
+						<td wicket:id="unitPriceLabel"></td>
+						<td class="last txt-right"><a href="#" wicket:id="deleteRowButton" class="button">Delete</a>
+						</td>
+
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+	</wicket:extend>
+</body>
+</html>

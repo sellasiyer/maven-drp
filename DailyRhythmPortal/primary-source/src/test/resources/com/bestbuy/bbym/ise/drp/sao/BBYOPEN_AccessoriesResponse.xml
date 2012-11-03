@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/v1/xsl/xml_pretty_printer.xsl" type="text/xsl"?>
+<stores currentPage="1" totalPages="1" from="1" to="1" total="1"
+	queryTime="0.013" totalTime="0.037"
+	canonicalUrl="/v1/stores(storeId=281)+products(sku in(5619255,1074217,8948847,2908168,1074244))?show=products.sku,products.name,products.regularPrice,products.salePrice,products.thumbnailImage,products.shortDescription,products.longDescription,products.departmentId,products.classId,products.subclassId,products.subclass,products.categoryPath&amp;apiKey=khteuyjh88jx2cp4cyfehwsj"
+	partial="false">
+	<store>
+		<products>
+			<product>
+				<sku>8948847</sku>
+				<name>Eddie Bauer - Case for Most Mobile Phones - Black</name>
+				<regularPrice>27.99</regularPrice>
+				<thumbnailImage>http://images.bestbuy.com/BestBuy_US/images/products/8948/8948847_s.gif</thumbnailImage>
+				<shortDescription>Compatible with most iPhones, mobile phones and Blackberrys; vinyl material; expandable sides</shortDescription>
+				<longDescription>Keep your mobile phone safe from bumps and scratches with this stylish case. The belt clip on the back provides easy portability.</longDescription>
+				<subclassId>804</subclassId>
+			</product>
+			<product>
+				<sku>5619255</sku>
+				<name>Jabra - TALK Bluetooth Headset</name>
+				<regularPrice>29.99</regularPrice>
+				<thumbnailImage>http://images.bestbuy.com/BestBuy_US/images/products/5619/5619255_s.gif</thumbnailImage>
+				<shortDescription>Compatible with most Bluetooth-enabled devices; supports A2DP (v1.2), Hands Free Profile (v1.6) and Headset Profile (v1.2); up to 33' operating range; Voice Announcements; HD Voice</shortDescription>
+				<longDescription>Enjoy hands-free calling with this Jabra TALK Bluetooth headset that is compatible with most Bluetooth-enabled devices for wide-ranging use. Voice Announcements offer spoken battery and connection status updates for simple use.</longDescription>
+				<subclassId>3220</subclassId>
+			</product>
+			<product>
+				<sku>1074244</sku>
+				<name>Rocketfish&#8482; - Mobile Multitip Vehicle Charger</name>
+				<regularPrice>21.99</regularPrice>
+				<thumbnailImage>http://images.bestbuy.com/BestBuy_US/images/products/1074/1074244_s.gif</thumbnailImage>
+				<shortDescription>Compatible with most mobile phones; interchangeable tips; gun-shaped design; intelligent IC chip; LED light ring</shortDescription>
+				<longDescription>This vehicle charger allows you to charge a variety of mobile phones via the interchangeable tips for versatile use, and the sleek, compact design makes for easy storage.</longDescription>
+				<subclassId>3220</subclassId>
+			</product>
+			<product>
+				<sku>1074217</sku>
+				<name>Rocketfish&#8482; - Mobile Multitip Wall Charger</name>
+				<regularPrice>21.99</regularPrice>
+				<thumbnailImage>http://images.bestbuy.com/BestBuy_US/images/products/1074/1074217_s.gif</thumbnailImage>
+				<shortDescription>Compatible with most mobile phones; fits most standard DC outlets; interchangeable tips; 5V 1A rapid charging</shortDescription>
+				<longDescription>This wall charger fits most standard DC outlets and features interchangeable tips so you can charge a variety of mobile phones.</longDescription>
+				<subclassId>753</subclassId>
+			</product>
+			<product>
+				<sku>2908168</sku>
+				<name>ZAGG - Smudge-Proof InvisibleSHIELD for Most Mobile Phones (2-Pack)</name>
+				<regularPrice>25.99</regularPrice>
+				<thumbnailImage>http://images.bestbuy.com/BestBuy_US/images/products/2908/2908168_s.gif</thumbnailImage>
+				<shortDescription>Compatible with most mobile phones; scratch-resistant, military-grade material; improves grip; 2-pack</shortDescription>
+				<longDescription>These shields are compatible with most mobile phones and resist fingerprints for improved visibility. Military-grade material helps protect against scratches.</longDescription>
+				<subclassId>752</subclassId>
+			</product>
+		</products>
+	</store>
+</stores>
+      

@@ -1,0 +1,151 @@
+
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head>
+<title>Data Usage Calculator</title>
+
+</head>
+
+<body>
+	<wicket:panel>
+		<div wicket:id="feedback"></div>
+		<form autocomplete="off">
+			<ul class="button-selector button-selector-ind" id="data-type-selector">
+				<li data-type="3g4g" class="first selected"><a href="#">3G &amp; 4G Smartphones</a><div class="indicator" style="display: block"></div></li>
+				<li data-type="3g"><a href="#">3G Mobile Broadband</a><div class="indicator"></div></li>
+				<li data-type="4g" class="last"><a href="#">4G Mobile Broadband</a><div class="indicator"></div></li>
+			</ul>
+			<ul class="bg-bar" id="master-toggle">
+				<li class="first">Toggle All:</li>
+				<li class="last">
+					<div class="toggle-switch" data-val="day">
+						<img class="selector" src="css/img/data_calc/switch_month-day.png"/>
+					</div>
+				</li>
+			</ul>
+			<div id="data-calc">
+				<div id="meter">
+					<div class="units">
+						<ul>
+							<li class="first"><span class="value">0</span></li>
+							<li><span class="value">15</span> GB/Month</li>
+							<li class="last"><span class="value">30</span></li>
+						</ul>
+					</div>
+					<div class="bar">
+						<div class="fill">
+							<img src="css/img/data_calc/total_bar_full.png" />
+						</div>
+					</div>
+				</div>
+				<div class="result price-flag">
+					<div class="value">0.0</div>
+					<div class="unit">GB/ Month</div>
+				</div>
+				<div class="clearer"></div>
+				<div id="inputs">
+					<div class="line-item" data-usage-type="email">
+						<div class="desc"><img src="css/img/data_calc/icon_email.png"/><span>Email Sent/Received</span></div>
+						<ul class="button-selector num-choices">
+							<li class="first selected"><a href="#">0</a></li>
+							<li><a href="#">60</a></li>
+							<li><a href="#">300</a></li>
+							<li><a href="#">1500</a></li>
+							<li><a href="#">3000</a></li>
+							<li class="last"><a href="#">7500</a></li>
+						</ul>
+						<div class="sum">
+							<span class="value">0.0</span> GB
+						</div>
+						<div class="toggle-switch" data-val="day">
+							<img class="selector" src="css/img/data_calc/switch_month-day.png"/>
+						</div>
+					</div>
+					<div class="line-item" data-usage-type="web">
+						<div class="desc"><img src="css/img/data_calc/icon_web.png"/><span>Web Pages Viewed</span></div>
+						<ul class="button-selector num-choices">
+							<li class="first selected"><a href="#">0</a></li>
+							<li><a href="#">60</a></li>
+							<li><a href="#">300</a></li>
+							<li><a href="#">1500</a></li>
+							<li><a href="#">3000</a></li>
+							<li class="last"><a href="#">7500</a></li>
+						</ul>
+						<div class="sum">
+							<span class="value">0.0</span> GB
+						</div>
+						<div class="toggle-switch" data-val="day">
+							<img class="selector" src="css/img/data_calc/switch_month-day.png"/>
+						</div>
+					</div>
+					<div class="line-item" data-usage-type="audio">
+						<div class="desc"><img src="css/img/data_calc/icon_audio.png"/><span>Audio Streamed</span></div>
+						<ul class="button-selector num-choices">
+							<li class="first selected"><a href="#">0</a></li>
+							<li><a href="#">60</a></li>
+							<li><a href="#">300</a></li>
+							<li><a href="#">1500</a></li>
+							<li class="last"><a href="#">3000</a></li>
+						</ul>
+						<div class="sum">
+							<span class="value">0.0</span> GB
+						</div>
+						<div class="toggle-switch" data-val="day">
+							<img class="selector" src="css/img/data_calc/switch_month-day.png"/>
+						</div>
+					</div>
+					<div class="line-item" data-usage-type="video_lo">
+						<div class="desc"><img src="css/img/data_calc/icon_video.png"/><span>Video Streamed<br />(Low Res)</span></div>
+						<ul class="button-selector num-choices">
+							<li class="first selected"><a href="#">0</a></li>
+							<li><a href="#">60</a></li>
+							<li><a href="#">300</a></li>
+							<li><a href="#">1500</a></li>
+							<li class="last"><a href="#">3000</a></li>
+						</ul>
+						<div class="sum">
+							<span class="value">0.0</span> GB
+						</div>
+						<div class="toggle-switch" data-val="day">
+							<img class="selector" src="css/img/data_calc/switch_month-day.png"/>
+						</div>
+					</div>
+					<div class="line-item" data-usage-type="video_hi">
+						<div class="desc"><img src="css/img/data_calc/icon_video.png"/><span>Video Streamed<br />(High Res)</span></div>
+						<ul class="button-selector num-choices">
+							<li class="first selected"><a href="#">0</a></li>
+							<li><a href="#">60</a></li>
+							<li><a href="#">300</a></li>
+							<li><a href="#">1500</a></li>
+							<li class="last"><a href="#">3000</a></li>
+						</ul>
+						<div class="sum">
+							<span class="value">0.0</span> GB
+						</div>
+						<div class="toggle-switch" data-val="day">
+							<img class="selector" src="css/img/data_calc/switch_month-day.png"/>
+						</div>
+					</div>
+					<div class="line-item" data-usage-type="photos">
+						<div class="desc"><img src="css/img/data_calc/icon_photos.png"/><span>Photos Downloaded/<br/>Uploaded</span></div>
+						<ul class="button-selector num-choices">
+							<li class="first selected"><a href="#">0</a></li>
+							<li><a href="#">60</a></li>
+							<li><a href="#">300</a></li>
+							<li><a href="#">1500</a></li>
+							<li class="last"><a href="#">3000</a></li>
+						</ul>
+						<div class="sum">
+							<span class="value">0.0</span> GB
+						</div>
+						<div class="toggle-switch" data-val="day">
+							<img class="selector" src="css/img/data_calc/switch_month-day.png"/>
+						</div>
+					</div>
+				</div>
+				<div wicket:id="disclaimerLabel" style="text-align:left; margin-left: 1em;"></div>
+			</div>
+		</form>
+	</wicket:panel>
+</body>
+</html>

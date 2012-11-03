@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<bean id="workflowDao" name="workflowDao" class="org.easymock.EasyMock"
+		factory-method="createStrictMock">
+		<constructor-arg value="com.bestbuy.bbym.ise.workflow.rules.WorkflowDao" />
+	</bean>
+
+	<bean id="kbase" name="kbase" class="org.easymock.EasyMock"
+		factory-method="createStrictMock">
+		<constructor-arg value="org.drools.KnowledgeBase" />
+	</bean>
+
+	<bean id="service"
+		class="com.bestbuy.bbym.ise.workflow.rules.BaseDroolsWorkflowServiceTestImpl">
+		<constructor-arg ref="kbase" />
+		<constructor-arg ref="workflowDao" />
+	</bean>
+
+</beans>

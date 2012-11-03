@@ -1,0 +1,97 @@
+<EditProductAnswersForm xmlns:atom="http://www.w3.org/2005/Atom" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance">
+    <atom:title>Edit Product Information</atom:title>
+    <atom:link href="http://localhost:2279/store-50/carts/10/items/12/product-answers" rel="self" title="Self"/>
+    <atom:link href="http://localhost:2279/store-50/carts/10/items/12/product-answers" rel="http://localhost:2279/rels/update" title="update"/>
+    <atom:link href="http://localhost:2279/store-50?CartId=10" rel="http://localhost:2279/rels/home" title="Return to Home Page"/>
+    <atom:link href="http://localhost:2279/store-50/help?CartId=10" rel="http://localhost:2279/rels/help" title="Overview"/>
+    <atom:link href="http://localhost:2279/store-50/help/faq?CartId=10" rel="http://localhost:2279/rels/help" title="FAQs"/>
+    <atom:link href="http://localhost:2279/store-50/help/about?CartId=10" rel="http://localhost:2279/rels/help" title="About"/>
+    <atom:link href="http://localhost:2279/store-50/devices?CartId=10" rel="http://localhost:2279/rels/help" title="Biometric Device Validation"/>
+    <atom:link href="http://localhost:2279/store-50/carts/10?BypassTradeInPlus=False" rel="http://localhost:2279/rels/cart" title="View Cart"/>
+    <atom:link href="http://localhost:2279/store-50/carts/10/identification?BypassTradeInPlus=False" rel="http://localhost:2279/rels/save-cart" title="Save Cart"/>
+    <atom:link href="http://localhost:2279/store-50/catalog?Page=1&amp;PageSize=25" rel="http://localhost:2279/rels/cancel-cart" title="Cancel Transaction"/>
+    <atom:link href="http://localhost:2279/store-50/carts/search/form" rel="http://localhost:2279/rels/cart-search" title="Search Carts"/>
+    <atom:link href="http://localhost:2279/store-50/feedback/new" rel="http://localhost:2279/rels/feedback" title="Provide Feedback"/>
+    <atom:link href="http://buyback-pl.bestbuytradein.com/bbPlanInfo.cfm?redirect=false" rel="external-buyback" title="Start a New Buy Back"/>
+    <atom:link href="http://buyback-pl.bestbuytradein.com/videoGameSearch.cfm?redirect=false" rel="external-video-games" title="Start a New Video Game Cart"/>
+    <atom:link href="http://buyback-pl.bestbuytradein.com/admin.cfm?redirect=false" rel="external-admin" title="Open Trade In Administration"/>
+    <atom:link href="http://buyback-pl.bestbuytradein.com/manifest.cfm?redirect=false" rel="external-shipping-center" title="Open Shipping Center"/>
+    <atom:link href="http://localhost:2279/metadata/EditProductAnswersForm" rel="http://localhost:2279/rels/metadata" title="metadata"/>
+    <Questions>
+        <ProductQuestion>
+            <Name>Color</Name>
+            <Source>ExtendedProductPolicy</Source>
+            <Text>Please choose a color</Text>
+            <Value/>
+            <Options>
+                <ProductQuestionOption>
+                    <Description>Black</Description>
+                    <Value>Black</Value>
+                </ProductQuestionOption>
+                <ProductQuestionOption>
+                    <Description>Blue</Description>
+                    <Value>Blue</Value>
+                </ProductQuestionOption>
+                <ProductQuestionOption>
+                    <Description>Brown</Description>
+                    <Value>Brown</Value>
+                </ProductQuestionOption>
+                <ProductQuestionOption>
+                    <Description>Gray</Description>
+                    <Value>Gray</Value>
+                </ProductQuestionOption>
+                <ProductQuestionOption>
+                    <Description>Green</Description>
+                    <Value>Green</Value>
+                </ProductQuestionOption>
+                <ProductQuestionOption>
+                    <Description>Light Blue</Description>
+                    <Value>Light Blue</Value>
+                </ProductQuestionOption>
+                <ProductQuestionOption>
+                    <Description>Light Green</Description>
+                    <Value>Light Green</Value>
+                </ProductQuestionOption>
+                <ProductQuestionOption>
+                    <Description>Multi-Color</Description>
+                    <Value>Multi-Color</Value>
+                </ProductQuestionOption>
+                <ProductQuestionOption>
+                    <Description>Orange</Description>
+                    <Value>Orange</Value>
+                </ProductQuestionOption>
+                <ProductQuestionOption>
+                    <Description>Pink</Description>
+                    <Value>Pink</Value>
+                </ProductQuestionOption>
+                <ProductQuestionOption>
+                    <Description>Purple/Violet</Description>
+                    <Value>Purple/Violet</Value>
+                </ProductQuestionOption>
+                <ProductQuestionOption>
+                    <Description>Red</Description>
+                    <Value>Red</Value>
+                </ProductQuestionOption>
+                <ProductQuestionOption>
+                    <Description>Silver/Stainless</Description>
+                    <Value>Silver/Stainless</Value>
+                </ProductQuestionOption>
+                <ProductQuestionOption>
+                    <Description>White</Description>
+                    <Value>White</Value>
+                </ProductQuestionOption>
+                <ProductQuestionOption>
+                    <Description>Yellow</Description>
+                    <Value>Yellow</Value>
+                </ProductQuestionOption>
+            </Options>
+        </ProductQuestion>
+        <ProductQuestion>
+            <Name>IMEI</Name>
+            <Source>ExtendedProductPolicy</Source>
+            <Text>IMEI/MEID/Serial Number</Text>
+            <Value/>
+            <Options/>
+        </ProductQuestion>
+    </Questions>
+</EditProductAnswersForm>

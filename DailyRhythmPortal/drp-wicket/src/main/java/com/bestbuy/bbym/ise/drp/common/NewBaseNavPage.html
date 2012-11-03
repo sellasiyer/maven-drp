@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<link href="css/tom-screen.css" rel="stylesheet" type="text/css" />
+	<link href="css/header.css" rel="stylesheet" type="text/css" />
+	<link href="css/print.css" rel="stylesheet" type="text/css"
+		media="print" />
+	<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.23.effects.min.js"></script>
+	<script type="text/javascript" src="js/jquery.betterTooltip.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript">
+		var wicketBaseBehavior;
+		function setClientTime() {
+			var now = new Date();
+			var leadHoursZero = "";
+			if (now.getHours() < 10) {
+				leadHoursZero = "0";
+			}
+			var leadMinsZero = "";
+			if (now.getMinutes() < 10) {
+				leadMinsZero = "0";
+			}
+			var clientTime = leadHoursZero + now.getHours() + ":"
+					+ leadMinsZero + now.getMinutes() + "_" + now.getFullYear()
+					+ "-" + (now.getMonth() + 1) + "-" + now.getDate() + "TZ"
+					+ now.getTimezoneOffset();
+			wicketBaseBehavior("clientTime" + clientTime);
+		}
+	</script>
+	<meta name="format-detection" content="telephone=no">
+</wicket:head>
+
+<body>
+	<div wicket:id="headerPanel" class="header"></div>
+	<wicket:child />
+	<div id="versionsec">
+		<span wicket:id="footer.version.label"></span>
+	</div>
+	<div wicket:id="loadingModalPanel"></div>
+</body>
+</html>

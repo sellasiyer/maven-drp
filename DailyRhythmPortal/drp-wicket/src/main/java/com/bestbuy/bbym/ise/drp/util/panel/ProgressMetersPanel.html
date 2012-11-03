@@ -1,0 +1,33 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:panel>
+		<li class="top-bbym">
+			<div class="trophy"></div>
+			<h4 wicket:id="title"></h4>
+			<h5 wicket:id="topName"></h5>
+			<div class="pph">
+				<div wicket:id="topProductivity" class="number"></div>
+				<div wicket:id="topProductivityLabel" class="label"></div>
+			</div>
+		</li>
+		<li wicket:id="progressMeterListView">
+			<div class="pph">
+				<div class="number"></div>
+				<div wicket:id="productivityLabel" class="label"></div>
+			</div>
+			<h5>
+				<span wicket:id="name" class="name"></span><a wicket:id="expandLink" class="expand"></a>
+			</h5>
+			<div class="measure">
+				<span class="amt"></span><span class="goal"></span>
+			</div>
+			<div wicket:id="bar" class="bar">
+				<div class="fill"></div>
+				<div class="shadow"></div>
+			</div>
+		</li>
+	</wicket:panel>
+</body>
+</html>

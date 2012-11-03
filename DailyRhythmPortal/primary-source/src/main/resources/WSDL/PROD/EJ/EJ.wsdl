@@ -1,0 +1,791 @@
+<wsdl:definitions targetNamespace="http://bestbuy.com/EJournal"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tndr="http://bestbuy.com/EJournal"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<schema elementFormDefault="qualified" targetNamespace="http://bestbuy.com/EJournal"
+			xmlns="http://www.w3.org/2001/XMLSchema">
+			<complexType name="ElectronicJournalSignature">
+				<sequence>
+					<element maxOccurs="1" minOccurs="0" name="signature" type="xsd:string" />
+					<element maxOccurs="1" minOccurs="0" name="signatureReason"
+						type="xsd:string" />
+					<element maxOccurs="1" minOccurs="0" name="warning" type="xsd:boolean" />
+					<element maxOccurs="1" minOccurs="0" name="warningMessage"
+						type="xsd:string" />
+				</sequence>
+			</complexType>
+			<xsd:complexType name="ElectronicJournalSignatureResult">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="signature"
+						type="tndr:ElectronicJournalSignature" />
+					<xsd:element maxOccurs="1" minOccurs="0" name="fourPartKey"
+						type="tndr:ElectronicJournalFourPartKey" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<complexType name="ElectronicJournalKeyInfoRequest">
+				<sequence>
+					<element maxOccurs="unbounded" minOccurs="0"
+						name="electronicJournalKeyInfo" type="tndr:ElectronicJournalKeyInfo" />
+					<any maxOccurs="unbounded" minOccurs="0" />
+				</sequence>
+			</complexType>
+			<complexType name="ElectronicJournalKeyInfo">
+				<sequence>
+					<element name="dateRange" type="tndr:DateRange" />
+					<element name="storeId" type="xsd:int" />
+					<element name="registerRange" type="tndr:RegisterRange" />
+					<element name="allStores" type="xsd:boolean" />
+					<any maxOccurs="unbounded" minOccurs="0" />
+				</sequence>
+			</complexType>
+			<complexType name="DateRange">
+				<sequence>
+					<element name="beginDate" type="xsd:dateTime" />
+					<element name="endDate" type="xsd:dateTime" />
+				</sequence>
+			</complexType>
+			<complexType name="RegisterRange">
+				<sequence>
+					<element name="lowerBoundRegister" type="xsd:int" />
+					<element name="upperBoundRegister" type="xsd:int" />
+					<element name="allRegisters" type="xsd:boolean" />
+				</sequence>
+			</complexType>
+			<complexType name="AmountRange">
+				<sequence>
+					<element name="AmountLowerBound" type="xsd:decimal" />
+					<element name="AmountUpperBound" type="xsd:decimal" />
+				</sequence>
+			</complexType>
+			<complexType name="ElectronicJournalFourPartKeys">
+				<sequence>
+					<element maxOccurs="unbounded" minOccurs="0"
+						name="electronicJournalFourPartKey" type="tndr:ElectronicJournalFourPartKey" />
+					<any maxOccurs="unbounded" minOccurs="0" />
+				</sequence>
+			</complexType>
+			<complexType name="ElectronicJournalFourPartKey">
+				<sequence>
+					<element name="storeId" type="xsd:int" />
+					<element name="registerId" type="xsd:int" />
+					<element name="transactionDate" type="xsd:dateTime" />
+					<element name="transactionNumber" type="xsd:int" />
+					<element name="getPrivateData" type="xsd:boolean" />
+					<element maxOccurs="1" minOccurs="0" name="transactionType"
+						type="xsd:string" />
+					<element maxOccurs="1" minOccurs="0" name="amount" type="xsd:decimal" />
+					<any maxOccurs="unbounded" minOccurs="0" />
+				</sequence>
+			</complexType>
+			<complexType name="ElectronicJournalResponse">
+				<sequence>
+					<element maxOccurs="unbounded" minOccurs="0"
+						name="electronicJournalResult" type="tndr:ElectronicJournalResult" />
+					<any maxOccurs="unbounded" minOccurs="0" />
+				</sequence>
+			</complexType>
+			<complexType name="ElectronicJournalResult">
+				<sequence>
+					<element name="electronicJournalFourPartKey" type="tndr:ElectronicJournalFourPartKey" />
+					<element name="electronicJournalDocumentText" type="tndr:ElectronicJournalDocumentText" />
+					<element name="Error" type="xsd:boolean" />
+					<element name="ErrorDetails" type="xsd:string" />
+					<any maxOccurs="unbounded" minOccurs="0" />
+				</sequence>
+			</complexType>
+			<complexType name="ElectronicJournalDocumentText">
+				<sequence>
+					<element name="auditData" type="xsd:string" />
+					<!-- Private -->
+					<element name="receiptData" type="xsd:string" />
+					<!-- Public -->
+					<any maxOccurs="unbounded" minOccurs="0" />
+				</sequence>
+			</complexType>
+			<complexType name="ElectronicJournalTranIdRequest">
+				<sequence>
+					<element name="electronicJournalKeyInfo" type="tndr:ElectronicJournalKeyInfo" />
+					<element name="tranId" type="tndr:TransactionRange" />
+					<any maxOccurs="unbounded" minOccurs="0" />
+				</sequence>
+			</complexType>
+			<complexType name="TransactionRange">
+				<sequence>
+					<element name="lowerBoundTransaction" type="xsd:int" />
+					<element name="upperBoundTransaction" type="xsd:int" />
+				</sequence>
+			</complexType>
+			<complexType name="ElectronicJournalTranTypeRequest">
+				<sequence>
+					<element name="electronicJournalKeyInfo" type="tndr:ElectronicJournalKeyInfo" />
+					<element name="tranType" type="tndr:TransactionType" />
+					<element name="returnUncategorizedTranType" type="xsd:boolean" />
+					<any maxOccurs="unbounded" minOccurs="0" />
+				</sequence>
+			</complexType>
+			<complexType name="ElectronicJournalCreditCardRequest">
+				<sequence>
+					<element name="electronicJournalKeyInfo" type="tndr:ElectronicJournalKeyInfo" />
+					<element name="creditCard" type="xsd:string" />
+					<!-- 16 dig -->
+					<any maxOccurs="unbounded" minOccurs="0" />
+				</sequence>
+			</complexType>
+			<complexType name="ElectronicJournalOperatorNumRequest">
+				<sequence>
+					<element name="electronicJournalKeyInfo" type="tndr:ElectronicJournalKeyInfo" />
+					<element name="operatorNum" type="xsd:string" />
+					<!-- check the store id if we can validate -->
+					<any maxOccurs="unbounded" minOccurs="0" />
+				</sequence>
+			</complexType>
+			<complexType name="ElectronicJournalTenderTypeRequest">
+				<sequence>
+					<element name="electronicJournalKeyInfo" type="tndr:ElectronicJournalKeyInfo" />
+					<element name="tenderType" type="tndr:TenderType" />
+					<element name="amountRange" type="tndr:AmountRange" />
+					<any maxOccurs="unbounded" minOccurs="0" />
+				</sequence>
+			</complexType>
+			<complexType name="ElectronicJournalRewardZoneRequest">
+				<sequence>
+					<element name="electronicJournalKeyInfo" type="tndr:ElectronicJournalKeyInfo" />
+					<element name="rewardZoneCardNumber" type="xsd:string" />
+					<any maxOccurs="unbounded" minOccurs="0" />
+				</sequence>
+			</complexType>
+			<complexType name="ElectronicJournalPSPRequest">
+				<sequence>
+					<element name="electronicJournalKeyInfo" type="tndr:ElectronicJournalKeyInfo" />
+					<element name="pspNumber" type="xsd:string" />
+					<any maxOccurs="unbounded" minOccurs="0" />
+				</sequence>
+			</complexType>
+			<complexType name="ElectronicJournalGiftCardRequest">
+				<sequence>
+					<element name="electronicJournalKeyInfo" type="tndr:ElectronicJournalKeyInfo" />
+					<element name="giftCardNumber" type="xsd:string" />
+					<any maxOccurs="unbounded" minOccurs="0" />
+				</sequence>
+			</complexType>
+			<complexType name="ElectronicJournalVoucherRequest">
+				<sequence>
+					<element name="electronicJournalKeyInfo" type="tndr:ElectronicJournalKeyInfo" />
+					<element name="voucherNumber" type="xsd:string" />
+					<any maxOccurs="unbounded" minOccurs="0" />
+				</sequence>
+			</complexType>
+			<complexType name="ElectronicJournalDateRequest">
+				<sequence>
+					<element name="electronicJournalKeyInfo" type="tndr:ElectronicJournalKeyInfo" />
+					<any maxOccurs="unbounded" minOccurs="0" />
+				</sequence>
+			</complexType>
+			<complexType name="TimeRange">
+				<sequence>
+					<element name="beginTime" type="xsd:dateTime" />
+					<element name="endTime" type="xsd:dateTime" />
+				</sequence>
+			</complexType>
+			<complexType name="ElectronicJournalTimeRequest">
+				<sequence>
+					<element name="electronicJournalKeyInfo" type="tndr:ElectronicJournalKeyInfo" />
+					<element name="timeRange" type="tndr:TimeRange" />
+					<any maxOccurs="unbounded" minOccurs="0" />
+				</sequence>
+			</complexType>
+			<complexType name="ElectronicJournalTotalAmountRequest">
+				<sequence>
+					<element name="electronicJournalKeyInfo" type="tndr:ElectronicJournalKeyInfo" />
+					<element name="amountRange" type="tndr:AmountRange" />
+					<any maxOccurs="unbounded" minOccurs="0" />
+				</sequence>
+			</complexType>
+			<complexType name="ElectronicJournalDataRequest">
+				<sequence>
+					<element name="electronicJournalFourPartKeys" type="tndr:ElectronicJournalFourPartKeys" />
+					<element name="userId" type="xsd:string" />
+					<any maxOccurs="unbounded" minOccurs="0" />
+				</sequence>
+			</complexType>
+			<complexType name="TenderTypes">
+				<sequence>
+					<element maxOccurs="unbounded" minOccurs="0" name="tenderType"
+						type="tndr:TenderType" />
+				</sequence>
+			</complexType>
+			<complexType name="TransactionTypes">
+				<sequence>
+					<element maxOccurs="unbounded" minOccurs="0" name="transactionType"
+						type="tndr:TransactionType" />
+				</sequence>
+			</complexType>
+			<simpleType name="TransactionType">
+				<restriction base="xsd:string">
+					<enumeration value="NOTYPE" />
+					<enumeration value="ALLTYPE" />
+					<enumeration value="SALE" />
+					<enumeration value="RETURN" />
+					<enumeration value="EXCHANGE" />
+					<enumeration value="PRICEMATCH" />
+					<enumeration value="CASHIN" />
+					<enumeration value="CASHOUT" />
+					<enumeration value="SVCCASHOUT" />
+					<!-- Not use -->
+					<enumeration value="EMPLOYEETRANSACTION" />
+					<enumeration value="EMPLOYEESALE" />
+					<enumeration value="EMPLOYEERETURN" />
+					<enumeration value="EMPLOYEEEXCHANGE" />
+					<enumeration value="POSTVOID" />
+					<enumeration value="NOSALE" />
+					<enumeration value="VOIDED" />
+					<enumeration value="SUSPENDED" />
+					<enumeration value="TAXEXEMPT" />
+					<!-- Not use -->
+					<enumeration value="REBOOT" />
+					<enumeration value="BUSINESSCREDIT" />
+					<!-- Not use -->
+					<enumeration value="REGISTERTOTALS" />
+					<enumeration value="HARDTOTAL" />
+					<enumeration value="VOIDIMMEDIATE" />
+					<enumeration value="OFFLINE" />
+					<enumeration value="UNKNOWN" />
+					<enumeration value="PA" />
+					<!-- Layaway Changes -->
+					<!-- <enumeration value="LAYAWAY"/> -->
+					<!-- <enumeration value="PARTIALDAY"/> -->
+					<!-- End Layaway Changes -->
+					<enumeration value="ANY" />
+				</restriction>
+			</simpleType>
+			<simpleType name="TenderType">
+				<restriction base="xsd:string">
+					<enumeration value="NOTYPE" />
+					<enumeration value="ALLTYPE" />
+					<enumeration value="CASH" />
+					<enumeration value="MAILCHECK" />
+					<enumeration value="TRAVELERSCHECK" />
+					<enumeration value="CHECK" />
+					<enumeration value="DEBIT" />
+					<enumeration value="VISA" />
+					<enumeration value="JCB" />
+					<enumeration value="MASTER" />
+					<enumeration value="AMEX" />
+					<enumeration value="VOUCHER" />
+					<enumeration value="GIFTCERTIFICATE" />
+					<enumeration value="STORECREDIT" />
+					<enumeration value="GIFTCARD" />
+					<enumeration value="DISCOVER" />
+					<enumeration value="DINERS" />
+					<enumeration value="BESTBUYCARD" />
+					<enumeration value="TEMPBUSCREDIT" />
+					<enumeration value="TEMPSUPER" />
+					<enumeration value="SCRIP" />
+					<enumeration value="COUPONMFG" />
+					<enumeration value="CASHBACK" />
+					<enumeration value="BusCredit" />
+					<enumeration value="BusCreditTemp" />
+					<enumeration value="PAYPAL" />
+					<enumeration value="ECHECK" />
+					<!-- Emerald II Changes -->
+					<enumeration value="BusAdvantage" />
+					<enumeration value="SuperCard" />
+					<enumeration value="BestBuyCreditCardTemp" />
+					<!-- End Emerald II Changes -->
+					<!-- Layaway Changes -->
+					<!-- <enumeration value="ARTender"/> -->
+					<!-- End Layaway Changes -->
+					<enumeration value="ANY" />
+				</restriction>
+			</simpleType>
+			<complexType name="ElectronicJournalSearchRequest">
+				<sequence>
+					<element maxOccurs="unbounded" minOccurs="0"
+						name="electronicJournalSearch" type="tndr:ElectronicJournalSearch" />
+					<any maxOccurs="unbounded" minOccurs="0" />
+				</sequence>
+			</complexType>
+			<complexType name="ElectronicJournalSearch">
+				<sequence>
+					<element name="fieldName" type="tndr:FieldName" />
+					<element name="qualifier" type="tndr:Qualifier" />
+					<element name="fieldValue" type="xsd:string" />
+					<element name="conjunction" type="tndr:Conjunction" />
+					<any maxOccurs="unbounded" minOccurs="0" />
+				</sequence>
+			</complexType>
+			<simpleType name="FieldName">
+				<restriction base="xsd:string">
+					<enumeration value="EMPLOYEENUM" />
+					<enumeration value="TRANDATE" />
+					<enumeration value="TRANTIME" />
+					<enumeration value="TENDERAMT" />
+					<enumeration value="CREDITCARDNUM" />
+					<enumeration value="PSP" />
+					<enumeration value="TENDERTYPE" />
+					<enumeration value="TRANSACTIONAMT" />
+					<enumeration value="GIFTCARDNUM" />
+					<enumeration value="VOUCHERNUM" />
+					<enumeration value="REWARDZONENUM" />
+					<enumeration value="REGISTERNUM" />
+					<enumeration value="TRANSACTIONTYPE" />
+					<enumeration value="TRANSACTIONNUM" />
+					<enumeration value="STORENUM" />
+					<enumeration value="STORECREDITNUM" />
+				</restriction>
+			</simpleType>
+			<simpleType name="Qualifier">
+				<restriction base="xsd:string">
+					<enumeration value="GREATERTHAN" />
+					<enumeration value="LESSTHAN" />
+					<enumeration value="EQUALTO" />
+					<enumeration value="NOT" />
+				</restriction>
+			</simpleType>
+			<simpleType name="Conjunction">
+				<restriction base="xsd:string">
+					<enumeration value="AND" />
+					<enumeration value="OR" />
+					<enumeration value="NONE" />
+				</restriction>
+			</simpleType>
+			<element name="electronicJournalTranIdRequest" type="tndr:ElectronicJournalTranIdRequest" />
+			<element name="electronicJournalTranTypeRequest" type="tndr:ElectronicJournalTranTypeRequest" />
+			<element name="electronicJournalCreditCardRequest" type="tndr:ElectronicJournalCreditCardRequest" />
+			<element name="electronicJournalOperatorNumRequest" type="tndr:ElectronicJournalOperatorNumRequest" />
+			<element name="electronicJournalTenderTypeRequest" type="tndr:ElectronicJournalTenderTypeRequest" />
+			<element name="electronicJournalRewardZoneRequest" type="tndr:ElectronicJournalRewardZoneRequest" />
+			<element name="electronicJournalPSPRequest" type="tndr:ElectronicJournalPSPRequest" />
+			<element name="electronicJournalVoucherRequest" type="tndr:ElectronicJournalVoucherRequest" />
+			<element name="electronicJournalGiftCardRequest" type="tndr:ElectronicJournalGiftCardRequest" />
+			<element name="electronicJournalDateRequest" type="tndr:ElectronicJournalDateRequest" />
+			<element name="electronicJournalTimeRequest" type="tndr:ElectronicJournalTimeRequest" />
+			<element name="electronicJournalFourPartKeys" type="tndr:ElectronicJournalFourPartKeys" />
+			<element name="electronicJournalSearchRequest" type="tndr:ElectronicJournalSearchRequest" />
+			<element name="electronicJournalFourPartKey" type="tndr:ElectronicJournalFourPartKey" />
+			<element name="electronicJournalResponse" type="tndr:ElectronicJournalResponse" />
+			<element name="electronicJournalDataRequest" type="tndr:ElectronicJournalDataRequest" />
+			<element name="electronicJournalTotalAmountRequest" type="tndr:ElectronicJournalTotalAmountRequest" />
+			<xsd:complexType name="Store">
+				<xsd:sequence>
+					<xsd:element name="allStores" type="xsd:boolean" />
+					<xsd:element name="storeNumber" type="xsd:int" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="Others">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="othersName"
+						type="tndr:OtherNames" />
+					<xsd:element maxOccurs="1" minOccurs="0" name="othersValue"
+						type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<simpleType name="OtherNames">
+				<restriction base="xsd:string">
+					<enumeration value="NOTYPE" />
+					<enumeration value="CREDIT/DEBIT" />
+					<enumeration value="DTVCOUPON" />
+					<enumeration value="EMPLOYEE" />
+					<enumeration value="GIFTCARD" />
+					<enumeration value="PSP/PRP" />
+					<enumeration value="REWARDZONE" />
+					<enumeration value="STORECREDIT" />
+					<enumeration value="VOUCHER" />
+				</restriction>
+			</simpleType>
+			<xsd:complexType name="ElectronicJournalBasicSearchRequest">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="stores"
+						type="tndr:Store" />
+					<xsd:element maxOccurs="1" minOccurs="1" name="registers"
+						type="tndr:RegisterRange" />
+					<xsd:element maxOccurs="1" minOccurs="1" name="dates"
+						type="tndr:DateRange" />
+					<xsd:element maxOccurs="1" minOccurs="1" name="times"
+						type="tndr:TimeRange" />
+					<xsd:element maxOccurs="1" minOccurs="0" name="amounts"
+						type="tndr:AmountRange" />
+					<xsd:element maxOccurs="1" minOccurs="0" name="tenderAmounts"
+						type="tndr:AmountRange" />
+					<xsd:element maxOccurs="1" minOccurs="0"
+						name="transactionNumbers" type="tndr:TransactionRange" />
+					<xsd:element maxOccurs="1" minOccurs="0" name="others"
+						type="tndr:Others" />
+					<xsd:element maxOccurs="1" minOccurs="1" name="tenderTyps"
+						type="tndr:TenderTypes" />
+					<xsd:element maxOccurs="1" minOccurs="1" name="transactionTyps"
+						type="tndr:TransactionTypes" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="EJournalBasicSearchRequest"
+				type="tndr:ElectronicJournalBasicSearchRequest" />
+			<xsd:complexType name="ElectronicJournalSignatureResponse">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0"
+						name="retriveSignatureStatus" type="xsd:string" />
+					<xsd:element maxOccurs="unbounded" minOccurs="0"
+						name="signatureResults" type="tndr:ElectronicJournalSignatureResult" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ElectronicJournalSignatureRequest">
+				<xsd:sequence>
+					<element name="electronicJournalFourPartKeys" type="tndr:ElectronicJournalFourPartKeys" />
+					<element name="userId" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="electronicJournalSignatureRequest"
+				type="tndr:ElectronicJournalSignatureRequest" />
+			<xsd:element name="electronicJournalSignatureResponse"
+				type="tndr:ElectronicJournalSignatureResponse" />
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="getElectronicJournalDataRequest">
+		<wsdl:part element="tndr:electronicJournalDataRequest" name="electronicJournalDataRequest" />
+	</wsdl:message>
+	<wsdl:message name="getElectronicJournalVoucherRequest">
+		<wsdl:part element="tndr:electronicJournalVoucherRequest"
+			name="electronicJournalVoucherRequest" />
+	</wsdl:message>
+	<wsdl:message name="getElectronicJournalRewardZoneRequest">
+		<wsdl:part element="tndr:electronicJournalRewardZoneRequest"
+			name="electronicJournalRewardZoneRequest" />
+	</wsdl:message>
+	<wsdl:message name="getElectronicJournalTimeRequest">
+		<wsdl:part element="tndr:electronicJournalTimeRequest" name="electronicJournalTimeRequest" />
+	</wsdl:message>
+	<wsdl:message name="getElectronicJournalOperatorNumRequest">
+		<wsdl:part element="tndr:electronicJournalOperatorNumRequest"
+			name="electronicJournalOperatorNumRequest" />
+	</wsdl:message>
+	<wsdl:message name="getElectronicJournalPSPRequest">
+		<wsdl:part element="tndr:electronicJournalPSPRequest" name="electronicJournalPSPRequest" />
+	</wsdl:message>
+	<wsdl:message name="getElectronicJournalCreditCardRequest">
+		<wsdl:part element="tndr:electronicJournalCreditCardRequest"
+			name="electronicJournalCreditCardRequest" />
+	</wsdl:message>
+	<wsdl:message name="getElectronicJournalSearchRequest">
+		<wsdl:part element="tndr:electronicJournalSearchRequest"
+			name="electronicJournalSearchRequest" />
+	</wsdl:message>
+	<wsdl:message name="getElectronicJournalSignatureResponse">
+		<wsdl:part element="tndr:electronicJournalSignatureResponse"
+			name="response" />
+	</wsdl:message>
+	<wsdl:message name="getElectronicJournalKeyInfoByBasicSearchRequest">
+		<wsdl:part element="tndr:EJournalBasicSearchRequest" name="ElectronicJournalBasicSearchRequest" />
+	</wsdl:message>
+	<wsdl:message name="getElectronicJournalDateRequest">
+		<wsdl:part element="tndr:electronicJournalDateRequest" name="electronicJournalDateRequest" />
+	</wsdl:message>
+	<wsdl:message name="getElectronicJournalGiftCardRequest">
+		<wsdl:part element="tndr:electronicJournalGiftCardRequest"
+			name="electronicJournalGiftCardRequest" />
+	</wsdl:message>
+	<wsdl:message name="getElectronicJournalTranTypeRequest">
+		<wsdl:part element="tndr:electronicJournalTranTypeRequest"
+			name="electronicJournalTranTypeRequest" />
+	</wsdl:message>
+	<wsdl:message name="getElectronicJournalSignatureRequest">
+		<wsdl:part element="tndr:electronicJournalSignatureRequest"
+			name="request" />
+	</wsdl:message>
+	<wsdl:message name="getElectronicJournalResponse">
+		<wsdl:part element="tndr:electronicJournalResponse" name="electronicJournalResponse" />
+	</wsdl:message>
+	<wsdl:message name="getElectronicJournalTenderTypeRequest">
+		<wsdl:part element="tndr:electronicJournalTenderTypeRequest"
+			name="electronicJournalTenderTypeRequest" />
+	</wsdl:message>
+	<wsdl:message name="getElectronicJournalFourPartKeys">
+		<wsdl:part element="tndr:electronicJournalFourPartKeys"
+			name="electronicJournalFourPartKeys" />
+	</wsdl:message>
+	<wsdl:message name="getElectronicJournalTranIdRequest">
+		<wsdl:part element="tndr:electronicJournalTranIdRequest"
+			name="electronicJournalTranIdRequest" />
+	</wsdl:message>
+	<wsdl:message name="getElectronicJournalTotalAmountRequest">
+		<wsdl:part element="tndr:electronicJournalTotalAmountRequest"
+			name="electronicJournalTotalAmountRequest" />
+	</wsdl:message>
+	<wsdl:message name="getElectronicJournalFourPartKey">
+		<wsdl:part element="tndr:electronicJournalFourPartKey" name="electronicJournalFourPartKey" />
+	</wsdl:message>
+	<wsdl:portType name="ElectronicJournalServices">
+		<wsdl:operation name="GetEJKeyInfoByTranId">
+			<wsdl:input message="tndr:getElectronicJournalTranIdRequest"
+				name="getElectronicJournalTranIdRequest" />
+			<wsdl:output message="tndr:getElectronicJournalFourPartKeys"
+				name="getElectronicJournalFourPartKeysTranId" />
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByTranType">
+			<wsdl:input message="tndr:getElectronicJournalTranTypeRequest"
+				name="getElectronicJournalTranTypeRequest" />
+			<wsdl:output message="tndr:getElectronicJournalFourPartKeys"
+				name="getElectronicJournalFourPartKeysTranType" />
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByCreditCard">
+			<wsdl:input message="tndr:getElectronicJournalCreditCardRequest"
+				name="getElectronicJournalCreditCardRequest" />
+			<wsdl:output message="tndr:getElectronicJournalFourPartKeys"
+				name="getElectronicJournalFourPartKeysCreditCard" />
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByOperatorNum">
+			<wsdl:input message="tndr:getElectronicJournalOperatorNumRequest"
+				name="getElectronicJournalOperatorNumRequest" />
+			<wsdl:output message="tndr:getElectronicJournalFourPartKeys"
+				name="getElectronicJournalFourPartKeysOperatorNum" />
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByTenderType">
+			<wsdl:input message="tndr:getElectronicJournalTenderTypeRequest"
+				name="getElectronicJournalTenderTypeRequest" />
+			<wsdl:output message="tndr:getElectronicJournalFourPartKeys"
+				name="getElectronicJournalFourPartKeysTenderType" />
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByRewardZone">
+			<wsdl:input message="tndr:getElectronicJournalRewardZoneRequest"
+				name="getElectronicJournalRewardZoneRequest" />
+			<wsdl:output message="tndr:getElectronicJournalFourPartKeys"
+				name="getElectronicJournalFourPartKeysRewardZone" />
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByPSP">
+			<wsdl:input message="tndr:getElectronicJournalPSPRequest"
+				name="getElectronicJournalPSPRequest" />
+			<wsdl:output message="tndr:getElectronicJournalFourPartKeys"
+				name="getElectronicJournalFourPartKeysPSP" />
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByVoucher">
+			<wsdl:input message="tndr:getElectronicJournalVoucherRequest"
+				name="getElectronicJournalVoucherRequest" />
+			<wsdl:output message="tndr:getElectronicJournalFourPartKeys"
+				name="getElectronicJournalFourPartKeysVoucher" />
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByGiftCard">
+			<wsdl:input message="tndr:getElectronicJournalGiftCardRequest"
+				name="getElectronicJournalGiftCardRequest" />
+			<wsdl:output message="tndr:getElectronicJournalFourPartKeys"
+				name="getElectronicJournalFourPartKeysGiftCard" />
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByDate">
+			<wsdl:input message="tndr:getElectronicJournalDateRequest"
+				name="getElectronicJournalDateRequest" />
+			<wsdl:output message="tndr:getElectronicJournalFourPartKeys"
+				name="getElectronicJournalFourPartKeysDate" />
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByTime">
+			<wsdl:input message="tndr:getElectronicJournalTimeRequest"
+				name="getElectronicJournalTimeRequest" />
+			<wsdl:output message="tndr:getElectronicJournalFourPartKeys"
+				name="getElectronicJournalFourPartKeysTime" />
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByTotalAmount">
+			<wsdl:input message="tndr:getElectronicJournalTotalAmountRequest"
+				name="getElectronicJournalTotalAmountRequest" />
+			<wsdl:output message="tndr:getElectronicJournalFourPartKeys"
+				name="getElectronicJournalFourPartKeysTotalAmount" />
+		</wsdl:operation>
+		<wsdl:operation name="SearchElectronicJournalKeyInfo">
+			<wsdl:input message="tndr:getElectronicJournalSearchRequest"
+				name="getElectronicJournalSearchRequest" />
+			<wsdl:output message="tndr:getElectronicJournalFourPartKeys"
+				name="getElectronicJournalFourPartKeysEJ" />
+		</wsdl:operation>
+		<wsdl:operation name="GetElectronicJournal">
+			<wsdl:input message="tndr:getElectronicJournalDataRequest"
+				name="getElectronicJournalDataRequest" />
+			<wsdl:output message="tndr:getElectronicJournalResponse"
+				name="getElectronicJournalResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByBasicSearch">
+			<wsdl:input message="tndr:getElectronicJournalKeyInfoByBasicSearchRequest" />
+			<wsdl:output message="tndr:getElectronicJournalFourPartKeys" />
+		</wsdl:operation>
+		<wsdl:operation name="GetEJournalSignature">
+			<wsdl:input message="tndr:getElectronicJournalSignatureRequest" />
+			<wsdl:output message="tndr:getElectronicJournalSignatureResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ElectronicJournalServicesSoapBinding"
+		type="tndr:ElectronicJournalServices">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetEJKeyInfoByTranId">
+			<soap:operation soapAction="http://bestbuy.com/EJournal/GetEJKeyInfoByTranId"
+				style="document" />
+			<wsdl:input name="getElectronicJournalTranIdRequest">
+				<soap:body parts="electronicJournalTranIdRequest" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getElectronicJournalFourPartKeysTranId">
+				<soap:body parts="electronicJournalFourPartKeys" use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByTranType">
+			<soap:operation soapAction="http://bestbuy.com/EJournal/GetEJKeyInfoByTranType"
+				style="document" />
+			<wsdl:input name="getElectronicJournalTranTypeRequest">
+				<soap:body parts="electronicJournalTranTypeRequest" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getElectronicJournalFourPartKeysTranType">
+				<soap:body parts="electronicJournalFourPartKeys" use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByCreditCard">
+			<soap:operation
+				soapAction="http://bestbuy.com/EJournal/GetEJKeyInfoByCreditCard"
+				style="document" />
+			<wsdl:input name="getElectronicJournalCreditCardRequest">
+				<soap:body parts="electronicJournalCreditCardRequest" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getElectronicJournalFourPartKeysCreditCard">
+				<soap:body parts="electronicJournalFourPartKeys" use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByOperatorNum">
+			<soap:operation
+				soapAction="http://bestbuy.com/EJournal/GetEJKeyInfoByOperatorNum"
+				style="document" />
+			<wsdl:input name="getElectronicJournalOperatorNumRequest">
+				<soap:body parts="electronicJournalOperatorNumRequest"
+					use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getElectronicJournalFourPartKeysOperatorNum">
+				<soap:body parts="electronicJournalFourPartKeys" use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByTenderType">
+			<soap:operation
+				soapAction="http://bestbuy.com/EJournal/GetEJKeyInfoByTenderType"
+				style="document" />
+			<wsdl:input name="getElectronicJournalTenderTypeRequest">
+				<soap:body parts="electronicJournalTenderTypeRequest" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getElectronicJournalFourPartKeysTenderType">
+				<soap:body parts="electronicJournalFourPartKeys" use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByRewardZone">
+			<soap:operation
+				soapAction="http://bestbuy.com/EJournal/GetEJKeyInfoByRewardZone"
+				style="document" />
+			<wsdl:input name="getElectronicJournalRewardZoneRequest">
+				<soap:body parts="electronicJournalRewardZoneRequest" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getElectronicJournalFourPartKeysRewardZone">
+				<soap:body parts="electronicJournalFourPartKeys" use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByPSP">
+			<soap:operation soapAction="http://bestbuy.com/EJournal/GetEJKeyInfoByPSP"
+				style="document" />
+			<wsdl:input name="getElectronicJournalPSPRequest">
+				<soap:body parts="electronicJournalPSPRequest" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getElectronicJournalFourPartKeysPSP">
+				<soap:body parts="electronicJournalFourPartKeys" use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByVoucher">
+			<soap:operation soapAction="http://bestbuy.com/EJournal/GetEJKeyInfoByVoucher"
+				style="document" />
+			<wsdl:input name="getElectronicJournalVoucherRequest">
+				<soap:body parts="electronicJournalVoucherRequest" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getElectronicJournalFourPartKeysVoucher">
+				<soap:body parts="electronicJournalFourPartKeys" use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByGiftCard">
+			<soap:operation soapAction="http://bestbuy.com/EJournal/GetEJKeyInfoByGiftCard"
+				style="document" />
+			<wsdl:input name="getElectronicJournalGiftCardRequest">
+				<soap:body parts="electronicJournalGiftCardRequest" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getElectronicJournalFourPartKeysGiftCard">
+				<soap:body parts="electronicJournalFourPartKeys" use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByDate">
+			<soap:operation soapAction="http://bestbuy.com/EJournal/GetEJKeyInfoByDate"
+				style="document" />
+			<wsdl:input name="getElectronicJournalDateRequest">
+				<soap:body parts="electronicJournalDateRequest" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getElectronicJournalFourPartKeysDate">
+				<soap:body parts="electronicJournalFourPartKeys" use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByTime">
+			<soap:operation soapAction="http://bestbuy.com/EJournal/GetEJKeyInfoByTime"
+				style="document" />
+			<wsdl:input name="getElectronicJournalTimeRequest">
+				<soap:body parts="electronicJournalTimeRequest" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getElectronicJournalFourPartKeysTime">
+				<soap:body parts="electronicJournalFourPartKeys" use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByTotalAmount">
+			<soap:operation
+				soapAction="http://bestbuy.com/EJournal/GetEJKeyInfoByTotalAmount"
+				style="document" />
+			<wsdl:input name="getElectronicJournalTotalAmountRequest">
+				<soap:body parts="electronicJournalTotalAmountRequest"
+					use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getElectronicJournalFourPartKeysTotalAmount">
+				<soap:body parts="electronicJournalFourPartKeys" use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetElectronicJournal">
+			<soap:operation soapAction="http://bestbuy.com/EJournal/GetElectronicJournal"
+				style="document" />
+			<wsdl:input name="getElectronicJournalDataRequest">
+				<soap:body parts="electronicJournalDataRequest" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getElectronicJournalResponse">
+				<soap:body parts="electronicJournalResponse" use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SearchElectronicJournalKeyInfo">
+			<soap:operation
+				soapAction="http://bestbuy.com/EJournal/SearchElectronicJournalKeyInfo"
+				style="document" />
+			<wsdl:input name="getElectronicJournalSearchRequest">
+				<soap:body parts="electronicJournalSearchRequest" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getElectronicJournalFourPartKeysEJ">
+				<soap:body parts="electronicJournalFourPartKeys" use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetEJKeyInfoByBasicSearch">
+			<soap:operation
+				soapAction="http://bestbuy.com/EJournal/GetEJKeyInfoByBasicSearch"
+				style="document" />
+			<wsdl:input>
+				<soap:body parts="ElectronicJournalBasicSearchRequest"
+					use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="electronicJournalFourPartKeys" use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetEJournalSignature">
+			<soap:operation soapAction="http://bestbuy.com/EJournal/GetEJournalSignature"
+				style="document" />
+			<wsdl:input>
+				<soap:body parts="request" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="response" use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="EJournal">
+		<wsdl:port binding="tndr:ElectronicJournalServicesSoapBinding"
+			name="ElectronicJournalServicesSoap">
+			<soap:address
+				location="https://genservices.na.bestbuy.com/SalesServices/PCXEJournalV4ServiceSoap" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

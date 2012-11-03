@@ -1,0 +1,314 @@
+
+<ns0:SearchForManifestsResponse
+	xmlns:jms1="http://www.tibco.com/namespaces/tnt/plugins/jms" xmlns:ns0="http://bestbuy.com/bbym/logistics/manifest/service/v1">
+	<ns1:Status xmlns:ns1="http://www.tsh.bestbuy.com/common/v1">
+		<ns1:Code>TSH-SRV-000000</ns1:Code>
+		<ns1:Description>SearchManifests executed successfully
+		</ns1:Description>
+	</ns1:Status>
+	<ns0:Manifests>
+		<ns1:Manifest xmlns:ns1="http://bestbuy.com/bbym/logistics/manifest/fields/v1">
+			<ns1:ManifestID>189</ns1:ManifestID>
+			<ns1:Status>OPEN</ns1:Status>
+			<ns1:DeviceCount>1</ns1:DeviceCount>
+			<ns1:DayCreated>Thursday</ns1:DayCreated>
+			<ns1:DateTimeCreated>2012-06-28T18:22:02-05:00</ns1:DateTimeCreated>
+			<ns1:CreatedByUser>ISEADMIN</ns1:CreatedByUser>
+			<ns1:ManifestLine>
+				<ns1:ManifestID>189</ns1:ManifestID>
+				<ns1:ManifestLineID>599</ns1:ManifestLineID>
+				<ns1:ItemTag>6035941</ns1:ItemTag>
+				<ns1:DeviceStatus>Ready For Shipping</ns1:DeviceStatus>
+				<ns1:IMEI_ESN>UKkAn7Vw8G89leG</ns1:IMEI_ESN>
+				<ns1:Make>T-Mobile</ns1:Make>
+				<ns1:Model>T-MOBILE HTC HD7</ns1:Model>
+				<ns1:ReturnType>BuyerRemorse</ns1:ReturnType>
+				<ns1:ProductDescription>T-Mobile T-MOBILE HTC HD7
+				</ns1:ProductDescription>
+			</ns1:ManifestLine>
+		</ns1:Manifest>
+		<ns1:Manifest xmlns:ns1="http://bestbuy.com/bbym/logistics/manifest/fields/v1">
+			<ns1:ManifestID>183</ns1:ManifestID>
+			<ns1:Status>InTransit</ns1:Status>
+			<ns1:DeviceCount>1</ns1:DeviceCount>
+			<ns1:TrackingIdentifier>1Z6R0A639096545584</ns1:TrackingIdentifier>
+			<ns1:DayCreated>Thursday</ns1:DayCreated>
+			<ns1:DateTimeCreated>2012-06-28T15:17:04-05:00</ns1:DateTimeCreated>
+			<ns1:ShipScheduledDateTime>2012-06-28T12:44:38-05:00
+			</ns1:ShipScheduledDateTime>
+			<ns1:CreatedByUser>TSH</ns1:CreatedByUser>
+			<ns1:ManifestLine>
+				<ns1:ManifestID>183</ns1:ManifestID>
+				<ns1:ManifestLineID>592</ns1:ManifestLineID>
+				<ns1:ItemTag>7679593</ns1:ItemTag>
+				<ns1:DeviceStatus>Ready For Shipping</ns1:DeviceStatus>
+				<ns1:IMEI_ESN>?</ns1:IMEI_ESN>
+				<ns1:Make>Sony Ericsson</ns1:Make>
+				<ns1:Model>SONY ERICCSON EQUINO</ns1:Model>
+				<ns1:ReturnType>Tradein</ns1:ReturnType>
+				<ns1:ProductDescription>Sony Ericsson SONY ERICCSON EQUINO
+				</ns1:ProductDescription>
+			</ns1:ManifestLine>
+		</ns1:Manifest>
+		<ns1:Manifest xmlns:ns1="http://bestbuy.com/bbym/logistics/manifest/fields/v1">
+			<ns1:ManifestID>188</ns1:ManifestID>
+			<ns1:Status>InTransit</ns1:Status>
+			<ns1:DeviceCount>1</ns1:DeviceCount>
+			<ns1:TrackingIdentifier>1Z6R0A639092801090</ns1:TrackingIdentifier>
+			<ns1:DayCreated>Thursday</ns1:DayCreated>
+			<ns1:DateTimeCreated>2012-06-28T14:22:28-05:00</ns1:DateTimeCreated>
+			<ns1:ShipScheduledDateTime>2012-06-28T14:22:35-05:00
+			</ns1:ShipScheduledDateTime>
+			<ns1:CreatedByUser>ISEADMIN</ns1:CreatedByUser>
+			<ns1:ManifestLine>
+				<ns1:ManifestID>188</ns1:ManifestID>
+				<ns1:ManifestLineID>597</ns1:ManifestLineID>
+				<ns1:ItemTag>7562839</ns1:ItemTag>
+				<ns1:DeviceStatus>UPS-Waiting Pick Up</ns1:DeviceStatus>
+				<ns1:IMEI_ESN>LcZVJzzjxZHBKPZ</ns1:IMEI_ESN>
+				<ns1:Make>Samsung</ns1:Make>
+				<ns1:Model>VEZ Stratosphere</ns1:Model>
+				<ns1:ReturnType>RapidExchange</ns1:ReturnType>
+				<ns1:ProductDescription>Samsung VEZ Stratosphere
+				</ns1:ProductDescription>
+			</ns1:ManifestLine>
+		</ns1:Manifest>
+		<ns1:Manifest xmlns:ns1="http://bestbuy.com/bbym/logistics/manifest/fields/v1">
+			<ns1:ManifestID>187</ns1:ManifestID>
+			<ns1:Status>InTransit</ns1:Status>
+			<ns1:DeviceCount>1</ns1:DeviceCount>
+			<ns1:TrackingIdentifier>1Z6R0A639096039818</ns1:TrackingIdentifier>
+			<ns1:DayCreated>Thursday</ns1:DayCreated>
+			<ns1:DateTimeCreated>2012-06-28T14:04:48-05:00</ns1:DateTimeCreated>
+			<ns1:ShipScheduledDateTime>2012-06-28T14:07:24-05:00
+			</ns1:ShipScheduledDateTime>
+			<ns1:CreatedByUser>ISEADMIN</ns1:CreatedByUser>
+			<ns1:ManifestLine>
+				<ns1:ManifestID>187</ns1:ManifestID>
+				<ns1:ManifestLineID>596</ns1:ManifestLineID>
+				<ns1:ItemTag>8582433</ns1:ItemTag>
+				<ns1:DeviceStatus>UPS-Waiting Pick Up</ns1:DeviceStatus>
+				<ns1:IMEI_ESN>Cw8x9tkyISbafe1</ns1:IMEI_ESN>
+				<ns1:Make>Sony Ericsson</ns1:Make>
+				<ns1:Model>SONY ERICCSON EQUINO</ns1:Model>
+				<ns1:ReturnType>RapidExchange</ns1:ReturnType>
+				<ns1:ProductDescription>Sony Ericsson SONY ERICCSON EQUINO
+				</ns1:ProductDescription>
+			</ns1:ManifestLine>
+		</ns1:Manifest>
+		<ns1:Manifest xmlns:ns1="http://bestbuy.com/bbym/logistics/manifest/fields/v1">
+			<ns1:ManifestID>186</ns1:ManifestID>
+			<ns1:Status>InTransit</ns1:Status>
+			<ns1:DeviceCount>1</ns1:DeviceCount>
+			<ns1:TrackingIdentifier>1Z6R0A639090732285</ns1:TrackingIdentifier>
+			<ns1:DayCreated>Thursday</ns1:DayCreated>
+			<ns1:DateTimeCreated>2012-06-28T13:55:56-05:00</ns1:DateTimeCreated>
+			<ns1:ShipScheduledDateTime>2012-06-28T13:56:04-05:00
+			</ns1:ShipScheduledDateTime>
+			<ns1:CreatedByUser>ISEADMIN</ns1:CreatedByUser>
+			<ns1:ManifestLine>
+				<ns1:ManifestID>186</ns1:ManifestID>
+				<ns1:ManifestLineID>595</ns1:ManifestLineID>
+				<ns1:ItemTag>8699484</ns1:ItemTag>
+				<ns1:DeviceStatus>UPS-Waiting Pick Up</ns1:DeviceStatus>
+				<ns1:IMEI_ESN>glFpZ78Gyydec3k</ns1:IMEI_ESN>
+				<ns1:Make>Apple</ns1:Make>
+				<ns1:Model>APPLE BLACK 8GB IPHO</ns1:Model>
+				<ns1:ReturnType>Tradein</ns1:ReturnType>
+				<ns1:ProductDescription>Apple APPLE BLACK 8GB IPHO
+				</ns1:ProductDescription>
+			</ns1:ManifestLine>
+		</ns1:Manifest>
+		<ns1:Manifest xmlns:ns1="http://bestbuy.com/bbym/logistics/manifest/fields/v1">
+			<ns1:ManifestID>185</ns1:ManifestID>
+			<ns1:Status>InTransit</ns1:Status>
+			<ns1:DeviceCount>1</ns1:DeviceCount>
+			<ns1:TrackingIdentifier>1Z6R0A639097809609</ns1:TrackingIdentifier>
+			<ns1:DayCreated>Thursday</ns1:DayCreated>
+			<ns1:DateTimeCreated>2012-06-28T13:14:03-05:00</ns1:DateTimeCreated>
+			<ns1:ShipScheduledDateTime>2012-06-28T13:14:16-05:00
+			</ns1:ShipScheduledDateTime>
+			<ns1:CreatedByUser>ISEADMIN</ns1:CreatedByUser>
+			<ns1:ManifestLine>
+				<ns1:ManifestID>185</ns1:ManifestID>
+				<ns1:ManifestLineID>594</ns1:ManifestLineID>
+				<ns1:ItemTag>8987754</ns1:ItemTag>
+				<ns1:DeviceStatus>UPS-Waiting Pick Up</ns1:DeviceStatus>
+				<ns1:IMEI_ESN>hbxmFFieeil653s</ns1:IMEI_ESN>
+				<ns1:Make>Sony Ericsson</ns1:Make>
+				<ns1:Model>Experia X10</ns1:Model>
+				<ns1:ReturnType>BuyerRemorse</ns1:ReturnType>
+				<ns1:ProductDescription>Sony Ericsson Experia X10
+				</ns1:ProductDescription>
+			</ns1:ManifestLine>
+		</ns1:Manifest>
+		<ns1:Manifest xmlns:ns1="http://bestbuy.com/bbym/logistics/manifest/fields/v1">
+			<ns1:ManifestID>184</ns1:ManifestID>
+			<ns1:Status>InTransit</ns1:Status>
+			<ns1:DeviceCount>1</ns1:DeviceCount>
+			<ns1:TrackingIdentifier>1Z6R0A639099026193</ns1:TrackingIdentifier>
+			<ns1:DayCreated>Thursday</ns1:DayCreated>
+			<ns1:DateTimeCreated>2012-06-28T12:57:58-05:00</ns1:DateTimeCreated>
+			<ns1:ShipScheduledDateTime>2012-06-28T13:14:16-05:00
+			</ns1:ShipScheduledDateTime>
+			<ns1:CreatedByUser>ISEADMIN</ns1:CreatedByUser>
+			<ns1:ManifestLine>
+				<ns1:ManifestID>184</ns1:ManifestID>
+				<ns1:ManifestLineID>593</ns1:ManifestLineID>
+				<ns1:ItemTag>8987754</ns1:ItemTag>
+				<ns1:DeviceStatus>UPS-Waiting Pick Up</ns1:DeviceStatus>
+				<ns1:IMEI_ESN>hbxmFFieeil653s</ns1:IMEI_ESN>
+				<ns1:Make>Sony Ericsson</ns1:Make>
+				<ns1:Model>Experia X10</ns1:Model>
+				<ns1:ReturnType>BuyerRemorse</ns1:ReturnType>
+				<ns1:ProductDescription>Sony Ericsson Experia X10
+				</ns1:ProductDescription>
+			</ns1:ManifestLine>
+		</ns1:Manifest>
+		<ns1:Manifest xmlns:ns1="http://bestbuy.com/bbym/logistics/manifest/fields/v1">
+			<ns1:ManifestID>181</ns1:ManifestID>
+			<ns1:Status>InTransit</ns1:Status>
+			<ns1:DeviceCount>1</ns1:DeviceCount>
+			<ns1:TrackingIdentifier>1Z6R0A639095961386</ns1:TrackingIdentifier>
+			<ns1:DayCreated>Wednesday</ns1:DayCreated>
+			<ns1:DateTimeCreated>2012-06-20T15:38:41-05:00</ns1:DateTimeCreated>
+			<ns1:ShipScheduledDateTime>2012-06-20T15:38:48-05:00
+			</ns1:ShipScheduledDateTime>
+			<ns1:CreatedByUser>ISEADMIN</ns1:CreatedByUser>
+			<ns1:ManifestLine>
+				<ns1:ManifestID>181</ns1:ManifestID>
+				<ns1:ManifestLineID>590</ns1:ManifestLineID>
+				<ns1:ItemTag>2092435</ns1:ItemTag>
+				<ns1:DeviceStatus>UPS-Waiting Pick Up</ns1:DeviceStatus>
+				<ns1:IMEI_ESN>erXaelpwTiHFp8N</ns1:IMEI_ESN>
+				<ns1:Make>T-Mobile</ns1:Make>
+				<ns1:Model>T-MOBILE HTC HD7</ns1:Model>
+				<ns1:ReturnType>BuyBack</ns1:ReturnType>
+				<ns1:ProductDescription>T-Mobile T-MOBILE HTC HD7
+				</ns1:ProductDescription>
+			</ns1:ManifestLine>
+		</ns1:Manifest>
+		<ns1:Manifest xmlns:ns1="http://bestbuy.com/bbym/logistics/manifest/fields/v1">
+			<ns1:ManifestID>180</ns1:ManifestID>
+			<ns1:Status>InTransit</ns1:Status>
+			<ns1:DeviceCount>1</ns1:DeviceCount>
+			<ns1:TrackingIdentifier>1Z6R0A639097495574</ns1:TrackingIdentifier>
+			<ns1:DayCreated>Wednesday</ns1:DayCreated>
+			<ns1:DateTimeCreated>2012-06-20T15:21:59-05:00</ns1:DateTimeCreated>
+			<ns1:ShipScheduledDateTime>2012-06-20T15:38:01-05:00
+			</ns1:ShipScheduledDateTime>
+			<ns1:CreatedByUser>ISEADMIN</ns1:CreatedByUser>
+			<ns1:ManifestLine>
+				<ns1:ManifestID>180</ns1:ManifestID>
+				<ns1:ManifestLineID>589</ns1:ManifestLineID>
+				<ns1:ItemTag>1995863</ns1:ItemTag>
+				<ns1:DeviceStatus>UPS-Waiting Pick Up</ns1:DeviceStatus>
+				<ns1:IMEI_ESN>FcezrbEfgZfNf9X</ns1:IMEI_ESN>
+				<ns1:Make>Sony Ericsson</ns1:Make>
+				<ns1:Model>SONY ERICCSON EQUINO</ns1:Model>
+				<ns1:ReturnType>BuyerRemorse</ns1:ReturnType>
+				<ns1:ProductDescription>Sony Ericsson SONY ERICCSON EQUINO
+				</ns1:ProductDescription>
+			</ns1:ManifestLine>
+		</ns1:Manifest>
+		<ns1:Manifest xmlns:ns1="http://bestbuy.com/bbym/logistics/manifest/fields/v1">
+			<ns1:ManifestID>179</ns1:ManifestID>
+			<ns1:Status>InTransit</ns1:Status>
+			<ns1:DeviceCount>4</ns1:DeviceCount>
+			<ns1:TrackingIdentifier>1Z6R0A639093752927</ns1:TrackingIdentifier>
+			<ns1:DayCreated>Wednesday</ns1:DayCreated>
+			<ns1:DateTimeCreated>2012-06-20T15:12:22-05:00</ns1:DateTimeCreated>
+			<ns1:ShipScheduledDateTime>2012-06-20T15:17:04-05:00
+			</ns1:ShipScheduledDateTime>
+			<ns1:CreatedByUser>ISEADMIN</ns1:CreatedByUser>
+			<ns1:ManifestLine>
+				<ns1:ManifestID>179</ns1:ManifestID>
+				<ns1:ManifestLineID>586</ns1:ManifestLineID>
+				<ns1:ItemTag>012000001086</ns1:ItemTag>
+				<ns1:DeviceStatus>UPS-Waiting Pick Up</ns1:DeviceStatus>
+				<ns1:IMEI_ESN>wUbrBreGSntlpHZ</ns1:IMEI_ESN>
+				<ns1:Make>Motorola</ns1:Make>
+				<ns1:Model>SPR MOTO RAZR</ns1:Model>
+				<ns1:ReturnType>BuyerRemorse</ns1:ReturnType>
+				<ns1:ProductDescription>Motorola SPR MOTO RAZR
+				</ns1:ProductDescription>
+			</ns1:ManifestLine>
+			<ns1:ManifestLine>
+				<ns1:ManifestID>179</ns1:ManifestID>
+				<ns1:ManifestLineID>587</ns1:ManifestLineID>
+				<ns1:ItemTag>9063644</ns1:ItemTag>
+				<ns1:DeviceStatus>UPS-Waiting Pick Up</ns1:DeviceStatus>
+				<ns1:IMEI_ESN>TMWoPpYYWyJh49D</ns1:IMEI_ESN>
+				<ns1:Make>Apple</ns1:Make>
+				<ns1:Model>APPLE BLACK 8GB IPHO</ns1:Model>
+				<ns1:ReturnType>RapidExchange</ns1:ReturnType>
+				<ns1:ProductDescription>Apple APPLE BLACK 8GB IPHO
+				</ns1:ProductDescription>
+			</ns1:ManifestLine>
+			<ns1:ManifestLine>
+				<ns1:ManifestID>179</ns1:ManifestID>
+				<ns1:ManifestLineID>585</ns1:ManifestLineID>
+				<ns1:ItemTag>9190054</ns1:ItemTag>
+				<ns1:DeviceStatus>UPS-Waiting Pick Up</ns1:DeviceStatus>
+				<ns1:IMEI_ESN>jd9Df3Bn8emIiIv</ns1:IMEI_ESN>
+				<ns1:Make>Sony Ericsson</ns1:Make>
+				<ns1:Model>SONY ERICCSON EQUINO</ns1:Model>
+				<ns1:ReturnType>BuyerRemorse</ns1:ReturnType>
+				<ns1:ProductDescription>Sony Ericsson SONY ERICCSON EQUINO
+				</ns1:ProductDescription>
+			</ns1:ManifestLine>
+			<ns1:ManifestLine>
+				<ns1:ManifestID>179</ns1:ManifestID>
+				<ns1:ManifestLineID>588</ns1:ManifestLineID>
+				<ns1:ItemTag>8395724</ns1:ItemTag>
+				<ns1:DeviceStatus>UPS-Waiting Pick Up</ns1:DeviceStatus>
+				<ns1:IMEI_ESN>CsgjhAC6kP6euYS</ns1:IMEI_ESN>
+				<ns1:Make>Samsung</ns1:Make>
+				<ns1:Model>VEZ Stratosphere</ns1:Model>
+				<ns1:ReturnType>RapidExchange</ns1:ReturnType>
+				<ns1:ProductDescription>Samsung VEZ Stratosphere
+				</ns1:ProductDescription>
+			</ns1:ManifestLine>
+		</ns1:Manifest>
+		<ns1:Manifest xmlns:ns1="http://bestbuy.com/bbym/logistics/manifest/fields/v1">
+			<ns1:ManifestID>177</ns1:ManifestID>
+			<ns1:Status>InTransit</ns1:Status>
+			<ns1:DeviceCount>2</ns1:DeviceCount>
+			<ns1:TrackingIdentifier>1Z6R0A639090668319</ns1:TrackingIdentifier>
+			<ns1:DayCreated>Wednesday</ns1:DayCreated>
+			<ns1:DateTimeCreated>2012-06-20T14:05:38-05:00</ns1:DateTimeCreated>
+			<ns1:ShipScheduledDateTime>2012-06-20T14:06:11-05:00
+			</ns1:ShipScheduledDateTime>
+			<ns1:CreatedByUser>ISEADMIN</ns1:CreatedByUser>
+			<ns1:ManifestLine>
+				<ns1:ManifestID>177</ns1:ManifestID>
+				<ns1:ManifestLineID>582</ns1:ManifestLineID>
+				<ns1:ItemTag>9873852</ns1:ItemTag>
+				<ns1:DeviceStatus>UPS-Waiting Pick Up</ns1:DeviceStatus>
+				<ns1:IMEI_ESN>zSgrBziZUYnCf1M</ns1:IMEI_ESN>
+				<ns1:Make>Sony Ericsson</ns1:Make>
+				<ns1:Model>SONY ERICCSON EQUINO</ns1:Model>
+				<ns1:ReturnType>BuyBack</ns1:ReturnType>
+				<ns1:ProductDescription>Sony Ericsson SONY ERICCSON EQUINO
+				</ns1:ProductDescription>
+			</ns1:ManifestLine>
+			<ns1:ManifestLine>
+				<ns1:ManifestID>177</ns1:ManifestID>
+				<ns1:ManifestLineID>583</ns1:ManifestLineID>
+				<ns1:ItemTag>9335811</ns1:ItemTag>
+				<ns1:DeviceStatus>UPS-Waiting Pick Up</ns1:DeviceStatus>
+				<ns1:IMEI_ESN>hPmaCeGi94InqED</ns1:IMEI_ESN>
+				<ns1:Make>APPLE</ns1:Make>
+				<ns1:Model>APPLE BLACK 8GB IPHO</ns1:Model>
+				<ns1:ReturnType>Tradein</ns1:ReturnType>
+				<ns1:ProductDescription>APPLE APPLE BLACK 8GB IPHO
+				</ns1:ProductDescription>
+			</ns1:ManifestLine>
+		</ns1:Manifest>
+	</ns0:Manifests>
+</ns0:SearchForManifestsResponse>
+
+
+
+
+

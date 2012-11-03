@@ -1,0 +1,52 @@
+
+<attributesResponse xmlns="http://opensso.idsvcs.identity.sun.com/">
+	<return xmlns="">
+		<attributes>
+			<name>telephonenumber</name>
+			<values>(612) 291-9526</values>
+		</attributes>
+		<attributes>
+			<name>bboraclelocid</name>
+			<values>900010</values>
+		</attributes>
+		<attributes>
+			<name>givenName</name>
+			<values>Panneer</values>
+		</attributes>
+		<attributes>
+			<name>manager</name>
+			<values>uid=a671772,ou=People,o=bestbuy.com</values>
+		</attributes>
+		<attributes>
+			<name>bboraclehrtype</name>
+			<values>MS</values>
+		</attributes>
+		<attributes>
+			<name>sn</name>
+			<values>Selvam</values>
+		</attributes>
+		<attributes>
+			<name>uid</name>
+			<values>a218635</values>
+		</attributes>
+		<attributes>
+			<name>groups</name>
+			<values>cn=BEAST_CAP_MONITOR,ou=Groups,o=bestbuy.com</values>
+			<values>cn=BEAST_CAP_ADMIN,ou=Groups,o=bestbuy.com</values>
+			<values>cn=BEAST_CPC_MONITOR,ou=Groups, o=bestbuy.com</values>
+			<values>cn=BEAST_PROMO_ADMIN,ou=groups,o=bestbuy.com</values>
+			<values>cn=BBYM_ISE_TEAM,ou=groups,o=bestbuy.com</values>
+			<values>cn=BBYM_ISE_ADMIN,ou=groups,o=bestbuy.com</values>
+			<values>cn=PTO_ISE_USER,ou=Groups, o=bestbuy.com</values>
+		</attributes>
+		<roles>id=cocn sales audit,ou=filteredrole,o=bbyssopldrusers,ou=services,o=bestbuy.com</roles>
+		<roles>id=couk sales audit,ou=filteredrole,o=bbyssopldrusers,ou=services,o=bestbuy.com</roles>
+		<roles>id=cotr sales audit,ou=filteredrole,o=bbyssopldrusers,ou=services,o=bestbuy.com</roles>
+		<roles>id=comx sales audit,ou=filteredrole,o=bbyssopldrusers,ou=services,o=bestbuy.com</roles>
+		<roles>id=bbym_drp_manager,ou=filteredrole,o=bestbuy.com</roles>
+		<token>
+			<id>AQIC5wM2LY4SfcwUPi42yO6ecayBmqwruDkB3VCPcb5xtTc=@AAJTMQACMDEAAlNJAAIwMw==#
+			</id>
+		</token>
+	</return>
+</attributesResponse>

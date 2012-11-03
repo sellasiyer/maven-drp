@@ -1,0 +1,69 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>Manifest Search</title>
+	<link href="css/table.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/search-nav.js"></script>
+	<script type="text/javascript" src="js/table-prep.js"></script>
+	<script type="text/javascript">
+		var wicketBehavior;
+		// Does not work in IE if this function is placed in ManifestsPanel.html
+		function selectManifestsNavFilter(filter) {
+			$('#manifestsFilter li.open').each(function(index) {
+				$(this).removeClass('open');
+			});
+			if (filter && filter == 'RECENT') {
+				$('#manifestsFilter li:eq(0)').addClass('open');
+			} else if (filter && filter == 'DATE_RANGE') {
+				$('#manifestsFilter li:eq(1)').addClass('open');
+			} else if (filter && filter == 'SERIAL_NUM') {
+				$('#manifestsFilter li:eq(2)').addClass('open');
+			} else if (filter && filter == 'ITEM_TAG_ID') {
+				$('#manifestsFilter li:eq(3)').addClass('open');
+			} else if (filter && filter == 'UPS_TRACKING_NUM') {
+				$('#manifestsFilter li:eq(4)').addClass('open');
+			}
+		}
+		// Does not work in IE if this function is placed in InventoryPanel.html
+		function selectInventoryNavFilter(filter) {
+			$('#inventoryFilter li.open').each(function(index) {
+				$(this).removeClass('open');
+			});
+			if (filter && filter == 'STATUS') {
+				$('#inventoryFilter li:eq(0)').addClass('open');
+			} else if (filter && filter == 'SERIAL_NUM') {
+				$('#inventoryFilter li:eq(1)').addClass('open');
+			} else if (filter && filter == 'ITEM_TAG_ID') {
+				$('#inventoryFilter li:eq(2)').addClass('open');
+			}
+		}
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<div class="page-header">
+			<div style="float: left;">
+				<h1>Shipping</h1>
+			</div>
+
+			<ul class="quick-actions">
+				<li><a class="button" wicket:id="printListLink"><wicket:message
+							key="shippingPage.printListLink.label" /> </a>
+				</li>
+				<li><a class="button" wicket:id="createNewManifestLink"><wicket:message
+							key="shippingPage.createNewManifestLink.label" /> </a>
+				</li>
+			</ul>
+		</div>
+
+		<div wicket:id="feedback" class="required"></div>
+
+		<div wicket:id="shippingTabPanel"></div>
+
+		<div wicket:id="resumeExistingManifestDialog"></div>
+		<div wicket:id="confirmShrinkModalPanel"></div>
+	</wicket:extend>
+</body>
+</html>

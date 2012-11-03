@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+elementFormDefault="qualified" 
+xmlns="http://bestbuy.com/bbym/beast/portal/gspcancel/write/request" 
+targetNamespace="http://bestbuy.com/bbym/beast/portal/gspcancel/write/request" 
+xmlns:common="http://bestbuy.com/bbym/ise/common">
+	<xs:import namespace="http://bestbuy.com/bbym/ise/common" schemaLocation="ISE_COMMON.XSD"/>
+
+	<xs:element name="CustomerRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:CustomerProfileType">
+					<xs:sequence>
+						<xs:element name="bbyCustomerId" minOccurs="0" type="common:AccountNumberType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:common="http://bestbuy.com/bbym/ise/common" xmlns="http://bestbuy.com/bbym/beast/portal/retexch/getmobdev/response"
+	targetNamespace="http://bestbuy.com/bbym/beast/portal/retexch/getmobdev/response"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://bestbuy.com/bbym/ise/common"
+		schemaLocation="ISE_COMMON.XSD" />
+
+	<xs:element name="GetMobileDeviceResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="transactionKey" minOccurs="0" type="xs:string" />
+				<xs:element name="entitlementBenefit" minOccurs="0" type="EntitlementBenefitType" />
+				<xs:element name="contractId" minOccurs="0" type="xs:string" />
+				<xs:element name="defectiveStatus" minOccurs="0" type="xs:boolean" />
+				<xs:element name="createdBy" minOccurs="0" type="xs:string" />
+				<xs:element name="createdDate" minOccurs="0" type="xs:dateTime" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="EntitlementBenefitType">
+		<xs:sequence>
+			<xs:element name="coverageBenefit" minOccurs="0" type="xs:string" />
+			<xs:element name="coverageBenefitPromptCode" minOccurs="0" type="xs:string" />
+			<xs:element name="coverageVehicle" minOccurs="0" type="xs:string" />
+			<xs:element name="type" minOccurs="0" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

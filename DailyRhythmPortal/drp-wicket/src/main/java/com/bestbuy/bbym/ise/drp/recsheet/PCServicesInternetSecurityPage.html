@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+
+<wicket:head>
+	<link rel="stylesheet" type="text/css" href="css/header.css" />
+	<link rel="stylesheet" type="text/css" href="css/tom-screen.css" />
+	
+<script type="text/javascript">
+
+$(document).ready(function()
+{
+	installCheckBoxHandlers();
+});
+
+function installCheckBoxHandlers() {
+	
+	$("input[type=checkbox]").each(function(index, value) {
+	    var checkbox = $(value);
+	    checkbox.bind("click", function () {
+	        var check = checkbox.attr("checked");
+	        $("input[name=" + checkbox.attr('name') + "]").prop("checked", false);
+	        checkbox.attr("checked", check);
+	    });
+	});
+}
+                                
+</script>
+
+</wicket:head>      
+
+
+<body>  
+	<wicket:extend> 
+	
+		<fieldset id="step1-pc" class="data-box">
+		<h2 class="tight"><wicket:message key="recommendationSheet.pcInternetsecurityform.stepHeader"/></h2>
+		<h2 class="subhead"><wicket:message key="recommendationSheet.pcInternetsecurityform.subhead"/></h2>
+		<div class="column width-full">
+			<div class="block width-4">   
+				<label><wicket:message key="recommendationSheet.pcInternetsecurityform.serviceLength"/></label>
+				<ul class="checkbox-buttons wide">     
+				<li wicket:id="pcInternetSecurityOptions"></li>					
+				</ul>
+			</div>
+			<br />
+			<div class="block width-full">
+				<label><wicket:message key="recommendationSheet.pcInternetsecurityform.softwarePackage"/></label>
+				<ul class="checkbox-buttons">  
+					<li wicket:id="pcSoftwarePackageOptions"></li>
+				</ul>                                 
+			</div>
+		</div>
+	</fieldset> 
+	</wicket:extend>
+	</body>
+	
+	
+	</html>
+	

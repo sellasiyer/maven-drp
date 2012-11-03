@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<link href="../drp-war/css/header.css" media="screen" rel="StyleSheet"
+		type="text/css" />
+	<link href="../drp-war/css/tom-screen.css" media="screen" rel="StyleSheet"
+		type="text/css" />
+	<script src="../drp-war/js/jQueryRotateCompressed.2.2.js"></script>
+   
+	<script type="text/javascript">
+		$('document').ready(function() {
+			$('#cert-sum').live("click",( function(e) {  
+				if ($('#cert-list-pane').height() > 0) {
+					$('#cert-list-pane').animate({
+						height : 0
+					}, 600);
+					$('#pulldownimg').rotate({
+						animateTo : 0
+					});  
+				} else {
+					$('#cert-list-pane').animate({
+						height : $('#cert-list').outerHeight()
+					}, 600);
+					$('#pulldownimg').rotate({
+						animateTo : 90
+					}); 
+				}
+			})); 
+		});
+	</script>
+</wicket:head>
+ 
+<body> 
+<wicket:panel>
+	
+	
+
+	<div id="reward-zone-subheader">
+		<h2><wicket:message key="rewardZone.memberType.member" /></h2>
+		 <img wicket:id="memberTypeImage" />   
+		<div class="clearer"></div>
+	</div>	
+	    	
+	<div id="reward-zone-calc">
+		<div class="part">
+			<h4>
+				<wicket:message key="rewardZone.availableCertificates.label" />
+			</h4>
+			<div class="amount" id="cert-sum">
+				<span wicket:id="availableCertificatesLabel" />
+				<div class="pulldown">
+					<img id="pulldownimg" src="../drp-war/images/expander_down.png" />
+				</div>
+			</div>
+			<div id="cert-list-pane">
+				<table id="cert-list">
+					<thead>
+						<tr>
+							<th>Amount</th>
+							<th>Expiration</th>							
+						</tr>
+					</thead>   
+					<tbody>
+						<tr wicket:id="certificateListView">
+							<td wicket:id="amountLabel"></td>
+							<td wicket:id="expirationLabel"></td>
+						</tr> 
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="operator">
+			<img src="../drp-war/images/plus.png" alt="plus" />
+		</div>
+		<div class="part">
+			<h4>
+				<wicket:message key="rewardZone.availablePoints.label" />
+			</h4>
+			<div class="amount" id="points-sum">
+				<span wicket:id="availablePointsLabel" />
+				<span wicket:id="pointsWorthValue" class="value" />
+			</div>
+		</div>
+		<div class="operator">
+			<img src="../drp-war/images/equals.png" alt="equals" />
+		</div>
+		<div class="part">
+			<h4>
+				<wicket:message key="rewardZone.totalAvailable.label" />
+			</h4>  
+			<div class="amount" id="total-sum">
+				<span wicket:id="totalAvailableLabel" />
+			</div>
+			<p class="note">
+				<wicket:message key="rewardZone.message.converted" />
+			</p>
+		</div>
+		<div class="clearer"></div> 
+		<p>
+			<wicket:message key="rewardZone.visit.label1" />
+			  
+			<a wicket:id="rewardZoneLink" target="_new">
+				<wicket:message key="rewardZone.visit.linkurl" />
+			</a>
+			 
+			<wicket:message key="rewardZone.visit.label2" />
+		</p>
+	</div>
+
+</wicket:panel>
+</body>
+</html>

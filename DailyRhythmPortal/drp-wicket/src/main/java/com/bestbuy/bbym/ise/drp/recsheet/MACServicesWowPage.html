@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+ "http://www.w3.org/TR/html4/loose.dtd">
+ <html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<link rel="stylesheet" type="text/css" href="css/header.css" />
+	<link rel="stylesheet" type="text/css" href="css/tom-screen.css" />
+	
+<script type="text/javascript">
+
+$(document).ready(function()
+{
+	installCheckboxHanlders(); 
+});
+
+function installCheckboxHanlders() {
+	$("input[type=checkbox]").each(function(index, value) {
+	    var checkbox = $(value);
+	    checkbox.bind("click", function () {
+	        var check = checkbox.attr("checked");
+	        $("input[name=" + checkbox.attr('name') + "]").prop("checked", false);
+	        checkbox.attr("checked", check);
+	    });
+	});
+} 
+
+                                
+</script>
+
+</wicket:head>       
+                 
+<body>
+<wicket:extend>
+	<fieldset id="working-pc" class="data-box">    
+		<h2 class="tight"><wicket:message key="recommendationSheet.macwalkoutworking.label"/></h2>
+		<h2 class="subhead"><wicket:message key="recommendationSheet.macwalkoutworking.message.label"/></h2>
+		<div class="column width-full">
+			 <div class="block width-8"> 
+				<ul class="checkbox-buttons wide"> 
+			    <li wicket:id="macWalkOutwokringCheckOptions"> </li>
+			    </ul>
+		 	</div>		 	     
+		 	<div class="block width-8">
+		 	    <img wicket:id="generatedBarcodeSku" />
+		 	</div>
+		</div>
+	</fieldset>	 
+  
+</wicket:extend>		
+</body>    
+</html>

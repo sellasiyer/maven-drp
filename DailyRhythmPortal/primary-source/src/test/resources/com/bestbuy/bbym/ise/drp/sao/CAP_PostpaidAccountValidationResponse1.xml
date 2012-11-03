@@ -1,0 +1,20 @@
+<!-- Failure response -->
+
+<cap:PostpaidAccountValidationResponse
+	xmlns:cap="http://bestbuy.com/bbym/beast/cap/response/postpaid/accountValidation">
+	<Header>
+		<destinationId>VEZ</destinationId>
+		<transactionId>ISE20120711124937387</transactionId>
+		<messageType>POSTPAID_ACCOUNT_VALIDATION_RESPONSE</messageType>
+		<timestamp>2012-07-11T12:49:37.403-05:00</timestamp>
+		<channelId>0998</channelId>
+		<carrierTransactionId />
+		<capVersion>V16-0-0_US_PRODTEST_06252012_64</capVersion>
+	</Header>
+	<resultInfo>
+		<resultType>2</resultType>
+		<resultCode>1300</resultCode>
+		<categoryCode>IRC</categoryCode>
+		<resultDetails>Carrier's response was incomplete or invalid.Please retry, if problem persists,contact the carrier to complete the activation.</resultDetails>
+	</resultInfo>
+</cap:PostpaidAccountValidationResponse>

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:header="http://bestbuy.com/bbym/beast/cap/response/header"
+	xmlns:common="http://bestbuy.com/bbym/beast/cap/common"
+	xmlns="http://bestbuy.com/bbym/beast/cap/response/postpaid/accountValidation"
+	targetNamespace="http://bestbuy.com/bbym/beast/cap/response/postpaid/accountValidation"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified">
+
+	<xs:import
+		namespace="http://bestbuy.com/bbym/beast/cap/response/header"
+		schemaLocation="CAP_RESPONSE_HEADER.XSD" />
+	<xs:import namespace="http://bestbuy.com/bbym/beast/cap/common"
+		schemaLocation="CAP_COMMON.XSD" />
+
+	<xs:complexType name="accountInfoType">
+		<xs:sequence>
+			<xs:element name="accountStatus"
+				type="common:AccountStatusType">
+				<xs:annotation>
+					<xs:documentation>
+						Enumeration list with values: ACTIVE TENTATIVE
+						CLOSED CANCELLED SUSPENDED UNKNOWN
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="accountNumber">
+				<xs:annotation>
+					<xs:documentation>
+						The customer&apos;s account number. May be
+						required in other requests.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="accountSubNumber" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The customer&apos;s account sub number. Only
+						provided by Verizon. Will be required in the
+						activation and service validation requests
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="5" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="customerQualification"
+				type="common:QualificationType" maxOccurs="1" minOccurs="0">
+			</xs:element>
+			<xs:element name="numberOfActiveLines" type="xs:integer">
+				<xs:annotation>
+					<xs:documentation>
+						Value will be returned based upon the subscriber
+						ptn status.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element default="0" minOccurs="0"
+				name="numberOfLinesAvailable" type="xs:integer">
+				<xs:annotation>
+					<xs:documentation>
+						Number of lines that can be added to the
+						account. Used by ATT
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="subscriber" type="common:SubscriberType"
+				minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						Complex type containing information about the
+						subscriber. Only present if there are active
+						lines on the account
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="billingMarket"
+				type="common:MarketInfoType" maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Complex Type for billing market information.
+						Will be required in subsequent transactions.
+						Conditionally required, see the doc for more
+						information.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="inactiveLines"
+				type="common:InactiveLinesType" maxOccurs="unbounded"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Complex type for displaying inactive lines and
+						their details.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="accountIneligibilityMessage"
+				type="xs:string" maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Element to display the account in-eligibility
+						reason. VEZ only.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="accountAdditionalInfoText"
+				type="xs:string" maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Additional information about the customer&apos;s account.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="customerInfoType">
+		<xs:sequence>
+			<xs:element name="customerFound" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>
+						Boolean. Indicates if the customer was found per
+						the request parameters.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" maxOccurs="1" minOccurs="0"
+				type="common:Name">
+
+			</xs:element>
+			<xs:element name="authorizedUsers"
+				type="common:AuthorizedUsersType" maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Complex Type to capture the name of the
+						authorized users on the account.
+
+						Used for fraud protection
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="billingAddress" type="common:AddressType"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Complex type containing the billing address for
+						the customer.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="emailAddress" type="xs:string"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The customer&apos;s email address
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="contactInfo" type="common:PhoneInfo"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Complex type containing the customer&apos;s
+						contact information
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="billLanguage"
+				type="common:BillLanguageType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The customer&apos;s current bill language
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="ssn" type="common:SsnType" />
+
+			<xs:element name="creditCardInfo"
+				type="common:CreditCardInfo" maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CLW only.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="addOnInfoType">
+	<xs:sequence>
+	<xs:choice>
+				<xs:element name="familyShareInfo" type="familyShareInfoType" maxOccurs="unbounded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>For all family line Postpaid Carrier</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="accountLevelInfo" type="accountLevelInfoType" maxOccurs="unbounded" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Only for Vez that has ALP only</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+	</xs:choice>
+	</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="familyShareInfoType">
+	<xs:sequence>
+
+			<xs:element name="secondaryPlanCode"  maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The carrier's unique identifier for a plan
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="250"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="secondaryLineMRC" type="common:CurrencyAmountInfo" maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Except Vez all POSTPAID</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+	</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="accountLevelInfoType" >
+	<xs:sequence>
+				<xs:element name="nafDescription" maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The carrier's unique identifier for a plan
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="250"/>
+					</xs:restriction>
+				</xs:simpleType>
+			  </xs:element>
+			  <xs:element name="nafCode" maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Network Access Fee code will be provided only for ALP Plans.
+					</xs:documentation>
+				</xs:annotation>
+			  </xs:element>
+			<xs:element name="nafMRC" type="common:CurrencyAmountInfo" maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MRC Value</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+	</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="Body">
+		<xs:sequence>
+			<xs:element name="customerInfo" type="customerInfoType">
+				<xs:annotation>
+					<xs:documentation>
+						Complex type containing high level information
+						about the customer
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="accountInfo" type="accountInfoType">
+				<xs:annotation>
+					<xs:documentation>
+						Complex Type containing detailed information
+						about the customer&apos;s account.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+	 		<xs:element name="addonInfo" type="addOnInfoType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Complex Type containing detailed information
+						about the secondary/account level fee for account.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PostpaidAccountValidationResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Header" type="header:Header" />
+				<xs:choice>
+					<xs:element name="Body" type="Body" />
+					<xs:element name="resultInfo"
+						type="header:errorInfoType" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

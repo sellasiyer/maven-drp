@@ -1,0 +1,129 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>Customer Dashboard</title>
+	<link href="css/table.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/search-nav.js"></script>
+	<script type="text/javascript" src="js/drop-down.js"></script>
+	<script type="text/javascript" src="js/table-prep.js"></script>
+	<script type="text/javascript">
+		var wicketBehavior;
+		var wicketBehaviorGDMP;
+		function handleTransactionSliderState(enabled) {
+			$('#transactionSection .nav').each(function(index) {
+				if (enabled) {
+					$(this).removeClass('disabled');
+				} else {
+					$(this).addClass('disabled');
+				}
+			});
+		}
+		function doPrintReceiptWicketBehavior() {
+			var idx = 'X';
+			var text = $('#transactionSection .feedback').text();
+			if (text) {
+				var n = text.indexOf("of");
+				if (n > 0) {
+					idx = text.substr(0, n);
+				}
+			}
+			var cmd = $.trim('printReceipt' + idx);
+			doWicketBehavior('wicketBehaviorGDMP("' + cmd + '")');
+		}
+		function setupGspDetailsModalPanel() {
+			var nav = $('.detail-list.sliding .nav');
+			var navMsg = $('.detail-list.sliding .nav .feedback');
+			var slideArea = $('.detail-list.sliding .slide-area');
+
+			var total = $('.detail-list.sliding .slide-area ul').length;
+			var current = 1;
+			var width = $('.detail-list.sliding').width();
+			var shift = 0;
+
+			// SET NAV NAVIGATION MESSAGE
+			navMsg.text(current + ' of ' + total);
+
+			// SET WIDTHS
+			slideArea.find('ul').width(width);
+			slideArea.width(width * total);
+
+			var slideNavClick = function() {
+				if ($(this).hasClass('dead')
+						|| $(this).closest('.nav').hasClass('disabled')) {
+					return false;
+				}
+
+				if ($(this).hasClass('next')) {
+					shift -= width;
+					current += 1;
+				} else {
+					shift += width;
+					current -= 1;
+				}
+
+				// UPDATE DEAD STATES
+				if (current < total) {
+					nav.find('a.next').removeClass('dead');
+				} else {
+					nav.find('a.next').addClass('dead');
+				}
+				if (current > 1) {
+					nav.find('a.back').removeClass('dead');
+				} else {
+					nav.find('a.back').addClass('dead');
+				}
+
+				// UPDATE NAV MESSAGE
+				navMsg.text(current + ' of ' + total);
+
+				// ANIMATE SLIDE
+				slideArea.animate({
+					marginLeft : shift + 'px'
+				}, 250);
+			};
+
+			// BINDINGS
+			nav.find('a.next').bind('click', slideNavClick);
+			nav.find('a.back').bind('click', slideNavClick);
+
+			// KILL BACK BUTTON INITIALLY
+			nav.find('a.back').addClass('dead');
+
+			if (current == total) {
+				nav.find('a.next').addClass('dead');
+			}
+		}
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<div class="page-header">
+			<h1>Customer Dashboard</h1>
+			<div wicket:id="quickActionsPanel"></div>
+		</div>
+
+		<div>
+			<div wicket:id="carrierInfoPanel"></div>
+
+			<div wicket:id="purchaseHistoryPanel"></div>
+
+			<div wicket:id="searchCustomerPanel"></div>
+		</div>
+
+		<div class="disclaimer">
+			<p>
+				<span>**</span>
+				<wicket:message key="tradeinBuybackTerms.label" />
+			</p>
+			<p>
+				<span>***</span>
+				<wicket:message key="creditCardUpdateTerms.label" />
+			</p>
+		</div>
+
+		<div wicket:id="printReceiptDialog"></div>
+	</wicket:extend>
+</body>
+</html>

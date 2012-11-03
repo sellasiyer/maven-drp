@@ -1,0 +1,27 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:extend>
+		<div class="modal-header">
+			<h1>
+				<span wicket:id="headerLabel" /> <span wicket:id="employeeName"></span>
+			</h1>
+			<a wicket:id="editLink" class="button minor"> <span
+				wicket:id="editLinkLabel" /> </a>
+		</div>
+
+		<div wicket:id="modalFeedback" class="required"></div>
+
+		<div wicket:id="modalWaiting" class="loading-spinner-big">
+			<span wicket:id="modalWaitingLabel"></span>
+		</div>
+
+		<div wicket:id="employeeSales" class="table-wrap modal-scroll-y"
+			style="margin: 0 0 15px 0;">
+			<table class="default-table" wicket:id="employeeSalesTable">
+			</table>
+		</div>
+	</wicket:extend>
+</body>
+</html>

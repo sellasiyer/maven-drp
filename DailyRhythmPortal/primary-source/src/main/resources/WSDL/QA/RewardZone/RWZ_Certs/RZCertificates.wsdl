@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions name="RZCertificateServices" targetNamespace="http://webservices.bestbuy.com/rewardzone/service" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:s0="http://webservices.bestbuy.com/rewardzone/schemas/RewardZoneSchema" xmlns:s1="http://webservices.bestbuy.com/rewardzone/service" xmlns:s2="http://schemas.xmlsoap.org/wsdl/soap/">
+  <types>
+    <xsd:schema xmlns:s0="http://webservices.bestbuy.com/rewardzone/schemas/RewardZoneSchema" xmlns:s1="http://webservices.bestbuy.com/rewardzone/service" xmlns:s2="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://webservices.bestbuy.com/rewardzone/service" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://webservices.bestbuy.com/rewardzone/schemas/RewardZoneSchema">
+      <xsd:import namespace="http://webservices.bestbuy.com/rewardzone/schemas/RewardZoneSchema" schemaLocation="../RWZ_Certs/RWZCertsInternalSchema/RewardZoneServiceSchema.xsd"/>
+    </xsd:schema>
+  </types>            
+  <message name="RZGetCertsByMemberRequest">
+    <part element="s0:RZGetCertsByMemberRequest" name="getCertsByMemberRequest"/>
+  </message>
+  <message name="RZGetCertsByMemberResponse">
+    <part element="s0:RZGetCertsByMemberResponse" name="getCertsByMemberResponse"/>
+  </message>
+  <message name="RZGetCertsByIDRequest">
+    <part element="s0:RZGetCertsByIDRequest" name="getCertsByIDRequest"/>
+  </message>
+  <message name="RZGetCertsByIDResponse">
+    <part element="s0:RZGetCertsByIDResponse" name="getCertsByIDResponse"/>
+  </message>
+  <message name="RZUpdateCertRequest">
+    <part element="s0:RZUpdateCertRequest" name="certUpdateRequest"/>
+  </message>
+  <message name="RZUpdateCertResponse">
+    <part element="s0:RZUpdateCertResponse" name="certUpdateResponse"/>
+  </message>
+  <message name="RZAdjustPointsRequest">
+    <part element="s0:RZAdjustPointsRequest" name="adjustPointsRequest"/>
+  </message>
+  <message name="RZAdjustPointsResponse">
+    <part element="s0:RZAdjustPointsResponse" name="adjustPointsResponse"/>
+  </message>
+  <portType name="RZCertService">
+    <operation name="getCertsByMember">
+      <input message="s1:RZGetCertsByMemberRequest"/>
+      <output message="s1:RZGetCertsByMemberResponse"/>
+    </operation>
+    <operation name="getCertsByID">
+      <input message="s1:RZGetCertsByIDRequest"/>
+      <output message="s1:RZGetCertsByIDResponse"/>
+    </operation>
+    <operation name="updateCertificates">
+      <input message="s1:RZUpdateCertRequest"/>
+      <output message="s1:RZUpdateCertResponse"/>
+    </operation>
+    <operation name="adjustPoints">
+      <input message="s1:RZAdjustPointsRequest"/>
+      <output message="s1:RZAdjustPointsResponse"/>
+    </operation>
+  </portType>
+  <binding name="RZCertServiceBind" type="s1:RZCertService">
+    <s2:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getCertsByMember">
+      <s2:operation soapAction="tns:getCertsByMember" style="document"/>
+      <input>
+        <s2:body use="literal"/>
+      </input>
+      <output>
+        <s2:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getCertsByID">
+      <s2:operation soapAction="tns:getCertsByID" style="document"/>
+      <input>
+        <s2:body use="literal"/>
+      </input>
+      <output>
+        <s2:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="updateCertificates">
+      <s2:operation soapAction="tns:updateCertificates" style="document"/>
+      <input>
+        <s2:body use="literal"/>
+      </input>
+      <output>
+        <s2:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="adjustPoints">
+      <s2:operation soapAction="tns:adjustPoints" style="document"/>
+      <input>
+        <s2:body use="literal"/>
+      </input>
+      <output>
+        <s2:body use="literal"/>
+      </output>  
+    </operation>
+  </binding>
+  <service name="RZCertServiceSOAP">
+    <port binding="s1:RZCertServiceBind" name="RZCertService">
+      <s2:address location="https://dng01apl.na.bestbuy.com:8443/RewardZone/RZCertServiceSOAP"/> 
+    </port>                 
+  </service> 
+</definitions>

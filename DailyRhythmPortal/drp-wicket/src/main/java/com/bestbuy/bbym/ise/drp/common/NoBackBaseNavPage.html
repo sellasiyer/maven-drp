@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<link href="css/tom-screen.css" rel="stylesheet" type="text/css" />
+	<link href="css/header.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+	<script type="text/javascript" src="js/jquery.betterTooltip.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript">
+		window.history.forward();
+		function noBack() {
+			window.history.forward();
+			var value = getCookie('BeastPortal.URL');
+			//alert("comparing=" + window.location.href);
+			//alert("with=" + value);
+			if (value && value == window.location.href) {
+				alert("Do not use browser back!", "Warning");
+			}
+			//alert("saving=" + window.location.href);
+			setCookie('BeastPortal.URL', window.location.href);
+		}
+	</script>
+</wicket:head>
+
+<body onload="noBack();">
+	<div wicket:id="headerPanel" class="header"></div>
+	<wicket:child />
+	<div id="versionsec">
+		<span wicket:id="footer.version.label"></span>
+	</div>
+	<div wicket:id="sessionTimeoutPanel"></div>
+</body>
+</html>
+

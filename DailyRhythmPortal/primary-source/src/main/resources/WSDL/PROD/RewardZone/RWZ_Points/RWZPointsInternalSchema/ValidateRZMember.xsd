@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<schema
+    targetNamespace="http://webservices.bestbuy.com/rzServices/schema/RZValidateMemberSchema"
+    xmlns="http://www.w3.org/2001/XMLSchema"
+    xmlns:pref="http://webservices.bestbuy.com/rzServices/schema/RZValidateMemberSchema" xmlns:tns="http://webservices.bestbuy.com/rzServices/schema/RZValidateMemberSchema">
+    <element name="RZValidateMemberRequest" type="tns:RZValidateMemberRequestType"/>
+    <element name="RZValidateMemberResponse" type="tns:RZValidateMemberResponseType"/>
+    <complexType name="RZValidateMemberRequestType">
+        <sequence>
+            <element name="requestMetaData" type="tns:RequestMetaType"/>
+            <element maxOccurs="1" minOccurs="1" name="memberNumber" type="string"/>
+        </sequence>
+    </complexType>
+    <complexType name="RZValidateMemberResponseType">
+        <sequence>
+            <element name="responseMetaData" type="tns:SystemStatusType"/>
+            <element minOccurs="0" name="account" type="tns:RewardZoneAccountType"/>
+        </sequence>
+    </complexType>
+    <complexType name="RequestMetaType">
+        <sequence>
+            <element maxOccurs="1" minOccurs="1" name="applicationID" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="userID" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="trainingMode" type="string"/>
+            <element maxOccurs="1" minOccurs="1" name="version" type="string"/>
+        </sequence>
+    </complexType>
+    <complexType name="SystemStatusType">
+        <sequence>
+            <element name="environment" type="string"/>
+            <element name="systemCode" type="int"/>
+            <element name="systemMessage" type="string"/>
+            <element name="rows" type="int"/>
+            <element name="requestMetaData" type="tns:RequestMetaType"/>
+        </sequence>
+    </complexType>
+    <complexType name="CustomerType">
+        <annotation>
+            <documentation/>
+        </annotation>
+        <sequence>
+            <element maxOccurs="1" minOccurs="1" name="firstName" type="string"/>
+            <element maxOccurs="1" minOccurs="1" name="lastName" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="middleInitial" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="prefix" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="suffix" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="address" type="tns:AddressType"/>
+            <element maxOccurs="1" minOccurs="0" name="primaryPhone" type="tns:PhoneType"/>
+            <element maxOccurs="1" minOccurs="0" name="secondaryPhone" type="tns:PhoneType"/>
+            <element maxOccurs="1" minOccurs="0" name="email" type="string"/>
+        </sequence>
+    </complexType>
+    <complexType name="AddressType">
+        <sequence>
+            <element maxOccurs="1" minOccurs="1" name="addressLine1" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="addressLine2" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="city" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="state" type="string"/>
+            <element maxOccurs="1" minOccurs="1" name="zip" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="zip4" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="country" type="string"/>
+        </sequence>
+        <attribute name="type" type="string" use="required"/>
+    </complexType>
+    <complexType name="PhoneType">
+        <sequence>
+            <element maxOccurs="1" minOccurs="1" name="areaCode" type="string"/>
+            <element maxOccurs="1" minOccurs="1" name="number" type="string"/>
+        </sequence>
+        <attribute name="type" type="string" use="required"/>
+    </complexType>
+    <complexType name="RewardZoneAccountType">
+        <sequence>
+            <element maxOccurs="1" minOccurs="1" name="customer" type="tns:CustomerType">
+                <annotation>
+                    <documentation/>
+                </annotation>
+            </element>
+            <!-- Added By @a140912 -->
+            <element maxOccurs="1" minOccurs="0" name="enrollmentDate" type="date"/>
+            <element maxOccurs="1" minOccurs="0" name="activationDate" type="date"/>
+            <element maxOccurs="1" minOccurs="0" name="enrollmentType" type="string"/>
+            <element maxOccurs="1" minOccurs="0"
+                name="enrollmentTransSrcId" type="long"/>
+            <element maxOccurs="1" minOccurs="0" name="enrollmentLoc" type="long"/>
+            <element maxOccurs="1" minOccurs="0" name="enrollmentSrcKey" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="suspiciousFlag" type="string"/>
+            <element maxOccurs="1" minOccurs="0"
+                name="suspiciousFlagUpdateDate" type="date"/>
+            <element maxOccurs="unbounded" minOccurs="0"
+                name="creditCard" type="tns:CreditCardType"/>
+            <element maxOccurs="1" minOccurs="0" name="status" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="cancelReasonCde" type="string"/>
+            <element maxOccurs="1" minOccurs="0"
+                name="certDeliveryMethod" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="certPreference" type="string"/>
+            <element maxOccurs="1" minOccurs="1" name="memberNumber" type="string"/>
+            <element maxOccurs="1" minOccurs="1" name="memberTier" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="tierReasonCde" type="string"/>
+            <element maxOccurs="1" minOccurs="0"
+                name="tierExpirationDate" type="date"/>
+            <element maxOccurs="1" minOccurs="0" name="mbrLastUpdDate" type="date"/>
+            <element maxOccurs="1" minOccurs="0" name="pointsInfo" type="tns:PointsInfoType"/>
+            <!-- Added by @a140912 -->
+            <element maxOccurs="unbounded" minOccurs="0" name="club" type="tns:ClubType"/>
+        </sequence>
+    </complexType>
+    <complexType name="CreditCardType">
+        <sequence>
+            <element maxOccurs="1" minOccurs="0" name="acctType" type="string"/>
+            <!-- Added by @140912 -->
+            <element maxOccurs="1" minOccurs="0" name="cardNumber" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="cardIssuer" type="string"/>
+            <element maxOccurs="1" minOccurs="0"
+                name="cardActivationDate" type="date"/>
+        </sequence>
+    </complexType>
+    <complexType name="PointsInfoType">
+        <sequence>
+            <element maxOccurs="1" minOccurs="0" name="pointsBalance" type="long"/>
+            <element maxOccurs="1" minOccurs="0" name="pendingPoints" type="long"/>
+            <element maxOccurs="1" minOccurs="0"
+                name="pointsLastUpdDate" type="date"/>
+            <element maxOccurs="1" minOccurs="0"
+                name="yeartoDateDollarSpend" type="long"/>
+            <element maxOccurs="1" minOccurs="0" name="targetSpend" type="long"/>
+        </sequence>
+    </complexType>
+    <complexType name="ClubType">
+        <sequence>
+            <element maxOccurs="1" minOccurs="0" name="code" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="currentSpend" type="long"/>
+            <element maxOccurs="1" minOccurs="0" name="targetSpend" type="long"/>
+            <element maxOccurs="1" minOccurs="0"
+                name="programToDateBonusPoints" type="long"/>
+            <element maxOccurs="1" minOccurs="0" name="enrollmentDate" type="date"/>
+            <element maxOccurs="1" minOccurs="0" name="expiryDate" type="date"/>
+            <element minOccurs="0" name="platformList" type="tns:PlatformList"/>
+        </sequence>
+    </complexType>
+    <complexType name="PlatformList">
+        <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="platform" type="tns:pltfmInfo"/>
+        </sequence>
+    </complexType>
+    <complexType name="pltfmInfo">
+        <sequence>
+            <element maxOccurs="1" minOccurs="0" name="platformCode" type="string"/>
+            <element maxOccurs="1" minOccurs="0"
+                name="platformDescription" type="string"/>
+        </sequence>
+    </complexType>
+</schema>

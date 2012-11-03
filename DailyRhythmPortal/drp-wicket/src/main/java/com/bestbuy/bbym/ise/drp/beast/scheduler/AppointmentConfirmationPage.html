@@ -1,0 +1,77 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<title>BEAST</title>
+	
+	<script type="text/javascript">
+		var printFunction = function() {
+			$('#printButton').click();
+		};
+		var doneFunction = function() {
+			$('#doneButton').click();
+		};
+		hotKeysConfig = {
+			f4 : {
+				handler : printFunction,
+				buttonSelector : '#printButton'
+			},
+			f2 : {
+				handler : doneFunction,
+				buttonSelector : '#doneButton'
+			}
+		};
+		</script>
+</wicket:head>
+<body>
+	<wicket:extend>
+		<div class="wrap">
+			<!-- here to replicate beast frame -->
+			<h1>Thank You</h1>
+
+			<p>
+				<wicket:message
+					key="schedulerAppointmentConfirmationForm.success.note" />
+			</p>
+			<p class="highlight">
+				<wicket:message
+					key="schedulerAppointmentConfirmationForm.reference.note" />
+			</p>
+			<dl class="info">
+				<dt>
+					<wicket:message
+						key="schedulerAppointmentConfirmationForm.appointmentId.label" />
+				</dt>
+				<dd>
+					<span wicket:id="appointmentIdLabel"></span>
+				</dd>
+				<dt>
+					<wicket:message
+						key="schedulerAppointmentConfirmationForm.order.label" />
+				</dt>
+				<dd>
+					<span wicket:id="orderNoLabel"></span>
+				</dd>
+				<dt>
+					<wicket:message key="schedulerAppointmentDetailsForm.date.label" />
+				</dt>
+				<dd>
+					<span wicket:id="dateLabel"></span>
+				</dd>
+				<dt>
+					<wicket:message key="schedulerAppointmentDetailsForm.time.label" />
+				</dt>
+				<dd>
+					<span wicket:id="timeLabel"></span>
+				</dd>
+				<dt>
+					<wicket:message key="schedulerAppointmentDetailsForm.reason.label" />
+				</dt>
+				<dd>
+					<span wicket:id="reasonLabel"></span>
+				</dd>
+			</dl>
+
+		</div>
+	</wicket:extend>
+</body>
+</html>

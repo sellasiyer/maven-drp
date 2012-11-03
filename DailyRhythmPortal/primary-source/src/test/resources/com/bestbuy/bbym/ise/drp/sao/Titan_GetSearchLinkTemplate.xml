@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CatalogSearchFormResource xmlns:ns2="http://www.w3.org/2005/Atom">
+    <ns2:title>Product Type Search</ns2:title>
+    <ns2:link title="Self" rel="self" href="http://hydra-pt:8080/store-271/catalog/search"/>
+    <ns2:link title="Search" rel="http://hydra-pt:8080/rels/results" href="http://hydra-pt:8080/store-271/catalog/search-results"/>
+    <ns2:link title="Return to Home Page" rel="http://hydra-pt:8080/rels/home" href="http://hydra-pt:8080/store-271"/>
+    <ns2:link title="Overview" rel="http://hydra-pt:8080/rels/help" href="http://hydra-pt:8080/store-271/help"/>
+    <ns2:link title="FAQs" rel="http://hydra-pt:8080/rels/help" href="http://hydra-pt:8080/store-271/help/faq"/>
+    <ns2:link title="About" rel="http://hydra-pt:8080/rels/help" href="http://hydra-pt:8080/store-271/help/about"/>
+    <ns2:link title="Biometric Device Validation" rel="http://hydra-pt:8080/rels/help" href="http://hydra-pt:8080/store-271/devices"/>
+    <ns2:link title="Search Carts" rel="http://hydra-pt:8080/rels/cart-search" href="http://hydra-pt:8080/store-271/carts/search/form"/>
+    <ns2:link title="Provide Feedback" rel="http://hydra-pt:8080/rels/feedback" href="http://hydra-pt:8080/store-271/feedback/new"/>
+    <ns2:link title="Start a New Buy Back" rel="external-buyback" href="https://buyback-pl.bestbuytradein.com/bbPlanInfo.cfm?redirect=false"/>
+    <ns2:link title="Open Trade In Administration" rel="external-admin" href="https://buyback-pl.bestbuytradein.com/admin.cfm?redirect=false"/>
+    <ns2:link title="Open Shipping Center" rel="external-shipping-center" href="https://buyback-pl.bestbuytradein.com/manifest.cfm?redirect=false"/>
+    <ns2:link title="metadata" rel="http://hydra-pt:8080/rels/metadata" href="http://hydra-pt:8080/metadata/CatalogSearchFormResource"/>
+    <StoreId>271</StoreId>
+    <CartId xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+    <Page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+    <PageSize xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+    <LinkTemplate title="Results" rel="http://hydra-pt:8080/rels/results" UriTemplate="http://hydra-pt:8080/store-271/catalog/search-results?Q={Q}&amp;Category={Category*}&amp;Page={Page}&amp;PageSize={PageSize}"/>
+    <Q>
+        <ns2:link title="Product Name Lookup" rel="http://hydra-pt:8080/rels/lookup" href="http://hydra-pt:8080/store-271/catalog/lookup"/>
+    </Q>
+</CatalogSearchFormResource>

@@ -1,0 +1,1146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://opensso.idsvcs.identity.sun.com/" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://opensso.idsvcs.identity.sun.com/" xmlns:intf="http://opensso.idsvcs.identity.sun.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema targetNamespace="http://opensso.idsvcs.identity.sun.com/" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="log">
+    <complexType>
+     <sequence>
+      <element name="app" type="impl:token"/>
+      <element name="subject" type="impl:token"/>
+      <element name="logName" type="xsd:string"/>
+      <element name="message" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="token">
+    <sequence>
+     <element maxOccurs="1" minOccurs="0" name="id" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="logResponse">
+    <complexType/>
+   </element>
+   <complexType name="GeneralFailure">
+    <sequence>
+     <element maxOccurs="1" minOccurs="0" name="message" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="GeneralFailure" type="impl:GeneralFailure"/>
+   <complexType name="TokenExpired">
+    <sequence>
+     <element maxOccurs="1" minOccurs="0" name="message" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="TokenExpired" type="impl:TokenExpired"/>
+   <complexType name="AccessDenied">
+    <sequence>
+     <element maxOccurs="1" minOccurs="0" name="message" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="AccessDenied" type="impl:AccessDenied"/>
+   <element name="attributes">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="attributeNames" type="xsd:string"/>
+      <element name="subject" type="impl:token"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="attributesResponse">
+    <complexType>
+     <sequence>
+      <element name="return" type="impl:userDetails"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="attribute">
+    <sequence>
+     <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="values" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="userDetails">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="attributes" nillable="true" type="impl:attribute"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="roles" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="token" type="impl:token"/>
+    </sequence>
+   </complexType>
+   <element name="authenticate">
+    <complexType>
+     <sequence>
+      <element name="username" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+      <element name="uri" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="authenticateResponse">
+    <complexType>
+     <sequence>
+      <element name="return" type="impl:token"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="NeedMoreCredentials">
+    <sequence>
+     <element maxOccurs="1" minOccurs="0" name="message" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="NeedMoreCredentials" type="impl:NeedMoreCredentials"/>
+   <complexType name="UserNotFound">
+    <sequence>
+     <element maxOccurs="1" minOccurs="0" name="message" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="UserNotFound" type="impl:UserNotFound"/>
+   <complexType name="InvalidCredentials">
+    <sequence>
+     <element maxOccurs="1" minOccurs="0" name="message" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="InvalidCredentials" type="impl:InvalidCredentials"/>
+   <complexType name="InvalidPassword">
+    <sequence>
+     <element maxOccurs="1" minOccurs="0" name="message" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="InvalidPassword" type="impl:InvalidPassword"/>
+   <element name="logout">
+    <complexType>
+     <sequence>
+      <element name="subject" type="impl:token"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="logoutResponse">
+    <complexType/>
+   </element>
+   <element name="authorize">
+    <complexType>
+     <sequence>
+      <element name="uri" type="xsd:string"/>
+      <element name="action" type="xsd:string"/>
+      <element name="subject" type="impl:token"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="authorizeResponse">
+    <complexType>
+     <sequence>
+      <element name="return" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="isTokenValid">
+    <complexType>
+     <sequence>
+      <element name="token" type="impl:token"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="isTokenValidResponse">
+    <complexType>
+     <sequence>
+      <element name="return" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="InvalidToken">
+    <sequence>
+     <element maxOccurs="1" minOccurs="0" name="message" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="InvalidToken" type="impl:InvalidToken"/>
+   <element name="getCookieNameForToken">
+    <complexType/>
+   </element>
+   <element name="getCookieNameForTokenResponse">
+    <complexType>
+     <sequence>
+      <element name="return" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCookieNamesToForward">
+    <complexType/>
+   </element>
+   <element name="getCookieNamesToForwardResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="return" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="search">
+    <complexType>
+     <sequence>
+      <element name="filter" type="xsd:string"/>
+      <element maxOccurs="unbounded" name="attributes" type="impl:attribute"/>
+      <element name="admin" type="impl:token"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="return" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="create">
+    <complexType>
+     <sequence>
+      <element name="identity" type="impl:identityDetails"/>
+      <element name="admin" type="impl:token"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="identityDetails">
+    <sequence>
+     <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="type" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="realm" type="xsd:string"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="roles" nillable="true" type="xsd:string"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="groups" nillable="true" type="xsd:string"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="members" nillable="true" type="xsd:string"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="attributes" nillable="true" type="impl:attribute"/>
+    </sequence>
+   </complexType>
+   <element name="createResponse">
+    <complexType/>
+   </element>
+   <complexType name="DuplicateObject">
+    <sequence>
+     <element maxOccurs="1" minOccurs="0" name="message" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="DuplicateObject" type="impl:DuplicateObject"/>
+   <element name="read">
+    <complexType>
+     <sequence>
+      <element name="name" type="xsd:string"/>
+      <element maxOccurs="unbounded" name="attributes" type="impl:attribute"/>
+      <element name="admin" type="impl:token"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="readResponse">
+    <complexType>
+     <sequence>
+      <element name="return" type="impl:identityDetails"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ObjectNotFound">
+    <sequence>
+     <element maxOccurs="1" minOccurs="0" name="message" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="ObjectNotFound" type="impl:ObjectNotFound"/>
+   <element name="update">
+    <complexType>
+     <sequence>
+      <element name="identity" type="impl:identityDetails"/>
+      <element name="admin" type="impl:token"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateResponse">
+    <complexType/>
+   </element>
+   <element name="delete">
+    <complexType>
+     <sequence>
+      <element name="identity" type="impl:identityDetails"/>
+      <element name="admin" type="impl:token"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteResponse">
+    <complexType/>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getCookieNamesToForwardRequest">
+
+      <wsdl:part element="intf:getCookieNamesToForward" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteResponse">
+
+      <wsdl:part element="intf:deleteResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="authorizeResponse">
+
+      <wsdl:part element="intf:authorizeResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCookieNameForTokenRequest">
+
+      <wsdl:part element="intf:getCookieNameForToken" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCookieNamesToForwardResponse">
+
+      <wsdl:part element="intf:getCookieNamesToForwardResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="authenticateResponse">
+
+      <wsdl:part element="intf:authenticateResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="InvalidCredentials">
+
+      <wsdl:part element="intf:InvalidCredentials" name="InvalidCredentials"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="AccessDenied">
+
+      <wsdl:part element="intf:AccessDenied" name="AccessDenied"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="readRequest">
+
+      <wsdl:part element="intf:read" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="DuplicateObject">
+
+      <wsdl:part element="intf:DuplicateObject" name="DuplicateObject"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchResponse">
+
+      <wsdl:part element="intf:searchResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="attributesRequest">
+
+      <wsdl:part element="intf:attributes" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchRequest">
+
+      <wsdl:part element="intf:search" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="isTokenValidResponse">
+
+      <wsdl:part element="intf:isTokenValidResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="authorizeRequest">
+
+      <wsdl:part element="intf:authorize" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="logRequest">
+
+      <wsdl:part element="intf:log" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="logoutRequest">
+
+      <wsdl:part element="intf:logout" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="InvalidPassword">
+
+      <wsdl:part element="intf:InvalidPassword" name="InvalidPassword"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateResponse">
+
+      <wsdl:part element="intf:updateResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCookieNameForTokenResponse">
+
+      <wsdl:part element="intf:getCookieNameForTokenResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="logoutResponse">
+
+      <wsdl:part element="intf:logoutResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="InvalidToken">
+
+      <wsdl:part element="intf:InvalidToken" name="InvalidToken"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="createResponse">
+
+      <wsdl:part element="intf:createResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="authenticateRequest">
+
+      <wsdl:part element="intf:authenticate" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="attributesResponse">
+
+      <wsdl:part element="intf:attributesResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="GeneralFailure">
+
+      <wsdl:part element="intf:GeneralFailure" name="GeneralFailure"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateRequest">
+
+      <wsdl:part element="intf:update" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="readResponse">
+
+      <wsdl:part element="intf:readResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="createRequest">
+
+      <wsdl:part element="intf:create" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="UserNotFound">
+
+      <wsdl:part element="intf:UserNotFound" name="UserNotFound"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="logResponse">
+
+      <wsdl:part element="intf:logResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ObjectNotFound">
+
+      <wsdl:part element="intf:ObjectNotFound" name="ObjectNotFound"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteRequest">
+
+      <wsdl:part element="intf:delete" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="NeedMoreCredentials">
+
+      <wsdl:part element="intf:NeedMoreCredentials" name="NeedMoreCredentials"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="TokenExpired">
+
+      <wsdl:part element="intf:TokenExpired" name="TokenExpired"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="isTokenValidRequest">
+
+      <wsdl:part element="intf:isTokenValid" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="IdentityServicesImpl">
+
+      <wsdl:operation name="log">
+
+         <wsdl:input message="intf:logRequest" name="logRequest"/>
+
+         <wsdl:output message="intf:logResponse" name="logResponse"/>
+
+         <wsdl:fault message="intf:AccessDenied" name="AccessDenied"/>
+
+         <wsdl:fault message="intf:TokenExpired" name="TokenExpired"/>
+
+         <wsdl:fault message="intf:GeneralFailure" name="GeneralFailure"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="attributes">
+
+         <wsdl:input message="intf:attributesRequest" name="attributesRequest"/>
+
+         <wsdl:output message="intf:attributesResponse" name="attributesResponse"/>
+
+         <wsdl:fault message="intf:TokenExpired" name="TokenExpired"/>
+
+         <wsdl:fault message="intf:GeneralFailure" name="GeneralFailure"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="authenticate">
+
+         <wsdl:input message="intf:authenticateRequest" name="authenticateRequest"/>
+
+         <wsdl:output message="intf:authenticateResponse" name="authenticateResponse"/>
+
+         <wsdl:fault message="intf:InvalidPassword" name="InvalidPassword"/>
+
+         <wsdl:fault message="intf:InvalidCredentials" name="InvalidCredentials"/>
+
+         <wsdl:fault message="intf:GeneralFailure" name="GeneralFailure"/>
+
+         <wsdl:fault message="intf:UserNotFound" name="UserNotFound"/>
+
+         <wsdl:fault message="intf:NeedMoreCredentials" name="NeedMoreCredentials"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="logout">
+
+         <wsdl:input message="intf:logoutRequest" name="logoutRequest"/>
+
+         <wsdl:output message="intf:logoutResponse" name="logoutResponse"/>
+
+         <wsdl:fault message="intf:GeneralFailure" name="GeneralFailure"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="authorize">
+
+         <wsdl:input message="intf:authorizeRequest" name="authorizeRequest"/>
+
+         <wsdl:output message="intf:authorizeResponse" name="authorizeResponse"/>
+
+         <wsdl:fault message="intf:TokenExpired" name="TokenExpired"/>
+
+         <wsdl:fault message="intf:GeneralFailure" name="GeneralFailure"/>
+
+         <wsdl:fault message="intf:NeedMoreCredentials" name="NeedMoreCredentials"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isTokenValid">
+
+         <wsdl:input message="intf:isTokenValidRequest" name="isTokenValidRequest"/>
+
+         <wsdl:output message="intf:isTokenValidResponse" name="isTokenValidResponse"/>
+
+         <wsdl:fault message="intf:InvalidToken" name="InvalidToken"/>
+
+         <wsdl:fault message="intf:TokenExpired" name="TokenExpired"/>
+
+         <wsdl:fault message="intf:GeneralFailure" name="GeneralFailure"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCookieNameForToken">
+
+         <wsdl:input message="intf:getCookieNameForTokenRequest" name="getCookieNameForTokenRequest"/>
+
+         <wsdl:output message="intf:getCookieNameForTokenResponse" name="getCookieNameForTokenResponse"/>
+
+         <wsdl:fault message="intf:GeneralFailure" name="GeneralFailure"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCookieNamesToForward">
+
+         <wsdl:input message="intf:getCookieNamesToForwardRequest" name="getCookieNamesToForwardRequest"/>
+
+         <wsdl:output message="intf:getCookieNamesToForwardResponse" name="getCookieNamesToForwardResponse"/>
+
+         <wsdl:fault message="intf:GeneralFailure" name="GeneralFailure"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="search">
+
+         <wsdl:input message="intf:searchRequest" name="searchRequest"/>
+
+         <wsdl:output message="intf:searchResponse" name="searchResponse"/>
+
+         <wsdl:fault message="intf:TokenExpired" name="TokenExpired"/>
+
+         <wsdl:fault message="intf:GeneralFailure" name="GeneralFailure"/>
+
+         <wsdl:fault message="intf:NeedMoreCredentials" name="NeedMoreCredentials"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="create">
+
+         <wsdl:input message="intf:createRequest" name="createRequest"/>
+
+         <wsdl:output message="intf:createResponse" name="createResponse"/>
+
+         <wsdl:fault message="intf:TokenExpired" name="TokenExpired"/>
+
+         <wsdl:fault message="intf:GeneralFailure" name="GeneralFailure"/>
+
+         <wsdl:fault message="intf:DuplicateObject" name="DuplicateObject"/>
+
+         <wsdl:fault message="intf:NeedMoreCredentials" name="NeedMoreCredentials"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="read">
+
+         <wsdl:input message="intf:readRequest" name="readRequest"/>
+
+         <wsdl:output message="intf:readResponse" name="readResponse"/>
+
+         <wsdl:fault message="intf:TokenExpired" name="TokenExpired"/>
+
+         <wsdl:fault message="intf:GeneralFailure" name="GeneralFailure"/>
+
+         <wsdl:fault message="intf:ObjectNotFound" name="ObjectNotFound"/>
+
+         <wsdl:fault message="intf:NeedMoreCredentials" name="NeedMoreCredentials"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="update">
+
+         <wsdl:input message="intf:updateRequest" name="updateRequest"/>
+
+         <wsdl:output message="intf:updateResponse" name="updateResponse"/>
+
+         <wsdl:fault message="intf:TokenExpired" name="TokenExpired"/>
+
+         <wsdl:fault message="intf:GeneralFailure" name="GeneralFailure"/>
+
+         <wsdl:fault message="intf:ObjectNotFound" name="ObjectNotFound"/>
+
+         <wsdl:fault message="intf:NeedMoreCredentials" name="NeedMoreCredentials"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="delete">
+
+         <wsdl:input message="intf:deleteRequest" name="deleteRequest"/>
+
+         <wsdl:output message="intf:deleteResponse" name="deleteResponse"/>
+
+         <wsdl:fault message="intf:TokenExpired" name="TokenExpired"/>
+
+         <wsdl:fault message="intf:GeneralFailure" name="GeneralFailure"/>
+
+         <wsdl:fault message="intf:ObjectNotFound" name="ObjectNotFound"/>
+
+         <wsdl:fault message="intf:NeedMoreCredentials" name="NeedMoreCredentials"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="IdentityServicesImplPortSoapBinding" type="intf:IdentityServicesImpl">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="log">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="logRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="logResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="AccessDenied">
+
+            <wsdlsoap:fault name="AccessDenied" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="TokenExpired">
+
+            <wsdlsoap:fault name="TokenExpired" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="GeneralFailure">
+
+            <wsdlsoap:fault name="GeneralFailure" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="attributes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="attributesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="attributesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="TokenExpired">
+
+            <wsdlsoap:fault name="TokenExpired" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="GeneralFailure">
+
+            <wsdlsoap:fault name="GeneralFailure" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="authenticate">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="authenticateRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="authenticateResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="InvalidPassword">
+
+            <wsdlsoap:fault name="InvalidPassword" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="InvalidCredentials">
+
+            <wsdlsoap:fault name="InvalidCredentials" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="GeneralFailure">
+
+            <wsdlsoap:fault name="GeneralFailure" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="UserNotFound">
+
+            <wsdlsoap:fault name="UserNotFound" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="NeedMoreCredentials">
+
+            <wsdlsoap:fault name="NeedMoreCredentials" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="logout">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="logoutRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="logoutResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="GeneralFailure">
+
+            <wsdlsoap:fault name="GeneralFailure" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="authorize">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="authorizeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="authorizeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="TokenExpired">
+
+            <wsdlsoap:fault name="TokenExpired" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="GeneralFailure">
+
+            <wsdlsoap:fault name="GeneralFailure" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="NeedMoreCredentials">
+
+            <wsdlsoap:fault name="NeedMoreCredentials" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isTokenValid">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="isTokenValidRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="isTokenValidResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="InvalidToken">
+
+            <wsdlsoap:fault name="InvalidToken" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="TokenExpired">
+
+            <wsdlsoap:fault name="TokenExpired" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="GeneralFailure">
+
+            <wsdlsoap:fault name="GeneralFailure" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCookieNameForToken">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCookieNameForTokenRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCookieNameForTokenResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="GeneralFailure">
+
+            <wsdlsoap:fault name="GeneralFailure" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCookieNamesToForward">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCookieNamesToForwardRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCookieNamesToForwardResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="GeneralFailure">
+
+            <wsdlsoap:fault name="GeneralFailure" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="search">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="TokenExpired">
+
+            <wsdlsoap:fault name="TokenExpired" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="GeneralFailure">
+
+            <wsdlsoap:fault name="GeneralFailure" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="NeedMoreCredentials">
+
+            <wsdlsoap:fault name="NeedMoreCredentials" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="create">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="createRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="TokenExpired">
+
+            <wsdlsoap:fault name="TokenExpired" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="GeneralFailure">
+
+            <wsdlsoap:fault name="GeneralFailure" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="DuplicateObject">
+
+            <wsdlsoap:fault name="DuplicateObject" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="NeedMoreCredentials">
+
+            <wsdlsoap:fault name="NeedMoreCredentials" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="read">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="readRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="readResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="TokenExpired">
+
+            <wsdlsoap:fault name="TokenExpired" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="GeneralFailure">
+
+            <wsdlsoap:fault name="GeneralFailure" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ObjectNotFound">
+
+            <wsdlsoap:fault name="ObjectNotFound" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="NeedMoreCredentials">
+
+            <wsdlsoap:fault name="NeedMoreCredentials" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="update">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="updateRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="updateResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="TokenExpired">
+
+            <wsdlsoap:fault name="TokenExpired" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="GeneralFailure">
+
+            <wsdlsoap:fault name="GeneralFailure" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ObjectNotFound">
+
+            <wsdlsoap:fault name="ObjectNotFound" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="NeedMoreCredentials">
+
+            <wsdlsoap:fault name="NeedMoreCredentials" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="delete">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="TokenExpired">
+
+            <wsdlsoap:fault name="TokenExpired" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="GeneralFailure">
+
+            <wsdlsoap:fault name="GeneralFailure" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ObjectNotFound">
+
+            <wsdlsoap:fault name="ObjectNotFound" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="NeedMoreCredentials">
+
+            <wsdlsoap:fault name="NeedMoreCredentials" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="IdentityServicesImplService">
+
+      <wsdl:port binding="intf:IdentityServicesImplPortSoapBinding" name="IdentityServicesImplPort">
+
+         <wsdlsoap:address location="https://ssopl.na.bestbuy.com/IdentityServicesExt/services/IdentityServicesImplPort"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

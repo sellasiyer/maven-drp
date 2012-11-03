@@ -1,0 +1,220 @@
+
+#inventoryTable.loaner_phone th.carrier_col,
+#availableTable.loaner_phone th.carrier_col,
+#checkedOutTable.loaner_phone th.carrier_col
+{
+	width: 35px;
+	text-align: center;
+}
+
+#inventoryTable.loaner_phone th.operatingSystem_col,
+#availableTable.loaner_phone th.operatingSystem_col,
+#checkedOutTable.loaner_phone th.operatingSystem_col
+{
+	width: 70px;
+}
+
+#inventoryTable.loaner_phone th.make_col,
+#checkedOutTable.loaner_phone th.make_col
+{
+	width: 70px;
+}
+
+#availableTable.loaner_phone th.make_col
+{
+	width: 100px;
+}
+
+#inventoryTable.loaner_phone th.model_col,
+#checkedOutTable.loaner_phone th.model_col
+{
+	width: 110px;
+}
+
+#inventoryTable.loaner_phone th.customer_col,
+#checkedOutTable.loaner_phone th.customer_col
+{
+	width: 90px;
+}
+
+#inventoryTable.loaner_phone th.numDaysOut_col,
+#checkedOutTable.loaner_phone th.numDaysOut_col
+{
+	width: 50px;
+}
+
+#inventoryTable.loaner_phone th.lastUpdatedBy_col,
+#checkedOutTable.loaner_phone th.lastUpdatedBy_col
+{
+	width: 110px;
+}
+
+#inventoryTable.loaner_phone th.edit_col {
+	width: 50px;
+}
+
+#inventoryTable.loaner_phone th.view_col,
+#checkedOutTable.loaner_phone th.view_col
+{
+	width: 50px;
+}
+
+#availableTable.loaner_phone th.numAvailable_col
+{
+	width: 100px;
+}
+
+#availableTable.loaner_phone th.numDamaged_col
+{
+	width: 100px;
+}
+
+#availableTable.loaner_phone th.checkout_col
+{
+	width: 90px;
+}
+
+#checkedOutTable.loaner_phone th.checkin_col
+{
+	width: 70px;
+}
+
+#carrierDataTable th.phone_col
+{
+	width: 100px;
+}
+
+#carrierDataTable th.eligibility_col
+{
+	width: 110px;
+}
+
+#carrierDataTable td.eligibility_col a
+{
+	text-decoration: none;
+}
+
+#carrierDataTable th.contractEndDate_col
+{
+	width: 70px;
+}
+
+#carrierDataTable th.optIn_col
+{
+	width: 50px;
+}
+
+#carrierDataTable th.tradeInVal_col
+{
+	width: 80px;
+}
+
+#carrierDataTable td.tradeInVal_col
+{
+	text-align: right;
+}
+
+#carrierDataTable th.gspStatus_col
+{
+	width: 90px;
+}
+
+#carrierDataTable td.gspStatus_col a
+{
+	text-decoration: none;
+}
+
+#carrierDataTable th.actions_col
+{
+	width: 110px;
+}
+
+#carrierDataTable td.actions_col
+{
+	white-space: normal;
+	overflow: visible;
+}
+
+#inventoryTable.shipping th.devStatus_col
+{
+	width: 160px;
+}
+
+#manifestsTable.shipping th.manifestId_col
+{
+	width: 120px;
+}
+
+#manifestsTable.shipping th.dateTimeCreated_col
+{
+	width: 100px;
+}
+
+#manifestsTable.shipping th.status_col
+{
+	width: 100px;
+}
+
+#manifestsTable.shipping th.deviceCount_col
+{
+	width: 80px;
+}
+
+#manifestsTable.shipping th.details_col
+{
+	width: 70px;
+}
+
+#buildManifestTable.shipping th.rowIndex_col,
+#manifestSummaryTable.shipping th.rowIndex_col
+{
+	width: 40px;
+}
+
+#buildManifestTable.shipping th.itemTag_col,
+#manifestSummaryTable.shipping th.itemTag_col,
+{
+	width: 120px;
+}
+
+#inventoryTable.shipping th.itemTag_col
+{
+	width: 110px;
+}
+
+#buildManifestTable.shipping th.serialNum_col,
+#manifestSummaryTable.shipping th.serialNum_col,
+#inventoryTable.shipping th.serialNum_col
+{
+	width: 150px;
+}
+
+#buildManifestTable.shipping th.returnType_col,
+#manifestSummaryTable.shipping th.returnType_col
+{
+	width: 110px;
+}
+
+#inventoryTable.shipping th.returnType_col
+{
+	width: 100px;
+}
+
+#buildManifestTable.shipping th.remove_col
+{
+	width: 70px;
+}
+
+#manifestSummaryTable.shipping th.deviceStatus_col
+{
+	width: 150px;
+}
+
+#inventoryTable.shipping th.deviceStatus_col
+{
+	width: 200px;
+}
+
+
+
+

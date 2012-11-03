@@ -1,0 +1,35 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:panel>
+		<div class="table-wrap">
+			<form wicket:id="purchaseHistoryForm" autocomplete="off">
+				<ul class="table-nav">
+					<li>
+						<div class="inputs">
+							<input type="text" wicket:id="startDateFilter" maxlength="8"
+								size="10" /> <span class="divider">to</span> <input type="text"
+								wicket:id="endDateFilter" maxlength="8" size="10" /> <input
+								class="button" wicket:id="searchPurchasesButton" type="submit" />
+						</div>
+					</li>
+				</ul>
+			</form>
+
+			<div class="default-table-container">
+				<table class="default-table" wicket:id="purchasesTable">
+				</table>
+			</div>
+
+			<div wicket:id="noPurchasesData">
+				<p class="no-results" wicket:id="noPurchasesDataLabel"></p>
+			</div>
+
+			<div wicket:id="purchasesDataLoading" class="loading-spinner-big">
+				<wicket:message key="custInfo.purchasesTable.loading.label" />
+			</div>
+		</div>
+	</wicket:panel>
+</body>
+</html>

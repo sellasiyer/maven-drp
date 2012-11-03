@@ -1,0 +1,33 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:panel>
+		<table class="table_header">
+			<tr>
+				<td></td>
+				<td class="qty"><wicket:message key="qtyLabel"></wicket:message>
+				</td>
+				<td class="money"><wicket:message
+						key="scoreboardModal.unitPrice.label"></wicket:message>
+				</td>
+			</tr>
+		</table>
+
+		<table wicket:id="categoryListView">
+			<tr>
+				<th wicket:id="listHeaderLabel"></th>
+				<th class="qty"></th>
+				<th class="money"></th>
+			</tr>
+			<tr wicket:id="dataItemListview">
+				<td wicket:id="itemNameLabel"></td>
+				<td class="qty"><input type="text" wicket:id="itemQtyField"></input>
+				</td>
+				<td class="money"><input type="text" wicket:id="itemAmtField"></input>
+				</td>
+			</tr>
+		</table>
+	</wicket:panel>
+</body>
+</html>

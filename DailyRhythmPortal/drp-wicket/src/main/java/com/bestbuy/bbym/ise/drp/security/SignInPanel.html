@@ -1,0 +1,27 @@
+<html xmlns:wicket>
+<body>
+	<wicket:panel>
+		<div class="title">
+			<h1>Login</h1>
+		</div>
+		<div class="content-border">
+			<div class="content">
+				<!-- Corners -->
+				<div class="corner top right"></div>
+				<div class="corner top left"></div>
+				<div class="corner bottom right"></div>
+				<div class="corner bottom left"></div>
+				<div class="beast-login-logo"></div>
+				<div wicket:id="feedback" class="feedbackmsg"></div>
+				<form wicket:id="signInForm" autocomplete="off">
+					<label for="user">Enter Your User ID:</label><input
+						wicket:id="username" type="text" /> <label
+						for="password">Enter Your Password:</label> <input
+						wicket:id="password" type="password" autocomplete="off"/>
+					<input type="submit" value="Log In" class="button" />
+				</form>
+			</div>
+		</div>
+	</wicket:panel>
+</body>
+</html>

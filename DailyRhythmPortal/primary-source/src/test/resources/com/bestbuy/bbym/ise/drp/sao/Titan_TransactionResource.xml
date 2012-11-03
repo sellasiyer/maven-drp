@@ -1,0 +1,78 @@
+<TransactionResource xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xmlns:atom="http://www.w3.org/2005/Atom">
+    <atom:title>Trade-In Receipt</atom:title>
+    <atom:link href="http://hydra-pt:8080/store-10/transactions/11537" rel="self" title="Self" />
+    <atom:link href="http://hydra-pt:8080/store-10/transactions/11537/email-receipt" rel="http://hydra-pt:8080/rels/new-email" title="Email Customer Copy" />
+    <atom:link href="http://hydra-pt:8080/store-10/catalog?Page=1&amp;PageSize=25" rel="http://hydra-pt:8080/rels/browse-catalog" title="browse-catalog" />
+    <atom:link href="http://hydra-pt:8080/store-10" rel="http://hydra-pt:8080/rels/home" title="Return to Home Page" />
+    <atom:link href="http://hydra-pt:8080/store-10/help" rel="http://hydra-pt:8080/rels/help" title="Overview" />
+    <atom:link href="http://hydra-pt:8080/store-10/help/faq" rel="http://hydra-pt:8080/rels/help" title="FAQs" />
+    <atom:link href="http://hydra-pt:8080/store-10/help/about" rel="http://hydra-pt:8080/rels/help" title="About" />
+    <atom:link href="http://hydra-pt:8080/store-10/devices" rel="http://hydra-pt:8080/rels/help" title="Biometric Device Validation" />
+    <atom:link href="http://hydra-pt:8080/store-10/carts/search/form" rel="http://hydra-pt:8080/rels/cart-search" title="Search Carts" />
+    <atom:link href="http://hydra-pt:8080/store-10/feedback/new" rel="http://hydra-pt:8080/rels/feedback" title="Provide Feedback" />
+    <atom:link href="https://buyback-pl.bestbuytradein.com/bbPlanInfo.cfm?redirect=false" rel="external-buyback" title="Start a New Buy Back" />
+    <atom:link href="https://buyback-pl.bestbuytradein.com/admin.cfm?redirect=false" rel="external-admin" title="Open Trade In Administration" />
+    <atom:link href="https://buyback-pl.bestbuytradein.com/manifest.cfm?redirect=false" rel="external-shipping-center" title="Open Shipping Center" />
+    <atom:link href="http://hydra-pt:8080/metadata/TransactionResource" rel="http://hydra-pt:8080/rels/metadata" title="metadata" />
+    <Items>
+        <TransactionGroupResource>
+            <atom:title />
+            <Items>
+                <TransactionItemResource>
+                    <atom:title>Apple® - iPhone® 4S with 16GB Memory Mobile Phone - Black (AT&amp;T)</atom:title>
+                    <atom:link href="http://hydra-pt:8080/barcode?Data=2049621" rel="http://hydra-pt:8080/rels/barcode" title="barcode" />
+                    <DtmsTradeInItemId>2049621</DtmsTradeInItemId>
+                    <Name>Apple® - iPhone® 4S with 16GB Memory Mobile Phone - Black (AT&amp;T)</Name>
+                    <IMEI>1111111111111111</IMEI>
+                    <ItemAmount>240.0000</ItemAmount>
+                    <ReleaseOn>2012-08-29T03:11:01.01</ReleaseOn>
+                </TransactionItemResource>
+                <TransactionItemResource>
+                    <atom:title>Beast Integration Test Promo 1</atom:title>
+                    <DtmsTradeInItemId xs:nil="true" />
+                    <Name>Beast Integration Test Promo 1</Name>
+                    <ItemAmount>50.0000</ItemAmount>
+                    <ReleaseOn>0001-01-01T00:00:00</ReleaseOn>
+                </TransactionItemResource>
+            </Items>
+            <Subtotal>290.0000</Subtotal>
+            <Name>Mobile Phones</Name>
+        </TransactionGroupResource>
+        <TransactionGroupResource>
+            <atom:title />
+            <Items>
+                <TransactionItemResource>
+                    <atom:title>Gamers Club Unlocked Bonus</atom:title>
+                    <DtmsTradeInItemId xs:nil="true" />
+                    <Name>Gamers Club Unlocked Bonus</Name>
+                    <ItemAmount>0.0000</ItemAmount>
+                    <ReleaseOn>0001-01-01T00:00:00</ReleaseOn>
+                </TransactionItemResource>
+            </Items>
+            <Subtotal>0.0000</Subtotal>
+            <Name>Reward Zone</Name>
+        </TransactionGroupResource>
+    </Items>
+    <Id>11537</Id>
+    <ReceiptTransactionId>10-52154-896354</ReceiptTransactionId>
+    <StoreId>10</StoreId>
+    <PrintedAt>2012-08-29T03:11:04.3548187Z</PrintedAt>
+    <CreatedAt>2012-08-29T03:11:01.01</CreatedAt>
+    <AuthorizedByUserId>a762525</AuthorizedByUserId>
+    <TotalAmount>290.0000</TotalAmount>
+    <GiftCardTotal>290.0000</GiftCardTotal>
+    <TenderNumber>... 7777</TenderNumber>
+    <StoreInformation>
+        <StoreId>10</StoreId>
+        <Name>Maplewood</Name>
+        <AddressLine1>1795 County Rd D E</AddressLine1>
+        <City>Maplewood</City>
+        <County xs:nil="true" />
+        <State>MN</State>
+        <PostalCode>55109-5305</PostalCode>
+        <PhoneNumber>651-704-1901</PhoneNumber>
+        <OwnershipDeclaration>I, the undersigned, hereby represent and certify under penalty of perjury that I am the sole and rightful owner of the items described above and that I have full authority to sell or otherwise dispose of the items. Further, to the best of my knowledge, all information offered in association with the transactions listed on this document is true and complete.</OwnershipDeclaration>
+        <CustomerAgreement>By accepting the compensation offered (a Best Buy gift card or a check in the amount of a lower dollar value), I accept the offer and I irrevocably transfer all rights and title to the items described above to Best Buy in exchange for the gift card or other compensation indicated above. Upon accepting the compensation, I acknowledge and agree that this transaction is final and cannot be cancelled or rescinded and that no further compensation is owed to me by Best Buy, its parent company or affiliates. In addition, I acknowledge that it is my responsibility to remove all personal data (e.g., files, photos, videos, music, etc.) from the items (e.g., PCs, laptops, wireless phones, DVD/CD players, memory cards, iPods, MP3 players, etc.) I agree that Best Buy, its parent company and affiliates, is not responsible for the loss or destruction of the hardware or media containing any personal data left on or in the items. I understand and agree that any data or files stored within the items will be unrecoverable. To the extent permitted by applicable law, I hereby release Best Buy, its parent company and affiliates, from and against any liability arising out of or related to the deletion or non-deletion of any data or files from the items and the non-availability of the items after they have been accepted by Best Buy. Best Buy may be required to share personal information in response to a valid court order, subpoena, government investigation, or as otherwise required by law. Best Buy reserves the right to report, and may be required to report, to law enforcement agencies any activities that Best Buy believes to be unlawful. Best Buy may share certain information when we believe that such release is reasonably necessary to protect  the rights, property, and safety of others and ourselves.</CustomerAgreement>
+    </StoreInformation>
+    <Coupons />
+</TransactionResource>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<Departments>
+		<Department>
+			<DepartmentId>1</DepartmentId>
+			<DepartmentName>Mobile</DepartmentName>
+		</Department>
+		<Department>
+			<DepartmentId>2</DepartmentId>
+			<DepartmentName>Electronics</DepartmentName>
+		</Department>
+		<Department>
+			<DepartmentId>3</DepartmentId>
+			<DepartmentName>Computing</DepartmentName>
+		</Department>
+	</Departments>
+	<ErrorCode>1</ErrorCode>
+	<ErrorMessage></ErrorMessage>
+</xml>

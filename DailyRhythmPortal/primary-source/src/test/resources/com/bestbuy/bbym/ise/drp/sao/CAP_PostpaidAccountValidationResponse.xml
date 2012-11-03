@@ -1,0 +1,258 @@
+<cap:PostpaidAccountValidationResponse
+	xmlns:cap="http://bestbuy.com/bbym/beast/cap/response/postpaid/accountValidation">
+	<Header>
+		<destinationId>ATT</destinationId>
+		<transactionId>20091006193811</transactionId>
+		<messageType>POSTPAID_ACCOUNT_VALIDATION_RESPONSE</messageType>
+		<timestamp>2009-09-15T05:52:46.31Z</timestamp>
+		<channelId />
+		<carrierTransactionId>188008914835#bestbuyMST~CNG-CSI~1aba65f7d92f41d3:78030b97:1251b99316d:-245b
+		</carrierTransactionId>
+		<capVersion>V6-0-0_DEVTEST_CARRIER_11202009_49</capVersion>
+	</Header>
+	<Body>
+		<customerInfo>
+			<customerFound>true</customerFound>
+			<name>
+				<firstName>WMABNIFFIN</firstName>
+				<lastName>WMABNIFFIN</lastName>
+			</name>
+			<authorizedUsers>
+				<name>
+					<firstName>FRANK</firstName>
+					<lastName>STEVE</lastName>
+				</name>
+				<name>
+					<firstName>FRANK1</firstName>
+					<lastName>STEVE1</lastName>
+				</name>
+			</authorizedUsers>
+			<billingAddress>
+				<street>
+					<streetNum>2510</streetNum>
+					<streetName>MARKET</streetName>
+				</street>
+				<streetAddress1>2510 MARKET AVE</streetAddress1>
+				<city>CLEVELAND</city>
+				<stateCode>OH</stateCode>
+				<zipCode>44113</zipCode>
+				<zipCode4>3434</zipCode4>
+				<countryCode>US</countryCode>
+			</billingAddress>
+			<contactInfo>
+				<homePhone>2141234567</homePhone>
+				<workPhone>2141231234</workPhone>
+				<workPhoneExtension>5263</workPhoneExtension>
+				<canBeReachedPhone>2141234567</canBeReachedPhone>
+			</contactInfo>
+			<billLanguage>English</billLanguage>
+			<ssn>5245</ssn>
+		</customerInfo>
+		<accountInfo>
+			<accountStatus>ACTIVE</accountStatus>
+			<accountNumber>188008914835</accountNumber>
+			<customerQualification>POSTPAID</customerQualification>
+			<numberOfActiveLines>3</numberOfActiveLines>
+			<subscriber>
+				<lineStatus>active</lineStatus>
+				<phoneNumber>7854185010</phoneNumber>
+				<phoneName>Sony Ericsson W580i</phoneName>
+				<pricePlan>
+					<planCode>CN3NM0A60</planCode>
+					<planName>NTN900RUMMUNW</planName>
+					<planMRC>59.99</planMRC>
+				</pricePlan>
+				<hardwareDetails>
+					<technologyType>GSM</technologyType>
+					<IMEI>011629000000000</IMEI>
+					<SIM>89014104219999984516</SIM>
+				</hardwareDetails>
+				<planType>INDIVIDUAL</planType>
+				<planChangeRequired>false</planChangeRequired>
+				<lineSeqNumber>1</lineSeqNumber>
+				<upgrade>
+					<upgradeApprovalCode>0</upgradeApprovalCode>
+					<upgradeQualificationDetails>
+						<eligible>true</eligible>
+						<tierLevel>0</tierLevel>
+						<qualificationDescription>STANDARD_UPGRADE</qualificationDescription>
+						<equipmentRestrictions>
+							<exclusions>
+								<deviceName>iPhone</deviceName>
+							</exclusions>
+						</equipmentRestrictions>
+						<eligibilityDate>2012-01-01</eligibilityDate>
+						<qualificationLevel>99</qualificationLevel>
+						<qualificationType>B</qualificationType>
+						<waiveUpgradeFee>false</waiveUpgradeFee>
+						<qualificationMessage>An upgrade is not available at this time. An upgrade may be available on 03/07/2008.</qualificationMessage>
+						<policyCategory>C</policyCategory>
+						<pricePlanList>C</pricePlanList>
+					</upgradeQualificationDetails>
+				</upgrade>
+				<options>
+					<name>AT&amp;T FamilyMap</name>
+					<code>FA31</code>
+					<description>AT&amp;T FamilyMap</description>
+					<category>ALL</category>
+				</options>
+				<options>
+					<name>Upgrade Fee</name>
+					<code>UPGT</code>
+					<description>Upgrade Fee</description>
+					<category>ALL</category>
+				</options>
+				<options>
+					<name>MESSAGING 1500</name>
+					<code>MSG2</code>
+					<description>MESSAGING 1500</description>
+					<category>ALL</category>
+				</options>
+				<options>
+					<name>VOICEDIAL *8</name>
+					<code>VAD1</code>
+					<description>VOICEDIAL *8</description>
+					<category>ALL</category>
+				</options>
+				<options>
+					<name>AT&amp;T FamilyMap</name>
+					<code>FA01</code>
+					<description>AT&amp;T FamilyMap</description>
+					<category>ALL</category>
+				</options>
+				<contractInfo>
+					<startDate>2009-10-28</startDate>
+					<endDate>2008-10-28</endDate>
+				</contractInfo>
+			</subscriber>
+			<subscriber>
+				<lineStatus>active</lineStatus>
+				<phoneNumber>2162242423</phoneNumber>
+				<phoneName>Palm Centro</phoneName>
+				<pricePlan>
+					<planCode>FN7NM0A60</planCode>
+					<planName>FT9NTN4000RUMMUNW</planName>
+					<planMRC>190.0</planMRC>
+				</pricePlan>
+				<hardwareDetails>
+					<technologyType>GSM</technologyType>
+					<IMEI>011351000000000</IMEI>
+					<SIM>89014104219999984530</SIM>
+				</hardwareDetails>
+				<planType>FAMILY_PRIMARY</planType>
+				<planChangeRequired>false</planChangeRequired>
+				<primaryNumber>2162242423</primaryNumber>
+				<familySeqNumber>1</familySeqNumber>
+				<lineSeqNumber>2</lineSeqNumber>
+				<upgrade>
+					<upgradeApprovalCode>0</upgradeApprovalCode>
+					<upgradeQualificationDetails>
+						<eligible>true</eligible>
+						<tierLevel>0</tierLevel>
+						<qualificationDescription>STANDARD_UPGRADE</qualificationDescription>
+						<equipmentRestrictions>
+							<exclusions>
+								<deviceName>iPhone</deviceName>
+							</exclusions>
+						</equipmentRestrictions>
+						<eligibilityDate>2010-10-10</eligibilityDate>
+						<qualificationLevel>99</qualificationLevel>
+						<qualificationType>B</qualificationType>
+						<waiveUpgradeFee>false</waiveUpgradeFee>
+						<qualificationMessage>An upgrade is not available at this time. An upgrade may be available on 10/10/2010.</qualificationMessage>
+						<policyCategory>C</policyCategory>
+						<pricePlanList>C</pricePlanList>
+					</upgradeQualificationDetails>
+				</upgrade>
+				<options>
+					<name>IPHONE 3G TRKG</name>
+					<code>4APL</code>
+					<description>IPHONE 3G TRKG</description>
+					<category>ALL</category>
+				</options>
+				<contractInfo>
+					<startDate>2009-10-20</startDate>
+					<endDate>2008-10-20</endDate>
+				</contractInfo>
+			</subscriber>
+			<subscriber>
+				<lineStatus>active</lineStatus>
+				<phoneNumber>2162250211</phoneNumber>
+				<phoneName>MOTOROLA RAZR 06 V3</phoneName>
+				<pricePlan>
+					<planCode>FN7NM0A60</planCode>
+					<planName>FT9NTN4000RUMMUNW</planName>
+					<planMRC>9.99</planMRC>
+				</pricePlan>
+				<hardwareDetails>
+					<technologyType>GSM</technologyType>
+					<IMEI>354506000000000</IMEI>
+					<SIM>89014104219999900000</SIM>
+				</hardwareDetails>
+				<planType>FAMILY_SECONDARY</planType>
+				<planChangeRequired>false</planChangeRequired>
+				<primaryNumber>2162242423</primaryNumber>
+				<familySeqNumber>2</familySeqNumber>
+				<lineSeqNumber>3</lineSeqNumber>
+				<upgrade>
+					<upgradeApprovalCode>0</upgradeApprovalCode>
+					<upgradeQualificationDetails>
+						<eligible>true</eligible>
+						<tierLevel>0</tierLevel>
+						<qualificationDescription>STANDARD_UPGRADE</qualificationDescription>
+						<equipmentRestrictions>
+							<exclusions>
+								<deviceName>iPhone</deviceName>
+							</exclusions>
+						</equipmentRestrictions>
+						<eligibilityDate>2008-06-21</eligibilityDate>
+						<qualificationLevel>99</qualificationLevel>
+						<qualificationType>B</qualificationType>
+						<waiveUpgradeFee>false</waiveUpgradeFee>
+						<qualificationMessage>An upgrade is not available at this time. An upgrade may be available on 06/21/2008.</qualificationMessage>
+						<policyCategory>C</policyCategory>
+						<pricePlanList>C</pricePlanList>
+					</upgradeQualificationDetails>
+				</upgrade>
+				<options>
+					<name>AT&amp;T FamilyMap</name>
+					<code>FA31</code>
+					<description>AT&amp;T FamilyMap</description>
+					<category>ALL</category>
+				</options>
+				<options>
+					<name>Equip Insurance Prem</name>
+					<code>WPINS</code>
+					<description>Equip Insurance Prem</description>
+					<category>ALL</category>
+				</options>
+				<options>
+					<name>MESSAGING 1500</name>
+					<code>MSG2</code>
+					<description>MESSAGING 1500</description>
+					<category>ALL</category>
+				</options>
+				<options>
+					<name>VOICEDIAL *8</name>
+					<code>VAD1</code>
+					<description>VOICEDIAL *8</description>
+					<category>ALL</category>
+				</options>
+				<options>
+					<name>AT&amp;T FamilyMap</name>
+					<code>FA01</code>
+					<description>AT&amp;T FamilyMap</description>
+					<category>ALL</category>
+				</options>
+				<contractInfo>
+					<startDate>2009-10-28</startDate>
+					<endDate>2008-10-28</endDate>
+				</contractInfo>
+			</subscriber>
+			<billingMarket>
+				<billingMarket>GLR</billingMarket>
+				<billingSubMarket>CLE</billingSubMarket>
+			</billingMarket>
+		</accountInfo>
+	</Body>
+</cap:PostpaidAccountValidationResponse>

@@ -1,0 +1,365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head>
+<link rel="stylesheet" type="text/css"
+	href="css/MobileSalesWorkspace.css" />
+<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="js/jquery.dateFormat-1.0.js"></script>
+<script type="text/javascript" src="js/MobileSalesWorkspace.js"></script>
+<script type="text/javascript">
+	 function checkUpgradeDate(input){
+
+var weekday=new Array(7);
+weekday[0]="Sunday";
+weekday[1]="Monday";
+weekday[2]="Tuesday";
+weekday[3]="Wednesday";
+weekday[4]="Thursday";
+weekday[5]="Friday";
+weekday[6]="Saturday";
+
+	        if (/(\d{6})/.test(input.value) && input.value.length == 6) {
+	            if (parseInt(input.value.substring(0,2)) > 12) {
+                       return;
+                    }
+
+	            if (parseInt(input.value.substring(2,4)) > 31) {
+                       return;
+                    }
+
+
+
+	            var newvalue = input.value.substring(0,2) + "/" + input.value.substring(2,4) + "/" + input.value.substring(4,input.value.length);
+                var dd = new Date(newvalue);
+                if ("Invalid Date" == dd) {
+                   return;
+                } 
+
+
+                var n = weekday[dd.getDay()];
+
+                input.value = n + " " + $.format.date(dd.toString(), "MM/dd/yy");
+
+                    return;
+	        }
+
+	        if (/(\d{8})/.test(input.value) && input.value.length == 8) {
+	            if (parseInt(input.value.substring(0,2)) > 12) {
+                       return;
+                    }
+
+	            if (parseInt(input.value.substring(2,4)) > 31) {
+                       return;
+                    }
+
+	            if (parseInt(input.value.substring(4,6)) != '20' && parseInt(input.value.substring(4,6)) != '19') {
+                       return; 
+                    }
+
+
+	            var newvalue = input.value.substring(0,2) + "/" + input.value.substring(2,4) + "/" + input.value.substring(6,input.value.length);
+                var dd = new Date(newvalue);
+                if ("Invalid Date" == dd) {
+                   return;
+                } 
+
+
+                var n = weekday[dd.getDay()];
+
+                input.value = n + " " + $.format.date(dd.toString(), "MM/dd/yy");
+
+                    return;
+	        }
+
+                var dd = new Date(input.value);
+                if ("Invalid Date" == dd) {
+                   return;
+                } 
+
+
+                var n = weekday[dd.getDay()];
+
+                input.value = n + " " + $.format.date(dd.toString(), "MM/dd/yy");
+                
+	    }
+
+</script>
+
+<style type="text/css">
+#countdown {
+	width: 150px;
+	height: 60px;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	background-color: white;
+	border: 1px solid #ddd;
+	color: black;
+	display: none;
+}
+</style>
+<title>Digital Recommendations Sheet</title>
+</head>
+<body>
+	<!--Pop window for print/email dialog -->
+	<div wicket:id="printOrEmailModal"></div>
+	<div wicket:id="coverageCheckModal"></div>
+	<div style="display: none;" wicket:id="clearModal"></div>
+
+	<div style="display: none;" wicket:id="exitWithoutSavingModal"></div>
+
+
+	<div id="content">
+		<div wicket:id="feedback"></div>
+
+		<form wicket:id="digitalRecSheetForm" id="form1" autocomplete="off">
+			<div id="head">
+
+				<div id="toolsDiv" style="display: inline;">
+					<input value="Show Tools" type="button" id="toolsButton"
+						class="button btn_tools" onclick="displayMenu();" />
+
+					<div id="toolsMenu" style="display: none">
+						<div class="toolsMenuItem">
+							<a href="#" wicket:id="toolsLink1">Customer Dashboard</a>
+						</div>
+						<div class="toolsMenuItem">
+							<a href="#" wicket:id="toolsLink2">Post Paid Coverage Maps</a>
+						</div>
+						<div class="toolsMenuItem">
+							<a href="#" wicket:id="toolsLink3">No-Contract Coverage Maps</a>
+						</div>
+
+					</div>
+				</div>
+				<input class="button btn_printemail" wicket:id="printOrEmailBtn"
+					type="submit" wicket:message="value:printOrEmail" /> <input
+					class="button btn_save" wicket:id="saveBtn" type="submit"
+					wicket:message="value:saveRecSheetLabel" /> <input
+					class="button btn_clear" wicket:id="clearButton" type="submit"
+					wicket:message="value:clearLabel" />
+
+
+				<form wicket:id="closeForm" style="display: inline;"
+					autocomplete="off">
+					<input type="hidden" wicket:id="formChanged" id="formChanged" />
+					<input class="button btn_search" wicket:id="searchBtn"
+						type="submit" wicket:message="value:searchRecSheetLabel" />
+					<input class="button btn_close" wicket:id="closeBtn" type="submit"
+						wicket:message="value:closeLabel" />
+
+				</form>
+
+			</div>
+
+			<center> <img wicket:id="transfer-to-beast" /> </center>
+			<div id="left" class="section">
+
+				<h1>You</h1>
+				<div class="field">
+					<h5>Your Name</h5>
+					<wicket:message key="first" />
+					<span style="display: none;"><wicket:label for="firstName"
+							style="visibility:hidden;" /> </span> :<input type="text"
+						wicket:message="maxlength:FLD_FIRSTNAME_LENGTH"
+						wicket:id="firstName" class="required" style="width: 35%;" />
+					<wicket:message key="last" />
+					<span style="display: none;"><wicket:label for="lastName" />
+					</span> :<input type="text" wicket:message="maxlength:FLD_LASTNAME_LENGTH"
+						wicket:id="lastName" class="required" style="width: 40%;" />
+				</div>
+				<div class="field">
+					<h5>Mobile Number</h5>
+					<input type="text" wicket:message="maxlength:FLD_MOBILENO_LENGTH"
+						class="required" wicket:id="mobileNum" id="mobileNum" />
+				</div>
+				<div class="field">
+					<h5>Best time to contact</h5>
+					<input type="text"
+						wicket:message="maxlength:FLD_CONTACTTIME_LENGTH"
+						wicket:id="contacttime" />
+				</div>
+				<div class="field">
+					<h5>You're eligible for an upgrade on</h5>
+					<input type="checkbox" id="chktext" wicket:id="upgradetext" /> <label
+						for="chktext">Text</label> <input type="checkbox" id="chkcall"
+						wicket:id="upgradecall" /> <label for="chkcall">Call</label> <input
+						type="text" wicket:id="upgradedate" class="narrow" maxlength="10" onblur="checkUpgradeDate(this);"/>
+						 
+				</div>
+				<div class="field">
+					<h5>Current Connectivity plan, features and device(s)</h5>
+					<textarea wicket:id="planFeaturesDevice"
+						wicket:message="maxlength:FLD_PLANFEATURESDEVICE_LENGTH"
+						style="height: 6em;"> </textarea>
+				</div>
+				<div class="field">
+					<h5>
+						<wicket:label for="tradeInValue" />
+					</h5>
+					<input type="text" wicket:message="maxlength:FLD_TRADEIN_LENGTH"
+						wicket:id="tradeInValue" />
+				</div>
+
+				<h1>What would your perfect mobile device do?</h1>
+				<div class="field multiselect">
+					<input type="checkbox" name="mobiledevice" id="md_internet"
+						wicket:id="md_internet" /> <label for="md_internet">Internet</label>
+					<input type="checkbox" name="mobiledevice" id="md_email"
+						wicket:id="md_email" /> <label for="md_email">E-Mail</label> <input
+						type="checkbox" name="mobiledevice" id="md_music"
+						wicket:id="md_music" /> <label for="md_music">Music</label> <input
+						type="checkbox" name="mobiledevice" id="md_video"
+						wicket:id="md_video" /> <label for="md_video">Video</label> <input
+						type="checkbox" name="mobiledevice" id="md_photo"
+						wicket:id="md_photo" /> <label for="md_photo">Photo</label> <input
+						type="checkbox" name="mobiledevice" id="md_tv" wicket:id="md_tv" />
+					<label for="md_tv">TV</label> <input type="checkbox"
+						name="mobiledevice" id="md_nav" wicket:id="md_nav" /> <label
+						for="md_nav">Navigation</label> <input type="checkbox"
+						name="mobiledevice" id="md_games" wicket:id="md_games" /> <label
+						for="md_games">Gaming</label> <input type="checkbox"
+						name="mobiledevice" id="md_texting" wicket:id="md_texting" /> <label
+						for="md_texting">Texting</label> <input type="checkbox"
+						name="mobiledevice" id="md_unlocked" wicket:id="md_unlocked" /> <label
+						for="md_unlocked">Unlocked</label>
+				</div>
+
+				<h1>How do you use the internet?</h1>
+				<div class="field">
+					<textarea style="height: 5em;"
+						wicket:message="maxlength:FLD_INTERNETUSE_LENGTH"
+						wicket:id="internetuse"> </textarea>
+				</div>
+
+			</div>
+			<!--  end of section1 -->
+			<div id="middle" class="section">
+
+				<h1>Our recommendations</h1>
+				<div class="field">
+					<h5>Connectivity plan, features and usage</h5>
+					<textarea style="height: 7.5em;"
+						wicket:message="maxlength:FLD_REC_CONNECTIVITY_LENGTH"
+						wicket:id="rec_connectivity"> </textarea>
+				</div>
+				<div class="field">
+					<h5>Phone / Device</h5>
+					<textarea style="height: 4em;" wicket:id="rec_phonedevice"
+						wicket:message="maxlength:FLD_REC_PHONEDEVICE_LENGTH"> </textarea>
+				</div>
+				<h1>Walk Out Working</h1>
+				<div class="field multiselect">
+					<div class="wowdiv">
+						<input type="checkbox" name="wowitems" id="wow_data"
+							wicket:id="wow_data" /> <label for="wow_data">Data
+							Transfer</label> <input type="checkbox" name="wowitems" id="wow_email"
+							wicket:id="wow_email" /> <label for="wow_email">Personal
+							e-mail setup</label> <input type="checkbox" name="wowitems"
+							id="wow_bluetooth" wicket:id="wow_bluetooth" /> <label
+							for="wow_bluetooth">Bluetooth Pairing</label> <input
+							type="checkbox" name="wowitems" id="wow_apps"
+							wicket:id="wow_apps" /> <label for="wow_apps">Applications</label>
+						<input type="checkbox" name="wowitems" id="wow_sw"
+							wicket:id="wow_sw" /> <label for="wow_sw">Software
+							Updates</label>
+					</div>
+					<div class="wowdiv">
+						<input type="checkbox" name="wowitems" value="Social Networking"
+							id="wow_social" wicket:id="wow_social" /> <label
+							for="wow_social">Social Networking</label> <input type="checkbox"
+							name="wowitems" value="Power Management" id="wow_power"
+							wicket:id="wow_power" /> <label for="wow_power">Power
+							Management</label> <input type="checkbox" name="wowitems"
+							value="Voicemail Setup" id="wow_voicemail"
+							wicket:id="wow_voicemail" /> <label for="wow_voicemail">Voicemail
+							Setup</label> <input type="checkbox" name="wowitems" value="Other"
+							id="wow_other" wicket:id="wow_other" /> <label for="wow_other">Other</label>
+					</div>
+					<br style="clear: both;" />
+
+					<hr color="#2AAAE1" />
+
+					Best Buy Mobile promises you:
+
+					<ul>
+						<li>A better choice of phones and networks</li>
+						<li>Impartial and Informed advice</li>
+						<li>Straightforward pricing</li>
+						<li>Someone to be there for the life of your phone</li>
+					</ul>
+				</div>
+			</div>
+			<div id="right" class="section">
+				<h1>Essentials</h1>
+				<h1>Why / What</h1>
+				<div class="field">
+					<h5>Hands Free</h5>
+					<span class="whywhat"> <input type="text"
+						wicket:id="e_bluetooth"
+						wicket:message="maxlength:FLD_ESSENTIAL_LENGTH" /> </span>
+
+				</div>
+				<div class="field">
+					<h5>Memory</h5>
+					<span class="whywhat"><input type="text"
+						wicket:id="e_memory"
+						wicket:message="maxlength:FLD_ESSENTIAL_LENGTH" /> </span>
+				</div>
+				<div class="field">
+					<h5>Case/Shield</h5>
+					<span class="whywhat"><input type="text"
+						wicket:id="e_shields"
+						wicket:message="maxlength:FLD_ESSENTIAL_LENGTH" /> </span>
+				</div>
+
+				<div class="field">
+					<h5>Appcessories&#8482;</h5>
+					<span class="whywhat"><input type="text"
+						wicket:id="e_accessories"
+						wicket:message="maxlength:FLD_ESSENTIAL_LENGTH" /> </span>
+				</div>
+				<div class="field">
+					<h5>Charger</h5>
+					<span class="whywhat"><input type="text"
+						wicket:id="e_chargers"
+						wicket:message="maxlength:FLD_ESSENTIAL_LENGTH" /> </span>
+				</div>
+				<div class="field">
+					<h5>Geek Squad Protection</h5>
+					<input type="text" wicket:id="e_gsbtp"
+						wicket:message="maxlength:FLD_ESSENTIAL_LENGTH" />
+				</div>
+				<div class="field">
+					<h5>Trade In Plus</h5>
+					<span class="whywhat"><input type="text"
+						wicket:id="e_buyback"
+						wicket:message="maxlength:FLD_ESSENTIAL_LENGTH" /> </span>
+				</div>
+				<div class="field">
+					<h5>Financing</h5>
+					<span class="whywhat"><input type="text"
+						wicket:id="e_financing"
+						wicket:message="maxlength:FLD_ESSENTIAL_LENGTH" /> </span>
+				</div>
+
+				<h1>Notes</h1>
+				<div class="field">
+					<textarea style="height: 6em;" wicket:id="notes"
+						wicket:message="maxlength:FLD_NOTES_LENGTH"> </textarea>
+				</div>
+				<h1>Mobile Phone Specialist contact info</h1>
+				<div class="field">
+					<textarea style="height: 2.5em" wicket:id="contactinfo"
+						class="wide" wicket:message="maxlength:FLD_CONTACTINFO_LENGTH"> </textarea>
+				</div>
+
+			</div>
+			<!--  end of #right -->
+		</form>
+		<br style="clear: both;" />
+	</div>
+	<div wicket:id="sessionTimeoutPanel"></div>
+</body>
+</html>

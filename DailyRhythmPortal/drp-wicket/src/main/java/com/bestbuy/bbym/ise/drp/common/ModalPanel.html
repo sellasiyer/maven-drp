@@ -1,0 +1,25 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<script type="text/javascript">
+		function verticalAlignModal(modalSelector) {
+			var modalHeight = $(modalSelector).outerHeight();
+			var pageHeight = $(window).height();
+			var margin = Math.ceil((pageHeight - modalHeight) / 2);
+			$(modalSelector).css('margin-top', margin);
+		}
+		function setModalPanelFocus(focusItemSelector) {
+			$(focusItemSelector).focus();
+		}
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:panel>
+		<div class="fader">
+			<wicket:child />
+		</div>
+	</wicket:panel>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>Recommendation Sheet By Employee Search</title>
+	
+	<script src="js/jquery-1.7.1.min.js"></script>
+	<script src="js/search-nav.js"></script>
+
+	<script language="JavaScript">
+	
+		$(document).ready(function() {
+
+			$("#storeNumber").blur(function() {
+				var storeId = $(this).val();
+
+				if (storeId.length > 4) {
+					return;
+				}
+				if (storeId != "") {
+					storeId = "000" + storeId;
+					storeId = storeId.substring(storeId.length - 4);
+					$(this).val(storeId);
+				}
+			});
+
+		});
+
+		function setupRecSheetTable() {
+			// Remove sorting from Action column
+			var jSpan = $('#recSheetTable tr th:eq(4) a span');
+			$('#recSheetTable tr th:eq(4) a').replaceWith(jSpan);
+
+			// Row highlighting on mouse over
+			$('#recSheetTable tr:[class="odd"]').mouseover(function() {
+				$(this).removeClass('even').addClass('row_highlight');
+			}).mouseout(function() {
+				$(this).removeClass('row_highlight').addClass('odd');
+			});
+			$('#recSheetTable tr:[class="even"]').mouseover(function() {
+				$(this).removeClass('even').addClass('row_highlight');
+			}).mouseout(function() {
+				$(this).removeClass('row_highlight').addClass('even');
+			});
+
+			// Add styling classes to cells
+			$('#recSheetTable tr').each(function(index) {
+				$(this).find('th:eq(1)').addClass("panelTable_02");
+				$(this).find('td:eq(1)').addClass("panelTable_02");
+				$(this).find('th:eq(2)').addClass("panelTable_03");
+				$(this).find('td:eq(2)').addClass("panelTable_03");
+				$(this).find('th:eq(3)').addClass("panelTable_04");
+				$(this).find('td:eq(3)').addClass("panelTable_04");
+				$(this).find('th:first-child').addClass("panelTable_first");
+				$(this).find('th:last-child').addClass("panelTable_last");
+				$(this).find('td:first-child').addClass("panelTable_first");
+				$(this).find('td:last-child').addClass("panelTable_last");
+			});
+		}
+	</script>
+
+</wicket:head>
+<body>
+
+	<wicket:extend>
+		<div class="page-header">
+			<h1>
+				<wicket:message key="recommendationSheetbyEmployee" />
+			</h1>
+		</div>
+
+
+		<div wicket:id="recSheetByEmployeeSearchPanel">Recommendation
+			Sheet By Employee</div>
+
+	</wicket:extend>
+</body>
+</html>

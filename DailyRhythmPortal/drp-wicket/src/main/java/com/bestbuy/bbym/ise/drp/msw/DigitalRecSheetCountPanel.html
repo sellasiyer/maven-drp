@@ -1,0 +1,73 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<title>Recommendation Sheet Count</title>
+	<style type="text/css">
+label.inline {
+	display: inline-block;
+}
+</style>
+
+
+</wicket:head>
+<body>
+
+	<wicket:panel>
+		<div wicket:id="feedback"></div>
+		 <div wicket:id="printWarningPanel"></div> 
+		 <div wicket:id="printLimitationWarningPanel"></div>
+		<div class="form-minimal">
+			<form name="recSheetCountForm" wicket:id="recSheetCountForm"
+				autocomplete="off">
+
+				<h2>Enter a date range and store number to generate report.</h2>
+
+				<div class="required full range">
+					<label wicket:id="dateLabel"></label>
+					<input type="text" wicket:id="fromDate" class="required" maxlength="10" onblur="checkdate(this)" />
+					<label class="to" style="display:inline;">to</label>
+					<input type="text" wicket:id="toDate" class="required" maxlength="10" onblur="checkdate(this)" />
+					<div class="clearer"></div>
+				</div>
+
+				<div class="required quarter">
+					<label wicket:id="storeLabel"></label> 
+					<input type="text" wicket:id="store" maxlength="6" />				
+					<img src="images/spacer.gif" border="0" width="5px" height="1px" /> 
+					<input class="button" type="submit" wicket:id="searchButton" 
+						onclick="$('#recSheetCountForm').hide(); $('#loading').show();"
+						value="SEARCH" />
+					<input class="button" type="submit"
+						wicket:id="exportButton" value="EXPORT" />
+						
+				    <input class="button" type="submit"
+						wicket:id="printButton" value="PRINT ALL" /> 
+						
+				</div>
+			</form>
+		</div>
+
+		<div id="loading" class="loading-spinner-big">
+			<wicket:message key="recommendationSheetbyEmployee.loading.label" />
+		</div>
+
+
+
+
+		<div class="table-wrap scrolling">
+			<table class="default-table req-sheet-count">
+				<thead>
+					<tr>
+						<th wicket:id="headerRepeater"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr wicket:id="rowRepeater"></tr>
+				</tbody>
+			</table>
+		</div>
+
+	</wicket:panel>
+
+</body>
+</html>

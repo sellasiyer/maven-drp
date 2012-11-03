@@ -1,0 +1,34 @@
+
+<ns2:getNotificationStatusPlusResponse
+	xmlns:ns2="http://bestbuy.com/bbym/ucs">
+	<notificationStatusGetResponse>
+		<subscriberStatuses>
+			<mobilePhoneNumber>2163928735</mobilePhoneNumber>
+			<notificationStatusCode>VOICE</notificationStatusCode>
+		</subscriberStatuses>
+		<subscriberStatuses>
+			<mobilePhoneNumber>7343410554</mobilePhoneNumber>
+			<notificationStatusCode>VOICE</notificationStatusCode>
+		</subscriberStatuses>
+		<subscriberStatuses>
+			<mobilePhoneNumber>7346865150</mobilePhoneNumber>
+			<notificationStatusCode>NONE</notificationStatusCode>
+		</subscriberStatuses>
+		<subscriberStatuses>
+			<mobilePhoneNumber>7345028070</mobilePhoneNumber>
+			<notificationStatusCode>NONE</notificationStatusCode>
+		</subscriberStatuses>
+		<subscriberStatuses>
+			<mobilePhoneNumber>7343410553</mobilePhoneNumber>
+			<notificationStatusCode>VOICE</notificationStatusCode>
+		</subscriberStatuses>
+		<subscriberStatuses>
+			<mobilePhoneNumber>7343418686</mobilePhoneNumber>
+			<notificationStatusCode>PLUS</notificationStatusCode>
+		</subscriberStatuses>
+		<subscriberStatuses>
+			<mobilePhoneNumber>7343681987</mobilePhoneNumber>
+			<notificationStatusCode>NONE</notificationStatusCode>
+		</subscriberStatuses>
+	</notificationStatusGetResponse>
+</ns2:getNotificationStatusPlusResponse>

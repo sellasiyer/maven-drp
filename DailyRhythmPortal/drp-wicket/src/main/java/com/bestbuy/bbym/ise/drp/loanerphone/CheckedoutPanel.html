@@ -1,0 +1,121 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<script type="text/javascript">
+		function setupCheckedOutTable() {
+			if ($('#checkedOutTable').length == 0) {
+				return;
+			}
+
+			// Remove sorting from Action columns
+			removeColumnSorting('#checkedOutTable', 8);
+			removeColumnSorting('#checkedOutTable', 9);
+
+			applyRowHighlighting('#checkedOutTable');
+			fixTableNoRecords('#checkedOutTable', 'No Records Found');
+			fixTableBorders('#checkedOutTable');
+			createDropdowns();
+		}
+		
+		function dropdownLaunch(selectID, optionValue, tableID) {
+			//links clicking the li to "change" event on the <select>
+			//tom/nick why didnt you just do this by default you silly guys.
+			$("#" + selectID).prop("selectedIndex", optionValue);
+			$("#" + selectID).trigger('change');
+		}	
+	</script>
+	
+	<style type="text/css">
+ul.cell li {
+	float: left;
+	padding: 3px;
+	list-style: none;
+	font-weight: bold;
+}
+
+ul.cell input {
+	width: 80px;
+	margin-right: 5px;
+	background-color: #fcfcbe;
+}
+
+.modal {
+	padding: 15px !important;
+}
+
+.modaltitle {
+	position: relative;
+	top: -23px;
+	left: -15px;
+	width: 495px;
+	height: 45px;
+	background: url("../css/img/header/associate_bar.png") no-repeat scroll left top transparent;
+	font-weight: bold;
+	color: white;
+	padding: 13px 0 0 5px
+}
+
+.notesForm textarea {
+	width: 90%;
+}
+
+.modal .links {
+margin-top: 10px;
+}
+
+.fader a#okLink {
+	float:right;
+}
+
+.last select {
+	width: 105px;
+} 
+
+#checkedOutTable.loaner_phone th.checkin_col
+{
+	width: 120px !important;
+}
+
+#checkedOutTable.loaner_phone td.checkin_col
+{
+	overflow: visible;
+	white-space: normal;
+}
+
+#checkedOutTable tr {
+	height: 34px;
+}
+
+
+
+
+</style>
+</wicket:head>
+
+<body>
+	<wicket:panel>
+		<div class="table-wrap" id="available">
+			<form wicket:id="checkedoutForm" autocomplete="off">
+				<ul class="table-nav">
+					<li>
+						<div class="inputs">
+							<select wicket:id="carrierFilter"></select> <select
+								wicket:id="osFilter"></select>             
+								<input type="text" maxlength="15" wicket:id="soNumber" class="prefill-hint" />
+								<input class="button" type="submit" value="filter" id="filterSubmit" wicket:id="filterSubmit" />
+
+						</div>
+					</li>
+				</ul>
+			</form>
+			<table wicket:id="checkedOutTable" class="default-table loaner_phone">
+			</table>
+		</div>
+
+	<div wicket:id="pos4partkeymodal"></div>
+	<div wicket:id="checkedOutNotesModal"></div>		
+	</wicket:panel>
+
+</body>
+</html>

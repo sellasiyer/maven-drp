@@ -1,0 +1,67 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+
+	<link href="css/table.css" rel="stylesheet" type="text/css" />
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<h2 style="text-transform:none;"><label wicket:id = "sectionTitle"></label></h2>
+		
+		<div class="column width-full">
+			<div class="block width-full">
+				<ul class="checkbox-buttons">
+					<li>
+						<input type="checkbox" wicket:id = "internet">
+						<label for="internet" wicket:id = "internetLabel"></label>	
+					</li>
+					<li>
+						<input type="checkbox" wicket:id = "email">
+						<label for="email" wicket:id = "emailLabel"></label>
+					</li>
+					<li>
+						<input type="checkbox" wicket:id = "music">
+						<label for="music" wicket:id = "musicLabel"></label>
+					</li>
+					<li>
+						<input type="checkbox" wicket:id = "video">
+						<label for="video" wicket:id = "videoLabel"></label>
+					</li>
+					<li>
+						<input type="checkbox" wicket:id = "photos">
+						<label for="photos" wicket:id = "photosLabel"></label>
+					</li>
+					<li>
+						<input type="checkbox" wicket:id = "television">
+						<label for="television" wicket:id = "televisionLabel"></label>
+					</li>
+					<li>
+						<input type="checkbox" wicket:id = "navigation">
+						<label for="navigation" wicket:id = "navigationLabel"></label>
+					</li>
+					<li>
+						<input type="checkbox" wicket:id = "gaming">
+						<label for="gaming" wicket:id = "gamingLabel"></label>
+					</li>
+					<li>
+						<input type="checkbox" wicket:id = "texting">
+						<label for="texting" wicket:id = "textingLabel"></label>
+					</li>
+					<li>
+						<input type="checkbox" wicket:id = "unlocked">
+						<label for="unlocked" wicket:id = "unlockedLabel"></label>
+					</li>
+				</ul>
+			</div>
+			<br />
+			<div class="block width-4">
+				<label wicket:id = "otherLabel"></label>
+				<textarea wicket:id="otherTextBox" maxlength="105" name=""></textarea>
+				<label wicket:id="otherCCLabel"></label>
+			</div>
+		</div>
+	</wicket:extend>
+</body>
+</html>

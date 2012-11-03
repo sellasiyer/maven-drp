@@ -1,0 +1,52 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:extend>
+		<div class="new-modal detail">
+			<div class="top-buttons">
+				<a wicket:id="close" class="button close"><wicket:message
+						key="gspDetails.close.button" /> </a>
+			</div>
+			<div class="modal-header">
+				<h1>
+					<wicket:message
+						key="triageResolutionCaptureModalPanel.headerTitle.label" />
+				</h1>
+			</div>
+
+			<div wicket:id="feedback" class="required"></div>
+
+			<form wicket:id="form" autocomplete="off">
+				<fieldset class="data-box">
+
+					<div class="column radio-group stacked width-4">
+						<label><wicket:message
+								key="triageResolutionCaptureModalPanel.issue.label" /> </label>
+
+						<wicket:container wicket:id="rslnRadioGroup">
+							<div class="block width-4" wicket:id="rslnRadioChoice">
+								<input type="radio" wicket:id="radio" /> <label
+									wicket:id="label"></label>
+							</div>
+						</wicket:container>
+
+					</div>
+					<div class="column width-4">
+						<div class="block width-4">
+							<label><wicket:message
+									key="triageResolutionCaptureModalPanel.issueDetails.label" />
+							</label>
+							<textarea name="issue-detail" rows="8" wicket:id="rslnDetails"></textarea>
+						</div>
+					</div>
+				</fieldset>
+
+				<div class="bottom-buttons">
+					<input type="button" wicket:id="submitButton" class="button" />
+				</div>
+			</form>
+		</div>
+	</wicket:extend>
+</body>
+</html>

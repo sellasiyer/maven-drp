@@ -1,0 +1,115 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<title>BEAST</title>
+	<script type="text/javascript">
+		
+	$(document).ready(function(){
+		$('.sched_stat ol li:nth-child(even)').addClass("even");
+		bindHotKeys();
+	 });                
+	
+		var closeFunction = function() {
+			$('#closeButton').click();
+		};
+		var backFunction = function() {
+			$('#backButton').click();
+		};
+
+		var continueFunction = function() {
+			$('#continueButton').click();
+		};
+		hotKeysConfig = {
+			f1 : {
+				handler : backFunction,
+				buttonSelector : '#backButton'
+			},
+			f2 : {
+				handler : continueFunction,
+				buttonSelector : '#continueButton'
+			},
+			f3 : {
+				handler : closeFunction,
+				buttonSelector : '#closeButton'
+			}
+		};
+		
+		function bindHotKeys() {        
+			$(document).live('keydown', 'f1', function() {
+				$('#backButton').click();
+				return false;
+			});
+			$("select").live('keydown', 'f1', function() {
+				$('#backButton').click();
+				return false;
+			});
+			$(document).live('keydown', 'f2', function() {
+				$('#continueButton').click();
+				return false;
+			});
+			$("select").live('keydown', 'f2', function() {
+				$('#continueButton').click();
+				return false;
+			});
+			$(document).live('keydown', 'f3', function() {
+				$('#closeButton').click();
+				return false;
+			});
+			$("select").live('keydown', 'f3', function() {
+				$('#closeButton').click();
+				return false;
+			});	           		
+		}              
+		
+		
+		</script>
+</wicket:head>
+
+<body>
+<wicket:extend>
+<div class="wrap"><!-- here to replicate beast frame -->
+	<h1>Confirm Status Change(s)</h1>
+	<div class="sched_stat">
+		<div class="header_row">
+			<div class="customer">Customer</div>
+			<div class="new_status">Change status to</div>
+			<div class="outcome">Select the outcome of the appointment</div>
+		</div>
+
+	<ol class="nested">             
+		<li wicket:id="appointmentCancelListView">
+		    <div class="customer"><span wicket:id="customerName"></span></div>
+			<div class="new_status"><span wicket:id="changeStatusTo"></span></div>
+			<div class="outcome">	
+			<select class="required" wicket:id="appointmentSelect">
+				<option></option>
+			</select>
+			</div>		     
+		</li>     
+		
+		<li wicket:id="appointmentCompleteListView">
+		    <div class="customer"><span wicket:id="customerName"></span></div>
+			<div class="new_status"><span wicket:id="changeStatusTo"></span></div>
+			<div class="outcome">	
+			<select class="required" wicket:id="appointmentSelect">
+				<option></option>
+			</select>
+			</div>			     
+		</li>   
+		
+		<li wicket:id="appointmentNoShowListView">
+		 <div class="customer"><span wicket:id="customerName"></span></div>
+			<div class="new_status"><span wicket:id="changeStatusTo"></span></div>
+			<div class="outcome">	
+			<select class="required" wicket:id="appointmentSelect">
+				<option></option>
+			</select>
+			</div>		     
+		</li>                    		          
+	</ol>    
+	</div>
+	</div>
+</wicket:extend>
+</body>
+</html>	
+	

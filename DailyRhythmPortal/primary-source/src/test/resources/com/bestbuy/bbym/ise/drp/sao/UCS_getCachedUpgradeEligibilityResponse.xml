@@ -1,0 +1,36 @@
+<ns2:getCachedUpgradeEligibilityResponse xmlns:ns2="http://bestbuy.com/bbym/ucs">
+	<upgradeEligibilityResponse>
+		<carrierAccountNumber>100201549</carrierAccountNumber>
+		<zip>61820</zip>
+		<language>en-US</language>
+		<subscribers>
+			<mobilePhoneNumber>3034378833</mobilePhoneNumber>
+			<contractEndDate>2013-11-28T00:00:00-06:00</contractEndDate>
+			<upgradeEligibilityFlag>true</upgradeEligibilityFlag>
+			<upgradeEligibilityDate>2011-10-01T00:00:00-05:00</upgradeEligibilityDate>
+			<upgradeEligibilityType>ELIGIBLE_FULL</upgradeEligibilityType>
+			<upgradeEligibilityMessage>We're happy to report that you're eligible for a mobile phone upgrade.* Visit a Best Buy Mobile location near you to find your perfect new phone.</upgradeEligibilityMessage>
+			<upgradeEligibilityFootnote>* Upgrade pricing entitles you to a free or greatly reduced cost on your next handset when combined with a 2-yr contract extension with your current carrier.</upgradeEligibilityFootnote>
+			<earlyTerminationWarning>Warning: your contract has not expired yet, therefore you may be subject to an early termination fee if you switch carriers.</earlyTerminationWarning>
+			<optInAllowed>false</optInAllowed>
+			<tradeInMessage>What's your old phone worth? Trade in your phone at Best Buy Mobile&amp;trade; and receive a Best Buy&amp;reg; Gift Card.</tradeInMessage>
+			<modeId>NV2200WFDO</modeId>
+			<esn>09112022699</esn>
+		</subscribers>
+		<subscribers>
+			<mobilePhoneNumber>7203396232</mobilePhoneNumber>
+			<contractEndDate>2013-11-28T00:00:00-06:00</contractEndDate>
+			<upgradeEligibilityFlag>false</upgradeEligibilityFlag>
+			<upgradeEligibilityDate>2013-07-01T00:00:00-05:00</upgradeEligibilityDate>
+			<upgradeEligibilityType>NOT_ELIGIBLE</upgradeEligibilityType>
+			<upgradeEligibilityMessage>We're sorry, but you are not eligible for an upgrade at this time. Start dreaming about your next phone today!</upgradeEligibilityMessage>
+			<optInAllowed>true</optInAllowed>
+			<tradeInMessage>What's your old phone worth? Trade in your phone at Best Buy Mobile&amp;trade; and receive a Best Buy&amp;reg; Gift Card.</tradeInMessage>
+			<modeId>LG260GKIT</modeId>
+			<esn>268435456713465472</esn>
+		</subscribers>
+		<upgradeCheckCount>0</upgradeCheckCount>
+		<optInCount>0</optInCount>
+		<tradeInDisclaimer>Not all products are eligible for trade-in. Not available in all locations. Trade-in value may vary. Condition, documentation and accessories may affect value. Online and in store estimates may vary. Payment is by Best Buy Gift Card. You are responsible for removing any data from your product before providing the product for evaluation. You will be required to agree to the terms &amp;amp; conditions. The Best Buy trade-in programs are intended for private, non-commercial use. No dealers. Best Buy reserves the right to refuse any trade-in for any reason. See a Customer Specialist or &lt;a href="http://www.bestbuy.com/tradein"&gt;www.bestbuy.com/tradein&lt;/a&gt; for details.</tradeInDisclaimer>
+	</upgradeEligibilityResponse>
+</ns2:getCachedUpgradeEligibilityResponse>

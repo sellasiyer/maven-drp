@@ -1,0 +1,24 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<title>Recommendations</title>	
+</wicket:head>
+<body>
+
+	<wicket:extend>
+            
+			<div class="column width-full">
+				<div>
+					<label><wicket:message
+							key="mobileInternetSectionForm.internet.label" /> </label>
+					<textarea style="height: 7.5em; width: 400px" maxlength="150"
+						wicket:id="mobileInternet"> </textarea>
+					<div style="width: 410px; " align='right' >	
+						<p>(<span wicket:id="internetCountLabel"></span>)</p>
+					</div>	
+				</div>
+			</div>
+
+	</wicket:extend>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<link rel="stylesheet" type="text/css" href="css/tom-screen.css" />
+	<link href="css/header.css" rel="stylesheet" type="text/css" />
+	<title>Instructions</title>
+</wicket:head>
+
+<body class="freeze">
+	<wicket:panel>
+		<div class="fader">
+			<div class="modal">
+				<h1>Instructions</h1>
+				<form wicket:id="instructionsModalForm" autocomplete="off">
+					<span wicket:id="instructionLabel"></span>
+				</form>
+				<div class="buttons">
+					<input type="submit" value="ok" class="button" wicket:id="okButton" />
+				</div>
+			</div>
+		</div>
+	</wicket:panel>
+</body>
+</html>

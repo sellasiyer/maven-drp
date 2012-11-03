@@ -1,0 +1,77 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>Manifest Summary</title>
+	<link href="css/table.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript">
+		var wicketBehavior;
+		function setupManifestSummaryTable() {
+			if ($('#manifestSummaryTable').length == 0) {
+				return;
+			}
+			removeAllColumnSorting('#manifestSummaryTable');
+			applyRowHighlighting('#manifestSummaryTable');
+			fixTableBorders('#manifestSummaryTable');
+		}
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<div class="page-header">
+			<div style="float: left;">
+				<h1>Manifest Summary</h1>
+			</div>
+
+			<ul class="quick-actions">
+				<li><a class="button" wicket:id="closeLink"><wicket:message
+							key="manifestSummary.closeLink.label" /> </a>
+				</li>
+				<li><a class="button" wicket:id="printManifestLink"><wicket:message
+							key="manifestSummary.printManifestLink.label" /> </a>
+				</li>
+				<li><a class="button" wicket:id="printShippingLabelLink"><wicket:message
+							key="manifestSummary.printShippingLabelLink.label" /> </a>
+				</li>
+			</ul>
+		</div>
+
+		<div wicket:id="feedback" class="feedbackmsg"></div>
+
+		<div class="customer-bar nocarrier">
+			<div class="customer">
+				<label><wicket:message
+						key="manifestSummary.manifestId.label" /> </label> <span
+					wicket:id="manifestIdLabel"></span>
+			</div>
+			<div class="customer">
+				<label><wicket:message
+						key="manifestSummary.dateCreated.label" /> </label> <span
+					wicket:id="dateCreatedLabel"></span>
+			</div>
+			<div class="customer">
+				<label><wicket:message
+						key="manifestSummary.dateCompleted.label" /> </label> <span
+					wicket:id="dateCompletedLabel"></span>
+			</div>
+			<div class="email">
+				<label><wicket:message
+						key="manifestSummary.manifestStatus.label" /> </label> <span
+					wicket:id="manifestStatusLabel"></span>
+			</div>
+			<div class="account">
+				<label><wicket:message
+						key="manifestSummary.upsTrackingNumber.label" /> </label> <span
+					wicket:id="upsTrackingNumberLabel"></span>
+			</div>
+		</div>
+
+		<div class="table-wrap">
+			<table class="default-table shipping" wicket:id="manifestSummaryTable">
+			</table>
+		</div>
+
+	</wicket:extend>
+</body>
+</html>

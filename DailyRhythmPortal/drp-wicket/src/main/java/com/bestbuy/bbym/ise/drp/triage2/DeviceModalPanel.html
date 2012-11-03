@@ -1,0 +1,28 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:extend>
+		<div class="new-modal detail">
+			<div class="modal-header">
+				<h1>
+					<wicket:message key="triageIssues.deviceModalPanel.title.label" />
+				</h1>
+			</div>
+
+			<p wicket:id="messageLabel"></p>
+
+			<div class="default-table-container">
+				<table class="default-table" wicket:id="devicesTable">
+				</table>
+			</div>
+
+			<div class="buttons">
+				<a wicket:id="noLink" class="button"><span
+					wicket:id="noLinkLabel"></span> </a> <a wicket:id="yesLink"
+					class="button"><span wicket:id="yesLinkLabel"></span> </a>
+			</div>
+		</div>
+	</wicket:extend>
+</body>
+</html>

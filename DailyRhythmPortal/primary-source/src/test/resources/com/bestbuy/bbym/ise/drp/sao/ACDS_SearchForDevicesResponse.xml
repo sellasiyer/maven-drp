@@ -1,0 +1,84 @@
+
+<ns0:SearchForDevicesResponse
+	xmlns:ns0="http://bestbuy.com/bbym/logistics/device/service/v1">
+	<ns0:ResponseMetaData>
+		<ns1:SourceID xmlns:ns1="http://www.tsh.bestbuy.com/common/metadata/fields/v1">ISE</ns1:SourceID>
+	</ns0:ResponseMetaData>
+	<ns1:Status xmlns:ns1="http://www.tsh.bestbuy.com/common/v1">
+		<ns1:Code>TSH-PXY-000000</ns1:Code>
+		<ns1:Description>TSH_BBYM_ManageDevice executed successfully
+		</ns1:Description>
+	</ns1:Status>
+	<ns0:Devices xmlns:jms1="http://www.tibco.com/namespaces/tnt/plugins/jms">
+		<ns1:Device xmlns:ns1="http://bestbuy.com/bbym/logistics/device/fields/v1">
+			<ns1:ItemTag>6986577</ns1:ItemTag>
+			<ns1:IMEI_ESN>tlfpmY6yD6DeIzd</ns1:IMEI_ESN>
+			<ns1:ProductDescription>Apple APPLE BLACK 8GB IPHO
+			</ns1:ProductDescription>
+			<ns1:Make>Apple</ns1:Make>
+			<ns1:Model>APPLE BLACK 8GB IPHO</ns1:Model>
+			<ns1:ReturnType>RapidExchange</ns1:ReturnType>
+			<ns1:DeviceStatus>Ready For Shipping</ns1:DeviceStatus>
+		</ns1:Device>
+		<ns1:Device xmlns:ns1="http://bestbuy.com/bbym/logistics/device/fields/v1">
+			<ns1:ItemTag>6055067</ns1:ItemTag>
+			<ns1:IMEI_ESN>xh2Zg362QnOQfoB</ns1:IMEI_ESN>
+			<ns1:ProductDescription>Apple APPLE BLACK 8GB IPHO
+			</ns1:ProductDescription>
+			<ns1:Make>Apple</ns1:Make>
+			<ns1:Model>APPLE BLACK 8GB IPHO</ns1:Model>
+			<ns1:ReturnType>Tradein</ns1:ReturnType>
+			<ns1:DeviceStatus>Ready For Shipping</ns1:DeviceStatus>
+		</ns1:Device>
+		<ns1:Device xmlns:ns1="http://bestbuy.com/bbym/logistics/device/fields/v1">
+			<ns1:ItemTag>4135363</ns1:ItemTag>
+			<ns1:IMEI_ESN>cvwJozglXtq3Hb5</ns1:IMEI_ESN>
+			<ns1:ProductDescription>T-Mobile T-MOBILE HTC HD7
+			</ns1:ProductDescription>
+			<ns1:Make>T-Mobile</ns1:Make>
+			<ns1:Model>T-MOBILE HTC HD7</ns1:Model>
+			<ns1:ReturnType>BuyBack</ns1:ReturnType>
+			<ns1:DeviceStatus>Ready For Shipping</ns1:DeviceStatus>
+		</ns1:Device>
+		<ns1:Device xmlns:ns1="http://bestbuy.com/bbym/logistics/device/fields/v1">
+			<ns1:ItemTag>6035941</ns1:ItemTag>
+			<ns1:IMEI_ESN>UKkAn7Vw8G89leG</ns1:IMEI_ESN>
+			<ns1:ProductDescription>T-Mobile T-MOBILE HTC HD7
+			</ns1:ProductDescription>
+			<ns1:Make>T-Mobile</ns1:Make>
+			<ns1:Model>T-MOBILE HTC HD7</ns1:Model>
+			<ns1:ReturnType>BuyerRemorse</ns1:ReturnType>
+			<ns1:DeviceStatus>Ready For Shipping</ns1:DeviceStatus>
+		</ns1:Device>
+		<ns1:Device xmlns:ns1="http://bestbuy.com/bbym/logistics/device/fields/v1">
+			<ns1:ItemTag>4711841</ns1:ItemTag>
+			<ns1:IMEI_ESN>lDVE6wEqQzjDD6B</ns1:IMEI_ESN>
+			<ns1:ProductDescription>ATT IPHONE 3GS 8GB</ns1:ProductDescription>
+			<ns1:Make>ATT</ns1:Make>
+			<ns1:Model>IPHONE 3GS 8GB</ns1:Model>
+			<ns1:ReturnType>Tradein</ns1:ReturnType>
+			<ns1:DeviceStatus>Ready For Shipping</ns1:DeviceStatus>
+		</ns1:Device>
+		<ns1:Device xmlns:ns1="http://bestbuy.com/bbym/logistics/device/fields/v1">
+			<ns1:ItemTag>2559689</ns1:ItemTag>
+			<ns1:IMEI_ESN>9K07WytgtThiBDg</ns1:IMEI_ESN>
+			<ns1:ProductDescription>Apple APPLE BLACK 8GB IPHO
+			</ns1:ProductDescription>
+			<ns1:Make>Apple</ns1:Make>
+			<ns1:Model>APPLE BLACK 8GB IPHO</ns1:Model>
+			<ns1:ReturnType>Tradein</ns1:ReturnType>
+			<ns1:DeviceStatus>Ready For Shipping</ns1:DeviceStatus>
+		</ns1:Device>
+		<ns1:Device xmlns:ns1="http://bestbuy.com/bbym/logistics/device/fields/v1">
+			<ns1:ItemTag>4110732</ns1:ItemTag>
+			<ns1:IMEI_ESN>tMtEWnUpAFMeDmr</ns1:IMEI_ESN>
+			<ns1:ProductDescription>Sony Ericsson SONY ERICCSON EQUINO
+			</ns1:ProductDescription>
+			<ns1:Make>Sony Ericsson</ns1:Make>
+			<ns1:Model>SONY ERICCSON EQUINO</ns1:Model>
+			<ns1:ReturnType>RapidExchange</ns1:ReturnType>
+			<ns1:DeviceStatus>Ready For Shipping</ns1:DeviceStatus>
+		</ns1:Device>
+	</ns0:Devices>
+	<ns1:UserArea xmlns:ns1="http://www.tsh.bestbuy.com/common/v1" />
+</ns0:SearchForDevicesResponse>

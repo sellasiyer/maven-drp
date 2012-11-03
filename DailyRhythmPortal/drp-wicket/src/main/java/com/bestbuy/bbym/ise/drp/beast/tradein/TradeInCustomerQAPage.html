@@ -1,0 +1,124 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+<title>BEAST-Portal</title>
+	<link href="../../drp/drp-war/src/main/webapp/beast-css/screen.css" media="screen" rel="StyleSheet" type="text/css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+	<script src="../../drp/drp-war/src/main/webapp/js/jquery.fixedheadertable.min.js"></script>
+	<script>
+	   
+	function autoTab(e, element, nextElement){
+		var code;
+		if (!e){
+			var e=window.event;
+		}
+		if (e.which){
+			code = e.which;
+		}else if (e.keyCode){
+			code = e.keyCode;
+		}
+		if ((code>47 && code<91)||(code<95 && code<105)){
+			if (element.value.length == element.maxLength && nextElement != null){
+				nextElement.focus();
+			}
+		}
+		
+		
+	}
+	function autoTabforDropDown(nextElement) {
+	    nextElement.focus();
+	}
+	    
+</script>
+</wicket:head>
+
+<body>
+<wicket:extend>
+<span wicket:id="border">
+<div wicket:id="feedback" class="feedbackmsg"></div> 
+<div class="wrap" style="height:393px;border: 1px solid red;"><!-- here to replicate beast frame -->
+	<dl class="form" style="width:100%; margin-bottom: 20px;">
+		<dd>
+			<label><wicket:message key="tradeInCustomerQAPage.firstName.label" /></label>
+			<input class="required" type="text" wicket:id="firstName" maxlength = "25" onkeyup="autoTab(event, this, lastName);" />
+		</dd>
+		<dd>
+			<label><wicket:message key="tradeInCustomerQAPage.lastName.label" /></label>
+			<input class="required" type="text" wicket:id="lastName" maxlength = "25" onkeyup="autoTab(event, this, dateOfBirth);" />
+		</dd>
+		<dd>
+			<label><wicket:message key="tradeInCustomerQAPage.dateOfBirth.label" /></label>
+			<input class="required" type="text" wicket:id="dateOfBirth" maxlength = "10" onkeyup="autoTab(event, this, phoneNumber);"/>
+		</dd>
+		<br />
+		<dd>
+			<label><wicket:message key="tradeInCustomerQAPage.phoneNumber.label" /></label>
+			<input class="required" type="text" wicket:id="phoneNumber" maxlength = "13" onkeyup="autoTab(event, this, email);"/>
+		</dd>
+		<dd>
+			<label><wicket:message key="tradeInCustomerQAPage.email.label" /></label>
+			<input class="required" type="text" wicket:id="email" onkeyup="autoTab(event, this, addr1);"/>
+		</dd>
+	</dl>
+	<dl class="form" style="width:100%; margin-bottom: 20px;">
+		<dd class="long">
+			<label><wicket:message key="tradeInCustomerQAPage.addr1.label" /></label>
+			<input class="required" type="text" wicket:id="addr1" maxlength = "75" onkeyup="autoTab(event, this, addr2);"/>
+		</dd>
+		<dd class="long">
+			<label><wicket:message key="tradeInCustomerQAPage.addr2.label" /></label>
+			<input type="text" wicket:id="addr2" maxlength = "75" onkeyup="autoTab(event, this, city);"/>
+		</dd>
+		
+		<br />
+		
+		<dd>
+			<label><wicket:message key="tradeInCustomerQAPage.city.label" /></label>
+			<input class="required" type="text" wicket:id="city" maxlength = "50" onkeyup="autoTab(event, this, state);" />
+		</dd>
+		<dd>
+			<label><wicket:message key="tradeInCustomerQAPage.state.label" /></label>
+			<select class="required" wicket:id="state" onchange="autoTabforDropDown(zip)">
+			</select>
+		</dd>
+		<dd class="short">
+			<label><wicket:message key="tradeInCustomerQAPage.zip.label" /></label>
+			<input class="required" type="text" wicket:id="zip" maxlength = "5" onkeyup="autoTab(event, this, idType);" />
+		</dd>
+	</dl>
+	<dl class="form" style="width:100%; margin-bottom: 0px;">
+		<dd>
+			<label><wicket:message key="tradeInCustomerQAPage.idType.label" /></label>
+			<select class="required" wicket:id="idType" onchange="autoTabforDropDown(idIssuer)">
+			</select>
+		</dd>
+		<dd>
+			<label><wicket:message key="tradeInCustomerQAPage.idIssuer.label" /></label>
+			<select class="required" wicket:id="idIssuer" onchange="autoTabforDropDown(idNumber)">
+			</select>
+		</dd>
+		<dd>
+			<label><wicket:message key="tradeInCustomerQAPage.idNumber.label" /></label>
+			<input class="required" type="text" wicket:id="idNumber" maxlength = "50" onkeyup="autoTab(event, this, idDateIssued);" />
+		</dd>
+		
+		<br />
+		
+		<dd>
+			<label><wicket:message key="tradeInCustomerQAPage.idDateIssued.label" /></label>
+			 <input class="required" type="text" wicket:id="idDateIssued" maxlength = "10" onkeyup="autoTab(event, this, idExpiration);" /> 
+		</dd>
+		<dd>
+			<label><wicket:message key="tradeInCustomerQAPage.idExpiration.label" /></label>
+			<input class="required" type="text" wicket:id="idExpiration" maxlength = "10"/>
+		</dd>
+	</dl>
+	
+	<div class="notes">
+		<p><wicket:message key="tradeInCustomerQAPage.note.label" /></p>
+	</div>
+</div>
+</span>
+</wicket:extend>
+</body>
+</html>

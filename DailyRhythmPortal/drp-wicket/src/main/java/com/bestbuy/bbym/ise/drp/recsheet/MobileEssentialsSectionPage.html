@@ -1,0 +1,88 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>Customer Dashboard</title>
+	<link href="css/table.css" rel="stylesheet" type="text/css" />
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<h2><label wicket:id = "sectionTitle"></label></h2>
+		<div class="column width-full">
+			<div class="block width-4">
+				<label><wicket:message key="moblieEssentialsSectionPage.handsFree.label" /> </label>
+				<input type="text" wicket:id="handsFreeTextField" maxlength="50" name="" value="" />
+				<div align='right'>
+					<p>
+						(<span style="display:inline;" wicket:id="handsFreeCCLabel"></span>)
+					</p>
+				</div>
+			</div>
+			<div class="block width-4">
+				<label><wicket:message key="moblieEssentialsSectionPage.memory.label" /> </label>
+				<input type="text" wicket:id="memoryTextField" maxlength="50" name="" value="" />
+				<div align='right'>
+					<p>
+						(<span style="display:inline;" wicket:id="memoryCCLabel"></span>)
+					</p>
+				</div>
+			</div>
+		
+			<div class="block width-4">
+				<label><wicket:message key="moblieEssentialsSectionPage.caseOrShield.label" /> </label>
+				<input type="text" wicket:id="caseOrShieldTextField" maxlength="50" name="" value="What" />
+				<div align='right'>
+					<p>
+						(<span style="display:inline;" wicket:id="caseOrShieldCCLabel"></span>)
+					</p>
+				</div>
+			</div>
+			<div class="block width-4">
+				<label><wicket:message key="moblieEssentialsSectionPage.appcessories.label" /> </label>
+				<input type="text" wicket:id="appcessoriesTextField" maxlength="50" name="" value="What" />
+				<div align='right'>
+					<p>
+						(<span style="display:inline;" wicket:id="appcessoriesCCLabel"></span>)
+					</p>
+				</div>
+			</div>
+			<div class="block width-4">
+				<label><wicket:message key="moblieEssentialsSectionPage.charger.label" /> </label>
+				<input type="text" wicket:id="chargerTextField" maxlength="50" name="" value="What" />
+				<div align='right'>
+					<p>
+						(<span style="display:inline;" wicket:id="chargerCCLabel"></span>)
+					</p>
+				</div>
+			</div>
+			<div class="block width-4">
+				<label><wicket:message key="moblieEssentialsSectionPage.gsProtection.label" /> </label>
+				<input type="text" wicket:id="gsProtectionTextField" maxlength="50" name="" value="What" />
+				<div align='right'>
+					<p>(<span style="display:inline;" wicket:id="gsProtectionCCLabel"></span>)</p>
+				</div>
+			</div>
+			<div class="block width-4">
+				<label><wicket:message key="moblieEssentialsSectionPage.tradeInPlus.label" /> </label>
+				<input type="text" wicket:id="tradeInPlusTextField" maxlength="50" name="" value="" />
+				<div align='right'>
+					<p>
+						(<span style="display:inline;" wicket:id="tradeInPlusCCLabel"></span>)
+					</p>
+				</div>
+			</div>
+			<div class="block width-4">
+				<label><wicket:message key="moblieEssentialsSectionPage.financing.label" /> </label>
+				<input type="text" wicket:id="financingTextField" maxlength="50" name="" value="What" />
+				<div align='right'>
+					<p>
+						(<span style="display:inline;" wicket:id="financingCCLabel"></span>)
+					</p>
+				</div>
+			</div>
+			
+		</div>
+	</wicket:extend>
+</body>
+</html>

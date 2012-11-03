@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+	<wicket:panel>
+		<!--  fancy column headers -->
+		<table class="table_header">
+			<tr>
+				<td></td>
+				<td colspan="2" class="tall"><wicket:message key="returnLabel" />
+				</td>
+				<td colspan="2" class="tall"><wicket:message key="saleLabel" />
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td class="short"><wicket:message key="qtyLabel" /></td>
+				<td><wicket:message key="scoreboardModal.employeeDetails.total.label" />
+				</td>
+				<td class="short"><wicket:message key="qtyLabel" /></td>
+				<td><wicket:message key="scoreboardModal.employeeDetails.total.label" />
+				</td>
+
+			</tr>
+		</table>
+		<!--  end of header -->
+
+		<table wicket:id="categoryListView">
+			<tr>
+				<th colspan="5" wicket:id="listHeaderLabel"></th>
+			</tr>
+			<tr wicket:id="dataItemListview">
+				<td wicket:id="itemNameLabel"></td>
+				<td><span wicket:id="returnQtyLabel"></span></td>
+				<td><span wicket:id="returnTotalLabel"></span></td>
+				<td><span wicket:id="saleQtyLabel"></span>
+				</td>
+				<td><span wicket:id="saleTotalLabel"></span>
+				</td>
+			</tr>
+		</table>
+
+	</wicket:panel>
+</body>
+</html>

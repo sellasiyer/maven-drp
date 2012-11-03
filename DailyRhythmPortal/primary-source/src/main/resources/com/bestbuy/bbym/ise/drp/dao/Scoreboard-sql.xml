@@ -1,0 +1,1600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqls>
+	<sql name="SQL_EMPLOYEE_SHIFT_TRANSACTION_COUNT">
+	SELECT COUNT(*) FROM BST_ISE_SCH01.NTL_MRGN_TRANS WHERE NTL_MRGN_DLY_EMP_ID = :NTL_MRGN_DLY_EMP_ID
+	</sql>
+	<sql name="SQL_EDIT_STORE_RETURNS">
+		<![CDATA[
+		-- Parameters:
+		--    ntl_mrgn_val.bsns_src_id    = SWAS_MOBILE | SWAS_COMPUTING | SAS_MOBILE    :bsns_src_nm
+		--    ntl_mrgn_trans.stor_id      = '0105'                                       :stor_id
+		
+		SELECT c_parent.description AS parent_description,
+       c_item.description AS item_description, 
+       c_item.param_val, 
+       t.ntl_mrgn_trans_id,
+       t.ntl_mrgn_val_id, 
+       t.qty, 
+       t.amt,
+       tran_dt,
+       t.del_flg
+  FROM bst_ise_sch01.ntl_mrgn_trans t
+  JOIN bst_ise_sch01.config c_tran_typ ON t.tran_typ_id = c_tran_typ.config_id AND c_tran_typ.config_typ = 'TRAN_TYP' AND c_tran_typ.param_name = 'RETURN'
+  JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+  JOIN bst_ise_sch01.config config_bsns ON v.bsns_src_id = config_bsns.config_id AND config_bsns.config_typ = 'BSNS_SRC_NM' AND config_bsns.param_name = :bsns_src_nm
+  JOIN bst_ise_sch01.config c_val ON v.ntl_mrgn_item_id = c_val.config_id
+  JOIN bst_ise_sch01.config c_item ON c_item.param_val = c_val.param_name AND c_item.config_typ = 'SCOREBOARD_ITEMS_' || :bsns_src_nm
+  JOIN bst_ise_sch01.config c_parent ON c_parent.config_id = (SELECT MAX(config_id)
+                                                                FROM bst_ise_sch01.config
+                                                               WHERE config_id < c_item.config_id
+                                                                 AND param_val IS NULL)
+ WHERE t.stor_id = :stor_id
+ORDER BY t.ntl_mrgn_trans_id DESC
+		]]>
+	</sql>
+	<sql name="SQL_EDIT_EMPLOYEE_SALES">
+		<![CDATA[
+		SELECT c_parent.description parent_description,
+       c_item.description item_description, 
+       c_item.param_val, 
+       t.ntl_mrgn_trans_id,
+       t.ntl_mrgn_val_id, 
+       t.qty, 
+       t.amt,
+       tran_dt,
+       t.del_flg
+  FROM bst_ise_sch01.ntl_mrgn_trans t
+  JOIN bst_ise_sch01.config c_tran_typ ON t.tran_typ_id = c_tran_typ.config_id AND c_tran_typ.config_typ = 'TRAN_TYP' AND c_tran_typ.param_name = 'SALE'
+  JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+  JOIN bst_ise_sch01.config config_bsns ON v.bsns_src_id = config_bsns.config_id AND config_bsns.config_typ = 'BSNS_SRC_NM' AND config_bsns.param_name = :bsns_src_nm
+  JOIN bst_ise_sch01.config c_val ON v.ntl_mrgn_item_id = c_val.config_id
+  JOIN bst_ise_sch01.config c_item ON c_item.param_val = c_val.param_name AND c_item.config_typ = 'SCOREBOARD_ITEMS_' || :bsns_src_nm
+  JOIN bst_ise_sch01.config c_parent ON c_parent.config_id = (SELECT MAX(config_id)
+                                                                FROM bst_ise_sch01.config
+                                                               WHERE config_id < c_item.config_id
+                                                                 AND param_val IS NULL)
+ WHERE t.stor_id = :stor_id
+   AND t.ntl_mrgn_dly_emp_id = :ntl_mrgn_dly_emp_id
+ORDER BY t.ntl_mrgn_trans_id DESC
+		]]>
+	</sql>
+	<sql name="SQL_DELETE_TRANSACTION">
+		UPDATE BST_ISE_SCH01.NTL_MRGN_TRANS SET DEL_FLG = 1, AMENDED_ON = SYSDATE, AMENDED_BY =:AMENDED_BY
+		WHERE NTL_MRGN_TRANS_ID =:NTL_MRGN_TRANS_ID
+	</sql>
+	<sql name="SQL_SELECT_EMP_DETAILS">
+		-- Parameters:
+		-- ntl_mrgn_val.bsns_src_id = 'SWAS_MOBILE'		:bsns_src_nm
+		-- ntl_mrgn_trans.stor_id = '0699' :stor_id
+		-- ntl_mrgn_trans.ntl_mrgn_dly_emp_id = 1 :ntl_mrgn_dly_emp_id
+		-- Employee Details (includes all records, even those with NULL)
+		SELECT c_list.description,
+    items.*,
+    items_value.*,
+		d.sales_qty,
+		d.sales_total
+		FROM bst_ise_sch01.config c_list
+    LEFT JOIN BST_ISE_SCH01.config
+		items
+		ON items.config_typ = 'NTL_MRGN_ITEM'
+		AND c_list.param_val =
+		items.param_name
+		LEFT JOIN (select * from BST_ISE_SCH01.ntl_mrgn_val items_value 
+    where	items_value.bsns_src_id = (select c.config_id from BST_ISE_SCH01.config c
+		where c.config_typ = 'BSNS_SRC_NM' and c.param_name = :bsns_src_nm)
+    )items_value
+		ON
+		items_value.ntl_mrgn_item_id = items.config_id 
+		LEFT JOIN (SELECT c_sales_1.param_name param_name,
+		c_sales_1.param_val,
+		v.ntl_mrgn_val_id ntl_mrgn_val_id,
+		NVL(SUM(sales.qty), 0) sales_qty,
+		NVL((SUM(sales.qty) * v.ntl_mrgn_item_val * NVL(sales.amt, 1)), 0) sales_total
+		FROM bst_ise_sch01.ntl_mrgn_val v
+		JOIN bst_ise_sch01.config c_sales_1 ON v.ntl_mrgn_item_id =
+		c_sales_1.config_id
+		JOIN bst_ise_sch01.config c_sales_2 ON v.bsns_src_id = c_sales_2.config_id
+		AND c_sales_2.config_typ = 'BSNS_SRC_NM' AND c_sales_2.param_name =
+		:bsns_src_nm
+		LEFT JOIN bst_ise_sch01.ntl_mrgn_trans sales ON sales.del_flg = 0 and v.ntl_mrgn_val_id =
+		sales.ntl_mrgn_val_id AND sales.stor_id = :stor_id
+		AND sales.ntl_mrgn_dly_emp_id = :ntl_mrgn_dly_emp_id
+		JOIN bst_ise_sch01.config c_sales_3 ON sales.tran_typ_id =
+		c_sales_3.config_id AND c_sales_3.config_typ = 'TRAN_TYP' AND
+		c_sales_3.param_name = 'SALE'
+		GROUP BY c_sales_1.param_name,c_sales_1.param_val, v.ntl_mrgn_val_id,
+		v.ntl_mrgn_item_val, sales.amt) d
+		ON c_list.param_val = d.param_name
+		WHERE c_list.config_typ = 'SCOREBOARD_ITEMS_' || :bsns_src_nm
+		ORDER BY TO_NUMBER(c_list.param_name)
+	</sql>
+	<sql name="SQL_SELECT_STORE_DETAILS">
+		<![CDATA[
+			-- Parameters:
+			--    ntl_mrgn_val.bsns_src_id    = SWAS_MOBILE | SWAS_COMPUTING | SAS_MOBILE    :bsns_src_nm
+			--    ntl_mrgn_trans.stor_id      = '0105'                                       :stor_id
+			
+			-- Store Details (includes all records, even those with NULL)
+			SELECT c_list.description, 
+			       c_list.param_val, 
+			       items_value.*,
+			       d.sales_qty, 
+			       d.sales_total,
+			       d.returns_qty, 
+			       d.returns_total
+			  FROM bst_ise_sch01.config c_list
+			      LEFT JOIN BST_ISE_SCH01.config
+		items
+		ON items.config_typ = 'NTL_MRGN_ITEM'
+		AND c_list.param_val =
+		items.param_name
+		LEFT JOIN (select * from BST_ISE_SCH01.ntl_mrgn_val items_value 
+    where	items_value.bsns_src_id = (select c.config_id from BST_ISE_SCH01.config c
+		where c.config_typ = 'BSNS_SRC_NM' and c.param_name = :bsns_src_nm)
+    )items_value
+		ON
+		items_value.ntl_mrgn_item_id = items.config_id 
+			LEFT JOIN (SELECT c_sales_1.param_name param_name, 
+			                  v.ntl_mrgn_val_id ntl_mrgn_val_id,
+			                  NVL(SUM(sales.qty), 0) sales_qty, 
+			                  NVL((SUM(sales.qty) * v.ntl_mrgn_item_val * NVL(sales.amt, 1)), 0) sales_total,
+			                  NVL(returns.t_return_qty, 0) returns_qty, 
+			                  NVL(returns.t_return_total, 0) returns_total
+			             FROM bst_ise_sch01.ntl_mrgn_val v 
+			             JOIN bst_ise_sch01.config c_sales_1 ON v.ntl_mrgn_item_id = c_sales_1.config_id
+			             JOIN bst_ise_sch01.config c_sales_2 ON v.bsns_src_id = c_sales_2.config_id AND c_sales_2.config_typ = 'BSNS_SRC_NM' AND c_sales_2.param_name = :bsns_src_nm
+			        LEFT JOIN bst_ise_sch01.ntl_mrgn_trans sales ON v.ntl_mrgn_val_id = sales.ntl_mrgn_val_id AND sales.del_flg = 0 AND sales.stor_id = :stor_id
+			             JOIN bst_ise_sch01.config c_sales_3 ON sales.tran_typ_id = c_sales_3.config_id AND c_sales_3.config_typ = 'TRAN_TYP' AND c_sales_3.param_name = 'SALE'
+			       LEFT JOIN (SELECT v_returns.ntl_mrgn_val_id,
+			                         SUM(t_returns.qty) t_return_qty, 
+			                        (SUM(t_returns.qty) * v_returns.ntl_mrgn_item_val * NVL(t_returns.amt, 1)) t_return_total
+			                   FROM bst_ise_sch01.ntl_mrgn_trans t_returns
+			                   JOIN bst_ise_sch01.config c_returns_1 ON t_returns.tran_typ_id = c_returns_1.config_id AND c_returns_1.config_typ = 'TRAN_TYP' AND c_returns_1.param_name = 'RETURN'
+			                   JOIN bst_ise_sch01.ntl_mrgn_val v_returns ON v_returns.ntl_mrgn_val_id = t_returns.ntl_mrgn_val_id AND t_returns.del_flg = 0 AND t_returns.stor_id = :stor_id
+			                   JOIN bst_ise_sch01.config c_returns_2 ON c_returns_2.config_id = v_returns.ntl_mrgn_item_id
+			                   JOIN bst_ise_sch01.config c_returns_3 ON c_returns_3.config_id = v_returns.bsns_src_id AND c_returns_3.config_typ = 'BSNS_SRC_NM' AND c_returns_3.param_name = :bsns_src_nm
+			               GROUP BY v_returns.ntl_mrgn_val_id, v_returns.ntl_mrgn_item_val, t_returns.amt) returns ON v.ntl_mrgn_val_id = returns.ntl_mrgn_val_id
+			  GROUP BY c_sales_1.param_name, v.ntl_mrgn_val_id, v.ntl_mrgn_item_val, sales.amt, t_return_qty, t_return_total) d
+			      ON c_list.param_val = d.param_name
+			   WHERE c_list.config_typ = 'SCOREBOARD_ITEMS_' || :bsns_src_nm
+			ORDER BY TO_NUMBER(c_list.param_name)
+		]]>
+	</sql>
+	<sql name="SQL_SELECT_SALES_AND_RETURN_ITEMS">
+		SELECT categories.config_id,
+		categories.description,
+		items_value.*,
+		sales.sale_qty,
+		sales.sale_amt,
+		ret.return_qty,
+		ret.return_amt
+		FROM BST_ISE_SCH01.config categories
+		LEFT JOIN BST_ISE_SCH01.config
+		items
+		ON items.config_typ = 'NTL_MRGN_ITEM'
+		AND categories.param_val =
+		items.param_name
+		LEFT JOIN (select * from BST_ISE_SCH01.ntl_mrgn_val items_value 
+    where	items_value.bsns_src_id = (select c.config_id from BST_ISE_SCH01.config c
+		where c.config_typ = 'BSNS_SRC_NM' and c.param_name = :businessSource)
+    )items_value
+		ON
+		items_value.ntl_mrgn_item_id = items.config_id 
+		LEFT JOIN
+		(SELECT trans.ntl_mrgn_val_id,
+		SUM(trans.qty) AS sale_qty,
+		SUM(trans.amt) AS sale_amt
+		FROM BST_ISE_SCH01.ntl_mrgn_trans trans
+		WHERE trans.del_flg = 0 and trans.tran_typ_id = (select c.config_id from BST_ISE_SCH01.config c
+		where c.config_typ = 'TRAN_TYP' and c.param_name = 'SALE')
+		AND trans.stor_id = :storeId
+		AND trans.ntl_mrgn_dly_emp_id = :ntlMrgnDlyEmpId
+		GROUP BY trans.ntl_mrgn_val_id
+		) sales
+		ON sales.ntl_mrgn_val_id = items_value.ntl_mrgn_val_id
+		LEFT JOIN
+		(SELECT trans.ntl_mrgn_val_id,
+		SUM(trans.qty) AS return_qty,
+		SUM(trans.amt) AS return_amt
+		FROM BST_ISE_SCH01.ntl_mrgn_trans trans
+		WHERE trans.del_flg = 0 and trans.tran_typ_id = (select c.config_id from BST_ISE_SCH01.config c
+		where c.config_typ = 'TRAN_TYP' and c.param_name = 'RETURN')
+		AND trans.stor_id = :storeId
+		GROUP BY trans.ntl_mrgn_val_id
+		) ret
+		ON ret.ntl_mrgn_val_id = items_value.ntl_mrgn_val_id
+		WHERE
+		categories.config_typ = :categoryType
+		ORDER BY
+		to_number(categories.param_name)
+	</sql>
+	<sql name="SQL_SELECT_STORE_NOTIONAL_MARGIN">
+	<![CDATA[
+		-- Parameters:
+		--    ntl_mrgn_val.bsns_src_id   = SWAS_MOBILE | SWAS_COMPUTING | SAS_MOBILE                     :bsns_src_nm
+		--    ntl_mrgn_val.bsns_src_id   = SWAS_MOBILE | SWAS_COMPUTING | SAS_MOBILE | PENTAGON_MOBILE   :bsns_src_nm_wgt
+		--    config.param_name          = SWAS | SAS                                                    :stor_typ_nm
+		--    ntl_mrgn_trans.stor_id     = '0699'                                                        :stor_id
+		--    current_date_time          = '08-OCT-12 14:36'                                             :current_tm
+		
+		-- Current Value:  Notional Margin
+		SELECT 'CURRENT_VALUE' ntl_mrgn_type, NVL(SUM(t.qty * v.ntl_mrgn_item_val * NVL(t.amt, 1)), 0) ntl_mrgn_value
+		  FROM bst_ise_sch01.ntl_mrgn_trans t
+		  JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id 
+		  JOIN bst_ise_sch01.config c ON v.bsns_src_id = c.config_id AND c.config_typ = 'BSNS_SRC_NM' AND c.param_name = :bsns_src_nm
+		 WHERE t.del_flg = 0
+		   AND t.stor_id = :stor_id
+		UNION
+		-- GOAL:  Notional Margin
+		SELECT 'GOAL' ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val * NVL(goal_percent.goal_val, 1)) ntl_mrgn_value
+		 FROM (SELECT t.ntl_mrgn_tgt_val tgt_val, c.param_name param_name
+		         FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+		         JOIN bst_ise_sch01.config c ON t.ntl_mrgn_tgt_id = c.config_id AND c.config_typ = 'NTL_MRGN_TGT' AND c.param_name = 'NOT_MRGN'
+		         JOIN bst_ise_sch01.config c2 ON t.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' AND c2.param_name = :bsns_src_nm
+		        WHERE t.stor_id = :stor_id ) tgt,
+		      (SELECT w.wgt_val wgt_val
+		         FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+		         JOIN bst_ise_sch01.config c ON w.wgt_cat_id = c.config_id AND c.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c.param_name = DECODE(:bsns_src_nm, 'SWAS_COMPUTING', 'TOTAL', 'MOBILE')
+		         JOIN bst_ise_sch01.config c2 ON w.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' AND c2.param_name = :bsns_src_nm_wgt
+		        WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) ) wgt,
+		       (SELECT g.goal_val goal_val
+		          FROM bst_ise_sch01.ntl_mrgn_stor_goal g
+		          JOIN bst_ise_sch01.config c ON g.goal_typ_id = c.config_id AND c.config_typ = :bsns_src_nm || '_GOAL_TYP' and c.param_name = 'NOTIONAL_MARGIN_GOAL'
+		          JOIN bst_ise_sch01.config c2 ON g.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' AND c2.param_name = :bsns_src_nm
+		         WHERE g.stor_id = :stor_id) goal_percent
+		UNION
+		-- TOTAL_HOURS_WORKED_ALL_EMPS
+		SELECT 'TOTAL_HOURS_WORKED_ALL_EMPS', NVL(SUM( DECODE( SIGN( TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI') - shift_end_tm), 1,
+		                   -- Use shift_end_tm
+		                   (de.shift_end_tm - de.shift_beg_tm) * 24,
+		                   -- Use current_date_time
+		                   (TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI') - de.shift_beg_tm) * 24) ), 0) total_hours_worked_all_emps
+		  FROM bst_ise_sch01.ntl_mrgn_dly_emp de
+		  JOIN bst_ise_sch01.config c ON de.bsns_src_id = c.config_id AND c.config_typ = 'BSNS_SRC_NM' AND c.param_name = :bsns_src_nm
+		 WHERE de.stor_id = :stor_id
+		   AND de.shift_beg_tm > TO_DATE(TO_CHAR(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI'), 'MM/DD/YYYY') || ' 00:00', 'MM/DD/YYYY HH24:MI') -- midnight of the current day
+		   AND de.shift_beg_tm < TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')
+		UNION
+		-- STORE_TRAFFIC_PERCENT AT TOP-OF-NEXT-HOUR
+		SELECT 'STORE_TRAFFIC_PERCENT', NVL(t.cuml_trfc_pct, 0)
+		  FROM bst_ise_sch01.avg_stor_trfc t
+		  JOIN bst_ise_sch01.config c ON t.stor_typ_id = c.config_id AND c.config_typ = 'STOR_TYP_NM' AND c.param_name = :stor_typ_nm
+		 WHERE t.wkdy = TO_CHAR( TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI'), 'D')
+		   AND t.hh_end = TO_NUMBER(TO_CHAR(TO_DATE(TO_CHAR(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI') + (1/24), 'MM/DD/YYYY HH24') || ':00', 'MM/DD/YYYY HH24:MI'), 'HH24'))
+	]]>
+	</sql>
+	<sql name="SQL_SELECT_EMPLOYEE_SHIFT_NOTIONAL_MARGIN">
+		<![CDATA[
+		-- Parameters
+		-- dateTime client local date and time
+		-- store id
+		-- business source name
+		SELECT de.*,
+		  emp.*,
+		  NVL(c_value.current_value,0) AS current_value,
+		  CASE
+		    WHEN to_date(?,'mm/dd/yyyy HH24:MI') < de.shift_beg_tm
+		    THEN 0
+		    WHEN to_date(?,'mm/dd/yyyy HH24:MI') >= de.shift_end_tm
+		    THEN (de.shift_end_tm                 - de.shift_beg_tm)*24
+		    ELSE (to_date(?,'mm/dd/yyyy HH24:MI') - de.shift_beg_tm)*24
+		  END                                         AS TOTAL_HOURS_WORKED,
+		  NVL(de.shift_end_tm - de.shift_beg_tm,0)*24 AS EMP_SHIFT_HOURS
+		FROM BST_ISE_SCH01.ntl_mrgn_dly_emp de
+		LEFT JOIN
+		  (SELECT trans.ntl_mrgn_dly_emp_id,
+		    SUM((trans.qty * val.ntl_mrgn_item_val * NVL(trans.amt,1))) AS current_value
+		  FROM BST_ISE_SCH01.ntl_mrgn_trans trans, BST_ISE_SCH01.config config, BST_ISE_SCH01.ntl_mrgn_val val
+		  WHERE trans.del_flg = 0
+		  and trans.ntl_mrgn_val_id = val.ntl_mrgn_val_id
+		  and config.config_id = trans.tran_typ_id
+		  and config.config_typ = 'TRAN_TYP' 
+		  and config.param_name = 'SALE'
+		  GROUP BY trans.ntl_mrgn_dly_emp_id
+		  ) c_value
+		ON c_value.ntl_mrgn_dly_emp_id = de.ntl_mrgn_dly_emp_id,
+		  BST_ISE_SCH01.ntl_mrgn_emp emp
+		WHERE de.ntl_mrgn_emp_id = emp.ntl_mrgn_emp_id
+		AND de.shift_beg_tm     >= to_date(?,'mm/dd/yyyy')
+		AND de.stor_id           = ?
+		AND de.bsns_src_id       = (select config_id from bst_ise_sch01.config where config_typ = 'BSNS_SRC_NM' and param_name=?)
+		ORDER BY de.shift_beg_tm, emp.emp_nm
+		]]>
+	</sql>
+	<sql name="SQL_SELECT_INITIALIZED_EMPLOYEE_COUNT">
+		<![CDATA[
+		SELECT count(*) FROM BST_ISE_SCH01.ntl_mrgn_dly_emp de 
+		WHERE de.shift_beg_tm > TRUNC(to_date(?,'mm/dd/yyyy HH24:MI')) 
+		AND de.stor_id = ?
+		]]>
+	</sql>
+	<sql name="SQL_DELETE_STORE_DAILY_TRANS">
+		DELETE FROM BST_ISE_SCH01.NTL_MRGN_TRANS WHERE
+		BST_ISE_SCH01.NTL_MRGN_TRANS.STOR_ID = ?
+	</sql>
+	<sql name="SQL_UPDATE_STORE_EMP_SHIFT">
+		UPDATE BST_ISE_SCH01.NTL_MRGN_DLY_EMP SET
+		SHIFT_BEG_TM = NULL, SHIFT_END_TM = NULL, PRIMARY_ZONE_ID = NULL, SECONDARY_ZONE_ID = NULL , AMENDED_BY = ?, AMENDED_ON = SYSDATE 
+		WHERE STOR_ID = ?
+	</sql>
+	<sql name="SQL_INSERT_TRANSACTION">
+		INSERT INTO BST_ISE_SCH01.NTL_MRGN_TRANS
+		(NTL_MRGN_TRANS_ID,TRAN_TYP_ID,STOR_ID,NTL_MRGN_DLY_EMP_ID,NTL_MRGN_VAL_ID,QTY,AMT,TRAN_DT,DEL_FLG,CREATED_BY,CREATED_ON,AMENDED_BY,AMENDED_ON)
+		VALUES
+		(BST_ISE_SCH01.NTL_MRGN_TRANS_ID.NEXTVAL,:TRAN_TYP_ID,:STOR_ID,:NTL_MRGN_DLY_EMP_ID,:NTL_MRGN_VAL_ID,:QTY,:AMT,:TRAN_DT,0,:CREATED_BY,SYSDATE,NULL,NULL)
+	</sql>
+	<sql name="SQL_SELECT_GOAL">
+		SELECT GOAL.*, GOALVALUE.* FROM BST_ISE_SCH01.CONFIG GOAL
+		LEFT JOIN (SELECT * FROM BST_ISE_SCH01.NTL_MRGN_STOR_GOAL GOALVALUE
+		WHERE GOALVALUE.STOR_ID = ? AND GOALVALUE.BSNS_SRC_ID =
+		(SELECT C.CONFIG_ID FROM BST_ISE_SCH01.CONFIG C WHERE C.CONFIG_TYP =
+		'BSNS_SRC_NM' AND C.PARAM_NAME = ?)) GOALVALUE
+		ON GOAL.CONFIG_ID = GOALVALUE.GOAL_TYP_ID
+		WHERE GOAL.CONFIG_TYP = ?||'_GOAL_TYP' 
+	</sql>
+	<sql name="SQL_GOAL_INSERT">
+		INSERT INTO BST_ISE_SCH01.NTL_MRGN_STOR_GOAL
+		(NTL_MRGN_STOR_GOAL_ID,STOR_ID,BSNS_SRC_ID,GOAL_TYP_ID,GOAL_VAL,CREATED_BY,CREATED_ON,AMENDED_BY,AMENDED_ON)
+		VALUES
+		(BST_ISE_SCH01.NTL_MRGN_STOR_GOAL_ID.NEXTVAL,:STOR_ID,:BSN_SRC_ID,:GOAL_TYP_ID,:GOAL_VAL,:CREATED_BY,SYSDATE,NULL,NULL)
+	</sql>
+	<sql name="SQL_GOAL_UPDATE">
+		UPDATE BST_ISE_SCH01.NTL_MRGN_STOR_GOAL SET GOAL_VAL = :GOAL_VAL, AMENDED_BY = :AMENDED_BY, AMENDED_ON = SYSDATE
+		WHERE NTL_MRGN_STOR_GOAL_ID = :NTL_MRGN_STOR_GOAL_ID
+	</sql>
+	<sql name="SQL_DELETE_TRANS_BY_EMP">
+		DELETE FROM BST_ISE_SCH01.NTL_MRGN_TRANS WHERE
+		NTL_MRGN_DLY_EMP_ID = ?
+	</sql>
+	<sql name="SQL_DELETE_DLY_EMP">
+		DELETE FROM BST_ISE_SCH01.NTL_MRGN_DLY_EMP WHERE
+		NTL_MRGN_DLY_EMP_ID = ?
+	</sql>
+	<sql name="SQL_SELECT_EMP_SHIFT">
+		SELECT * FROM BST_ISE_SCH01.NTL_MRGN_EMP EMP
+		LEFT JOIN (SELECT * FROM BST_ISE_SCH01.NTL_MRGN_DLY_EMP
+		WHERE STOR_ID = ?
+		AND BSNS_SRC_ID = (SELECT CONFIG_ID FROM BST_ISE_SCH01.CONFIG WHERE
+		CONFIG_TYP = 'BSNS_SRC_NM' AND PARAM_NAME=?)
+		) DLY ON
+		EMP.NTL_MRGN_EMP_ID = DLY.NTL_MRGN_EMP_ID
+		WHERE UPPER(EMP.BBY_EMP_ID) = UPPER(?)
+	</sql>
+	<sql name="SQL_INSERT_EMPLOYEE">
+		INSERT INTO BST_ISE_SCH01.NTL_MRGN_EMP
+		(NTL_MRGN_EMP_ID,BBY_EMP_ID,EMP_NM,CREATED_BY,CREATED_ON,AMENDED_BY,AMENDED_ON)
+		VALUES
+		(BST_ISE_SCH01.NTL_MRGN_EMP_ID.NEXTVAL,:BBY_EMP_ID,:EMP_NM,:CREATED_BY,SYSDATE,NULL,NULL)
+	</sql>
+	<sql name="SQL_INSERT_EMPLOYEE_SHIFT">
+		INSERT INTO BST_ISE_SCH01.NTL_MRGN_DLY_EMP
+		(NTL_MRGN_DLY_EMP_ID,NTL_MRGN_EMP_ID,STOR_ID,BSNS_SRC_ID,SHIFT_BEG_TM,SHIFT_END_TM,PRIMARY_ZONE_ID,SECONDARY_ZONE_ID,CREATED_BY,CREATED_ON,AMENDED_BY,AMENDED_ON)
+		VALUES(BST_ISE_SCH01.NTL_MRGN_DLY_EMP_ID.nextval,:NTL_MRGN_EMP_ID,:STOR_ID,:BSNS_SRC_ID,:SHIFT_BEG_TM,:SHIFT_END_TM,:PRIMARY_ZONE_ID,:SECONDARY_ZONE_ID,:CREATED_BY,SYSDATE,NULL,NULL)
+	</sql>
+	<sql name="SQL_SELECT_DAILY_EMP_SHIFT_LIST">
+		SELECT * FROM BST_ISE_SCH01.NTL_MRGN_EMP EMP,
+		BST_ISE_SCH01.NTL_MRGN_DLY_EMP DLY
+		WHERE EMP.NTL_MRGN_EMP_ID = DLY.NTL_MRGN_EMP_ID
+		AND DLY.STOR_ID = ?
+		AND DLY.BSNS_SRC_ID = (SELECT CONFIG_ID FROM BST_ISE_SCH01.CONFIG WHERE
+		CONFIG_TYP = 'BSNS_SRC_NM' AND PARAM_NAME=?)
+		ORDER BY DLY.SHIFT_BEG_TM, EMP.EMP_NM
+	</sql>
+	<sql name="SQL_UPDATE_EMP_SHIFT">
+		UPDATE BST_ISE_SCH01.NTL_MRGN_DLY_EMP SET NTL_MRGN_EMP_ID
+		= :NTL_MRGN_EMP_ID,
+		STOR_ID = :STOR_ID, BSNS_SRC_ID = :BSNS_SRC_ID,
+		SHIFT_BEG_TM = :SHIFT_BEG_TM, SHIFT_END_TM = :SHIFT_END_TM,
+		PRIMARY_ZONE_ID = :PRIMARY_ZONE_ID, SECONDARY_ZONE_ID =
+		:SECONDARY_ZONE_ID, AMENDED_BY = :AMENDED_BY, AMENDED_ON = SYSDATE
+		WHERE NTL_MRGN_DLY_EMP_ID = :NTL_MRGN_DLY_EMP_ID
+	</sql>
+	<sql name="SQL_SELECT_WIDGET_SWAS_MOBILE_TOTAL_CONNECTIONS">SELECT 'CURRENT_VALUE' ntl_mrgn_type, NVL(SUM(t.qty), 0) ntl_mrgn_value
+  FROM bst_ise_sch01.ntl_mrgn_trans t
+  JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+  JOIN bst_ise_sch01.config c1 ON v.bsns_src_id = c1.config_id AND c1.config_typ = 'BSNS_SRC_NM' and c1.param_name = :bsns_src_nm
+  JOIN bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN ('PREPAID_PREMIUM_BOUNTY', 'PREPAID_CORE_BOUNTY', 'POSTPAID_NEW_BOUNTY', 'POSTPAID_UPGRADE_BOUNTY', 'POSTPAID_HANDSET_ONLY_BOUNTY', 'AIRCARD_BOUNTY', 'IPHONE_BOUNTY', 'BBAND_PREPAID', 'PREPAID_MEDIUM_BOUNTY')
+ WHERE t.del_flg = 0
+   AND t.stor_id = :stor_id
+UNION
+SELECT 'GOAL' ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val) ntl_mrgn_value
+ FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+         FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+         JOIN bst_ise_sch01.config c1 ON t.ntl_mrgn_tgt_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_TGT' AND c1.param_name = 'TOTAL_CONNECTIONS'
+         JOIN bst_ise_sch01.config c2 ON t.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+        WHERE t.stor_id = :stor_id) tgt,
+      (SELECT w.wgt_val wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+         JOIN bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name = 'CONNECTIONS'
+         JOIN bst_ise_sch01.config c2 ON w.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm_wgt
+        WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) ) wgt
+UNION
+SELECT 'CURRENT_VALUE_TC_NO_IPHONE' ntl_mrgn_type, NVL(SUM(t.qty), 0) ntl_mrgn_value
+  FROM bst_ise_sch01.ntl_mrgn_trans t
+  JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+  JOIN bst_ise_sch01.config c1 ON v.bsns_src_id = c1.config_id AND c1.config_typ = 'BSNS_SRC_NM' and c1.param_name = :bsns_src_nm
+  JOIN bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN ('POSTPAID_NEW_BOUNTY', 'POSTPAID_UPGRADE_BOUNTY', 'POSTPAID_HANDSET_ONLY_BOUNTY')
+ WHERE t.del_flg = 0
+   AND t.stor_id = :stor_id
+UNION
+SELECT 'GOAL_TC_NO_IPHONE' ntl_mrgn_type, CEIL((pp_units_tgt.tgt_val - iphone_tgt.tgt_val) * wgt.wgt_val) ntl_mrgn_value
+ FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+         FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+         JOIN bst_ise_sch01.config c1 ON t.ntl_mrgn_tgt_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_TGT' AND c1.param_name = 'POSTPAID_UNITS'
+         JOIN bst_ise_sch01.config c2 ON t.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+        WHERE t.stor_id = :stor_id) pp_units_tgt,
+      (SELECT t.ntl_mrgn_tgt_val tgt_val
+         FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+         JOIN bst_ise_sch01.config c1 ON t.ntl_mrgn_tgt_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_TGT' AND c1.param_name = 'IPHONE_UNITS'
+         JOIN bst_ise_sch01.config c2 ON t.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+        WHERE t.stor_id = :stor_id) iphone_tgt,
+      (SELECT w.wgt_val wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+         JOIN bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name = 'POSTPAID_UNITS'
+         JOIN bst_ise_sch01.config c2 ON w.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm_wgt
+        WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) ) wgt
+UNION
+SELECT 'CURRENT_VALUE_TC_IPHONE' ntl_mrgn_type, NVL(SUM(t.qty), 0) ntl_mrgn_value
+  FROM bst_ise_sch01.ntl_mrgn_trans t
+  JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+  JOIN bst_ise_sch01.config c1 ON v.bsns_src_id = c1.config_id AND c1.config_typ = 'BSNS_SRC_NM' and c1.param_name = :bsns_src_nm
+  JOIN bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN ('IPHONE_BOUNTY')
+ WHERE t.del_flg = 0
+   AND t.stor_id = :stor_id
+UNION
+SELECT 'GOAL_TC_IPHONE' ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val) ntl_mrgn_value
+ FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+         FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+         JOIN bst_ise_sch01.config c1 ON t.ntl_mrgn_tgt_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_TGT' AND c1.param_name = 'IPHONE_UNITS'
+         JOIN bst_ise_sch01.config c2 ON t.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+        WHERE t.stor_id = :stor_id) tgt,
+      (SELECT w.wgt_val wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+         JOIN bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name = 'POSTPAID_UNITS'
+         JOIN bst_ise_sch01.config c2 ON w.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm_wgt
+        WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) ) wgt
+UNION
+SELECT 'CURRENT_VALUE_TC_NO_CONTRACT' ntl_mrgn_type, NVL(SUM(t.qty), 0) ntl_mrgn_value
+  FROM bst_ise_sch01.ntl_mrgn_trans t
+  JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+  JOIN bst_ise_sch01.config c1 ON v.bsns_src_id = c1.config_id AND c1.config_typ = 'BSNS_SRC_NM' and c1.param_name = :bsns_src_nm
+  JOIN bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN ('PREPAID_PREMIUM_BOUNTY', 'PREPAID_CORE_BOUNTY', 'PREPAID_MEDIUM_BOUNTY')
+ WHERE t.del_flg = 0
+   AND t.stor_id = :stor_id
+UNION
+SELECT 'GOAL_TC_NO_CONTRACT' ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val) ntl_mrgn_value
+ FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+         FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+         JOIN bst_ise_sch01.config c1 ON t.ntl_mrgn_tgt_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_TGT' AND c1.param_name = 'PREPAID_UNITS'
+         JOIN bst_ise_sch01.config c2 ON t.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+        WHERE t.stor_id = :stor_id) tgt,
+      (SELECT w.wgt_val wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+         JOIN bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name = 'NO_CONTRACT_UNITS'
+         JOIN bst_ise_sch01.config c2 ON w.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm_wgt
+        WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) ) wgt
+UNION
+SELECT 'CURRENT_VALUE_TC_BROADBAND' ntl_mrgn_type, NVL(SUM(t.qty), 0) ntl_mrgn_value
+  FROM bst_ise_sch01.ntl_mrgn_trans t
+  JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+  JOIN bst_ise_sch01.config c1 ON v.bsns_src_id = c1.config_id AND c1.config_typ = 'BSNS_SRC_NM' and c1.param_name = :bsns_src_nm
+  JOIN bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN ('AIRCARD_BOUNTY', 'BBAND_PREPAID')
+ WHERE t.del_flg = 0
+   AND t.stor_id = :stor_id
+UNION
+SELECT 'GOAL_TC_BROADBAND' ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val) ntl_mrgn_value
+ FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+         FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+         JOIN bst_ise_sch01.config c1 ON t.ntl_mrgn_tgt_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_TGT' AND c1.param_name = 'AIRCARD_UNITS'
+         JOIN bst_ise_sch01.config c2 ON t.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+        WHERE t.stor_id = :stor_id) tgt,
+      (SELECT w.wgt_val wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+         JOIN bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name = 'BROADBAND'
+         JOIN bst_ise_sch01.config c2 ON w.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm_wgt
+        WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) ) wgt
+        </sql>
+	<sql name="SQL_SELECT_WIDGET_SWAS_MOBILE_POST_PAID_GSP">
+		SELECT 'CURRENT_VALUE' ntl_mrgn_type,
+		ROUND(DECODE(total_items.qty, 0, 0, total_attached_items.qty /
+		total_items.qty), 2) * 100 ntl_mrgn_value
+		FROM (SELECT NVL(SUM(t.qty),
+		0) qty
+		FROM bst_ise_sch01.ntl_mrgn_val v
+		JOIN bst_ise_sch01.config c ON
+		c.config_id = v.ntl_mrgn_item_id AND
+		c.config_typ = 'NTL_MRGN_ITEM' AND
+		c.param_name IN
+		('NON_BBYM_IPH_GSBTP', 'ATU_BOUNTY',
+		'GSBTP_TIER1_BOUNTY',
+		'GSBTP_TIER2_BOUNTY', 'GSBTP_TIER3_BOUNTY')
+		JOIN
+		bst_ise_sch01.ntl_mrgn_trans t ON v.ntl_mrgn_val_id =
+		t.ntl_mrgn_val_id AND t.del_flg = 0 AND t.stor_id = :stor_id
+		JOIN
+		bst_ise_sch01.config c2 ON v.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm )
+		total_attached_items,
+		(SELECT NVL(SUM(t.qty), 0) qty
+		FROM
+		bst_ise_sch01.ntl_mrgn_val v
+		JOIN bst_ise_sch01.config c ON c.config_id
+		= v.ntl_mrgn_item_id AND
+		c.config_typ = 'NTL_MRGN_ITEM' AND
+		c.param_name IN
+		('POSTPAID_NEW_BOUNTY', 'POSTPAID_UPGRADE_BOUNTY',
+		'POSTPAID_HANDSET_ONLY_BOUNTY', 'IPHONE_BOUNTY')
+		JOIN
+		bst_ise_sch01.ntl_mrgn_trans t ON v.ntl_mrgn_val_id =
+		t.ntl_mrgn_val_id AND t.del_flg = 0 AND t.stor_id = :stor_id
+		JOIN
+		bst_ise_sch01.config c2 ON v.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm )
+		total_items
+		UNION
+		SELECT 'GOAL' ntl_mrgn_type, g.goal_val * 100
+		ntl_mrgn_value
+		FROM bst_ise_sch01.ntl_mrgn_stor_goal g
+		JOIN
+		bst_ise_sch01.config c ON g.goal_typ_id = c.config_id AND
+		c.config_typ
+		= :bsns_src_nm || '_GOAL_TYP' AND c.param_name =
+		'BBYM_GSP'
+		JOIN
+		bst_ise_sch01.config c2 ON g.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+		WHERE
+		g.stor_id = :stor_id
+ </sql>
+	<sql name="SQL_SELECT_WIDGET_SWAS_MOBILE_POST_PAID_ACCESSORIES">
+		SELECT 'CURRENT_VALUE' ntl_mrgn_type,
+		ROUND(DECODE(total_items.qty, 0, 0, total_attached_items.qty /
+		total_items.qty), 2) * 100 ntl_mrgn_value
+		FROM (SELECT NVL(SUM(t.qty),
+		0) qty
+		FROM bst_ise_sch01.ntl_mrgn_val v
+		JOIN bst_ise_sch01.config c ON
+		c.config_id = v.ntl_mrgn_item_id AND
+		c.config_typ = 'NTL_MRGN_ITEM' AND
+		c.param_name IN
+		('SWAS_FIRST_BLENDED_ACCESSORY_BOUNTY')
+		JOIN
+		bst_ise_sch01.ntl_mrgn_trans t ON v.ntl_mrgn_val_id =
+		t.ntl_mrgn_val_id AND t.del_flg = 0 AND t.stor_id = :stor_id
+		JOIN
+		bst_ise_sch01.config c2 ON v.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm )
+		total_attached_items,
+		(SELECT NVL(SUM(t.qty), 0) qty
+		FROM
+		bst_ise_sch01.ntl_mrgn_val v
+		JOIN bst_ise_sch01.config c ON c.config_id
+		= v.ntl_mrgn_item_id AND
+		c.config_typ = 'NTL_MRGN_ITEM' AND
+		c.param_name IN
+		('POSTPAID_NEW_BOUNTY', 'POSTPAID_UPGRADE_BOUNTY',
+		'POSTPAID_HANDSET_ONLY_BOUNTY', 'IPHONE_BOUNTY')
+		JOIN
+		bst_ise_sch01.ntl_mrgn_trans t ON v.ntl_mrgn_val_id =
+		t.ntl_mrgn_val_id AND t.del_flg = 0 AND t.stor_id = :stor_id
+		JOIN
+		bst_ise_sch01.config c2 ON v.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm )
+		total_items
+		UNION
+		SELECT 'GOAL' ntl_mrgn_type, g.goal_val * 100
+		ntl_mrgn_value
+		FROM bst_ise_sch01.ntl_mrgn_stor_goal g
+		JOIN
+		bst_ise_sch01.config c ON g.goal_typ_id = c.config_id AND
+		c.config_typ
+		= :bsns_src_nm || '_GOAL_TYP' AND c.param_name =
+		'BBYM_ACCESSORIES'
+		JOIN bst_ise_sch01.config c2 ON g.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+		WHERE
+		g.stor_id = :stor_id
+	</sql>
+	<sql name="SQL_SELECT_WIDGET_SWAS_MOBILE_NO_CONTRACT_ACTIVATIONS">SELECT 'CURRENT_VALUE' ntl_mrgn_type,
+		ROUND(DECODE(total_items.qty, 0, 0, total_attached_items.qty /
+		total_items.qty), 2) * 100 ntl_mrgn_value
+		FROM (SELECT NVL(SUM(t.qty),
+		0) qty
+		FROM bst_ise_sch01.ntl_mrgn_val v
+		JOIN bst_ise_sch01.config c ON
+		c.config_id = v.ntl_mrgn_item_id AND
+		c.config_typ = 'NTL_MRGN_ITEM' AND
+		c.param_name IN
+		('NO_CONTRACT_ACTIVATION_BOUNTY')
+		JOIN
+		bst_ise_sch01.ntl_mrgn_trans t ON v.ntl_mrgn_val_id =
+		t.ntl_mrgn_val_id AND t.del_flg = 0 AND t.stor_id = :stor_id
+		JOIN
+		bst_ise_sch01.config c2 ON v.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm )
+		total_attached_items,
+		(SELECT NVL(SUM(t.qty), 0) qty
+		FROM
+		bst_ise_sch01.ntl_mrgn_val v
+		JOIN bst_ise_sch01.config c ON c.config_id
+		= v.ntl_mrgn_item_id AND
+		c.config_typ = 'NTL_MRGN_ITEM' AND
+		c.param_name IN
+		('PREPAID_PREMIUM_BOUNTY', 'PREPAID_CORE_BOUNTY',
+		'PREPAID_MEDIUM_BOUNTY')
+		JOIN bst_ise_sch01.ntl_mrgn_trans t ON
+		v.ntl_mrgn_val_id =
+		t.ntl_mrgn_val_id AND t.del_flg = 0 AND t.stor_id =
+		:stor_id
+		JOIN bst_ise_sch01.config c2 ON v.bsns_src_id = c2.config_id
+		AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm )
+		total_items
+		UNION
+		SELECT 'GOAL' ntl_mrgn_type, g.goal_val * 100
+		ntl_mrgn_value
+		FROM bst_ise_sch01.ntl_mrgn_stor_goal g
+		JOIN
+		bst_ise_sch01.config c ON g.goal_typ_id = c.config_id AND
+		c.config_typ
+		= :bsns_src_nm || '_GOAL_TYP' AND c.param_name =
+		'NO_CONTRACT_ACTIVATIONS'
+		JOIN bst_ise_sch01.config c2 ON g.bsns_src_id
+		= c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name =
+		:bsns_src_nm
+		WHERE g.stor_id = :stor_id
+ </sql>
+	<sql name="SQL_SELECT_WIDGET_SWAS_MOBILE_MP3_NOTIONAL_MARGIN">SELECT 'CURRENT_VALUE' ntl_mrgn_type, NVL(ROUND(SUM(t.qty
+		* v.ntl_mrgn_item_val * NVL(t.amt, 1))), 0) ntl_mrgn_value
+		FROM
+		bst_ise_sch01.ntl_mrgn_trans t
+		JOIN bst_ise_sch01.ntl_mrgn_val v ON
+		t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+		JOIN bst_ise_sch01.config c ON
+		v.bsns_src_id = c.config_id AND
+		c.config_typ = 'BSNS_SRC_NM' AND
+		c.param_name = :bsns_src_nm
+		JOIN bst_ise_sch01.config c2 ON
+		v.ntl_mrgn_item_id = c2.config_id AND
+		c2.config_typ = 'NTL_MRGN_ITEM'
+		AND c2.param_name IN ('MP3_HARDWARE',
+		'MP3_GSP', 'MP3_ACCESSORIES')
+		WHERE t.del_flg = 0
+		AND t.stor_id = :stor_id
+		UNION
+		SELECT 'GOAL'
+		ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val) ntl_mrgn_value
+		FROM
+		(SELECT t.ntl_mrgn_tgt_val tgt_val
+		FROM
+		bst_ise_sch01.ntl_mrgn_mthly_tgt t
+		JOIN bst_ise_sch01.config c ON
+		t.bsns_src_id = c.config_id AND
+		c.config_typ = 'BSNS_SRC_NM' AND
+		c.param_name = :bsns_src_nm
+		JOIN bst_ise_sch01.config c2 ON
+		t.ntl_mrgn_tgt_id = c2.config_id AND
+		c2.config_typ = 'NTL_MRGN_TGT' AND
+		c2.param_name = 'MP3_BUDGET'
+		WHERE t.stor_id = :stor_id) tgt,
+		(SELECT
+		SUM(w.wgt_val) wgt_val
+		FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+		JOIN
+		bst_ise_sch01.config c ON w.bsns_src_id = c.config_id AND
+		c.config_typ
+		= 'BSNS_SRC_NM' AND c.param_name = :bsns_src_nm_wgt
+		JOIN
+		bst_ise_sch01.config c2 ON w.wgt_cat_id = c2.config_id AND
+		c2.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c2.param_name = 'MP3'
+		WHERE
+		TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) )
+		wgt
+		UNION
+		SELECT 'CURRENT_VALUE_HARDWARE' ntl_mrgn_type,
+		NVL(ROUND(SUM(t.qty)), 0)
+		ntl_mrgn_value
+		FROM
+		bst_ise_sch01.ntl_mrgn_trans t
+		JOIN bst_ise_sch01.ntl_mrgn_val v ON
+		t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+		JOIN bst_ise_sch01.config c ON
+		v.bsns_src_id = c.config_id AND
+		c.config_typ = 'BSNS_SRC_NM' AND
+		c.param_name = :bsns_src_nm
+		JOIN bst_ise_sch01.config c2 ON
+		v.ntl_mrgn_item_id = c2.config_id AND
+		c2.config_typ = 'NTL_MRGN_ITEM'
+		AND c2.param_name IN ('MP3_HARDWARE')
+		WHERE t.del_flg = 0
+		AND t.stor_id
+		= :stor_id
+		UNION
+		SELECT 'GOAL_HARDWARE' ntl_mrgn_type, CEIL(tgt.tgt_val
+		* wgt.wgt_val)
+		ntl_mrgn_value
+		FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+		FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+		JOIN bst_ise_sch01.config c ON
+		t.bsns_src_id = c.config_id AND
+		c.config_typ = 'BSNS_SRC_NM' AND
+		c.param_name = :bsns_src_nm
+		JOIN bst_ise_sch01.config c2 ON
+		t.ntl_mrgn_tgt_id = c2.config_id AND
+		c2.config_typ = 'NTL_MRGN_TGT' AND
+		c2.param_name = 'MP3_HW_UNITS'
+		WHERE t.stor_id = :stor_id) tgt,
+		(SELECT
+		SUM(w.wgt_val) wgt_val
+		FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+		JOIN
+		bst_ise_sch01.config c ON w.bsns_src_id = c.config_id AND
+		c.config_typ
+		= 'BSNS_SRC_NM' AND c.param_name = :bsns_src_nm_wgt
+		JOIN
+		bst_ise_sch01.config c2 ON w.wgt_cat_id = c2.config_id AND
+		c2.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c2.param_name = 'MP3'
+		WHERE
+		TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) )
+		wgt
+		UNION
+		SELECT 'CURRENT_VALUE_ACCESSORY' ntl_mrgn_type,
+		NVL(ROUND(SUM(t.qty *
+		v.ntl_mrgn_item_val * NVL(t.amt, 1))), 0)
+		ntl_mrgn_value
+		FROM bst_ise_sch01.ntl_mrgn_trans t
+		JOIN
+		bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+		JOIN bst_ise_sch01.config c ON v.bsns_src_id = c.config_id AND
+		c.config_typ = 'BSNS_SRC_NM' AND c.param_name = :bsns_src_nm
+		JOIN
+		bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND
+		c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN
+		('MP3_ACCESSORIES')
+		WHERE t.del_flg = 0
+		AND t.stor_id = :stor_id
+		UNION
+		SELECT 'GOAL_ACCESSORY' ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val)
+		ntl_mrgn_value
+		FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+		FROM
+		bst_ise_sch01.ntl_mrgn_mthly_tgt t
+		JOIN bst_ise_sch01.config c ON
+		t.bsns_src_id = c.config_id AND
+		c.config_typ = 'BSNS_SRC_NM' AND
+		c.param_name = :bsns_src_nm
+		JOIN bst_ise_sch01.config c2 ON
+		t.ntl_mrgn_tgt_id = c2.config_id AND
+		c2.config_typ = 'NTL_MRGN_TGT' AND
+		c2.param_name = 'MP3_ACCY_MRGN'
+		WHERE t.stor_id = :stor_id) tgt,
+		(SELECT SUM(w.wgt_val) wgt_val
+		FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+		JOIN bst_ise_sch01.config c ON w.bsns_src_id = c.config_id AND
+		c.config_typ = 'BSNS_SRC_NM' AND c.param_name = :bsns_src_nm_wgt
+		JOIN
+		bst_ise_sch01.config c2 ON w.wgt_cat_id = c2.config_id AND
+		c2.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c2.param_name = 'MP3'
+		WHERE
+		TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) )
+		wgt
+        </sql>
+	<sql name="SQL_SELECT_WIDGET_SWAS_MOBILE_MP3_GSP">SELECT 'CURRENT_VALUE' ntl_mrgn_type,
+		ROUND(DECODE(total_items.qty, 0, 0, total_attached_items.qty /
+		total_items.qty), 2) * 100 ntl_mrgn_value
+		FROM (SELECT NVL(SUM(t.qty),
+		0) qty
+		FROM bst_ise_sch01.ntl_mrgn_val v
+		JOIN bst_ise_sch01.config c ON
+		c.config_id = v.ntl_mrgn_item_id AND
+		c.config_typ = 'NTL_MRGN_ITEM' AND
+		c.param_name IN ('MP3_GSP')
+		JOIN bst_ise_sch01.ntl_mrgn_trans t ON
+		v.ntl_mrgn_val_id =
+		t.ntl_mrgn_val_id AND t.del_flg = 0 AND t.stor_id =
+		:stor_id
+		JOIN bst_ise_sch01.config c2 ON v.bsns_src_id = c2.config_id
+		AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm )
+		total_attached_items,
+		(SELECT NVL(SUM(t.qty), 0) qty
+		FROM
+		bst_ise_sch01.ntl_mrgn_val v
+		JOIN bst_ise_sch01.config c ON c.config_id
+		= v.ntl_mrgn_item_id AND
+		c.config_typ = 'NTL_MRGN_ITEM' AND
+		c.param_name IN ('MP3_HARDWARE')
+		JOIN bst_ise_sch01.ntl_mrgn_trans t ON
+		v.ntl_mrgn_val_id =
+		t.ntl_mrgn_val_id AND t.del_flg = 0 AND t.stor_id =
+		:stor_id
+		JOIN bst_ise_sch01.config c2 ON v.bsns_src_id = c2.config_id
+		AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm )
+		total_items
+		UNION
+		SELECT 'GOAL' ntl_mrgn_type, g.goal_val * 100
+		ntl_mrgn_value
+		FROM bst_ise_sch01.ntl_mrgn_stor_goal g
+		JOIN
+		bst_ise_sch01.config c ON g.goal_typ_id = c.config_id AND
+		c.config_typ
+		= :bsns_src_nm || '_GOAL_TYP' AND c.param_name =
+		'MP3_GSP'
+		JOIN
+		bst_ise_sch01.config c2 ON g.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+		WHERE
+		g.stor_id = :stor_id</sql>
+	<sql name="SQL_SELECT_WIDGET_SWAS_MOBILE_MP3_ACCESSORIES">SELECT 'CURRENT_VALUE' ntl_mrgn_type,
+		ROUND(DECODE(total_items.qty, 0, 0, total_attached_items.qty /
+		total_items.qty), 2) * 100 ntl_mrgn_value
+		FROM (SELECT NVL(SUM(t.qty),
+		0) qty
+		FROM bst_ise_sch01.ntl_mrgn_val v
+		JOIN bst_ise_sch01.config c ON
+		c.config_id = v.ntl_mrgn_item_id AND
+		c.config_typ = 'NTL_MRGN_ITEM' AND
+		c.param_name IN ('MP3_ACCESSORIES')
+		JOIN bst_ise_sch01.ntl_mrgn_trans t
+		ON v.ntl_mrgn_val_id =
+		t.ntl_mrgn_val_id AND t.del_flg = 0 AND
+		t.stor_id = :stor_id
+		JOIN bst_ise_sch01.config c2 ON v.bsns_src_id =
+		c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name =
+		:bsns_src_nm )
+		total_attached_items,
+		(SELECT NVL(SUM(t.qty), 0) qty
+		FROM
+		bst_ise_sch01.ntl_mrgn_val v
+		JOIN bst_ise_sch01.config c ON c.config_id
+		= v.ntl_mrgn_item_id AND
+		c.config_typ = 'NTL_MRGN_ITEM' AND
+		c.param_name IN ('MP3_HARDWARE')
+		JOIN bst_ise_sch01.ntl_mrgn_trans t ON
+		v.ntl_mrgn_val_id =
+		t.ntl_mrgn_val_id AND t.del_flg = 0 AND t.stor_id =
+		:stor_id
+		JOIN bst_ise_sch01.config c2 ON v.bsns_src_id = c2.config_id
+		AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm )
+		total_items
+		UNION
+		SELECT 'GOAL' ntl_mrgn_type, g.goal_val * 100
+		ntl_mrgn_value
+		FROM bst_ise_sch01.ntl_mrgn_stor_goal g
+		JOIN
+		bst_ise_sch01.config c ON g.goal_typ_id = c.config_id AND
+		c.config_typ
+		= :bsns_src_nm || '_GOAL_TYP' AND c.param_name =
+		'MP3_ACCESSORIES'
+		JOIN
+		bst_ise_sch01.config c2 ON g.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+		WHERE
+		g.stor_id = :stor_id
+ </sql>
+	<sql name="SQL_SELECT_WIDGET_SWAS_MOBILE_UPGRADE_CHECKS">
+		SELECT 'GOAL' ntl_mrgn_type, g.goal_val ntl_mrgn_value
+		FROM bst_ise_sch01.ntl_mrgn_stor_goal g
+		JOIN bst_ise_sch01.config c ON
+		g.goal_typ_id = c.config_id AND
+		c.config_typ = :bsns_src_nm ||
+		'_GOAL_TYP' AND c.param_name =
+		'UPGRADE_CHECKS'
+		JOIN
+		bst_ise_sch01.config c2 ON g.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+		WHERE
+		g.stor_id = :stor_id
+ </sql>
+	<sql name="SQL_SELECT_WIDGET_SWAS_COMPUTING_TOTAL_LAPTOPS">
+		SELECT 'CURRENT_VALUE' ntl_mrgn_type, NVL(SUM(t.qty), 0) ntl_mrgn_value
+  FROM bst_ise_sch01.ntl_mrgn_trans t
+  JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+  JOIN bst_ise_sch01.config c1 ON v.bsns_src_id = c1.config_id AND c1.config_typ = 'BSNS_SRC_NM' and c1.param_name = :bsns_src_nm
+  JOIN bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN ('LAPTOPS_PB1', 'LAPTOPS_PB2', 'LAPTOPS_PB3')
+ WHERE t.del_flg = 0
+   AND t.stor_id = :stor_id
+UNION
+SELECT 'GOAL' ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val) ntl_mrgn_value
+ FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+         FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+         JOIN bst_ise_sch01.config c1 ON t.ntl_mrgn_tgt_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_TGT' AND c1.param_name = 'LAPTOP_UNITS'
+         JOIN bst_ise_sch01.config c2 ON t.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+        WHERE t.stor_id = :stor_id) tgt,
+      (SELECT w.wgt_val wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+         JOIN bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name = 'COMPUTING_HARDWARE'
+         JOIN bst_ise_sch01.config c2 ON w.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm_wgt
+        WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) ) wgt
+UNION
+SELECT 'CURRENT_VALUE_LESS_THAN_500' ntl_mrgn_type, NVL(SUM(t.qty), 0) ntl_mrgn_value
+  FROM bst_ise_sch01.ntl_mrgn_trans t
+  JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+  JOIN bst_ise_sch01.config c1 ON v.bsns_src_id = c1.config_id AND c1.config_typ = 'BSNS_SRC_NM' and c1.param_name = :bsns_src_nm
+  JOIN bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN ('LAPTOPS_PB1')
+ WHERE t.del_flg = 0
+   AND t.stor_id = :stor_id
+UNION
+SELECT 'GOAL_LESS_THAN_500' ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val) ntl_mrgn_value
+ FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+         FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+         JOIN bst_ise_sch01.config c1 ON t.ntl_mrgn_tgt_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_TGT' AND c1.param_name = 'PB1'
+         JOIN bst_ise_sch01.config c2 ON t.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+        WHERE t.stor_id = :stor_id) tgt,
+      (SELECT w.wgt_val wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+         JOIN bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name = 'COMPUTING_HARDWARE'
+         JOIN bst_ise_sch01.config c2 ON w.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm_wgt
+        WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) ) wgt
+UNION
+SELECT 'CURRENT_VALUE_500_TO_900' ntl_mrgn_type, NVL(SUM(t.qty), 0) ntl_mrgn_value
+  FROM bst_ise_sch01.ntl_mrgn_trans t
+  JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+  JOIN bst_ise_sch01.config c1 ON v.bsns_src_id = c1.config_id AND c1.config_typ = 'BSNS_SRC_NM' and c1.param_name = :bsns_src_nm
+  JOIN bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN ('LAPTOPS_PB2')
+ WHERE t.del_flg = 0
+   AND t.stor_id = :stor_id
+UNION
+SELECT 'GOAL_LESS_500_TO_900' ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val) ntl_mrgn_value
+ FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+         FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+         JOIN bst_ise_sch01.config c1 ON t.ntl_mrgn_tgt_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_TGT' AND c1.param_name = 'PB2'
+         JOIN bst_ise_sch01.config c2 ON t.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+        WHERE t.stor_id = :stor_id) tgt,
+      (SELECT w.wgt_val wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+         JOIN bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name = 'COMPUTING_HARDWARE'
+         JOIN bst_ise_sch01.config c2 ON w.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm_wgt
+        WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) ) wgt
+UNION
+SELECT 'CURRENT_VALUE_GREATER_THAN_900' ntl_mrgn_type, NVL(SUM(t.qty), 0) ntl_mrgn_value
+  FROM bst_ise_sch01.ntl_mrgn_trans t
+  JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+  JOIN bst_ise_sch01.config c1 ON v.bsns_src_id = c1.config_id AND c1.config_typ = 'BSNS_SRC_NM' and c1.param_name = :bsns_src_nm
+  JOIN bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN ('LAPTOPS_PB3')
+ WHERE t.del_flg = 0
+   AND t.stor_id = :stor_id
+UNION
+SELECT 'GOAL_GREATER_THAN_900' ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val) ntl_mrgn_value
+ FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+         FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+         JOIN bst_ise_sch01.config c1 ON t.ntl_mrgn_tgt_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_TGT' AND c1.param_name = 'PB3'
+         JOIN bst_ise_sch01.config c2 ON t.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+        WHERE t.stor_id = :stor_id) tgt,
+      (SELECT w.wgt_val wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+         JOIN bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name = 'COMPUTING_HARDWARE'
+         JOIN bst_ise_sch01.config c2 ON w.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm_wgt
+        WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) ) wgt
+		</sql>
+	<sql name="SQL_SELECT_WIDGET_SWAS_COMPUTING_DESKTOPS_ALL_IN_ONES">SELECT 'CURRENT_VALUE' ntl_mrgn_type, NVL(SUM(t.qty), 0) ntl_mrgn_value
+  FROM bst_ise_sch01.ntl_mrgn_trans t
+  JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+  JOIN bst_ise_sch01.config c1 ON v.bsns_src_id = c1.config_id AND c1.config_typ = 'BSNS_SRC_NM' and c1.param_name = :bsns_src_nm
+  JOIN bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN ('DESKTOPS', 'ALL_IN_ONES')
+ WHERE t.del_flg = 0
+   AND t.stor_id = :stor_id
+UNION
+SELECT 'GOAL' ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val) ntl_mrgn_value
+ FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+         FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+         JOIN bst_ise_sch01.config c1 ON t.ntl_mrgn_tgt_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_TGT' AND c1.param_name = 'DESKTOP_UNITS'
+         JOIN bst_ise_sch01.config c2 ON t.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+        WHERE t.stor_id = :stor_id) tgt,
+      (SELECT w.wgt_val wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+         JOIN bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name = 'COMPUTING_HARDWARE'
+         JOIN bst_ise_sch01.config c2 ON w.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm_wgt
+        WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) ) wgt
+UNION
+SELECT 'CURRENT_VALUE_DESKTOPS' ntl_mrgn_type, NVL(SUM(t.qty), 0) ntl_mrgn_value
+  FROM bst_ise_sch01.ntl_mrgn_trans t
+  JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+  JOIN bst_ise_sch01.config c1 ON v.bsns_src_id = c1.config_id AND c1.config_typ = 'BSNS_SRC_NM' and c1.param_name = :bsns_src_nm
+  JOIN bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN ('DESKTOPS')
+ WHERE t.del_flg = 0
+   AND t.stor_id = :stor_id
+UNION
+SELECT 'GOAL_DESKTOPS' ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val) ntl_mrgn_value
+ FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+         FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+         JOIN bst_ise_sch01.config c1 ON t.ntl_mrgn_tgt_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_TGT' AND c1.param_name = 'DESKTOP_UNITS'
+         JOIN bst_ise_sch01.config c2 ON t.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+        WHERE t.stor_id = :stor_id) tgt,
+      (SELECT w.wgt_val wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+         JOIN bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name = 'COMPUTING_HARDWARE'
+         JOIN bst_ise_sch01.config c2 ON w.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm_wgt
+        WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) ) wgt
+UNION
+SELECT 'CURRENT_VALUE_ALL_IN_ONES' ntl_mrgn_type, NVL(SUM(t.qty), 0) ntl_mrgn_value
+  FROM bst_ise_sch01.ntl_mrgn_trans t
+  JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+  JOIN bst_ise_sch01.config c1 ON v.bsns_src_id = c1.config_id AND c1.config_typ = 'BSNS_SRC_NM' and c1.param_name = :bsns_src_nm
+  JOIN bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN ('ALL_IN_ONES')
+ WHERE t.del_flg = 0
+   AND t.stor_id = :stor_id
+UNION
+SELECT 'GOAL_ALL_IN_ONES' ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val) ntl_mrgn_value
+ FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+         FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+         JOIN bst_ise_sch01.config c1 ON t.ntl_mrgn_tgt_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_TGT' AND c1.param_name = 'AIO'
+         JOIN bst_ise_sch01.config c2 ON t.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+        WHERE t.stor_id = :stor_id) tgt,
+      (SELECT w.wgt_val wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+         JOIN bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name = 'COMPUTING_HARDWARE'
+         JOIN bst_ise_sch01.config c2 ON w.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm_wgt
+        WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) ) wgt
+        </sql>
+	<sql name="SQL_SELECT_WIDGET_SWAS_COMPUTING_TOTAL_TABLETS">SELECT 'CURRENT_VALUE' ntl_mrgn_type, NVL(SUM(t.qty), 0)
+		ntl_mrgn_value
+		FROM bst_ise_sch01.ntl_mrgn_trans t
+		JOIN
+		bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+		JOIN bst_ise_sch01.config c1 ON v.bsns_src_id = c1.config_id AND
+		c1.config_typ = 'BSNS_SRC_NM' and c1.param_name = :bsns_src_nm
+		JOIN
+		bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND
+		c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN ('TABLETS')
+		WHERE
+		t.del_flg = 0
+		AND t.stor_id = :stor_id
+		UNION
+		SELECT 'GOAL' ntl_mrgn_type,
+		CEIL(tgt.tgt_val * wgt.wgt_val) ntl_mrgn_value
+		FROM (SELECT
+		t.ntl_mrgn_tgt_val tgt_val
+		FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+		JOIN
+		bst_ise_sch01.config c1 ON t.ntl_mrgn_tgt_id = c1.config_id AND
+		c1.config_typ = 'NTL_MRGN_TGT' AND c1.param_name = 'TABLET_UNITS'
+		JOIN
+		bst_ise_sch01.config c2 ON t.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+		WHERE
+		t.stor_id = :stor_id) tgt,
+		(SELECT w.wgt_val wgt_val
+		FROM
+		bst_ise_sch01.ntl_mrgn_dly_wgt w
+		JOIN bst_ise_sch01.config c1 ON
+		w.wgt_cat_id = c1.config_id AND
+		c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT'
+		AND c1.param_name =
+		'COMPUTING_HARDWARE'
+		JOIN bst_ise_sch01.config c2 ON
+		w.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and
+		c2.param_name = :bsns_src_nm_wgt
+		WHERE TRUNC(w.wgt_dt) =
+		TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY
+		HH24:MI')) ) wgt
+        </sql>
+	<sql name="SQL_SELECT_WIDGET_SWAS_COMPUTING_TOTAL_EREADERS">SELECT 'CURRENT_VALUE' ntl_mrgn_type, NVL(SUM(t.qty), 0)
+		ntl_mrgn_value
+		FROM bst_ise_sch01.ntl_mrgn_trans t
+		JOIN
+		bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+		JOIN bst_ise_sch01.config c1 ON v.bsns_src_id = c1.config_id AND
+		c1.config_typ = 'BSNS_SRC_NM' and c1.param_name = :bsns_src_nm
+		JOIN
+		bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND
+		c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN ('EREADERS')
+		WHERE t.del_flg = 0
+		AND t.stor_id = :stor_id
+		UNION
+		SELECT 'GOAL'
+		ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val) ntl_mrgn_value
+		FROM
+		(SELECT t.ntl_mrgn_tgt_val tgt_val
+		FROM
+		bst_ise_sch01.ntl_mrgn_mthly_tgt t
+		JOIN bst_ise_sch01.config c1 ON
+		t.ntl_mrgn_tgt_id = c1.config_id AND
+		c1.config_typ = 'NTL_MRGN_TGT' AND
+		c1.param_name = 'EREADER_UNITS'
+		JOIN bst_ise_sch01.config c2 ON
+		t.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and
+		c2.param_name = :bsns_src_nm
+		WHERE t.stor_id = :stor_id) tgt,
+		(SELECT
+		w.wgt_val wgt_val
+		FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+		JOIN
+		bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND
+		c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name = 'EREADERS'
+		JOIN bst_ise_sch01.config c2 ON w.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm_wgt
+		WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY
+		HH24:MI')) ) wgt
+        </sql>
+	<sql name="SQL_SELECT_WIDGET_SWAS_COMPUTING_GEEK_SQUAD">SELECT 'CURRENT_VALUE' ntl_mrgn_type, NVL(ROUND(SUM(t.qty * v.ntl_mrgn_item_val * NVL(t.amt, 1))), 0) ntl_mrgn_value
+  FROM bst_ise_sch01.ntl_mrgn_trans t
+  JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+  JOIN bst_ise_sch01.config c ON v.bsns_src_id = c.config_id AND c.config_typ = 'BSNS_SRC_NM' AND c.param_name = :bsns_src_nm
+  JOIN bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN ('SERVICES', 'TECH_SUPPORT', 'COMPUTER_GSP')
+ WHERE t.del_flg = 0
+   AND t.stor_id = :stor_id
+UNION
+SELECT 'GOAL' ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val * dly_wgt.wgt_val) ntl_mrgn_value
+ FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+         FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+         JOIN bst_ise_sch01.config c ON t.bsns_src_id = c.config_id AND c.config_typ = 'BSNS_SRC_NM' AND c.param_name = :bsns_src_nm
+         JOIN bst_ise_sch01.config c2 ON t.ntl_mrgn_tgt_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_TGT' AND c2.param_name = 'NOT_MRGN'
+        WHERE t.stor_id = :stor_id) tgt,
+      (SELECT w.wgt_val wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+         JOIN bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name = 'TOTAL'
+         JOIN bst_ise_sch01.config c2 ON w.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm_wgt
+        WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) ) dly_wgt,
+      (SELECT SUM(w.wgt_val) wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_stor_wgt w
+         JOIN bst_ise_sch01.config c ON w.bsns_src_id = c.config_id AND c.config_typ = 'BSNS_SRC_NM' AND c.param_name = :bsns_src_nm
+         JOIN bst_ise_sch01.config c2 ON w.wgt_cat_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_STOR_WGT_CAT' AND c2.param_name IN ('GS_SERVICE', 'GS_BTP')
+        WHERE w.stor_id = :stor_id) wgt
+UNION
+SELECT 'CURRENT_VALUE_GSP' ntl_mrgn_type, NVL(ROUND(SUM(t.qty * v.ntl_mrgn_item_val * NVL(t.amt, 1))), 0) ntl_mrgn_value
+  FROM bst_ise_sch01.ntl_mrgn_trans t
+  JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+  JOIN bst_ise_sch01.config c ON v.bsns_src_id = c.config_id AND c.config_typ = 'BSNS_SRC_NM' AND c.param_name = :bsns_src_nm
+  JOIN bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN ('COMPUTER_GSP')
+ WHERE t.del_flg = 0
+   AND t.stor_id = :stor_id
+UNION
+SELECT 'GOAL_GSP' ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val * dly_wgt.wgt_val) ntl_mrgn_value
+ FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+         FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+         JOIN bst_ise_sch01.config c ON t.bsns_src_id = c.config_id AND c.config_typ = 'BSNS_SRC_NM' AND c.param_name = :bsns_src_nm
+         JOIN bst_ise_sch01.config c2 ON t.ntl_mrgn_tgt_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_TGT' AND c2.param_name = 'NOT_MRGN'
+        WHERE t.stor_id = :stor_id) tgt,
+      (SELECT w.wgt_val wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+         JOIN bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name = 'TOTAL'
+         JOIN bst_ise_sch01.config c2 ON w.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm_wgt
+        WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) ) dly_wgt,
+      (SELECT SUM(w.wgt_val) wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_stor_wgt w
+         JOIN bst_ise_sch01.config c ON w.bsns_src_id = c.config_id AND c.config_typ = 'BSNS_SRC_NM' AND c.param_name = :bsns_src_nm
+         JOIN bst_ise_sch01.config c2 ON w.wgt_cat_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_STOR_WGT_CAT' AND c2.param_name IN ('GS_BTP')
+        WHERE w.stor_id = :stor_id) wgt
+UNION
+SELECT 'CURRENT_VALUE_GEEK_SQUAD_SERVICES' ntl_mrgn_type, NVL(ROUND(SUM(t.qty * v.ntl_mrgn_item_val * NVL(t.amt, 1))), 0) ntl_mrgn_value
+  FROM bst_ise_sch01.ntl_mrgn_trans t
+  JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+  JOIN bst_ise_sch01.config c ON v.bsns_src_id = c.config_id AND c.config_typ = 'BSNS_SRC_NM' AND c.param_name = :bsns_src_nm
+  JOIN bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN ('SERVICES', 'TECH_SUPPORT')
+ WHERE t.del_flg = 0
+   AND t.stor_id = :stor_id
+UNION
+SELECT 'GOAL_GEEK_SQUAD_SERVICES' ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val * dly_wgt.wgt_val) ntl_mrgn_value
+ FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+         FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+         JOIN bst_ise_sch01.config c ON t.bsns_src_id = c.config_id AND c.config_typ = 'BSNS_SRC_NM' AND c.param_name = :bsns_src_nm
+         JOIN bst_ise_sch01.config c2 ON t.ntl_mrgn_tgt_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_TGT' AND c2.param_name = 'NOT_MRGN'
+        WHERE t.stor_id = :stor_id) tgt,
+      (SELECT w.wgt_val wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+         JOIN bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name = 'TOTAL'
+         JOIN bst_ise_sch01.config c2 ON w.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm_wgt
+        WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) ) dly_wgt,
+      (SELECT SUM(w.wgt_val) wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_stor_wgt w
+         JOIN bst_ise_sch01.config c ON w.bsns_src_id = c.config_id AND c.config_typ = 'BSNS_SRC_NM' AND c.param_name = :bsns_src_nm
+         JOIN bst_ise_sch01.config c2 ON w.wgt_cat_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_STOR_WGT_CAT' AND c2.param_name IN ('GS_SERVICE')
+        WHERE w.stor_id = :stor_id) wgt
+	</sql>
+	<sql name="SQL_SELECT_WIDGET_SWAS_COMPUTING_ACCESSORIES">SELECT 'CURRENT_VALUE' ntl_mrgn_type, NVL(ROUND(SUM(t.qty * v.ntl_mrgn_item_val * NVL(t.amt, 1))), 0) ntl_mrgn_value
+  FROM bst_ise_sch01.ntl_mrgn_trans t
+  JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+  JOIN bst_ise_sch01.config c ON v.bsns_src_id = c.config_id AND c.config_typ = 'BSNS_SRC_NM' AND c.param_name = :bsns_src_nm
+  JOIN bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN ('ACCESSORY_TABLETS')
+ WHERE t.del_flg = 0
+   AND t.stor_id = :stor_id
+UNION
+SELECT 'GOAL' ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val * dly_wgt.wgt_val) ntl_mrgn_value
+ FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+         FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+         JOIN bst_ise_sch01.config c ON t.bsns_src_id = c.config_id AND c.config_typ = 'BSNS_SRC_NM' AND c.param_name = :bsns_src_nm
+         JOIN bst_ise_sch01.config c2 ON t.ntl_mrgn_tgt_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_TGT' AND c2.param_name = 'ACCY_MARGIN'
+         WHERE t.stor_id = :stor_id) tgt,
+      (SELECT w.wgt_val wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+         JOIN bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name = 'TOTAL'
+         JOIN bst_ise_sch01.config c2 ON w.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm_wgt
+        WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) ) dly_wgt,
+      (SELECT SUM(w.wgt_val) wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_stor_wgt w
+         JOIN bst_ise_sch01.config c ON w.bsns_src_id = c.config_id AND c.config_typ = 'BSNS_SRC_NM' AND c.param_name = :bsns_src_nm
+         JOIN bst_ise_sch01.config c2 ON w.wgt_cat_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_STOR_WGT_CAT' AND c2.param_name IN ('ACCESSORY')
+         WHERE w.stor_id = :stor_id) wgt
+         </sql>
+	<sql name="SQL_SELECT_WIDGET_SWAS_COMPUTING_CONTENT">SELECT 'CURRENT_VALUE' ntl_mrgn_type, NVL(ROUND(SUM(t.qty * v.ntl_mrgn_item_val * NVL(t.amt, 1))), 0) ntl_mrgn_value
+  FROM bst_ise_sch01.ntl_mrgn_trans t
+  JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+  JOIN bst_ise_sch01.config c ON v.bsns_src_id = c.config_id AND c.config_typ = 'BSNS_SRC_NM' AND c.param_name = :bsns_src_nm
+  JOIN bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN ('SUBSCRIPTION_SW', 'SOFTWARE_PRODUCTIVITY')
+ WHERE t.del_flg = 0
+   AND t.stor_id = :stor_id
+UNION
+SELECT 'GOAL' ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val * dly_wgt.wgt_val) ntl_mrgn_value
+ FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+         FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+         JOIN bst_ise_sch01.config c ON t.bsns_src_id = c.config_id AND c.config_typ = 'BSNS_SRC_NM' AND c.param_name = :bsns_src_nm
+         JOIN bst_ise_sch01.config c2 ON t.ntl_mrgn_tgt_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_TGT' AND c2.param_name = 'NOT_MRGN'
+         WHERE t.stor_id = :stor_id) tgt,
+      (SELECT w.wgt_val wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+         JOIN bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name = 'TOTAL'
+         JOIN bst_ise_sch01.config c2 ON w.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm_wgt
+        WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) ) dly_wgt,
+      (SELECT SUM(w.wgt_val) wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_stor_wgt w
+         JOIN bst_ise_sch01.config c ON w.bsns_src_id = c.config_id AND c.config_typ = 'BSNS_SRC_NM' AND c.param_name = :bsns_src_nm
+         JOIN bst_ise_sch01.config c2 ON w.wgt_cat_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_STOR_WGT_CAT' AND c2.param_name IN ('CONTENT') 
+         WHERE w.stor_id = :stor_id) wgt
+         </sql>
+	<sql name="SQL_SELECT_WIDGET_SWAS_COMPUTING_CONNECTIONS">SELECT 'CURRENT_VALUE' ntl_mrgn_type, NVL(SUM(t.qty), 0) ntl_mrgn_value
+  FROM bst_ise_sch01.ntl_mrgn_trans t
+  JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+  JOIN bst_ise_sch01.config c1 ON v.bsns_src_id = c1.config_id AND c1.config_typ = 'BSNS_SRC_NM' and c1.param_name = :bsns_src_nm
+  JOIN bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN ('CONNECTIONS', 'TABLET_CONNECTIONS', 'BBYM_POST_PAID_CONNECTIONS', 'BBYM_PRE_PAID_CONNECTIONS')
+ WHERE t.del_flg = 0
+   AND t.stor_id = :stor_id
+UNION
+SELECT 'GOAL' ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val) ntl_mrgn_value
+ FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+         FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+         JOIN bst_ise_sch01.config c ON t.bsns_src_id = c.config_id AND c.config_typ = 'BSNS_SRC_NM' AND c.param_name = :bsns_src_nm
+         JOIN bst_ise_sch01.config c2 ON t.ntl_mrgn_tgt_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_TGT' AND c2.param_name = 'CONNECTIONS'
+         WHERE t.stor_id = :stor_id) tgt,
+      (SELECT w.wgt_val wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+         JOIN bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name = 'TOTAL'
+         JOIN bst_ise_sch01.config c2 ON w.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm_wgt
+        WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) ) wgt
+         </sql>
+	<sql name="SQL_SELECT_WIDGET_SAS_MOBILE_POST_PAID_CONNECTIONS">SELECT 'CURRENT_VALUE' ntl_mrgn_type, NVL(SUM(t.qty), 0) ntl_mrgn_value
+  FROM bst_ise_sch01.ntl_mrgn_trans t
+  JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+  JOIN bst_ise_sch01.config c1 ON v.bsns_src_id = c1.config_id AND c1.config_typ = 'BSNS_SRC_NM' and c1.param_name = :bsns_src_nm
+  JOIN bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN ('POSTPAID_NEW_BOUNTY', 'POSTPAID_UPGRADE_BOUNTY', 'POSTPAID_HANDSET_ONLY_BOUNTY')
+ WHERE t.del_flg = 0
+   AND t.stor_id = :stor_id
+UNION
+SELECT 'GOAL' ntl_mrgn_type, CEIL((pp_units_tgt.tgt_val - iphone_tgt.tgt_val) * wgt.wgt_val) ntl_mrgn_value
+ FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+         FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+         JOIN bst_ise_sch01.config c1 ON t.ntl_mrgn_tgt_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_TGT' AND c1.param_name = 'POSTPAID_UNITS'
+         JOIN bst_ise_sch01.config c2 ON t.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+        WHERE t.stor_id = :stor_id) pp_units_tgt,
+      (SELECT t.ntl_mrgn_tgt_val tgt_val
+         FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+         JOIN bst_ise_sch01.config c1 ON t.ntl_mrgn_tgt_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_TGT' AND c1.param_name = 'IPHONE_UNITS'
+         JOIN bst_ise_sch01.config c2 ON t.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+        WHERE t.stor_id = :stor_id) iphone_tgt,
+      (SELECT w.wgt_val wgt_val
+         FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+         JOIN bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name = 'POSTPAID_UNITS'
+         JOIN bst_ise_sch01.config c2 ON w.bsns_src_id = c2.config_id AND c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm_wgt
+        WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) ) wgt</sql>
+	<sql name="SQL_SELECT_WIDGET_SAS_MOBILE_IPHONE_CONNECTIONS">SELECT 'CURRENT_VALUE' ntl_mrgn_type, NVL(SUM(t.qty), 0)
+		ntl_mrgn_value
+		FROM bst_ise_sch01.ntl_mrgn_trans t
+		JOIN
+		bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+		JOIN bst_ise_sch01.config c1 ON v.bsns_src_id = c1.config_id AND
+		c1.config_typ = 'BSNS_SRC_NM' and c1.param_name = :bsns_src_nm
+		JOIN
+		bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND
+		c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN ('IPHONE_BOUNTY')
+		WHERE t.del_flg = 0
+		AND t.stor_id = :stor_id
+		UNION
+		SELECT 'GOAL'
+		ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val) ntl_mrgn_value
+		FROM
+		(SELECT t.ntl_mrgn_tgt_val tgt_val
+		FROM
+		bst_ise_sch01.ntl_mrgn_mthly_tgt t
+		JOIN bst_ise_sch01.config c1 ON
+		t.ntl_mrgn_tgt_id = c1.config_id AND
+		c1.config_typ = 'NTL_MRGN_TGT' AND
+		c1.param_name = 'IPHONE_UNITS'
+		JOIN bst_ise_sch01.config c2 ON
+		t.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and
+		c2.param_name = :bsns_src_nm
+		WHERE t.stor_id = :stor_id) tgt,
+		(SELECT
+		w.wgt_val wgt_val
+		FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+		JOIN
+		bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND
+		c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name =
+		'POSTPAID_UNITS'
+		JOIN bst_ise_sch01.config c2 ON w.bsns_src_id =
+		c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name =
+		:bsns_src_nm_wgt
+		WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm,
+		'MM/DD/YYYY
+		HH24:MI')) ) wgt
+        </sql>
+	<sql name="SQL_SELECT_WIDGET_SAS_MOBILE_NO_CONTRACT_CONNECTIONS">SELECT 'CURRENT_VALUE' ntl_mrgn_type, NVL(SUM(t.qty), 0)
+		ntl_mrgn_value
+		FROM bst_ise_sch01.ntl_mrgn_trans t
+		JOIN
+		bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+		JOIN bst_ise_sch01.config c1 ON v.bsns_src_id = c1.config_id AND
+		c1.config_typ = 'BSNS_SRC_NM' and c1.param_name = :bsns_src_nm
+		JOIN
+		bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND
+		c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN
+		('PREPAID_PREMIUM_BOUNTY', 'PREPAID_CORE_BOUNTY',
+		'PREPAID_MEDIUM_BOUNTY')
+		WHERE t.del_flg = 0
+		AND t.stor_id = :stor_id
+		UNION
+		SELECT 'GOAL' ntl_mrgn_type, CEIL(tgt.tgt_val * wgt.wgt_val)
+		ntl_mrgn_value
+		FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+		FROM
+		bst_ise_sch01.ntl_mrgn_mthly_tgt t
+		JOIN bst_ise_sch01.config c1 ON
+		t.ntl_mrgn_tgt_id = c1.config_id AND
+		c1.config_typ = 'NTL_MRGN_TGT' AND
+		c1.param_name = 'PREPAID_UNITS'
+		JOIN bst_ise_sch01.config c2 ON
+		t.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and
+		c2.param_name = :bsns_src_nm
+		WHERE t.stor_id = :stor_id) tgt,
+		(SELECT
+		w.wgt_val wgt_val
+		FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+		JOIN
+		bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND
+		c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name =
+		'NO_CONTRACT_UNITS'
+		JOIN bst_ise_sch01.config c2 ON w.bsns_src_id =
+		c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name =
+		:bsns_src_nm_wgt
+		WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm,
+		'MM/DD/YYYY
+		HH24:MI')) ) wgt</sql>
+	<sql name="SQL_SELECT_WIDGET_SAS_MOBILE_BROADBAND_CONNECTIONS">SELECT 'CURRENT_VALUE' ntl_mrgn_type, NVL(SUM(t.qty), 0)
+		ntl_mrgn_value
+		FROM bst_ise_sch01.ntl_mrgn_trans t
+		JOIN
+		bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+		JOIN bst_ise_sch01.config c1 ON v.bsns_src_id = c1.config_id AND
+		c1.config_typ = 'BSNS_SRC_NM' and c1.param_name = :bsns_src_nm
+		JOIN
+		bst_ise_sch01.config c2 ON v.ntl_mrgn_item_id = c2.config_id AND
+		c2.config_typ = 'NTL_MRGN_ITEM' AND c2.param_name IN
+		('AIRCARD_BOUNTY', 'BBAND_PREPAID')
+		WHERE t.del_flg = 0
+		AND t.stor_id =
+		:stor_id
+		UNION
+		SELECT 'GOAL' ntl_mrgn_type, CEIL(tgt.tgt_val *
+		wgt.wgt_val) ntl_mrgn_value
+		FROM (SELECT t.ntl_mrgn_tgt_val tgt_val
+		FROM bst_ise_sch01.ntl_mrgn_mthly_tgt t
+		JOIN bst_ise_sch01.config c1 ON
+		t.ntl_mrgn_tgt_id = c1.config_id AND
+		c1.config_typ = 'NTL_MRGN_TGT' AND
+		c1.param_name = 'AIRCARD_UNITS'
+		JOIN bst_ise_sch01.config c2 ON
+		t.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and
+		c2.param_name = :bsns_src_nm
+		WHERE t.stor_id = :stor_id) tgt,
+		(SELECT
+		w.wgt_val wgt_val
+		FROM bst_ise_sch01.ntl_mrgn_dly_wgt w
+		JOIN
+		bst_ise_sch01.config c1 ON w.wgt_cat_id = c1.config_id AND
+		c1.config_typ = 'NTL_MRGN_DLY_WGT_CAT' AND c1.param_name = 'BROADBAND'
+		JOIN bst_ise_sch01.config c2 ON w.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm_wgt
+		WHERE TRUNC(w.wgt_dt) = TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY
+		HH24:MI')) ) wgt</sql>
+	<sql name="SQL_SELECT_WIDGET_SAS_MOBILE_POST_PAID_GSP">SELECT 'CURRENT_VALUE' ntl_mrgn_type,
+		ROUND(DECODE(total_items.qty, 0, 0, total_attached_items.qty /
+		total_items.qty), 2) * 100 ntl_mrgn_value
+		FROM (SELECT NVL(SUM(t.qty),
+		0) qty
+		FROM bst_ise_sch01.ntl_mrgn_val v
+		JOIN bst_ise_sch01.config c ON
+		c.config_id = v.ntl_mrgn_item_id AND
+		c.config_typ = 'NTL_MRGN_ITEM' AND
+		c.param_name IN
+		('NON_BBYM_IPH_GSBTP', 'ATU_BOUNTY',
+		'GSBTP_TIER1_BOUNTY',
+		'GSBTP_TIER2_BOUNTY', 'GSBTP_TIER3_BOUNTY')
+		JOIN
+		bst_ise_sch01.ntl_mrgn_trans t ON v.ntl_mrgn_val_id =
+		t.ntl_mrgn_val_id AND t.del_flg = 0 AND t.stor_id = :stor_id
+		JOIN
+		bst_ise_sch01.config c2 ON v.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm )
+		total_attached_items,
+		(SELECT NVL(SUM(t.qty), 0) qty
+		FROM
+		bst_ise_sch01.ntl_mrgn_val v
+		JOIN bst_ise_sch01.config c ON c.config_id
+		= v.ntl_mrgn_item_id AND
+		c.config_typ = 'NTL_MRGN_ITEM' AND
+		c.param_name IN
+		('POSTPAID_NEW_BOUNTY', 'POSTPAID_UPGRADE_BOUNTY',
+		'POSTPAID_HANDSET_ONLY_BOUNTY', 'IPHONE_BOUNTY')
+		JOIN
+		bst_ise_sch01.ntl_mrgn_trans t ON v.ntl_mrgn_val_id =
+		t.ntl_mrgn_val_id AND t.del_flg = 0 AND t.stor_id = :stor_id
+		JOIN
+		bst_ise_sch01.config c2 ON v.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm )
+		total_items
+		UNION
+		SELECT 'GOAL' ntl_mrgn_type, g.goal_val * 100
+		ntl_mrgn_value
+		FROM bst_ise_sch01.ntl_mrgn_stor_goal g
+		JOIN
+		bst_ise_sch01.config c ON g.goal_typ_id = c.config_id AND
+		c.config_typ
+		= :bsns_src_nm || '_GOAL_TYP' AND c.param_name =
+		'BBYM_GSP'
+		JOIN
+		bst_ise_sch01.config c2 ON g.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+		WHERE
+		g.stor_id = :stor_id</sql>
+	<sql name="SQL_SELECT_WIDGET_SAS_MOBILE_POST_PAID_ACCESSORIES">SELECT 'CURRENT_VALUE' ntl_mrgn_type,
+		ROUND(DECODE(total_items.qty, 0, 0, total_attached_items.qty /
+		total_items.qty), 2) * 100 ntl_mrgn_value
+		FROM (SELECT NVL(SUM(t.qty),
+		0) qty
+		FROM bst_ise_sch01.ntl_mrgn_val v
+		JOIN bst_ise_sch01.config c ON
+		c.config_id = v.ntl_mrgn_item_id AND
+		c.config_typ = 'NTL_MRGN_ITEM' AND
+		c.param_name IN
+		('SWAS_FIRST_BLENDED_ACCESSORY_BOUNTY')
+		JOIN
+		bst_ise_sch01.ntl_mrgn_trans t ON v.ntl_mrgn_val_id =
+		t.ntl_mrgn_val_id AND t.del_flg = 0 AND t.stor_id = :stor_id
+		JOIN
+		bst_ise_sch01.config c2 ON v.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm )
+		total_attached_items,
+		(SELECT NVL(SUM(t.qty), 0) qty
+		FROM
+		bst_ise_sch01.ntl_mrgn_val v
+		JOIN bst_ise_sch01.config c ON c.config_id
+		= v.ntl_mrgn_item_id AND
+		c.config_typ = 'NTL_MRGN_ITEM' AND
+		c.param_name IN
+		('POSTPAID_NEW_BOUNTY', 'POSTPAID_UPGRADE_BOUNTY',
+		'POSTPAID_HANDSET_ONLY_BOUNTY', 'IPHONE_BOUNTY')
+		JOIN
+		bst_ise_sch01.ntl_mrgn_trans t ON v.ntl_mrgn_val_id =
+		t.ntl_mrgn_val_id AND t.del_flg = 0 AND t.stor_id = :stor_id
+		JOIN
+		bst_ise_sch01.config c2 ON v.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm )
+		total_items
+		UNION
+		SELECT 'GOAL' ntl_mrgn_type, g.goal_val * 100
+		ntl_mrgn_value
+		FROM bst_ise_sch01.ntl_mrgn_stor_goal g
+		JOIN
+		bst_ise_sch01.config c ON g.goal_typ_id = c.config_id AND
+		c.config_typ
+		= :bsns_src_nm || '_GOAL_TYP' AND c.param_name =
+		'BBYM_ACCESSORIES'
+		JOIN bst_ise_sch01.config c2 ON g.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+		WHERE
+		g.stor_id = :stor_id</sql>
+	<sql name="SQL_SELECT_WIDGET_SAS_MOBILE_NO_CONTRACT_ACTIVATIONS">SELECT 'CURRENT_VALUE' ntl_mrgn_type,
+		ROUND(DECODE(total_items.qty, 0, 0, total_attached_items.qty /
+		total_items.qty), 2) * 100 ntl_mrgn_value
+		FROM (SELECT NVL(SUM(t.qty),
+		0) qty
+		FROM bst_ise_sch01.ntl_mrgn_val v
+		JOIN bst_ise_sch01.config c ON
+		c.config_id = v.ntl_mrgn_item_id AND
+		c.config_typ = 'NTL_MRGN_ITEM' AND
+		c.param_name IN
+		('NO_CONTRACT_ACTIVATION_BOUNTY')
+		JOIN
+		bst_ise_sch01.ntl_mrgn_trans t ON v.ntl_mrgn_val_id =
+		t.ntl_mrgn_val_id AND t.del_flg = 0 AND t.stor_id = :stor_id
+		JOIN
+		bst_ise_sch01.config c2 ON v.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm )
+		total_attached_items,
+		(SELECT NVL(SUM(t.qty), 0) qty
+		FROM
+		bst_ise_sch01.ntl_mrgn_val v
+		JOIN bst_ise_sch01.config c ON c.config_id
+		= v.ntl_mrgn_item_id AND
+		c.config_typ = 'NTL_MRGN_ITEM' AND
+		c.param_name IN
+		('PREPAID_PREMIUM_BOUNTY', 'PREPAID_CORE_BOUNTY',
+		'PREPAID_MEDIUM_BOUNTY')
+		JOIN bst_ise_sch01.ntl_mrgn_trans t ON
+		v.ntl_mrgn_val_id =
+		t.ntl_mrgn_val_id AND t.del_flg = 0 AND t.stor_id =
+		:stor_id
+		JOIN bst_ise_sch01.config c2 ON v.bsns_src_id = c2.config_id
+		AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm )
+		total_items
+		UNION
+		SELECT 'GOAL' ntl_mrgn_type, g.goal_val * 100
+		ntl_mrgn_value
+		FROM bst_ise_sch01.ntl_mrgn_stor_goal g
+		JOIN
+		bst_ise_sch01.config c ON g.goal_typ_id = c.config_id AND
+		c.config_typ
+		= :bsns_src_nm || '_GOAL_TYP' AND c.param_name =
+		'NO_CONTRACT_ACTIVATIONS'
+		JOIN bst_ise_sch01.config c2 ON g.bsns_src_id
+		= c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name =
+		:bsns_src_nm
+		WHERE g.stor_id = :stor_id</sql>
+	<sql name="SQL_SELECT_WIDGET_SAS_MOBILE_UPGRADE_CHECKS">SELECT 'GOAL' ntl_mrgn_type, g.goal_val ntl_mrgn_value
+		FROM bst_ise_sch01.ntl_mrgn_stor_goal g
+		JOIN bst_ise_sch01.config c ON
+		g.goal_typ_id = c.config_id AND
+		c.config_typ = :bsns_src_nm ||
+		'_GOAL_TYP' AND c.param_name =
+		'UPGRADE_CHECKS'
+		JOIN
+		bst_ise_sch01.config c2 ON g.bsns_src_id = c2.config_id AND
+		c2.config_typ = 'BSNS_SRC_NM' and c2.param_name = :bsns_src_nm
+		WHERE
+		g.stor_id = :stor_id</sql>
+	<sql name="SQL_SELECT_STORE_EMPLOYEE_SCHEDULE">
+		<![CDATA[SELECT de.ntl_mrgn_dly_emp_id, 
+       e.emp_nm,
+       de.shift_beg_tm AS shift_beg_tm,
+       de.shift_end_tm AS shift_end_tm,
+       (DECODE(SIGN(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI') - de.shift_end_tm), 1,
+                        -- Use shift_end_tm
+                        (de.shift_end_tm - de.shift_beg_tm) * 24, 
+                        DECODE(SIGN(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI') - de.shift_beg_tm), 1, 
+                        -- Use current_tm
+                        (TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI') - de.shift_beg_tm) * 24,
+                        0))) AS current_total_hours_worked,
+       ((de.shift_end_tm - de.shift_beg_tm) * 24) AS shift_total_hours,
+       NVL(dly_emp_ntl_mrgn.current_ntl_mrgn_total, 0) AS current_ntl_mrgn_total,
+       NVL(c_primary.param_name, ' ') AS primary_zone_nm,
+       NVL(c_secondary.param_name, ' ') AS secondary_zone_nm
+  FROM bst_ise_sch01.ntl_mrgn_dly_emp de
+  JOIN bst_ise_sch01.ntl_mrgn_emp e ON de.ntl_mrgn_emp_id = e.ntl_mrgn_emp_id
+  JOIN bst_ise_sch01.config c ON de.bsns_src_id = c.config_id AND c.config_typ = 'BSNS_SRC_NM' and c.param_name = :bsns_src_nm
+LEFT JOIN bst_ise_sch01.config c_primary ON de.primary_zone_id = c_primary.config_id
+LEFT JOIN bst_ise_sch01.config c_secondary ON de.secondary_zone_id = c_secondary.config_id
+LEFT JOIN (SELECT t.ntl_mrgn_dly_emp_id AS ntl_mrgn_dly_emp_id,
+                  SUM(t.qty * v.ntl_mrgn_item_val * nvl(t.amt, 1)) AS current_ntl_mrgn_total
+             FROM bst_ise_sch01.ntl_mrgn_trans t
+             JOIN bst_ise_sch01.ntl_mrgn_val v ON t.ntl_mrgn_val_id = v.ntl_mrgn_val_id
+             JOIN bst_ise_sch01.config c ON t.tran_typ_id = c.config_id AND c.config_typ='TRAN_TYP' AND c.param_name = 'SALE'
+             JOIN bst_ise_sch01.config cb ON v.bsns_src_id = cb.config_id AND cb.config_typ = 'BSNS_SRC_NM' AND cb.param_name = :bsns_src_nm
+            WHERE t.del_flg = 0
+              AND t.stor_id = :stor_id
+         GROUP BY t.ntl_mrgn_dly_emp_id) dly_emp_ntl_mrgn ON de.ntl_mrgn_dly_emp_id = dly_emp_ntl_mrgn.ntl_mrgn_dly_emp_id
+ WHERE de.stor_id = :stor_id
+   AND de.shift_beg_tm > TRUNC(TO_DATE(:current_tm, 'MM/DD/YYYY HH24:MI')) -- midnight of the current day
+ORDER BY de.shift_beg_tm, e.emp_nm]]></sql>
+</sqls>

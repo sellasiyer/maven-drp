@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title wicket:id="titleLabel"></title>
+	<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#checkedoutTable td:last-child").addClass("center"); //center days checked out column
+
+			// Add styling classes to cells
+			$('tr').each(function(index) {
+
+				$(this).find('th:eq(0)').css("width", "80px"); //carrier 
+				$(this).find('th:eq(1)').css("width", "80px"); //os
+				$(this).find('th:eq(2)').css("width", "100px"); //make
+				$(this).find('th:eq(3)').css("width", "100px"); //model
+				$(this).find('th:eq(4)').css("width", "100px"); //condition
+				$(this).find('th:eq(5)').css("width", "120px"); //imei
+				$(this).find('th:eq(6)').css("width", "100px");	//days checked out (if exists)
+			});
+
+			window.print();
+		});
+
+		$("#printButton").click(function() {
+			window.print();
+		});
+
+		$("#closeButton").click(function() {
+			window.close();
+		});
+	</script>
+	<style type="text/css" media="print">
+body {
+	font-family: Arial;
+	width: 800px;
+	max-width: 800px;
+}
+
+.wrapper {
+	min-height: 100%;
+}
+
+.bottompad {
+	padding-bottom: 50px;
+}
+
+.footer {
+	margin-top: -50px;
+	height: 50px;
+	clear: both;
+}
+
+.printonly {
+	display: inline !important;
+}
+
+.noprint {
+	display: none;
+}
+</style>
+	<style type="text/css">
+.table-wrap {
+	max-width: 800px;
+	width: 800px;
+}
+
+.printonly {
+	display: none;
+}
+
+.center {
+	text-align: center;
+}
+
+h1 {
+	text-transform: uppercase;
+	font-size: 1.5em;
+}
+
+th {
+	text-transform: capitalize;
+	text-align: left;
+	padding-bottom: 6px;
+	vertical-align: bottom;
+}
+
+td {
+	text-align: left;
+}
+
+table {
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+tr.even {
+	border-bottom: 1px solid #ccc;
+}
+
+.wrapper {
+	font-family: Arial;
+}
+</style>
+
+	<!--[if !IE 7]>
+	<style type="text/css">
+		.wrapper {display:table;height:100%}
+	</style>
+<![endif]-->
+
+</wicket:head>
+<body>
+	<div class="wrapper">
+		<div>
+			<input type="button" class="button noprint" id="printButton" onclick="window.print();" value="Print"/> 
+			<input type="button" class="button noprint" id="closeButton" onclick="window.close();" value="Close"/>
+			<h1>
+				<span wicket:id="storeLabel"></span>
+				<wicket:message key="lptable.inventory.print.available" />
+			</h1>
+
+		</div>
+		<div class="table-wrap">
+			<table wicket:id="availableTable" class="loanerPhoneTable">
+
+			</table>
+		</div>
+
+		<h1>
+			<span wicket:id="storeLabel"></span>
+			<wicket:message key="lptable.inventory.print.checkedout" />
+		</h1>
+		<div class="table-wrap">
+			<table wicket:id="checkedoutTable" class="loanerPhoneTable">
+			</table>
+		</div>
+		<div class="bottompad"></div>
+	</div>
+	<!--  end of wrapper -->
+	<!--  <div wicket:id="printDateLabel" class="printonly footer"></div>   -->
+</body>
+</html>

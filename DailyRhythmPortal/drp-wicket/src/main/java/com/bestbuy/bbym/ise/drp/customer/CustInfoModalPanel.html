@@ -1,0 +1,30 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:extend>
+		<div class="new-modal detail">
+			<div class="top-buttons">
+				<a wicket:id="closeLink" class="button close"><wicket:message
+						key="custInfo.closeLink.label" /> </a>
+			</div>
+			<div class="modal-header">
+				<h1 wicket:id="modalTitle"></h1>
+			</div>
+
+			<div wicket:id="modalFeedback" class="required"></div>
+
+			<div wicket:id="searchCustPanel"></div>
+
+			<div wicket:id="searchRewardZonePanel"></div>
+
+			<div wicket:id="custDetailsPanel"></div>
+
+			<div wicket:id="gspSelectPanel"></div>
+
+			<div wicket:id="purchaseSelectPanel"></div>
+
+		</div>
+	</wicket:extend>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jaxb:bindings xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+               jaxb:version="2.0">
+
+  
+  <jaxb:bindings schemaLocation="POSTPAID_ACCOUNT_VALIDATION_REQUEST.xsd"  node="/xsd:schema">
+    <jaxb:schemaBindings>
+      <jaxb:package name="com.bestbuy.bbym.ise.iseclientforcaprequest"/>
+    </jaxb:schemaBindings>
+  </jaxb:bindings>
+  <jaxb:bindings schemaLocation="POSTPAID_ACCOUNT_VALIDATION_RESPONSE.xsd" node="/xsd:schema">
+    <jaxb:schemaBindings>
+      <jaxb:package name="com.bestbuy.bbym.ise.iseclientforcapresponse"/>
+    </jaxb:schemaBindings>
+  </jaxb:bindings>
+  <jaxb:bindings schemaLocation="CAP_RESPONSE_HEADER.xsd" node="/xsd:schema">
+    <jaxb:schemaBindings>
+      <jaxb:package name="com.bestbuy.bbym.ise.iseclientforcapresponse"/>
+    </jaxb:schemaBindings>
+  </jaxb:bindings>
+  <jaxb:bindings schemaLocation="CAP_REQUEST_HEADER.xsd" node="/xsd:schema">
+    <jaxb:schemaBindings>
+      <jaxb:package name="com.bestbuy.bbym.ise.iseclientforcaprequest"/>
+    </jaxb:schemaBindings>
+  </jaxb:bindings>
+  <jaxb:bindings schemaLocation="CAP_COMMON.xsd" node="/xsd:schema">
+    <jaxb:schemaBindings>
+      <jaxb:package name="com.bestbuy.bbym.ise.iseclientforcapcommon"/>
+    </jaxb:schemaBindings>
+  </jaxb:bindings>
+  <jaxb:bindings schemaLocation="POSTPAID_RSA_TOKEN_REQUEST.XSD"  node="/xsd:schema">
+    <jaxb:schemaBindings>
+      <jaxb:package name="com.bestbuy.bbym.ise.iseclient.cap.rsa.request"/>
+    </jaxb:schemaBindings>
+  </jaxb:bindings>  
+  <jaxb:bindings schemaLocation="POSTPAID_RSA_TOKEN_RESPONSE.XSD" node="/xsd:schema">
+    <jaxb:schemaBindings>
+      <jaxb:package name="com.bestbuy.bbym.ise.iseclient.cap.rsa.response"/>
+    </jaxb:schemaBindings>
+  </jaxb:bindings>
+  <jaxb:bindings schemaLocation="AGENT_CODE_LOOKUP_REQUEST.XSD"  node="/xsd:schema">
+    <jaxb:schemaBindings>
+      <jaxb:package name="com.bestbuy.bbym.ise.iseclient.cap.agent.request"/>
+    </jaxb:schemaBindings>
+  </jaxb:bindings>
+  <jaxb:bindings schemaLocation="AGENT_CODE_LOOKUP_RESPONSE.XSD"  node="/xsd:schema">
+    <jaxb:schemaBindings>
+      <jaxb:package name="com.bestbuy.bbym.ise.iseclient.cap.agent.response"/>
+    </jaxb:schemaBindings>
+  </jaxb:bindings>
+</jaxb:bindings>

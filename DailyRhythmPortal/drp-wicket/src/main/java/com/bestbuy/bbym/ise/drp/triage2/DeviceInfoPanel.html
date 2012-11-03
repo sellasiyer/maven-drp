@@ -1,0 +1,29 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:panel>
+		<div id="device-details-container">
+			<div id="sidebar"></div>
+			<div id="device-details">
+				<div class="data name">
+					<wicket:message key="triageDeviceInfoPanel.device.label" />
+					<div class="value" wicket:id="deviceDesc"></div>
+				</div>
+				<div class="data serial">
+					<wicket:message key="triageDeviceInfoPanel.serial.label" />
+					<div class="value" wicket:id="serialNumber"></div>
+				</div>
+				<div class="data gsp-type">
+					<span wicket:id="gspLabel"></span>
+					<div class="value" wicket:id="protectionPlan"></div>
+				</div>
+				<a class="button triage-history" wicket:id="triageHistoryButton">
+					<span wicket:id="labelHistoryButton"></span>
+				</a>
+			</div>
+		</div>
+		<div wicket:id="triageHistoryPanel"></div>
+	</wicket:panel>
+</body>
+</html>

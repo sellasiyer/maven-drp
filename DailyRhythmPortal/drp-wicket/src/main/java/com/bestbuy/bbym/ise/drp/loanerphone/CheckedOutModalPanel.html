@@ -1,0 +1,80 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<link rel="stylesheet" type="text/css" href="css/tom-screen.css" />
+	<link href="css/header.css" rel="stylesheet" type="text/css" />
+	<title>Loaner Phones - Modal Select</title>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			doTabStyles();
+		});
+
+		function doTabStyles() {
+			$("#lpTabs ul").first().addClass("tabs");
+			setupTables();
+		}
+
+		function setupTables() {
+			// Remove sorting from Action column
+
+			// Row highlighting on mouse over
+			$('.loanerPhoneTable tr:[class="odd"]').mouseover(function() {
+				$(this).removeClass('even').addClass('row_highlight');
+			}).mouseout(function() {
+				$(this).removeClass('row_highlight').addClass('odd');
+			});
+			$('.loanerPhoneTable tr:[class="even"]').mouseover(function() {
+				$(this).removeClass('even').addClass('row_highlight');
+			}).mouseout(function() {
+				$(this).removeClass('row_highlight').addClass('even');
+			});
+
+			// Add styling classes to cells
+			$('.loanerPhoneTable tr').each(function(index) {
+				$(this).find('th:eq(0)').attr("width", "30"); //carrier
+				$(this).find('th:eq(1)').attr("width", "60");   //opsys
+				$(this).find('th:eq(2)').attr("width", "60");	//make
+				$(this).find('th:eq(3)').attr("width", "70");	//model
+				$(this).find('th:eq(4)').attr("width", "150");	//imei/esn
+				$(this).find('th:first-child').addClass("txt-center");
+				$(this).find('th:last-child').addClass("last");
+				$(this).find('td:first-child').addClass("txt-center"); //Carrier icons
+				//$(this).find('th:eq(1)').addClass("txt-center"); // OS table-header.
+				//$(this).find('td:eq(1)').addClass("txt-center"); // OS icons.
+				$(this).find('td:last-child').addClass("last txt-right");
+			});
+
+			$('.loanerPhoneTable tr:last-child').addClass("last");
+
+			$('.initgray').click(new function() {
+				if ($(this).hasClass("initgray")) {
+					$(this).removeClass("initgray");
+					$(this).val("");
+				}
+			});
+		}
+	</script>
+</wicket:head>
+
+<body class="freeze">
+	<wicket:panel>
+		<div class="fader">
+
+			<div class="modal">
+				
+				<h1>Matching IMEI'S / ESN's</h1>
+				<div wicket:id="feedback" class="required"></div>
+				<form wicket:id="checkedOutModalForm" autocomplete="off">
+					<label>Please select correct phone...</label>
+					<table wicket:id="dataTable" class="loanerPhoneTable default-table">
+					</table>
+					<div class="buttons">
+						<input type="submit" value="cancel" class="button minor"
+							wicket:id="cancelButton" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</wicket:panel>
+</body>
+</html>

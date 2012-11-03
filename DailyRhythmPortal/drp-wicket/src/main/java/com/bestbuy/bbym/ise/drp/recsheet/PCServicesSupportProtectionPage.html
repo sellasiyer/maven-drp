@@ -1,0 +1,189 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+<script type="text/javascript">
+</script>
+
+</wicket:head>
+<body>
+	<wicket:extend>
+
+		<fieldset id="services-pc-support" class="data-box">
+			<h2 class="tight">
+				<wicket:message key="pcSupportProtectionServicesPageForm.step.label" />
+			</h2>
+			<h2 class="subhead">
+				<wicket:message
+					key="pcSupportProtectionServicesPageForm.subtitle.label" />
+			</h2>
+			<div class="column width-full isolated">
+				<div class="block description width-full">
+					<h3>
+						<wicket:message
+							key="pcSupportProtectionServicesPageForm.gsTechSupport.label" />
+					</h3>
+					<ul>
+						<li><wicket:message
+								key="pcSupportProtectionServicesPageForm.gsTechSupport.line1" />
+						</li>
+						<li><wicket:message
+								key="pcSupportProtectionServicesPageForm.gsTechSupport.line2" />
+						</li>
+						<li><wicket:message
+								key="pcSupportProtectionServicesPageForm.gsTechSupport.line3" />
+						</li>
+						<li><wicket:message
+								key="pcSupportProtectionServicesPageForm.gsTechSupport.line4" />
+						</li>
+						<li><wicket:message
+								key="pcSupportProtectionServicesPageForm.gsTechSupport.line5" />
+						</li>
+					</ul>
+				</div>
+				<div class="block width-full">
+					<ul class="checkbox-buttons mutex-check gsts">
+						<li><input type="checkbox" wicket:id="gsTechSupport1YearCbx">
+							<label><wicket:message
+									key="pcSupportProtectionServicesPageForm.gsTechSupport.1YearPrice.label" /><br />
+								<i><wicket:message
+										key="pcSupportProtectionServicesPageForm.gsTechSupport.1YearSavings.label" />
+							</i> </label></li>
+						<li><input type="checkbox" wicket:id="gsTechSupport2YearCbx">
+							<label><wicket:message
+									key="pcSupportProtectionServicesPageForm.gsTechSupport.2YearPrice.label" /><br />
+								<i><wicket:message
+										key="pcSupportProtectionServicesPageForm.gsTechSupport.2YearSavings.label" />
+							</i> </label></li>
+						<li><input type="checkbox" wicket:id="gsTechSupport3YearCbx">
+							<label><wicket:message
+									key="pcSupportProtectionServicesPageForm.gsTechSupport.3YearPrice.label" /><br />
+								<i><wicket:message
+										key="pcSupportProtectionServicesPageForm.gsTechSupport.3YearSavings.label" />
+							</i> </label></li>
+					</ul>
+				</div>
+			</div>
+			<div class="column width-full isolated">
+				<div class="block description width-full">
+					<h3>
+						<wicket:message
+							key="pcSupportProtectionServicesPageForm.gsProtection.label" />
+					</h3>
+					<ul>
+						<li><wicket:message
+								key="pcSupportProtectionServicesPageForm.gsProtection.line1" />
+						</li>
+						<li><wicket:message
+								key="pcSupportProtectionServicesPageForm.gsProtection.line2" />
+						</li>
+					</ul>
+				</div>
+				<div class="block width-full">
+					<label><wicket:message
+							key="pcSupportProtectionServicesPageForm.gsProtection.pricing.label" />
+					</label> <input type="text" wicket:id="gspPrice" /> <input type="submit"
+						class="button" wicket:id="gspPricingSubmitButton" /> <label><wicket:message
+							key="pcSupportProtectionServicesPageForm.gsProtection.laptopHandling.label" />
+					</label>
+					<ul class="checkbox-buttons mutex-check gspl">
+						<li><input type="checkbox" wicket:id="gspLaptop1YearCbx">
+							<label ><wicket:message
+									key="pcSupportProtectionServicesPageForm.gsProtection.laptopHandling.1Year.label" /><br />
+							<span wicket:id="gspLaptop1YearPriceLabel"></span>
+						</label></li>
+						<li><input type="checkbox" wicket:id="gspLaptop2YearCbx">
+							<label><wicket:message
+									key="pcSupportProtectionServicesPageForm.gsProtection.laptopHandling.2Year.label" /><br />
+							<span wicket:id="gspLaptop2YearPriceLabel"></span>
+						</label></li>
+						<li><input type="checkbox" wicket:id="gspLaptop3YearCbx">
+							<label><wicket:message
+									key="pcSupportProtectionServicesPageForm.gsProtection.laptopHandling.3Year.label" /><br />
+							<span wicket:id="gspLaptop3YearPriceLabel"></span>
+						</label></li>
+					</ul>
+				</div>
+				<div class="block width-full">
+					<label><wicket:message
+							key="pcSupportProtectionServicesPageForm.gsProtection.desktopHandling.label" />
+					</label>
+					<ul class="checkbox-buttons mutex-check gspd">
+						<li><input type="checkbox" wicket:id="gspDesktop1YearCbx">
+							<label ><wicket:message
+									key="pcSupportProtectionServicesPageForm.gsProtection.desktopHandling.1Year.label" /><br />
+							<span wicket:id="gspDesktop1YearPriceLabel"></span>
+						</label></li>
+						<li><input type="checkbox" wicket:id="gspDesktop2YearCbx">
+							<label><wicket:message
+									key="pcSupportProtectionServicesPageForm.gsProtection.desktopHandling.2Year.label" /><br />
+							<span wicket:id="gspDesktop2YearPriceLabel"></span>
+						</label></li>
+						<li><input type="checkbox" wicket:id="gspDesktop3YearCbx">
+							<label><wicket:message
+									key="pcSupportProtectionServicesPageForm.gsProtection.desktopHandling.3Year.label" /><br />
+							<span wicket:id="gspDesktop3YearPriceLabel"></span>
+						</label></li>
+					</ul>
+				</div>
+			</div>
+			<div class="column width-full isolated">
+				<div class="block description width-full">
+					<h3>
+						<wicket:message
+							key="pcSupportProtectionServicesPageForm.doubleCoverageTitle.label" />
+					</h3>
+					<ul>
+						<li><wicket:message
+								key="pcSupportProtectionServicesPageForm.doubleCoverage.line1.label" />
+						</li>
+					</ul>
+				</div>
+				<div class="block width-full">
+					<label><wicket:message
+							key="pcSupportProtectionServicesPageForm.doubleCoverage.laptop.label" />
+					</label>
+					<ul class="checkbox-buttons mutex-check gsbl">
+						<li><input type="checkbox"
+							wicket:id="doubleCoverageLaptop1YearCbx"> <label><wicket:message
+									key="pcSupportProtectionServicesPageForm.doubleCoverage.laptop.1YearPrice.label" /><br />
+								<i><wicket:message
+										key="pcSupportProtectionServicesPageForm.doubleCoverage.laptop.1YearSavings.label" />
+							</i> </label></li>
+						<li><input type="checkbox"
+							wicket:id="doubleCoverageLaptop2YearCbx"> <label
+							><wicket:message
+									key="pcSupportProtectionServicesPageForm.doubleCoverage.laptop.2YearPrice.label" /><br />
+								<i><wicket:message
+										key="pcSupportProtectionServicesPageForm.doubleCoverage.laptop.2YearSavings.label" />
+							</i> </label></li>
+					</ul>
+				</div>
+				<div class="block width-full">
+					<label><wicket:message
+							key="pcSupportProtectionServicesPageForm.doubleCoverage.desktop.label" />
+					</label>
+					<ul class="checkbox-buttons mutex-check gsbd">
+						<li><input type="checkbox"
+							wicket:id="doubleCoverageDesktop1YearCbx"> <label><wicket:message
+									key="pcSupportProtectionServicesPageForm.doubleCoverage.desktop.1YearPrice.label" /><br />
+								<i><wicket:message
+										key="pcSupportProtectionServicesPageForm.doubleCoverage.desktop.1YearSavings.label" />
+							</i> </label></li>
+						<li><input type="checkbox"
+							wicket:id="doubleCoverageDesktop2YearCbx"> <label
+							><wicket:message
+									key="pcSupportProtectionServicesPageForm.doubleCoverage.desktop.2YearPrice.label" /><br />
+								<i><wicket:message
+										key="pcSupportProtectionServicesPageForm.doubleCoverage.desktop.2YearSavings.label" />
+							</i> </label></li>
+					</ul>
+				</div>
+			</div>
+
+		</fieldset>
+
+
+	</wicket:extend>
+</body>
+
+</html>

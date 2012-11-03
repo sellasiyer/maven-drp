@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://bestbuy.com/bbym/beast/cap" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://bestbuy.com/bbym/beast/cap" xmlns:intf="http://bestbuy.com/bbym/beast/cap" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://bestbuy.com/bbym/beast/cap" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="processRequest">
+    <complexType>
+     <sequence>
+      <element name="xmlMessage" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="processRequestResponse">
+    <complexType>
+     <sequence>
+      <element name="processRequestReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAgentCodes">
+    <complexType>
+     <sequence>
+      <element name="xmlMessage" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAgentCodesResponse">
+    <complexType>
+     <sequence>
+      <element name="getAgentCodesReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="submitActivationDetails">
+    <complexType>
+     <sequence>
+      <element name="xmlMessage" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="submitActivationDetailsResponse">
+    <complexType>
+     <sequence>
+      <element name="submitActivationDetailsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="submitIVRDetails">
+    <complexType>
+     <sequence>
+      <element name="xmlMessage" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="submitIVRDetailsResponse">
+    <complexType>
+     <sequence>
+      <element name="submitIVRDetailsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getAgentCodesRequest">
+
+      <wsdl:part element="impl:getAgentCodes" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="processRequestRequest">
+
+      <wsdl:part element="impl:processRequest" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="submitIVRDetailsRequest">
+
+      <wsdl:part element="impl:submitIVRDetails" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="submitActivationDetailsRequest">
+
+      <wsdl:part element="impl:submitActivationDetails" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="submitIVRDetailsResponse">
+
+      <wsdl:part element="impl:submitIVRDetailsResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="submitActivationDetailsResponse">
+
+      <wsdl:part element="impl:submitActivationDetailsResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAgentCodesResponse">
+
+      <wsdl:part element="impl:getAgentCodesResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="processRequestResponse">
+
+      <wsdl:part element="impl:processRequestResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="CAPWsController">
+
+      <wsdl:operation name="processRequest">
+
+         <wsdl:input message="impl:processRequestRequest" name="processRequestRequest"/>
+
+         <wsdl:output message="impl:processRequestResponse" name="processRequestResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAgentCodes">
+
+         <wsdl:input message="impl:getAgentCodesRequest" name="getAgentCodesRequest"/>
+
+         <wsdl:output message="impl:getAgentCodesResponse" name="getAgentCodesResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="submitActivationDetails">
+
+         <wsdl:input message="impl:submitActivationDetailsRequest" name="submitActivationDetailsRequest"/>
+
+         <wsdl:output message="impl:submitActivationDetailsResponse" name="submitActivationDetailsResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="submitIVRDetails">
+
+         <wsdl:input message="impl:submitIVRDetailsRequest" name="submitIVRDetailsRequest"/>
+
+         <wsdl:output message="impl:submitIVRDetailsResponse" name="submitIVRDetailsResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="CAPWsControllerSoapBinding" type="impl:CAPWsController">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="processRequest">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="processRequestRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="processRequestResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAgentCodes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAgentCodesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAgentCodesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="submitActivationDetails">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="submitActivationDetailsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="submitActivationDetailsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="submitIVRDetails">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="submitIVRDetailsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="submitIVRDetailsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="CAPWsControllerService">
+
+      <wsdl:port binding="impl:CAPWsControllerSoapBinding" name="CAPWsController">
+
+         <wsdlsoap:address location="https://bbym-cap/CAP_US_R2/services/CAPWsController"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

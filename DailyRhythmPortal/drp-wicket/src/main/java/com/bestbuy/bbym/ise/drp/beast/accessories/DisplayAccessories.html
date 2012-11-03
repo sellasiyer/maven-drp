@@ -1,0 +1,157 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>Display Accessories - BEAST PORTAL</title>
+    <link href="css/header.css" media="screen" rel="StyleSheet" type="text/css" />
+	<link href="beast-css/screen.css" media="screen" rel="StyleSheet" type="text/css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+	<script src="js/jQueryRotateCompressed.2.2.js"></script>
+	<script type="text/javascript">
+	function setupAccessoryList(){
+		 	$('.accy-list li:nth-child(even)').addClass('odd');
+		 	$('a.detail').click(function(e){
+		 		e.preventDefault();
+		 		var parentLi = $(this).closest('li');
+		 		var description = $(this).closest('.bottom-line').siblings('.description');
+		 		var arrow = $(this).find('.arrow');
+		 		var linkText = $(this).find('.text');
+		 		if($(this).hasClass('open')){
+		 			var newHeight = 60;
+		 			parentLi.animate({
+			 			height: newHeight
+			 		}, 500);
+			 		arrow.rotate({animateTo:0});
+			 		linkText.text('Show Details');
+			 		$(this).removeClass('open');
+		 		}else{
+			 		var newHeight = parentLi.innerHeight() + description.outerHeight();
+			 		parentLi.animate({
+			 			height: newHeight
+			 		}, 500);
+			 		arrow.rotate({animateTo:90});
+			 		linkText.text('Hide Details');
+			 		$(this).addClass('open');
+			 	}
+		 	});
+		 }
+	function refreshButtons(){
+		
+		$('a.left').css('float');
+		
+	}
+	 $(document).ready(setupAccessoryList);
+	</script>
+</wicket:head>
+<body>
+	<!-- <div wicket:id="feedback" class="feedbackmsg"></div> -->
+	<div class="accy"> 
+	<div class="left-nav">    	
+    <h2>Line:</h2>	
+    <ul>
+	<li wicket:id="deviceOneSelection"><a wicket:id = "deviceOneButton"><span wicket:id="deviceOneButtonLabel"></span></a></li>
+	<li wicket:id="deviceTwoSelection"><a wicket:id = "deviceTwoButton"><span wicket:id="deviceTwoButtonLabel"></span></a></li>
+	<li wicket:id="deviceThreeSelection"><a wicket:id = "deviceThreeButton"><span wicket:id="deviceThreeButtonLabel"></span></a></li>
+	<li wicket:id="deviceFourSelection"><a wicket:id = "deviceFourButton"><span wicket:id="deviceFourButtonLabel"></span></a></li>
+	<li wicket:id="deviceFiveSelection"><a wicket:id = "deviceFiveButton"><span wicket:id="deviceFiveButtonLabel"></span></a></li>
+	</ul>
+	</div> 
+	  
+	  <div class="phone-detail">
+			<img wicket:id="deviceOneImage" /> 
+			<h3 wicket:id="deviceOneName"></h3>
+			 <div wicket:id=noDeviceContainer >
+				<img src="images/picture_empty_large.png" /> 
+	  	</div>
+	  </div>
+	 
+	
+	  
+	  <ul class="accy-list" wicket:id="accessoryOneListContainer">
+				<li wicket:id="deviceOneAccessoryListView">
+				<div class="thumb"><img wicket:id="accOneImage" /></div>
+				<div class="desc">
+					<h4 wicket:id="accessoryOneName"></h4>
+					<div class="bottom-line">
+						<a href="#" class="detail"><img class="arrow" src="css/img/buttons/triangle_right_short.png"/> <span class="text">Show Details</span></a>
+						<div class="price">Price: <span class="num" wicket:id="accessoryOnePrice"></span></div>
+					</div>
+					<div class="description">
+						<p wicket:id="accessoryOneDescription"></p>
+					</div>
+				</div>
+				</li>
+	  </ul>
+					
+	 <ul class="accy-list" wicket:id="accessoryTwoListContainer">
+				<li wicket:id="deviceTwoAccessoryListView">
+				<div class="thumb"><img wicket:id="accTwoImage" /></div>
+				<div class="desc">
+					<h4 wicket:id="accessoryTwoName"></h4>
+					<div class="bottom-line">
+						<a href="#" class="detail"><img class="arrow" src="css/img/buttons/triangle_right_short.png"/> <span class="text">Show Details</span></a>
+						<div class="price">Price: <span class="num" wicket:id="accessoryTwoPrice"></span></div>
+					</div>
+					<div class="description">
+						<p wicket:id="accessoryTwoDescription"></p>
+					</div>
+				</div>
+				</li>
+	  </ul>
+	  
+	   <ul class="accy-list" wicket:id="accessoryThreeListContainer">
+				<li wicket:id="deviceThreeAccessoryListView">
+				<div class="thumb"><img wicket:id="accThreeImage" /></div>
+				<div class="desc">
+					<h4 wicket:id="accessoryThreeName"></h4>
+					<div class="bottom-line">
+						<a href="#" class="detail"><img class="arrow" src="css/img/buttons/triangle_right_short.png"/> <span class="text">Show Details</span></a>
+						<div class="price">Price: <span class="num" wicket:id="accessoryThreePrice"></span></div>
+					</div>
+					<div class="description">
+						<p wicket:id="accessoryThreeDescription"></p>
+					</div>
+				</div>
+				</li>
+	  </ul>
+	  
+	   <ul class="accy-list" wicket:id="accessoryFourListContainer">
+				<li wicket:id="deviceFourAccessoryListView">
+				<div class="thumb"><img wicket:id="accFourImage" /></div>
+				<div class="desc">
+					<h4 wicket:id="accessoryFourName"></h4>
+					<div class="bottom-line">
+						<a href="#" class="detail"><img class="arrow" src="css/img/buttons/triangle_right_short.png"/> <span class="text">Show Details</span></a>
+						<div class="price">Price: <span class="num" wicket:id="accessoryFourPrice"></span></div>
+					</div>
+					<div class="description">
+						<p wicket:id="accessoryFourDescription"></p>
+					</div>
+				</div>
+				</li>
+	  </ul>
+	  
+	   <ul class="accy-list" wicket:id="accessoryFiveListContainer">
+				<li wicket:id="deviceFiveAccessoryListView">
+				<div class="thumb"><img wicket:id="accFiveImage" /></div>
+				<div class="desc">
+					<h4 wicket:id="accessoryFiveName"></h4>
+					<div class="bottom-line">
+						<a href="#" class="detail"><img class="arrow" src="css/img/buttons/triangle_right_short.png"/> <span class="text">Show Details</span></a>
+						<div class="price">Price: <span class="num" wicket:id="accessoryFivePrice"></span></div>
+					</div>
+					<div class="description">
+						<p wicket:id="accessoryFiveDescription"></p>
+					</div>
+				</div>
+				</li>
+	  </ul>
+	<ul class="accy-list" wicket:id="noAccessoryListContainer">
+						<p class="error">
+						<h1><label wicket:id="noAccessoryListLabel"></label></h1>
+						</p>
+	</ul>	
+	     
+ </div>
+</body>
+</html>

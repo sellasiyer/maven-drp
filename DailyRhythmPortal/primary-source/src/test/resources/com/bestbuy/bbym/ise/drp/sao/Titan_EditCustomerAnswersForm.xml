@@ -1,0 +1,55 @@
+<EditCustomerAnswersForm xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xmlns:atom="http://www.w3.org/2005/Atom">
+    <atom:title>Edit Customer Information</atom:title>
+    <atom:link href="http://hydra-pt:8080/store-10/carts/19447/customer-answers" rel="self" title="Self" />
+    <atom:link href="http://hydra-pt:8080/store-10/carts/19447/customer-answers" rel="http://hydra-pt:8080/rels/update" title="update" />
+    <atom:link href="http://hydra-pt:8080/store-10/carts/19447/complete-tradein" rel="next" title="Next" />
+    <atom:link href="http://hydra-pt:8080/store-10?CartId=19447" rel="http://hydra-pt:8080/rels/home" title="Return to Home Page" />
+    <atom:link href="http://hydra-pt:8080/store-10/help?CartId=19447" rel="http://hydra-pt:8080/rels/help" title="Overview" />
+    <atom:link href="http://hydra-pt:8080/store-10/help/faq?CartId=19447" rel="http://hydra-pt:8080/rels/help" title="FAQs" />
+    <atom:link href="http://hydra-pt:8080/store-10/help/about?CartId=19447" rel="http://hydra-pt:8080/rels/help" title="About" />
+    <atom:link href="http://hydra-pt:8080/store-10/devices?CartId=19447" rel="http://hydra-pt:8080/rels/help" title="Biometric Device Validation" />
+    <atom:link href="http://hydra-pt:8080/store-10/carts/19447?BypassTradeInPlus=False" rel="http://hydra-pt:8080/rels/cart" title="View Cart" />
+    <atom:link href="http://hydra-pt:8080/store-10/carts/19447/identification?BypassTradeInPlus=False" rel="http://hydra-pt:8080/rels/save-cart" title="Save Cart" />
+    <atom:link href="http://hydra-pt:8080/store-10/catalog?Page=1&amp;PageSize=25" rel="http://hydra-pt:8080/rels/cancel-cart" title="Cancel Transaction" />
+    <atom:link href="http://hydra-pt:8080/store-10/carts/search/form" rel="http://hydra-pt:8080/rels/cart-search" title="Search Carts" />
+    <atom:link href="http://hydra-pt:8080/store-10/feedback/new" rel="http://hydra-pt:8080/rels/feedback" title="Provide Feedback" />
+    <atom:link href="https://buyback-pl.bestbuytradein.com/bbPlanInfo.cfm?redirect=false" rel="external-buyback" title="Start a New Buy Back" />
+    <atom:link href="https://buyback-pl.bestbuytradein.com/admin.cfm?redirect=false" rel="external-admin" title="Open Trade In Administration" />
+    <atom:link href="https://buyback-pl.bestbuytradein.com/manifest.cfm?redirect=false" rel="external-shipping-center" title="Open Shipping Center" />
+    <atom:link href="http://hydra-pt:8080/metadata/EditCustomerAnswersForm" rel="http://hydra-pt:8080/rels/metadata" title="metadata" />
+    <StoreId>10</StoreId>
+    <CartId>19447</CartId>
+    <Questions>
+        <CustomerQuestion>
+            <Name>GOV ISSUED ID TYPE</Name>
+            <Source>CustomerIdPolicy</Source>
+            <Text>Customer ID Type</Text>
+            <Value>Drivers License</Value>
+            <Options>
+                <CustomerQuestionOption>
+                    <Description>Drivers License</Description>
+                    <Value>Drivers License</Value>
+                </CustomerQuestionOption>
+                <CustomerQuestionOption>
+                    <Description>Passport</Description>
+                    <Value>Passport</Value>
+                </CustomerQuestionOption>
+                <CustomerQuestionOption>
+                    <Description>Military ID</Description>
+                    <Value>Military ID</Value>
+                </CustomerQuestionOption>
+                <CustomerQuestionOption>
+                    <Description>Other</Description>
+                    <Value>Other</Value>
+                </CustomerQuestionOption>
+            </Options>
+        </CustomerQuestion>
+        <CustomerQuestion>
+            <Name>FirstIdOtherType</Name>
+            <Source>CustomerIdPolicy</Source>
+            <Text>Customer ID Type Description (required for 'Other')</Text>
+            <Value/>
+            <Options />
+        </CustomerQuestion>
+    </Questions>
+</EditCustomerAnswersForm>

@@ -1,0 +1,31 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+</wicket:head>
+
+<body>
+	<wicket:panel>
+		<div class="customer-bar nocarrier">
+			<div class="customer">
+				<label><wicket:message
+						key="purchaseHistoryPanel.customerDetails.main.label" /> </label> <span
+					wicket:id="customerNameLabel"></span>
+			</div>
+			<div class="customer">
+				<label><wicket:message
+						key="purchaseHistoryPanel.customerDetails.address.label" /> </label> <span
+					wicket:id="customerAddressLabel"></span>
+			</div>
+
+			<div class="account">
+				<label><wicket:message
+						key="purchaseHistoryPanel.customerDetails.rewardZoneNumber.label" />
+				</label> <span wicket:id="customerRewardZoneLabel"></span>
+			</div>
+		</div>
+		<a wicket:id="newCustomerLink" class="button below-bar"><wicket:message
+				key="purchaseHistoryForm.searchAgain.button" /> </a>
+	</wicket:panel>
+</body>
+</html>

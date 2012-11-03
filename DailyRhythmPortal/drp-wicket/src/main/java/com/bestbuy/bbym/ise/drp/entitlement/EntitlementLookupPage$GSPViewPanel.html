@@ -1,0 +1,56 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:panel>
+	
+<div wicket:id="gspSearchViewContainer">
+	<fieldset class="data-box" wicket:id="gspSearchContainer">
+		<h2>GSP</h2>
+		<a class="button top" wicket:id="gspSearchLink">Lookup</a>
+		<div class="column width-full"> 
+			<div class="block"> 
+				<label><wicket:message key="entitlement.gspview.gspNumber"/></label>
+				<input wicket:id="gspNumTxt" type="text" maxlength="30" />
+			</div>				
+		</div>  
+		 <!--  <div wicket:id="custInfoModalPanel"></div> 	 --> 		
+	</fieldset> 
+	
+	<fieldset class="data-box view" wicket:id="gspViewContainer">
+		<h2>GSP</h2> 
+		<div class="column width-full" wicket:id="gspViewDataContainer">
+			<div class="block">
+				<label><wicket:message key="entitlement.gspview.gspNumber"/></label>
+				<span wicket:id="gspNumberView"></span>
+			</div>	
+			<div class="block width-3">
+				<label><wicket:message key="entitlement.gspview.gspDescription"/></label>
+				<span wicket:id="gspDescriptionView"></span>
+			</div>		  
+			<div class="block">
+				<label><wicket:message key="entitlement.gspview.gspOwner"/></label>
+				<span wicket:id="gspOwnerView"></span>
+			</div>			
+			<div class="block">
+				<label><wicket:message key="entitlement.gspview.gspStatus"/></label>
+				<span wicket:id="gspStatusView"></span>
+			</div>		
+			<div class="block">
+				<label><wicket:message key="entitlement.gspview.gspExpires"/></label>
+				<span wicket:id="gspExpirationDateView"></span> 
+			</div>				
+	    </div>  
+	    <div class="column width-full" wicket:id="gspViewNoDataContainer">
+	        <div class="block width-full">
+	    	<span wicket:id="gspNoDataLabel"></span>  
+	    	</div>
+	    </div>	    
+	</fieldset> 
+	 
+</div>
+
+</wicket:panel>
+</body>
+</html>
+  

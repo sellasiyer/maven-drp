@@ -1,0 +1,47 @@
+<!-- Attributes response for a 'regular' user (with an a-id) and multiple 
+	roles including multiple BEAST Portal roles -->
+<attributesResponse xmlns="http://opensso.idsvcs.identity.sun.com/">
+	<return xmlns="">
+		<attributes>
+			<name>telephonenumber</name>
+			<values>(612) 291-9526</values>
+		</attributes>
+		<attributes>
+			<name>bboraclelocid</name>
+			<values>900010</values>
+		</attributes>
+		<attributes>
+			<name>givenName</name>
+			<values>Panneer</values>
+		</attributes>
+		<attributes>
+			<name>manager</name>
+			<values>uid=a671772,ou=People,o=bestbuy.com</values>
+		</attributes>
+		<attributes>
+			<name>bboraclehrtype</name>
+			<values>MS</values>
+		</attributes>
+		<attributes>
+			<name>sn</name>
+			<values>Selvam</values>
+		</attributes>
+		<attributes>
+			<name>uid</name>
+			<values>a218635</values>
+		</attributes>
+		<attributes>
+			<name>groups</name>
+			<values>cn=bst_wl_dev,ou=Groups,o=bestbuy.com</values>
+			<values>cn=BEAST_CAP_MONITOR,ou=Groups,o=bestbuy.com</values>
+			<values>cn=BEAST_CART_USER,ou=groups,o=bestbuy.com</values>
+			<values>cn=BEAST_CART_ADMIN,ou=groups,o=bestbuy.com</values>
+			<values>cn=BBYM_ISE_TEAM,ou=groups,o=bestbuy.com</values>
+			<values>cn=BBYM_ISE_ADMIN,ou=groups,o=bestbuy.com</values>
+			<values>cn=PTO_ISE_USER,ou=Groups, o=bestbuy.com</values>
+		</attributes>
+		<token>
+			<id>AQIC5wM2LY4SfcyPWpC0w49BU80Uw5xv9orwAA6L3O9rOYs=@AAJTMQACMDEAAlNJAAIwMw==#</id>
+		</token>
+	</return>
+</attributesResponse>

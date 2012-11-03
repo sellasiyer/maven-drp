@@ -1,0 +1,256 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<title>BEAST</title>
+	<script type="text/javascript" src="js/validation.js"></script>
+	<script type="text/javascript" src="js/jquery.hotkeys.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			bindTimeClick();
+		});
+
+		function bindTimeClick() {
+			$('td.available').live('click', function(event) {
+				event.preventDefault();
+				var selected = $('td.selected');
+				if (selected.length > 0) {
+					selected.removeClass('selected');
+					selected.addClass('available');
+				}
+				$(this).removeClass('available');
+				$(this).addClass('selected');
+
+				var eventTarget = $(event.target);
+				var thisThing = $(this);
+
+				if (event.target == this) {
+					$(this).children('a').click();
+				}
+			});
+		}
+
+		var closeFunction = function() {
+			$('#closeButton').click();
+		};
+		var clearFunction = function() {
+			$('#clearButton').click();
+		};
+		var backFunction = function() {
+			$('#backButton').click();
+		};
+
+		var continueFunction = function() {
+			$('#continueButton').click();
+		};
+
+		function getAppointmentSlots(wicketBehavior) {
+			wicketBehavior('getAppointmentSlots');
+		};
+		hotKeysConfig = {
+			f1 : {
+				handler : backFunction,
+				buttonSelector : '#backButton'
+			},
+			f2 : {
+				handler : continueFunction,
+				buttonSelector : '#continueButton'
+			},
+			f3 : {
+				handler : closeFunction,
+				buttonSelector : '#closeButton'
+			},
+			f4 : {
+				handler : clearFunction,
+				buttonSelector : '#clearButton'
+			}
+		};
+
+		function handleContinueButtonState(enabled) {
+			var continueButton = $('#continueButton');
+			if (enabled) {
+				continueButton.removeAttr('disabled').parent().removeClass(
+						'disabled');
+			} else {
+				continueButton.attr('disabled', true).parent().addClass(
+						'disabled');
+			}
+		}
+
+		var chooseApptValidation = {
+			startDate : {
+				type : VALIDATION_TYPE.DATE,
+				valueSelector : '#startDate',
+				valid : false,
+				ignore : false,
+				optional : false
+			},
+			endDate : {
+				type : VALIDATION_TYPE.DATE,
+				valueSelector : '#endDate',
+				valid : false,
+				ignore : false,
+				optional : false
+			}
+
+		};
+
+		function bindHotKeys() {
+
+			$(document).live('keydown', 'f1', function() {
+				$('#backButton').click();
+				return false;
+			});
+			$("input").live('keydown', 'f1', function() {
+				$('#backButton').click();
+				return false;
+			});
+			$("select").live('keydown', 'f1', function() {
+				$('#backButton').click();
+				return false;
+			});
+
+			$(document).live('keydown', 'f2', function() {
+				$('#continueButton').click();
+				return false;
+			});
+			$("input").live('keydown', 'f2', function() {
+				$('#continueButton').click();
+				return false;
+			});
+			$("select").live('keydown', 'f2', function() {
+				$('#continueButton').click();
+				return false;
+			});
+
+			$(document).live('keydown', 'f3', function() {
+				$('#closeButton').click();
+				return false;
+			});
+
+			$("input").live('keydown', 'f3', function() {
+				$('#closeButton').click();
+				return false;
+			});
+			$("select").live('keydown', 'f3', function() {
+				$('#closeButton').click();
+				return false;
+			});
+
+			$(document).live('keydown', 'f4', function() {
+				$('#clearButton').click();
+				return false;
+			});
+
+			$("input").live('keydown', 'f4', function() {
+				$('#clearButton').click();
+				return false;
+			});
+
+			$("select").live('keydown', 'f4', function() {
+				$('#clearButton').click();
+				return false;
+			});
+
+		}
+
+		var startDateOldLength = 0, endDateOldLength = 0;
+
+		function formatDate() {
+			$("#startDate").keyup(function() {
+				var curchr = this.value.length;
+				if (curchr > startDateOldLength) {
+					var curval = $(this).val();
+					if (curchr == 2) {
+						$(this).val(curval + "/");
+					} else if (curchr == 5) {
+						$(this).val(curval + "/");
+					}
+				}
+
+				startDateOldLength = this.value.length;
+			});
+			$("#endDate").keyup(function() {
+				var curchr = this.value.length;
+				if (curchr > endDateOldLength) {
+					var curval = $(this).val();
+					if (curchr == 2) {
+						$(this).val(curval + "/");
+					} else if (curchr == 5) {
+						$(this).val(curval + "/");
+					}
+				}
+
+				endDateOldLength = this.value.length;
+			});
+
+		}
+	</script>
+</wicket:head>
+<body>
+	<wicket:extend>
+		<div wicket:id="feedback" class="error"></div>
+		<div class="wrap">
+			<!-- here to replicate beast frame -->
+			<h1 class="highlight">Step 2: Choose a Day &amp; Time For Your
+				Appointment</h1>
+			<dl class="form" style="width: 100%; margin-bottom: 20px;">
+				<dd class="date-range">
+					<label><wicket:message
+							key="schedulerChooseAppointmentForm.dateRange.label" /> </label> <input
+						class="required" type="text" wicket:id="startDate" maxlength=8
+						onkeyup="fieldValidation(event, 'startDate', chooseApptValidation);formatDate();" />
+					<input class="required" type="text" wicket:id="endDate" maxlength=8
+						onkeyup="fieldValidation(event, 'endDate', chooseApptValidation);formatDate();" />
+				</dd>
+				<dd>
+					<label><wicket:message
+							key="schedulerChooseAppointmentForm.department.label" /> </label> <select
+						class="required" wicket:id="departmentFilter"></select>
+				</dd>
+				<dd>
+					<label><wicket:message
+							key="schedulerChooseAppointmentForm.appointmentType.label" /> </label> <select
+						class="required" wicket:id="appointmentTypeFilter"></select>
+				</dd>
+				<dd>
+					<label><wicket:message
+							key="schedulerChooseAppointmentForm.reason.label" /> </label> <select
+						class="required" wicket:id="reasonFilter"></select>
+				</dd>
+
+			</dl>
+
+			<span wicket:id="appointmentSlotsContainer">
+				<dl class="appt_key">
+					<dt>
+						<div class="swatch available" />
+					</dt>
+					<dd>Available</dd>
+					<dt>
+						<div class="swatch unavailable" />
+					</dt>
+					<dd>Unavailable</dd>
+					<dt>
+						<div class="swatch selected" />
+					</dt>
+					<dd>Selected Time</dd>
+				</dl>
+				<div class="appt_slot">
+					<table>
+
+						<tr wicket:id="rowRepeater">
+							<th wicket:id="dayLabel"></th>
+							<td wicket:id="timeSlotsListView"><a href="#"
+								wicket:id="slotLink"> <span wicket:id="slotlabel"></span> </a>
+							</td>
+						</tr>
+
+					</table>
+				</div> </span> <br />
+
+		</div>
+
+	</wicket:extend>
+
+</body>
+</html>

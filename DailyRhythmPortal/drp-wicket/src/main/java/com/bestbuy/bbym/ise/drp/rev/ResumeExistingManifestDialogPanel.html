@@ -1,0 +1,25 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:extend>
+		<div class="modal">
+			<wicket:child />
+			<h1>
+				<wicket:message key="resumeExistingDialog.title.label" />
+			</h1>
+			<p>
+				<wicket:message key="resumeExistingDialog.message.label" />
+			</p>
+			<p>
+				<wicket:message key="resumeExistingDialog.question.label" />
+			</p>
+			<div class="buttons">
+				<a wicket:id="yesLink" class="button"><wicket:message
+						key="yesLabel" /> </a> <a wicket:id="noLink" class="button"><wicket:message
+						key="noLabel" /> </a>
+			</div>
+		</div>
+	</wicket:extend>
+</body>
+</html>

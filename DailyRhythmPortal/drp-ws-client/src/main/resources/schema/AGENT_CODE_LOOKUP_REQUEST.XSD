@@ -1,0 +1,143 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+ xmlns="http://bestbuy.com/bbym/beast/cap/request"
+	targetNamespace="http://bestbuy.com/bbym/beast/cap/request"
+	xmlns:common="http://bestbuy.com/bbym/beast/cap/common"
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:import namespace="http://bestbuy.com/bbym/beast/cap/common" schemaLocation="CAP_COMMON.XSD"/>
+    
+    <xs:simpleType name="ipAddressType">
+       <xs:annotation>
+        	<xs:documentation>
+        		The IP address. This is
+        		used for debugging purposes.
+        	</xs:documentation>
+        </xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern
+				value="((0|1[0-9]{0,2}|2([0-4][0-9]?|5[0-5]?|[6-9])?|[3-9][0-9]?)\.){3}(0|1[0-9]{0,2}|2([0-4][0-9]?|5[0-5]?|[6-9])?|[3-9][0-9]?)">
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+
+    <xs:complexType name="Header">
+        <xs:sequence>
+            <xs:element name="numberOfCarriers" type="xs:string"
+                minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        This is Number of carriers which you are
+                        requesting for Agent Code.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="timestamp" type="xs:dateTime"
+                maxOccurs="1" minOccurs="1">
+                <xs:annotation>
+                	<xs:documentation>
+                		This is timestamp and it is mandatory
+                	</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="clientIPAddress" type="ipAddressType"
+                maxOccurs="1" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        This is Client IP Address.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="serverIPAddress" type="ipAddressType"
+                maxOccurs="1" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        This is servier IP address.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="destinationID" type="xs:string" maxOccurs="1" minOccurs="1" default="CAP">
+                <xs:annotation>
+                    <xs:documentation>
+                        This is destination ID and currently need to
+                        send as &apos;CAP&apos;.
+                    </xs:documentation>
+                </xs:annotation></xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Body">
+        <xs:sequence>
+            <xs:element name="CAPVendorCode" type="vendorType">
+                <xs:annotation>
+                    <xs:documentation>
+                    This is a complex type which contains the details
+                    of vendor details.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="AgentCodeLookUpRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Header" type="Header" />
+                <xs:element name="Body" type="Body" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:complexType name="vendorType">
+        <xs:annotation>
+            <xs:documentation>
+                This complex type consists of vendor and storeid
+                information.
+
+                There is a choice between vendorListType and storeid.
+                The storeId alone will be passed when the request does
+                not contains vendor details.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+
+
+            <xs:choice>
+                <xs:element name="vendor" type="vendorListType" maxOccurs="unbounded" minOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The vendorListType consits of code and
+                            storeId and this complex type can be
+                            repeated multiple times.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="storeId" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>
+                            This storeId will be passed when there are
+                            no vendor details.
+                        </xs:documentation>
+                    </xs:annotation></xs:element>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+  
+    <xs:complexType name="vendorListType">
+    
+        <xs:sequence>
+            <xs:element name="carrier" type="common:DestinationType">
+                <xs:annotation>
+                	<xs:documentation>
+                		This is carrier Code.
+                	</xs:documentation>
+                </xs:annotation></xs:element>
+            <xs:element name="storeId" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        This is a storeId.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

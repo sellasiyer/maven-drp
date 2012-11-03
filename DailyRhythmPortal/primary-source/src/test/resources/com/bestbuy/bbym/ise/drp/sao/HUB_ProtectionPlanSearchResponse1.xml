@@ -1,0 +1,6 @@
+<ProtectionPlanSearchResponse xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Service/V4">
+         <SystemStatus>
+            <StatusCode xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">1001</StatusCode>
+            <StatusMessage xmlns="http://webservices.bestbuy.com/ProtectionHub/ProtectionPlan/Common/V4">No results match input criteria .</StatusMessage>
+         </SystemStatus>
+      </ProtectionPlanSearchResponse>

@@ -1,0 +1,38 @@
+
+<ns0:TransactionCheckResponse
+	xmlns:jms1="http://www.tibco.com/namespaces/tnt/plugins/jms" xmlns:ns0="http://bestbuy.com/bbym/sales/transactioncheck/service/v1">
+	<ns1:ResponseMetaData
+		xmlns:ns1="http://bestbuy.com/bbym/sales/transactioncheck/component/v1">
+		<ns2:SourceID xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/fields/v1">Beast-Portal</ns2:SourceID>
+		<ns2:UserID xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/fields/v1">IseAdmin</ns2:UserID>
+		<ns2:ProgramID xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/fields/v1">ISE</ns2:ProgramID>
+		<ns2:ResponseTimeStamp xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/fields/v1">2012-09-19T13:42:18.848-05:00</ns2:ResponseTimeStamp>
+	</ns1:ResponseMetaData>
+	<ns1:TransactionCheckResult
+		xmlns:ns1="http://bestbuy.com/bbym/sales/transactioncheck/component/v1">
+		<ns1:TransactionCheckResultHeader>
+			<ns2:Status xmlns:ns2="http://bestbuy.com/bbym/sales/transactioncheck/fields/v1">SUCCESS</ns2:Status>
+			<ns2:Description xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">Transaction Approved
+			</ns2:Description>
+			<ns2:RuleSetName xmlns:ns2="http://bestbuy.com/bbym/sales/transactioncheck/fields/v1">TradeIn</ns2:RuleSetName>
+		</ns1:TransactionCheckResultHeader>
+		<ns1:ItemizedRuleResultList>
+			<ns1:ItemizedRuleResult>
+				<ns2:Rule xmlns:ns2="http://bestbuy.com/bbym/sales/transactioncheck/fields/v1">PurchaseDateCheck</ns2:Rule>
+				<ns2:Status xmlns:ns2="http://bestbuy.com/bbym/sales/transactioncheck/fields/v1">101</ns2:Status>
+				<ns2:Description xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">no records found
+				</ns2:Description>
+			</ns1:ItemizedRuleResult>
+			<ns1:ItemizedRuleResult>
+				<ns2:Rule xmlns:ns2="http://bestbuy.com/bbym/sales/transactioncheck/fields/v1">DeviceStatusCheck</ns2:Rule>
+				<ns2:Status xmlns:ns2="http://bestbuy.com/bbym/sales/transactioncheck/fields/v1">ServiceError</ns2:Status>
+				<ns2:Description xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">For WIMAX devices, Mac Id or Hansetidentifier is mandatory</ns2:Description>
+				<ns2:ReasonCode xmlns:ns2="http://www.tsh.bestbuy.com/common/v1">80015</ns2:ReasonCode>
+			</ns1:ItemizedRuleResult>
+		</ns1:ItemizedRuleResultList>
+	</ns1:TransactionCheckResult>
+	<ns1:Status xmlns:ns1="http://www.tsh.bestbuy.com/common/v1">
+		<ns1:Code>TSH-SRV-000000</ns1:Code>
+		<ns1:Description>BBYMLP executed successfully</ns1:Description>
+	</ns1:Status>
+</ns0:TransactionCheckResponse>

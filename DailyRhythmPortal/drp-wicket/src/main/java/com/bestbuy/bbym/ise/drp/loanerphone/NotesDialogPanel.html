@@ -1,0 +1,29 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+</wicket:head>
+<body>
+	<wicket:extend>
+		<div class="modal notesForm">
+			<div class="modaltitle">
+				<wicket:message key="loanerphone.notes.notesLabel" />
+				<span wicket:id="titleLabel"></span>
+			</div>
+
+			<form wicket:id="notesForm">
+				<div wicket:id="feedback"></div>
+				<b><wicket:message key="loanerphone.notes.notesLabel" /></b>	<br/>
+				<textarea wicket:id="notesTextArea" maxlength="2000" rows="4"></textarea>
+			
+			<br style="clear: both;" /> 
+			<div class="links">
+			<a wicket:id="cancelLink" class="button"><span><wicket:message key="cancelLabel" /></span> </a>
+			<a wicket:id="okLink" class="button"><span><wicket:message
+						key="okLabel" /></span> </a>
+			</div>
+			</form>
+
+		</div>
+	</wicket:extend>
+
+</body>
+</html>

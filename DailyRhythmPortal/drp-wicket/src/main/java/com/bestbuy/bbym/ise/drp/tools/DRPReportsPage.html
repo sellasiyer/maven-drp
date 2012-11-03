@@ -1,0 +1,32 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>View Reports</title>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<div class="pgtitle">
+			<h1>View Reports</h1>
+		</div>
+
+		<div class="pgcontent">
+			<div class="pgcontent_white">
+				<div class="page-tr"></div>
+				<div class="page-tl"></div>
+				<div class="page-br"></div>
+				<div class="page-bl"></div>
+
+				<div wicket:id="feedback" class="feedbackmsg"></div>
+
+				<form wicket:id="reportsForm" autocomplete="off">
+
+					<input type="submit" wicket:id="triageReportButton" />
+
+				</form>
+			</div>
+		</div>
+	</wicket:extend>
+</body>
+</html>

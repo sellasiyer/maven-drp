@@ -1,0 +1,561 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Oracle JAX-WS 2.1.3-07/10/2008 08:41 PM(bt). -->
+<xs:schema xmlns:tns="http://bestbuy.com/bbym/ucs" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://bestbuy.com/bbym/ucs">
+
+<xs:element name="AccountLockedException" type="tns:AccountLockedException" />
+
+<xs:element name="AccountNotFoundException" type="tns:AccountNotFoundException" />
+
+<xs:element name="AuthenticationFailureException" type="tns:AuthenticationFailureException" />
+
+<xs:element name="BusinessCustomerException" type="tns:BusinessCustomerException" />
+
+<xs:element name="CAPException" type="tns:CAPException" />
+
+<xs:element name="InvalidAccountPasswordException" type="tns:InvalidAccountPasswordException" />
+
+<xs:element name="InvalidArgumentException" type="tns:InvalidArgumentException" />
+
+<xs:element name="UnknownFailureException" type="tns:UnknownFailureException" />
+
+<xs:element name="getCachedUpgradeEligibility" type="tns:getCachedUpgradeEligibility" />
+
+<xs:element name="getCachedUpgradeEligibilityResponse" type="tns:getCachedUpgradeEligibilityResponse" />
+
+<xs:element name="getCarrierAndUpgradeCheckerStatus" type="tns:getCarrierAndUpgradeCheckerStatus" />
+
+<xs:element name="getCarrierAndUpgradeCheckerStatusResponse" type="tns:getCarrierAndUpgradeCheckerStatusResponse" />
+
+<xs:element name="getNotificationStatus" type="tns:getNotificationStatus" />
+
+<xs:element name="getNotificationStatusPlus" type="tns:getNotificationStatusPlus" />
+
+<xs:element name="getNotificationStatusPlusResponse" type="tns:getNotificationStatusPlusResponse" />
+
+<xs:element name="getNotificationStatusResponse" type="tns:getNotificationStatusResponse" />
+
+<xs:element name="getScorecard" type="tns:getScorecard" />
+
+<xs:element name="getScorecardResponse" type="tns:getScorecardResponse" />
+
+<xs:element name="getUpgradeCheckHistory" type="tns:getUpgradeCheckHistory" />
+
+<xs:element name="getUpgradeCheckHistoryResponse" type="tns:getUpgradeCheckHistoryResponse" />
+
+<xs:element name="getUpgradeEligibility" type="tns:getUpgradeEligibility" />
+
+<xs:element name="getUpgradeEligibilityAsync" type="tns:getUpgradeEligibilityAsync" />
+
+<xs:element name="getUpgradeEligibilityAsyncPoll" type="tns:getUpgradeEligibilityAsyncPoll" />
+
+<xs:element name="getUpgradeEligibilityAsyncPollResponse" type="tns:getUpgradeEligibilityAsyncPollResponse" />
+
+<xs:element name="getUpgradeEligibilityAsyncResponse" type="tns:getUpgradeEligibilityAsyncResponse" />
+
+<xs:element name="getUpgradeEligibilityResponse" type="tns:getUpgradeEligibilityResponse" />
+
+<xs:element name="putNotificationStatus" type="tns:putNotificationStatus" />
+
+<xs:element name="putNotificationStatusMulti" type="tns:putNotificationStatusMulti" />
+
+<xs:element name="putNotificationStatusMultiResponse" type="tns:putNotificationStatusMultiResponse" />
+
+<xs:element name="putNotificationStatusPlus" type="tns:putNotificationStatusPlus" />
+
+<xs:element name="putNotificationStatusPlusMulti" type="tns:putNotificationStatusPlusMulti" />
+
+<xs:element name="putNotificationStatusPlusMultiResponse" type="tns:putNotificationStatusPlusMultiResponse" />
+
+<xs:element name="putNotificationStatusPlusResponse" type="tns:putNotificationStatusPlusResponse" />
+
+<xs:element name="putNotificationStatusResponse" type="tns:putNotificationStatusResponse" />
+
+<xs:element name="putNotificationStatusWithCachedUpgradeCheck" type="tns:putNotificationStatusWithCachedUpgradeCheck" />
+
+<xs:element name="putNotificationStatusWithCachedUpgradeCheckResponse" type="tns:putNotificationStatusWithCachedUpgradeCheckResponse" />
+
+<xs:complexType name="getScorecard">
+<xs:sequence>
+<xs:element name="scorecardRequest" type="tns:ScorecardRequest" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ScorecardRequest">
+<xs:sequence>
+<xs:element name="locationId" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getScorecardResponse">
+<xs:sequence>
+<xs:element name="upgradeEligibilityResponse" type="tns:ScorecardResponse" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ScorecardResponse">
+<xs:sequence>
+<xs:element name="locationId" type="xs:int" />
+<xs:element name="upgradeCheckCount" type="xs:int" />
+<xs:element name="optInCount" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="UnknownFailureException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="InvalidArgumentException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AccountNotFoundException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getUpgradeEligibilityAsyncPoll">
+<xs:sequence>
+<xs:element name="resultId" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getUpgradeEligibilityAsyncPollResponse">
+<xs:sequence>
+<xs:element name="upgradeEligibilityResponseAsyncPoll" type="tns:UpgradeEligibilityResponse" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="UpgradeEligibilityResponse">
+<xs:sequence>
+<xs:element name="carrierAccountNumber" type="xs:string" minOccurs="0" />
+<xs:element name="zip" type="xs:string" minOccurs="0" />
+<xs:element name="language" type="xs:string" />
+<xs:element name="subscribers" type="tns:Subscriber" maxOccurs="unbounded" />
+<xs:element name="upgradeCheckCount" type="xs:int" />
+<xs:element name="optInCount" type="xs:int" />
+<xs:element name="tradeInDisclaimer" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Subscriber">
+<xs:sequence>
+<xs:element name="mobilePhoneNumber" type="xs:string" />
+<xs:element name="contractEndDate" type="xs:dateTime" minOccurs="0" />
+<xs:element name="upgradeEligibilityFlag" type="xs:boolean" />
+<xs:element name="upgradeEligibilityDate" type="xs:dateTime" minOccurs="0" />
+<xs:element name="earlyUpgradeEligibilityDate" type="xs:dateTime" minOccurs="0" />
+<xs:element name="upgradeEligibilityType" type="tns:UpgradeEligibilityTypeCode" />
+<xs:element name="upgradeEligibilityMessage" type="xs:string" minOccurs="0" />
+<xs:element name="upgradeEligibilityFootnote" type="xs:string" minOccurs="0" />
+<xs:element name="earlyTerminationWarning" type="xs:string" minOccurs="0" />
+<xs:element name="optInAllowed" type="xs:boolean" />
+<xs:element name="tradeInMessage" type="xs:string" minOccurs="0" />
+<xs:element name="tradeInValue" type="xs:float" minOccurs="0" />
+<xs:element name="tradeInPhoneName" type="xs:string" minOccurs="0" />
+<xs:element name="modeId" type="xs:string" minOccurs="0" />
+<xs:element name="imei" type="xs:string" minOccurs="0" />
+<xs:element name="esn" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AuthenticationFailureException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="InvalidAccountPasswordException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CAPException">
+<xs:sequence>
+<xs:element name="categoryCode" type="xs:string" minOccurs="0" />
+<xs:element name="message" type="xs:string" minOccurs="0" />
+<xs:element name="resultCode" type="xs:long" />
+<xs:element name="resultDetails" type="xs:string" minOccurs="0" />
+<xs:element name="resultType" type="xs:string" minOccurs="0" />
+<xs:element name="transactionId" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AccountLockedException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="BusinessCustomerException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getNotificationStatus">
+<xs:sequence>
+<xs:element name="notificationStatusGetRequest" type="tns:NotificationStatusGetRequest" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="NotificationStatusGetRequest">
+<xs:sequence>
+<xs:element name="mobilePhoneNumbers" type="xs:string" maxOccurs="unbounded" />
+<xs:element name="zip" type="xs:string" />
+<xs:element name="internationalBusinessHierarchy" type="tns:InternationalBusinessHierarchy" />
+<xs:element name="sourceSystem" type="xs:string" />
+<xs:element name="locationId" type="xs:int" />
+<xs:element name="userId" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="InternationalBusinessHierarchy">
+<xs:sequence>
+<xs:element name="enterprise" type="xs:string" />
+<xs:element name="tradingArea" type="xs:string" />
+<xs:element name="company" type="xs:string" />
+<xs:element name="brand" type="xs:string" />
+<xs:element name="businessUnit" type="xs:string" />
+<xs:element name="channel" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getNotificationStatusResponse">
+<xs:sequence>
+<xs:element name="notificationStatusGetResponse" type="tns:NotificationStatusGetResponse" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="NotificationStatusGetResponse">
+<xs:sequence>
+<xs:element name="subscriberStatuses" type="tns:SubscriberNotificationStatus" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SubscriberNotificationStatus">
+<xs:sequence>
+<xs:element name="mobilePhoneNumber" type="xs:string" />
+<xs:element name="notificationStatusCode" type="tns:NotificationStatus" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="putNotificationStatusPlusMulti">
+<xs:sequence>
+<xs:element name="notificationStatusMultiPutRequest" type="tns:NotificationStatusMultiPutRequest" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="NotificationStatusMultiPutRequest">
+<xs:sequence>
+<xs:element name="subscriberStatuses" type="tns:SubscriberNotificationStatus" maxOccurs="unbounded" />
+<xs:element name="zip" type="xs:string" />
+<xs:element name="internationalBusinessHierarchy" type="tns:InternationalBusinessHierarchy" />
+<xs:element name="sourceSystem" type="xs:string" />
+<xs:element name="locationId" type="xs:int" />
+<xs:element name="userId" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="putNotificationStatusPlusMultiResponse">
+<xs:sequence>
+<xs:element name="notificationStatusMultiPutResponse" type="tns:NotificationStatusMultiPutResponse" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="NotificationStatusMultiPutResponse">
+<xs:sequence>
+<xs:element name="subscriberStatuses" type="tns:SubscriberNotificationStatus" maxOccurs="unbounded" />
+<xs:element name="upgradeCheckCount" type="xs:int" />
+<xs:element name="optInCount" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getUpgradeEligibility">
+<xs:sequence>
+<xs:element name="upgradeEligibilityRequest" type="tns:UpgradeEligibilityRequest" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="UpgradeEligibilityRequest">
+<xs:sequence>
+<xs:element name="mobilePhoneNumber" type="xs:string" />
+<xs:element name="last4SSN" type="xs:string" minOccurs="0" />
+<xs:element name="zip" type="xs:string" />
+<xs:element name="carrierCode" type="tns:Carrier" />
+<xs:element name="internationalBusinessHierarchy" type="tns:InternationalBusinessHierarchy" />
+<xs:element name="sourceSystem" type="xs:string" />
+<xs:element name="locationId" type="xs:int" />
+<xs:element name="userId" type="xs:string" minOccurs="0" />
+<xs:element name="password" type="xs:string" minOccurs="0" />
+<xs:element name="language" type="xs:string" minOccurs="0" />
+<xs:element name="isTrainingMode" type="xs:boolean" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getUpgradeEligibilityResponse">
+<xs:sequence>
+<xs:element name="upgradeEligibilityResponse" type="tns:UpgradeEligibilityResponse" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="putNotificationStatusPlus">
+<xs:sequence>
+<xs:element name="notificationStatusPutRequest" type="tns:NotificationStatusPutRequest" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="NotificationStatusPutRequest">
+<xs:sequence>
+<xs:element name="mobilePhoneNumber" type="xs:string" />
+<xs:element name="notificationStatusCode" type="tns:NotificationStatus" />
+<xs:element name="zip" type="xs:string" />
+<xs:element name="internationalBusinessHierarchy" type="tns:InternationalBusinessHierarchy" />
+<xs:element name="sourceSystem" type="xs:string" />
+<xs:element name="locationId" type="xs:int" />
+<xs:element name="userId" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="putNotificationStatusPlusResponse">
+<xs:sequence>
+<xs:element name="notificationStatusPutResponse" type="tns:NotificationStatusPutResponse" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="NotificationStatusPutResponse">
+<xs:sequence>
+<xs:element name="mobilePhoneNumber" type="xs:string" />
+<xs:element name="notificationStatusCode" type="tns:NotificationStatus" />
+<xs:element name="upgradeCheckCount" type="xs:int" />
+<xs:element name="optInCount" type="xs:int" />
+<xs:element name="notificationStatusChange" type="tns:notificationStatusChange" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="notificationStatusChange">
+<xs:sequence>
+<xs:element name="notf_stat_chg_id" type="xs:long" />
+<xs:element name="cust_id" type="xs:long" />
+<xs:element name="notf_stat_chg_dt" type="xs:dateTime" minOccurs="0" />
+<xs:element name="usr_id" type="xs:string" minOccurs="0" />
+<xs:element name="loc_id" type="xs:int" />
+<xs:element name="intl_bsns_hier_id" type="xs:long" />
+<xs:element name="notf_stat_cde" type="xs:string" minOccurs="0" />
+<xs:element name="source_system" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getCarrierAndUpgradeCheckerStatus">
+<xs:sequence>
+<xs:element name="carrierAndUpgradeCheckerStatusRequest" type="tns:CarrierAndUpgradeCheckerStatusRequest" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CarrierAndUpgradeCheckerStatusRequest">
+<xs:sequence>
+<xs:element name="mobilePhoneNumbers" type="xs:string" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getCarrierAndUpgradeCheckerStatusResponse">
+<xs:sequence>
+<xs:element name="carrierAndUpgradeCheckerStatusResponse" type="tns:CarrierAndUpgradeCheckerStatusResponse" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CarrierAndUpgradeCheckerStatusResponse">
+<xs:sequence>
+<xs:element name="carrierAndUpgradeCheckerStatuses" type="tns:CarrierAndUpgradeCheckerStatus" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CarrierAndUpgradeCheckerStatus">
+<xs:sequence>
+<xs:element name="mobilePhoneNumber" type="xs:string" />
+<xs:element name="carrier" type="tns:Carrier" minOccurs="0" />
+<xs:element name="notificationStatusCode" type="tns:NotificationStatus" minOccurs="0" />
+<xs:element name="contractEndDate" type="xs:dateTime" minOccurs="0" />
+<xs:element name="upgradeEligibilityDate" type="xs:dateTime" minOccurs="0" />
+<xs:element name="upgradeEligibilityType" type="tns:UpgradeEligibilityTypeCode" minOccurs="0" />
+<xs:element name="upgradeCheckDate" type="xs:dateTime" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getUpgradeEligibilityAsync">
+<xs:sequence>
+<xs:element name="upgradeEligibilityRequest" type="tns:UpgradeEligibilityRequest" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getUpgradeEligibilityAsyncResponse">
+<xs:sequence>
+<xs:element name="upgradeEligibilityResponseAsync" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getNotificationStatusPlus">
+<xs:sequence>
+<xs:element name="notificationStatusGetRequest" type="tns:NotificationStatusGetRequest" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getNotificationStatusPlusResponse">
+<xs:sequence>
+<xs:element name="notificationStatusGetResponse" type="tns:NotificationStatusGetResponse" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="putNotificationStatus">
+<xs:sequence>
+<xs:element name="notificationStatusPutRequest" type="tns:NotificationStatusPutRequest" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="putNotificationStatusResponse">
+<xs:sequence>
+<xs:element name="notificationStatusPutResponse" type="tns:NotificationStatusPutResponse" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getCachedUpgradeEligibility">
+<xs:sequence>
+<xs:element name="upgradeEligibilityWithCachedUpgradeCheckRequest" type="tns:CachedUpgradeEligibilityRequest" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CachedUpgradeEligibilityRequest">
+<xs:sequence>
+<xs:element name="mobilePhoneNumber" type="xs:string" />
+<xs:element name="zip" type="xs:string" />
+<xs:element name="internationalBusinessHierarchy" type="tns:InternationalBusinessHierarchy" />
+<xs:element name="sourceSystem" type="xs:string" />
+<xs:element name="capTransactionId" type="xs:string" />
+<xs:element name="locationId" type="xs:int" />
+<xs:element name="userId" type="xs:string" minOccurs="0" />
+<xs:element name="language" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getCachedUpgradeEligibilityResponse">
+<xs:sequence>
+<xs:element name="upgradeEligibilityResponse" type="tns:UpgradeEligibilityResponse" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="putNotificationStatusMulti">
+<xs:sequence>
+<xs:element name="notificationStatusMultiPutRequest" type="tns:NotificationStatusMultiPutRequest" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="putNotificationStatusMultiResponse">
+<xs:sequence>
+<xs:element name="notificationStatusMultiPutResponse" type="tns:NotificationStatusMultiPutResponse" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="putNotificationStatusWithCachedUpgradeCheck">
+<xs:sequence>
+<xs:element name="notificationStatusWithCachedUpgradeCheckPutRequest" type="tns:NotificationStatusWithCachedUpgradeCheckPutRequest" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="NotificationStatusWithCachedUpgradeCheckPutRequest">
+<xs:sequence>
+<xs:element name="subscriberStatuses" type="tns:SubscriberNotificationStatus" maxOccurs="unbounded" />
+<xs:element name="mobilePhoneNumber" type="xs:string" />
+<xs:element name="zip" type="xs:string" />
+<xs:element name="internationalBusinessHierarchy" type="tns:InternationalBusinessHierarchy" />
+<xs:element name="sourceSystem" type="xs:string" />
+<xs:element name="capTransactionId" type="xs:string" />
+<xs:element name="locationId" type="xs:int" />
+<xs:element name="userId" type="xs:string" minOccurs="0" />
+<xs:element name="language" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="putNotificationStatusWithCachedUpgradeCheckResponse">
+<xs:sequence>
+<xs:element name="notificationStatusWithCachedUpgradeCheckPutResponse" type="tns:NotificationStatusWithCachedUpgradeCheckPutResponse" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="NotificationStatusWithCachedUpgradeCheckPutResponse">
+<xs:sequence>
+<xs:element name="subscriberStatuses" type="tns:SubscriberNotificationStatus" maxOccurs="unbounded" />
+<xs:element name="upgradeCheckCount" type="xs:int" />
+<xs:element name="optInCount" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getUpgradeCheckHistory">
+<xs:sequence>
+<xs:element name="upgradeCheckHistoryRequest" type="tns:UpgradeCheckHistoryRequest" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="UpgradeCheckHistoryRequest">
+<xs:sequence>
+<xs:element name="mobilePhoneNumber" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getUpgradeCheckHistoryResponse">
+<xs:sequence>
+<xs:element name="upgradeCheckHistoryResponse" type="tns:UpgradeCheckHistoryResponse" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="UpgradeCheckHistoryResponse">
+<xs:sequence>
+<xs:element name="upgradeChecks" type="tns:UpgradeCheck" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="UpgradeCheck">
+<xs:sequence>
+<xs:element name="mobilePhoneNumber" type="xs:string" />
+<xs:element name="upgradeCheckDate" type="xs:dateTime" />
+<xs:element name="upgradeEligibilityType" type="tns:UpgradeEligibilityTypeCode" />
+<xs:element name="sourceSystem" type="xs:string" />
+<xs:element name="contractEndDate" type="xs:dateTime" minOccurs="0" />
+<xs:element name="upgradeEligibilityDate" type="xs:dateTime" minOccurs="0" />
+<xs:element name="locationId" type="xs:int" />
+<xs:element name="userId" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:simpleType name="UpgradeEligibilityTypeCode">
+<xs:restriction base="xs:string">
+<xs:enumeration value="UNKNOWN" />
+<xs:enumeration value="ELIGIBLE_FULL" />
+<xs:enumeration value="ELIGIBLE_EARLY" />
+<xs:enumeration value="ELIGIBLE_EARLY_IPHONE" />
+<xs:enumeration value="NOT_ELIGIBLE" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="NotificationStatus">
+<xs:restriction base="xs:string">
+<xs:enumeration value="NONE" />
+<xs:enumeration value="TEXT" />
+<xs:enumeration value="VOICE" />
+<xs:enumeration value="PLUS" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="Carrier">
+<xs:restriction base="xs:string">
+<xs:enumeration value="ATT" />
+<xs:enumeration value="SPRINT" />
+<xs:enumeration value="TMOBILE" />
+<xs:enumeration value="VERIZON" />
+</xs:restriction>
+</xs:simpleType>
+</xs:schema>

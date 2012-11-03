@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<SelectPromotionResource xmlns:atom="http://www.w3.org/2005/Atom" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance">
+    <atom:title>Apply Beast Integration Test Promo 1?</atom:title>
+    <atom:link href="http://hydra-pt:8080/store-10/carts/19447/apply-promotion?PromotionId=26" rel="self" title="Self"/>
+    <atom:link href="http://hydra-pt:8080/store-10/carts/19447?BypassTradeInPlus=False" rel="http://hydra-pt:8080/rels/cancel" title="No"/>
+    <atom:link href="http://hydra-pt:8080/store-10/carts/19447/apply-promotion?PromotionId=26&amp;BypassActivePromotionValidation=False" rel="http://hydra-pt:8080/rels/apply-selection" title="apply-selection"/>
+    <atom:link href="http://hydra-pt:8080/" rel="http://hydra-pt:8080/rels/home" title="Return to Home Page"/>
+    <atom:link href="https://buyback-pl.bestbuytradein.com/bbPlanInfo.cfm?redirect=false" rel="external-buyback" title="Start a New Buy Back"/>
+    <atom:link href="https://buyback-pl.bestbuytradein.com/admin.cfm?redirect=false" rel="external-admin" title="Open Trade In Administration"/>
+    <atom:link href="https://buyback-pl.bestbuytradein.com/manifest.cfm?redirect=false" rel="external-shipping-center" title="Open Shipping Center"/>
+    <atom:link href="http://hydra-pt:8080/metadata/SelectPromotionResource" rel="http://hydra-pt:8080/rels/metadata" title="metadata"/>
+    <PromotionId>26</PromotionId>
+    <Name>Beast Integration Test Promo 1</Name>
+    <Description>Promotion for testing Beast integration</Description>
+    <Question>Continue?</Question>
+    <StoreId>10</StoreId>
+    <CartId>19447</CartId>
+</SelectPromotionResource>

@@ -1,0 +1,66 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+	<title>Build Manifest</title>
+	<link href="css/table.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript">
+		var tableNoRecordsText;
+		function setupBuildManifestTable() {
+			if ($('#buildManifestTable').length == 0) {
+				return;
+			}
+			removeAllColumnSorting('#buildManifestTable');
+			applyRowHighlighting('#buildManifestTable');
+			fixTableNoRecords('#buildManifestTable', tableNoRecordsText);
+			fixTableBorders('#buildManifestTable');
+		}
+	</script>
+</wicket:head>
+
+<body>
+	<wicket:extend>
+		<div class="page-header">
+			<div style="float: left;">
+				<h1>Build Manifest</h1>
+			</div>
+
+			<ul class="quick-actions">
+				<li><a class="button" wicket:id="suspendLink"><wicket:message
+							key="buildManifest.suspendLink.label" /> </a></li>
+				<li><a class="button" wicket:id="completeLink"><wicket:message
+							key="buildManifest.completeLink.label" /> </a>
+				</li>
+			</ul>
+		</div>
+
+		<div wicket:id="feedback" class="feedbackmsg"></div>
+
+		<div class="form-minimal">
+			<form wicket:id="manifestForm" autocomplete="off">
+				<div>
+					<label><wicket:message key="buildManifest.itemTagId.label" />
+					</label> <input type="text" wicket:id="itemTagId" /> <input type="submit"
+						wicket:id="itemAddButton" class="button" />
+				</div>
+			</form>
+		</div>
+
+		<ul class="opt-ins" style="top: 220px;">
+			<li><wicket:message key="buildManifest.remainingItems.label" />
+				<span class="count" wicket:id="lineItemsRemainingLabel"></span>
+			</li>
+		</ul>
+
+		<div class="table-wrap">
+			<table class="default-table shipping" wicket:id="buildManifestTable">
+			</table>
+		</div>
+
+		<div wicket:id="maxDeviceReachedDialog"></div>
+		<div wicket:id="maxDeviceDialog"></div>
+		<div wicket:id="errorDialog"></div>
+		<div wicket:id="deleteLineDialog"></div>
+	</wicket:extend>
+</body>
+</html>

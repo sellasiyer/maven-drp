@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Carrier Customer Info - Portrait" pageWidth="612" pageHeight="792" columnWidth="0" leftMargin="36" rightMargin="36" topMargin="36" bottomMargin="36">
+    <property name="ireport.zoom" value="1.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="74"/>
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="Beast Portal DB"/>
+    <style name="Title" forecolor="#0080FF" fontName="Arial Unicode MS" fontSize="22" isBold="true"/>
+    <style name="header" backcolor="#3399FF" fill="Solid" pdfFontName="Times-Roman" pdfEncoding="UTF8"/>
+    <style name="line" forecolor="#3399FF" pdfFontName="Times-Roman" pdfEncoding="UTF8"/>
+    <style name="SubTitle" mode="Opaque" forecolor="#FFFFFF" backcolor="#0080FF" hAlign="Center" markup="" fontName="Arial Unicode MS" fontSize="12" isBold="true"/>
+    <style name="Column header" forecolor="#666666" fontName="Arial Unicode MS" fontSize="12" isBold="true"/>
+    <style name="Detail" fontName="Arial Unicode MS" fontSize="12"/>
+    <style name="Row" mode="Transparent">
+        <conditionalStyle>
+            <conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]>
+            </conditionExpression>
+            <style backcolor="#E6DAC3"/>
+        </conditionalStyle>
+    </style>
+    <subDataset name="product">
+        <queryString language="SQL">
+			<![CDATA[]]>
+        </queryString>
+        <field name="description" class="java.lang.String"/>
+        <field name="sku" class="java.lang.String"/>
+        <field name="modelNumber" class="java.lang.String"/>
+        <field name="serialNumber" class="java.lang.String"/>
+    </subDataset>
+    <field name="GSPTransactions" class="java.util.Collection"/>
+    <field name="productList" class="java.util.Collection"/>
+    <field name="GSPPlanOwner" class="java.lang.String"/>
+    <field name="GSPPlanNumber" class="java.lang.String"/>
+    <field name="GSPPlanType" class="java.lang.String"/>
+    <field name="GSPPlanExpiration" class="java.lang.String"/>
+    <field name="GSPPlanSKU" class="java.lang.String"/>
+    <field name="GSPPlanDescription" class="java.lang.String"/>
+    <field name="GSPPlanStatus" class="java.lang.String"/>
+    <field name="GSPStore" class="java.lang.String"/>
+    <field name="GSPRegister" class="java.lang.String"/>
+    <field name="GSPTranNum" class="java.lang.String"/>
+    <field name="GSPTranType" class="java.lang.String"/>
+    <field name="GSPPurchaseDate" class="java.lang.String"/>
+    <field name="GSPPurchasePrice" class="java.lang.String"/>
+    <group name="Group1">
+        <groupHeader>
+            <band>
+                <elementGroup/>
+            </band>
+        </groupHeader>
+    </group>
+    <title>
+        <band height="73" splitType="Stretch">
+            <staticText>
+                <reportElement style="Title" x="1" y="2" width="139" height="58"/>
+                <textElement verticalAlignment="Middle">
+                    <font pdfFontName="Times-Roman" pdfEncoding="UTF8"/>
+                </textElement>
+                <text><![CDATA[Plan Details
+                
+                
+                
+                
+                ]]>
+                </text>
+            </staticText>
+            <image>
+                <reportElement x="175" y="1" width="191" height="62"/>
+                <imageExpression><![CDATA["GSBTP_logo.png"]]>
+                </imageExpression>
+            </image>
+            <line>
+                <reportElement x="1" y="70" width="529" height="1" forecolor="#CCCCCC"/>
+            </line>
+        </band>
+    </title>
+    <detail>
+        <band height="369" splitType="Stretch">
+            <elementGroup>
+                <staticText>
+                    <reportElement x="34" y="46" width="51" height="20" forecolor="#3399FF"/>
+                    <textElement>
+                        <font isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[GSP Info:
+                    
+                    
+                    
+                    
+                    ]]>
+                    </text>
+                </staticText>
+                <staticText>
+                    <reportElement x="34" y="66" width="46" height="17"/>
+                    <textElement/>
+                    <text><![CDATA[Owner:
+                    
+                    
+                    
+                    
+                    ]]>
+                    </text>
+                </staticText>
+                <staticText>
+                    <reportElement x="34" y="81" width="46" height="17"/>
+                    <textElement/>
+                    <text><![CDATA[Plan #:
+                    
+                    
+                    
+                    
+                    ]]>
+                    </text>
+                </staticText>
+                <staticText>
+                    <reportElement x="34" y="126" width="51" height="17"/>
+                    <textElement/>
+                    <text><![CDATA[SKU:
+                    
+                    
+                    
+                    
+                    ]]>
+                    </text>
+                </staticText>
+                <textField>
+                    <reportElement x="95" y="81" width="118" height="17"/>
+                    <textElement/>
+                    <textFieldExpression><![CDATA[$F{GSPPlanNumber}]]>
+                    </textFieldExpression>
+                </textField>
+                <staticText>
+                    <reportElement x="34" y="167" width="51" height="17"/>
+                    <textElement/>
+                    <text><![CDATA[Status:
+                    
+                    
+                    
+                    
+                    ]]>
+                    </text>
+                </staticText>
+                <staticText>
+                    <reportElement x="34" y="96" width="51" height="17"/>
+                    <textElement/>
+                    <text><![CDATA[Plan Type:
+                    
+                    
+                    
+                    
+                    ]]>
+                    </text>
+                </staticText>
+                <staticText>
+                    <reportElement x="34" y="111" width="51" height="17"/>
+                    <textElement/>
+                    <text><![CDATA[Expires:
+                    
+                    
+                    
+                    
+                    ]]>
+                    </text>
+                </staticText>
+                <staticText>
+                    <reportElement x="34" y="141" width="59" height="34"/>
+                    <textElement/>
+                    <text><![CDATA[Description:
+                    
+                    
+                    
+                    
+                    ]]>
+                    </text>
+                </staticText>
+                <textField >
+                    <reportElement x="95" y="141" width="175" height="34"/>
+                    <textElement/>
+                    <textFieldExpression><![CDATA[$F{GSPPlanDescription}]]>
+                    </textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="95" y="111" width="118" height="17"/>
+                    <textElement/>
+                    <textFieldExpression><![CDATA[$F{GSPPlanExpiration}]]>
+                    </textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="95" y="66" width="118" height="17"/>
+                    <textElement/>
+                    <textFieldExpression><![CDATA[$F{GSPPlanOwner}]]>
+                    </textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="95" y="167" width="118" height="17"/>
+                    <textElement/>
+                    <textFieldExpression><![CDATA[$F{GSPPlanStatus}]]>
+                    </textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="95" y="126" width="118" height="17"/>
+                    <textElement/>
+                    <textFieldExpression><![CDATA[$F{GSPPlanSKU}]]>
+                    </textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="95" y="96" width="118" height="17"/>
+                    <textElement/>
+                    <textFieldExpression><![CDATA[$F{GSPPlanType}]]>
+                    </textFieldExpression>
+                </textField>
+            </elementGroup>
+            <componentElement>
+                <reportElement style="header" stretchType="RelativeToBandHeight" x="299" y="40" width="230" height="90"/>
+                <jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" >
+                    <datasetRun subDataset="product">
+                        <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{productList})]]>
+                        </dataSourceExpression>
+                    </datasetRun>
+                    <jr:listContents height="90">
+                        <staticText>
+                            <reportElement x="0" y="0" width="228" height="86"/>
+                            <box>
+                                <pen lineWidth="6.0" lineColor="#CCCCCC"/>
+                                <topPen lineWidth="6.0" lineColor="#CCCCCC"/>
+                                <leftPen lineWidth="6.0" lineColor="#CCCCCC"/>
+                                <bottomPen lineWidth="6.0" lineColor="#CCCCCC"/>
+                                <rightPen lineWidth="6.0" lineColor="#CCCCCC"/>
+                            </box>
+                            <textElement/>
+                        </staticText>
+                        <staticText>
+                            <reportElement x="6" y="45" width="50" height="15"/>
+                            <textElement/>
+                            <text><![CDATA[Model :
+                            
+                            
+                            
+                            
+                            ]]>
+                            </text>
+                        </staticText>
+                        <staticText>
+                            <reportElement x="6" y="60" width="50" height="14"/>
+                            <textElement/>
+                            <text><![CDATA[Serial # :
+                            
+                            
+                            
+                            
+                            ]]>
+                            </text>
+                        </staticText>
+                        <staticText>
+                            <reportElement x="6" y="26" width="50" height="20"/>
+                            <textElement/>
+                            <text><![CDATA[SKU :
+                            
+                            
+                            
+                            
+                            ]]>
+                            </text>
+                        </staticText>
+                        <textField>
+                            <reportElement x="6" y="8" width="225" height="21" forecolor="#3399FF"/>
+                            <textElement>
+                                <font isBold="true"/>
+                            </textElement>
+                            <textFieldExpression><![CDATA[$F{description}]]>
+                            </textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="60" y="26" width="175" height="24"/>
+                            <textElement/>
+                            <textFieldExpression><![CDATA[$F{sku}]]>
+                            </textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="60" y="45" width="175" height="26"/>
+                            <textElement/>
+                            <textFieldExpression><![CDATA[$F{modelNumber}]]>
+                            </textFieldExpression>
+                        </textField>
+                        <textField>
+                            <reportElement x="60" y="60" width="175" height="26"/>
+                            <textElement/>
+                            <textFieldExpression><![CDATA[$F{serialNumber}]]>
+                            </textFieldExpression>
+                        </textField>
+                    </jr:listContents>
+                </jr:list>
+            </componentElement>
+            <staticText>
+                <reportElement mode="Opaque" x="14" y="10" width="144" height="28" forecolor="#000000" backcolor="#CCCCCC"/>
+                <textElement verticalAlignment="Middle">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[    GSP Information
+                
+                
+                
+                
+                ]]>
+                </text>
+            </staticText>
+            <staticText>
+                <reportElement x="17" y="186" width="247" height="132"/>
+                <box>
+                    <pen lineWidth="6.0" lineColor="#CCCCCC"/>
+                    <topPen lineWidth="6.0" lineColor="#CCCCCC"/>
+                    <leftPen lineWidth="6.0" lineColor="#CCCCCC"/>
+                    <bottomPen lineWidth="6.0" lineColor="#CCCCCC"/>
+                    <rightPen lineWidth="6.0" lineColor="#CCCCCC"/>
+                </box>
+                <textElement/>
+                <text><![CDATA[
+                
+                ]]>
+                </text>
+            </staticText>
+            <staticText>
+                <reportElement x="34" y="216" width="127" height="20"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Transaction Type:
+                    
+                    
+                
+                
+                ]]>
+                </text>
+            </staticText>
+            <textField>
+                <reportElement x="120" y="216" width="105" height="20"/>
+                <textElement/>
+                <textFieldExpression><![CDATA[$F{GSPTranType}]]>
+                </textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="34" y="196" width="118" height="20" forecolor="#3399FF"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[GSP Transaction Info:
+                        
+                    
+                
+                
+                ]]>
+                </text>
+            </staticText>
+            <textField>
+                <reportElement x="120" y="230" width="125" height="20"/>
+                <textElement/>
+                <textFieldExpression><![CDATA[$F{GSPStore}]]>
+                </textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="33" y="230" width="79" height="20"/>
+                <textElement/>
+                <text><![CDATA[Store:
+                        
+                    
+                
+                
+                ]]>
+                </text>
+            </staticText>
+            <textField>
+                <reportElement x="120" y="245" width="125" height="20"/>
+                <textElement/>
+                <textFieldExpression><![CDATA[$F{GSPRegister}]]>
+                </textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="34" y="245" width="79" height="20"/>
+                <textElement/>
+                <text><![CDATA[Register:
+                        
+                    
+                
+                
+                ]]>
+                </text>
+            </staticText>
+            <staticText>
+                <reportElement x="34" y="260" width="100" height="20"/>
+                <textElement/>
+                <text><![CDATA[Transaction:
+                        
+                    
+                
+                
+                ]]>
+                </text>
+            </staticText>
+            <textField>
+                <reportElement x="120" y="260" width="105" height="20"/>
+                <textElement/>
+                <textFieldExpression><![CDATA[$F{GSPTranNum}]]>
+                </textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="120" y="290" width="105" height="18"/>
+                <textElement/>
+
+                <textFieldExpression><![CDATA[$F{GSPPurchasePrice}]]>
+                </textFieldExpression>
+
+
+            </textField>
+            <staticText>
+                <reportElement x="34" y="290" width="103" height="17"/>
+                <textElement/>
+                <text><![CDATA[Purchase Price:
+                        
+                    
+                
+                
+                ]]>
+                </text>
+            </staticText>
+            <textField>
+                <reportElement x="120" y="275" width="102" height="20"/>
+                <textElement/>
+                <textFieldExpression><![CDATA[$F{GSPPurchaseDate}]]>
+                </textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="34" y="275" width="100" height="20"/>
+                <textElement/>
+                <text><![CDATA[Purchase Date:
+                        
+                    
+                
+                
+                ]]>
+                </text>
+            </staticText>
+            <elementGroup>
+                <staticText>
+                    <reportElement x="17" y="38" width="247" height="148"/>
+                    <box>
+                        <pen lineWidth="6.0" lineColor="#CCCCCC"/>
+                        <topPen lineWidth="6.0" lineColor="#CCCCCC"/>
+                        <leftPen lineWidth="6.0" lineColor="#CCCCCC"/>
+                        <bottomPen lineWidth="6.0" lineColor="#CCCCCC"/>
+                        <rightPen lineWidth="6.0" lineColor="#CCCCCC"/>
+                    </box>
+                    <textElement/>
+                    <text><![CDATA[
+                    
+                    ]]>
+                    </text>
+                </staticText>
+            </elementGroup>
+            <elementGroup>
+                <staticText>
+                    <reportElement mode="Opaque" x="296" y="10" width="100" height="28" forecolor="#000000" backcolor="#CCCCCC"/>
+                    <textElement textAlignment="Left" verticalAlignment="Middle">
+                        <font size="12" isBold="true" isItalic="false"/>
+                    </textElement>
+                    <text><![CDATA[    Devices
+                
+                
+                    
+                    
+                    ]]>
+                    </text>
+                </staticText>
+            </elementGroup>
+        </band>
+    </detail>
+    <pageFooter>
+        <band splitType="Stretch"/>
+    </pageFooter>
+</jasperReport>

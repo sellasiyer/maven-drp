@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://bestbuy.com/bbym/ise/header"
+  targetNamespace="http://bestbuy.com/bbym/ise/header"
+  xmlns:common="http://bestbuy.com/bbym/ise/common"
+  elementFormDefault="unqualified" attributeFormDefault="unqualified">
+
+    <xs:import namespace="http://bestbuy.com/bbym/ise/common" schemaLocation="ISE_COMMON.XSD"/>
+
+    <xs:complexType name="Header">
+    <xs:annotation>
+      <xs:documentation>Request Message Header</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+        <xs:element name="dataSharingKey" minOccurs="0" type="common:DataSharingKeyType"/>
+	     <xs:element name="timestamp" type="xs:dateTime">
+	        <xs:annotation>
+	          <xs:documentation>
+	            The time the service was called. Format is
+	            CCYY-MM-DDThh:mm:ss
+	          </xs:documentation>
+	        </xs:annotation>
+      	</xs:element>
+	    <xs:element name="repId">
+        	<xs:annotation>
+	          	<xs:documentation>
+	            The ID of the blue shirt or other agent that
+	            assisted in this sale.
+	          </xs:documentation>
+	        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="20" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+   </xs:sequence>
+   </xs:complexType>
+
+</xs:schema>

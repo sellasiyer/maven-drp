@@ -1,0 +1,90 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<wicket:head>
+
+<meta http-equiv="Content-Type"
+content="text/html;charset=UTF-8"/>
+
+	<title>BEAST-Portal</title>
+	<script type="text/javascript">
+		var wicketBehavior;
+		var continueFunction = function() {
+			wicketBehavior('continue');
+		};
+		var closeFunction = function() {
+			$("#closeButton").trigger("click");
+		};
+		hotKeysConfig = {
+			f2 : {
+				handler : continueFunction,
+				buttonSelector : '#continueButton'
+			},
+			f3 : {
+				handler : closeFunction,
+				buttonSelector : '#closeButton'
+			}
+		};
+	</script>
+		<script>
+		$(document).ready(function() {			
+			var bottomMargin = 10; 	//number of pixels to leave between the bottom of the product detail
+									//verbiage and the bottom buttons
+			
+			var totalHeight = $('#product-details .info').offset().top + $('#marketing-verbiage').position().top 
+				+ $('#marketing-verbiage').height() + bottomMargin + $('.bottom-buttons').height()
+				+ parseInt($('.bottom-buttons').css("bottom"), 20);
+			
+			if(totalHeight > $(window).height()){
+				var overageAmount = totalHeight - $(window).height();
+				$('#marketing-verbiage').css("overflow", "auto");
+				$('#marketing-verbiage').height($('#marketing-verbiage').height() - overageAmount);
+			}
+			
+		});
+</script>	
+</wicket:head>
+
+<body>
+		<span wicket:id="border">
+                <div id="product-details">
+		<h1><wicket:message key="productDetailsPage.title.label" /></h1>
+		<div class="product-image">
+                    <img wicket:id="productImage" />
+		</div>
+		<div class="info">
+			<div id="product-key-info">
+							<h2 wicket:id="productName"></h2>
+                            <p>Model Number: <span wicket:id="modelNumber"/><br />
+                                SKU: <span wicket:id="sku"/></p>
+
+			</div>
+			<div id="marketing-verbiage">
+                            <p wicket:id="description"/>
+							<ul>
+                                <li wicket:id="options">
+                                    <span wicket:id="option"/>
+                                </li>
+							</ul>
+
+			</div>
+		</div>
+		<div class="condition">
+						<p>Actual trade in will vary according to actual condition and
+							completeness of peripheral accessories.</p>
+							<br />
+                        <h3>What&#39;s this item worth?</h3>
+                        <h3>Base Estimate: &#36; <span wicket:id="bestPriceEstimate"/></h3>
+                        <br />
+                        <p><b><wicket:message key="tradeInProductDetailsPage.note1.label" /></b></p>
+                        
+                        <p><b><wicket:message key="tradeInProductDetailsPage.note2.label" /></b></p>
+
+		</div>
+		<div wicket:id="zeroValueCancel"></div>
+	</div>
+
+</span>
+			
+</body>
+</html>

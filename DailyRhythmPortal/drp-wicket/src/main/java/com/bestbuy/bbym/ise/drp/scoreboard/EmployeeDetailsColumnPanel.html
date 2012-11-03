@@ -1,0 +1,36 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+
+<body>
+	<wicket:panel>
+		<table class="table_header">
+			<tr>
+				<td></td>
+				<td colspan="2" class="tall">SALE</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td class="qty"><wicket:message key="qtyLabel" />
+				</td>
+				<td class="money"><wicket:message
+						key="scoreboardModal.employeeDetails.total.label" />
+				</td>
+			</tr>
+		</table>
+		<table wicket:id="categoryListView">
+			<tr>
+				<th wicket:id="listHeader"></th>
+				<th class="qty"></th>
+				<th class="money"></th>
+			</tr>
+			<tr wicket:id="dataItemListView">
+				<td wicket:id="itemName"></td>
+				<td class="qty" wicket:id="itemQty"></td>
+				<td class="money" wicket:id="itemTotal"></td>
+			</tr>
+		</table>
+	</wicket:panel>
+</body>
+
+
+</html>

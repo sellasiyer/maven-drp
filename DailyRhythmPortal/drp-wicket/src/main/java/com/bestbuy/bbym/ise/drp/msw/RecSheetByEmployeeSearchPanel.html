@@ -1,0 +1,89 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<title>Recommendation Sheet By Employee</title>
+	<Style type="text/css">
+div.inline {
+	display: inline-block;
+}
+</Style>
+
+	<script>
+		function showResultsSearchLoading(enabled) {
+			if (enabled) {
+				$('#loading').show();
+				$('#recSheetByEmployeeSearchForm').hide();
+			} else {
+				$('#loading').hide();
+				$('#recSheetByEmployeeSearchForm').show();
+			}
+		}
+		
+		function loadData() {
+			setTimeout("wicketBehavior('load')", 50);
+		}
+	</script>
+</wicket:head>
+<body>
+	<wicket:panel>
+
+		<div wicket:id="feedback"></div>
+		<form name="recSheetByEmployeeForm"
+			wicket:id="recSheetByEmployeeSearchForm" autocomplete="off">
+			<fieldset class="important">
+				<legend>Employee Search </legend>
+
+				<div class="required full">
+
+					<label><wicket:message
+							key="searchForRecSheetByLastNameOrAId" /> </label>
+					<ul class="table-nav">
+						<li class="open"><a wicket:id="lastNameSearchLink">Last
+								Name</a>
+							<div class="inputs">
+								<input wicket:id="lastName" type="text" id="lastName" size="30"
+									maxlength="25" />
+							</div>
+						</li>
+						<li><a wicket:id="aidSearchLink">Employee ID</a>
+							<div class="inputs">
+								<input wicket:id="aid" type="text" id="aid" size="30"
+									maxlength="8" />
+							</div>
+						</li>
+					</ul>
+				</div>
+
+				<div class="required full range">
+					<label wicket:id="dateRangeLabel"></label>
+					<input type="text" wicket:id="startDate" class="required" onblur="checkdate(this)" maxlength="10" />
+					<img src="images/spacer.gif" border="0" width="10px" height="1px" />
+					<label class="to" style="display:inline;">to</label>				
+					<input type="text" wicket:id="endDate" class="required" maxlength="10" onblur="checkdate(this)" />
+				</div>
+				
+				<div class="bottom quarter">
+					<label wicket:id="storeNumberLabel"></label> <input
+						wicket:id="storeNumber" type="text" maxlength="6" />
+				</div>
+
+			</fieldset>
+
+			<div class="buttons">
+				<input type="submit" wicket:id="submitSearchButton" value="SEARCH"
+					class="button" />
+			</div>
+
+		</form>
+
+		<div id="loading" class="loading-spinner-big">
+			<wicket:message key="recommendationSheetbyEmployee.loading.label" />
+		</div>
+
+	</wicket:panel>
+
+
+
+</body>
+
+</html>

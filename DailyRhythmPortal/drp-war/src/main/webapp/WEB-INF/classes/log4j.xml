@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+
+	<!-- ApplicationInfo Appender for the application - START -->
+
+    <appender name="ApplicationLogAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="Append" value="true" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd" />
+        <param name="File" value="${logFilePath}/ISEApplication.Log" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy.MM.dd HH:mm:ss:SSS} %X{sessionId} %5p %-20c{1} > %m%n" />
+        </layout>
+    </appender>
+	
+    <appender name="CA" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-4r [%t] %-5p %c %x - %m%n" />
+        </layout>
+    </appender>
+
+	<!-- ApplicationInfo Appender for the application - END -->
+
+	<!-- List of Appenders for the application - END -->
+    <category name="com.bestbuy.bbym.ise.util.jdbc" additivity="false">
+        <priority value="debug"/>
+        <appender-ref ref="ApplicationLogAppender" />
+    </category>
+ 
+  <category name="com.bestbuy.bbym.ise.drp.sao" additivity="false">
+        <priority value="debug"/>
+        <appender-ref ref="ApplicationLogAppender" />
+        <appender-ref ref="CA" />
+    </category>
+  <category name="com.bestbuy.bbym.ise" additivity="false">
+        <priority value="debug"/>
+        <appender-ref ref="ApplicationLogAppender" />
+        <appender-ref ref="CA" />
+    </category>
+    <category name="com.sun.jersey.api.container.filter" additivity="false">
+        <priority value="all"/>
+        <appender-ref ref="ApplicationLogAppender" />
+        <appender-ref ref="CA" />
+    </category>
+    <root>
+        <priority value="info"></priority>
+        <appender-ref ref="ApplicationLogAppender" />
+        <appender-ref ref="CA" />
+    </root>
+
+
+</log4j:configuration>
+

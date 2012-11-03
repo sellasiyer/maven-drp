@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns="http://bestbuy.com/bbym/beast/portal/cancelgsp/response"
+	targetNamespace="http://bestbuy.com/bbym/beast/portal/cancelgsp/response"
+	elementFormDefault="qualified">
+
+	<xs:element name="GspPlanCancelResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="gspPlan" minOccurs="0" maxOccurs="unbounded"
+					type="GspPlanType" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="GspPlanType">
+		<xs:sequence>
+			<xs:element name="protectionPlanId" minOccurs="0" type="xs:string" />
+			<xs:element name="billingType" minOccurs="0" type="xs:string" />
+			<xs:element name="businessDate" minOccurs="0" type="xs:dateTime" />
+			<xs:element name="cancel" minOccurs="0" type="xs:boolean" />
+			<xs:element name="contractSku" minOccurs="0" type="xs:string" />
+			<xs:element name="contractSkuDescription" minOccurs="0"
+				type="xs:string" />
+			<xs:element name="registerTransactionNumber" minOccurs="0"
+				type="xs:string" />
+			<xs:element name="retailStoreId" minOccurs="0" type="xs:string" />
+			<xs:element name="workstationId" minOccurs="0" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,25 @@
+<EditCustomerForm xmlns:atom="http://www.w3.org/2005/Atom" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance">
+  <atom:title>Edit Customer Form</atom:title>
+  <atom:link href="http://localhost:2279/store-271/carts/31/customer" rel="self" title="Self" />
+  <atom:link href="http://localhost:2279/store-271/carts/31/customer" rel="http://localhost:2279/rels/update" title="update" />
+  <atom:link href="http://localhost:2279/store-271/carts/31/customer-answers" rel="next" title="Next" />
+  <atom:link href="http://localhost:2279/" rel="http://localhost:2279/rels/home" title="Return to Home Page" />
+  <atom:link href="http://buyback-pl.bestbuytradein.com/bbPlanInfo.cfm?redirect=false" rel="external-buyback" title="Start a New Buy Back" />
+  <atom:link href="http://buyback-pl.bestbuytradein.com/videoGameSearch.cfm?redirect=false" rel="external-video-games" title="Start a New Video Game Cart" />
+  <atom:link href="http://buyback-pl.bestbuytradein.com/admin.cfm?redirect=false" rel="external-admin" title="Open Trade In Administration" />
+  <atom:link href="http://buyback-pl.bestbuytradein.com/manifest.cfm?redirect=false" rel="external-shipping-center" title="Open Shipping Center" />
+  <atom:link href="http://localhost:2279/metadata/EditCustomerForm" rel="http://localhost:2279/rels/metadata" title="metadata" />
+  <FirstName>John</FirstName>
+  <MiddleName>Milhous</MiddleName>
+  <LastName>Jones</LastName>
+  <NameSuffix />
+  <EmailAddress>person@mail.net</EmailAddress>
+  <PhoneNumber>867-5309</PhoneNumber>
+  <AddressLine1>1000 Mammon Lane</AddressLine1>
+  <AddressLine2>Suite 1</AddressLine2>
+  <City>Springfield</City>
+  <State>Oregon</State>
+  <PostalCode>55386</PostalCode>
+  <Country>Canada</Country>
+  <UserIPAddress />
+</EditCustomerForm>

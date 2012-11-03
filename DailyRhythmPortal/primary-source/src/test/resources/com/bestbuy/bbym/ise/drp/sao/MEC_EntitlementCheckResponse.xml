@@ -1,0 +1,84 @@
+
+<ns0:EntitlementCheckResponse
+	xmlns:jms1="http://www.tibco.com/namespaces/tnt/plugins/jms" xmlns:ns0="http://bestbuy.com/bbym/sales/entitlementcheck/service/v1">
+	<ns1:ResponseMetaData
+		xmlns:ns1="http://bestbuy.com/bbym/sales/entitlementcheck/component/v1">
+		<ns2:Version xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/fields/v1">1</ns2:Version>
+		<ns2:SourceID xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/fields/v1">Beast-Portal</ns2:SourceID>
+		<ns2:UserID xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/fields/v1">ISEADMIN</ns2:UserID>
+		<ns2:ProgramID xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/fields/v1" />
+		<ns2:MessageID xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/fields/v1">ISE20120918094622003
+		</ns2:MessageID>
+		<ns2:ResponseTimeStamp
+			xmlns:ns2="http://www.tsh.bestbuy.com/common/metadata/fields/v1">2012-09-18T09:46:29.56-05:00</ns2:ResponseTimeStamp>
+	</ns1:ResponseMetaData>
+	<ns1:EntitlementCheckResult
+		xmlns:ns1="http://bestbuy.com/bbym/sales/entitlementcheck/component/v1">
+		<ns1:EntitlementlistDetails>
+			<ns1:EntitlementBenefitTypes>
+				<ns2:CoverageBenefit
+					xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1">Return</ns2:CoverageBenefit>
+				<ns2:CoverageBenefitPromptCode
+					xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1">ENT_Beast_IP_IG</ns2:CoverageBenefitPromptCode>
+				<ns2:CoverageVehicle
+					xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1">BBY</ns2:CoverageVehicle>
+				<ns2:EntitlementType
+					xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1" />
+			</ns1:EntitlementBenefitTypes>
+			<ns1:EntitlementBenefitTypes>
+				<ns2:CoverageBenefit
+					xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1">NONE</ns2:CoverageBenefit>
+				<ns2:CoverageBenefitPromptCode
+					xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1">ENT_None_34_5</ns2:CoverageBenefitPromptCode>
+				<ns2:CoverageVehicle
+					xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1">NONE</ns2:CoverageVehicle>
+				<ns2:EntitlementType
+					xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1" />
+			</ns1:EntitlementBenefitTypes>
+		</ns1:EntitlementlistDetails>
+		<ns1:VendorWarrantyDetails>
+			<ns2:WarrantyStatus
+				xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1">APPLEDOWN</ns2:WarrantyStatus>
+			<ns2:CoverageStartDate
+				xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1">0001-01-01T00:00:00</ns2:CoverageStartDate>
+			<ns2:CoverageEndDate
+				xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1">0001-01-01T00:00:00</ns2:CoverageEndDate>
+			<ns2:ProductDescription
+				xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1" />
+			<ns2:LaborCovered
+				xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1" />
+			<ns2:PartsCovered
+				xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1" />
+			<ns2:IsValidSerialNumber
+				xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1">false</ns2:IsValidSerialNumber>
+			<ns2:RepeatServiceOrderNumber
+				xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1" />
+			<ns2:RepeatService
+				xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1">false</ns2:RepeatService>
+			<ns2:DuplicateOrderNumber
+				xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1" />
+			<ns2:DuplicateOrder
+				xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1">false</ns2:DuplicateOrder>
+			<ns2:Manufacturer
+				xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1">APPLE</ns2:Manufacturer>
+			<ns2:ContractCoverageStartDate
+				xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1">0001-01-01T00:00:00</ns2:ContractCoverageStartDate>
+			<ns2:ContractCoverageEndDate
+				xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1">0001-01-01T00:00:00</ns2:ContractCoverageEndDate>
+			<ns2:ErrorCode
+				xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1">-1</ns2:ErrorCode>
+			<ns2:ErrorDescription
+				xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1">APPLEDOWN</ns2:ErrorDescription>
+		</ns1:VendorWarrantyDetails>
+		<ns1:EtfInfoDetails>
+			<ns2:DeviceETF
+				xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1">350</ns2:DeviceETF>
+			<ns2:EstimatedETF
+				xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1">350</ns2:EstimatedETF>
+			<ns2:EtfDescription
+				xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1">The estimated ETF is based on the device being active for 26 day(s) with a beginning ETF of 350</ns2:EtfDescription>
+		</ns1:EtfInfoDetails>
+		<ns2:Tradeability
+			xmlns:ns2="http://bestbuy.com/bbym/sales/entitlementcheck/fields/v1">false</ns2:Tradeability>
+	</ns1:EntitlementCheckResult>
+</ns0:EntitlementCheckResponse>

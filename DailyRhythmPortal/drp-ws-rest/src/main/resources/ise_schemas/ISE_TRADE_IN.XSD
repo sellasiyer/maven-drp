@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:common="http://bestbuy.com/bbym/ise/common" xmlns="http://bestbuy.com/bbym/beast/portal/tradein/reqres"
+           targetNamespace="http://bestbuy.com/bbym/beast/portal/tradein/reqres"
+           elementFormDefault="unqualified" attributeFormDefault="unqualified">
+    <xs:import namespace="http://bestbuy.com/bbym/ise/common"
+               schemaLocation="ISE_COMMON.XSD" />
+
+    <xs:element name="TradeIn">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Made dataSharingKey as mandatory element - Sella Iyer - 08162012-->
+                <xs:element name="dataSharingKey" minOccurs="1"
+                            type="common:DataSharingKeyType" />
+                <xs:element name="selectedHandsetIdentifier" minOccurs="0" type="xs:string" />
+                <xs:element name="tradeInValue" minOccurs="0" type="xs:string" />
+                <xs:element name="customerProfile" minOccurs="0"
+                            type="common:CustomerProfileType" />
+                <xs:element name="nextURL" minOccurs="0" type="xs:string" />
+                <xs:element name="titanCartId" minOccurs="0" type="xs:string" />
+                <xs:element name="promoCode" minOccurs="0" type="xs:string" />
+                <xs:element name="promoValue" minOccurs="0" type="xs:string" />
+                <!-- Added new element for Step 31 - Trade-In Document url for Receipt&ItemTag - Sella Iyer - 08162012-->
+                <xs:element name="tradeInDocUrl" minOccurs="0" type="xs:string" />
+                <!-- Added new element for Step 31 -  ItemTag - Sella Iyer - 08162012-->
+                <xs:element name="itemTag" minOccurs="0" type="xs:string" />
+                <!-- Added new element for Step 31 - GiftCardNumber - Sella Iyer - 08162012-->
+                <xs:element name="giftCardNumber" minOccurs="0" type="xs:string" />
+                <!-- Added new element for Step 19 - receiptRequired - Kannappan - 08232012-->
+                <xs:element name="receiptRequired" minOccurs="0" type="xs:boolean" />
+                <xs:element name="deviceDetail" minOccurs="0"
+                            type="common:DeviceDetailsType" />
+                <xs:element name="fourPartKey" minOccurs="0"
+                            type="common:FourPartKeyType" />
+                <xs:element name="createdBy" minOccurs="0" type="xs:string" />
+                <xs:element name="createdDate" minOccurs="0" type="xs:dateTime" />
+                <xs:element name="lastModifiedBy" minOccurs="0" type="xs:string" />
+                <xs:element name="lastModifiedDate" minOccurs="0" type="xs:dateTime" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

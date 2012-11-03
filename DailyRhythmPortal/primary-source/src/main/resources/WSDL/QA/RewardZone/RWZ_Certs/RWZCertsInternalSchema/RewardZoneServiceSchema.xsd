@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Last Modified   :1/20/2007 17:00pm
+    Last Modified by:Jonathan Jones
+    Desc	    :Changed structure of Member Response Type in RZGetCertsByMemberResponse.
+    		    :Changed Response Codes in GetCertsByID, GetCertsByMember, AdjustPoints, and UpdateCert to integers.
+    Last Modified by:Jonathan Jones
+    Desc	    :Added RZ Comergent Redeem modifications
+    Last Modified by:Rajkumar Perumal
+    Desc            :Created a separate RewardZoneMember type for the Inquire Member response; since,
+                     some of the attributes are not mandatory.
+ -->
+<schema targetNamespace="http://webservices.bestbuy.com/rewardzone/schemas/RewardZoneSchema" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webservices.bestbuy.com/rewardzone/schemas/RewardZoneSchema">
+<complexType name="RewardZoneMemberType">
+    <sequence>
+      <element name="customer" type="tns:CustomerType" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="memberNumber" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="status" type="string" maxOccurs="1" minOccurs="0">
+      </element>
+      <element name="combineCreditCardFlag" type="string" maxOccurs="1" minOccurs="0">
+      </element>
+      <element name="receiveCertificateIndicator" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="enrollmentSKU" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="usageSKU" type="string" maxOccurs="1" minOccurs="0">
+      </element>
+    </sequence>
+  </complexType>
+
+  <complexType name="InquireRewardZoneMbrResponseType">
+    <sequence>
+      <element name="customer" type="tns:CustomerType" maxOccurs="1" minOccurs="0">
+      </element>
+      <element name="memberNumber" type="string" maxOccurs="1" minOccurs="0">
+      </element>
+      <element name="status" type="string" maxOccurs="1" minOccurs="0">
+      </element>
+      <element name="usageSKU" type="string" maxOccurs="1" minOccurs="0">
+      </element>
+    </sequence>
+  </complexType>
+
+
+  <complexType name="CustomerType">
+    <sequence>
+      <element name="firstName" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="lastName" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="middleInitial" type="string" maxOccurs="1" minOccurs="0">
+      </element>
+      <element name="prefix" type="string" maxOccurs="1" minOccurs="0">
+      </element>
+      <element name="suffix" type="string" maxOccurs="1" minOccurs="0">
+      </element>
+      <element name="address" type="tns:AddressType" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="phone" type="tns:PhoneType" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="email" type="string" maxOccurs="1" minOccurs="0">
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="AddressType">
+    <sequence>
+      <element name="addressLine1" type="string">
+      </element>
+      <element name="addressLine2" type="string">
+      </element>
+      <element name="city" type="string">
+      </element>
+      <element name="state" type="string">
+      </element>
+      <element name="zip" type="string">
+      </element>
+      <element name="country" type="string">
+      </element>
+      <element name="zip4" type="string">
+      </element>
+    </sequence>
+    <attribute name="type" type="string" use="required">
+    </attribute>
+  </complexType>
+  <complexType name="PhoneType">
+    <sequence>
+      <element name="areaCode" type="string">
+      </element>
+      <element name="number" type="string">
+      </element>
+    </sequence>
+    <attribute name="type" type="string" use="required">
+    </attribute>
+  </complexType>
+  <complexType name="TransactionTimeStampType">
+    <sequence>
+      <element name="store" type="int" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="register" type="int" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="id" type="int" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="date" type="dateTime" maxOccurs="1" minOccurs="1">
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="RZEnrollMemberRequestType">
+    <sequence>
+      <element name="requestMetaData" type="tns:RequestMetaType" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="rewardZoneMember" type="tns:RewardZoneMemberType" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="transactionStamp" type="tns:TransactionTimeStampType" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="overrideExistingMbrCheck" type="boolean" default="false" maxOccurs="1" minOccurs="1" />
+    </sequence>
+  </complexType>
+  <complexType name="RequestMetaType">
+    <sequence>
+      <element name="applicationID" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="userID" type="string" maxOccurs="1" minOccurs="0">
+      </element>
+      <element name="trainingMode" type="string" maxOccurs="1" minOccurs="0"/>
+      <element name="version" type="string" maxOccurs="1" minOccurs="1"/>
+    </sequence>
+  </complexType>
+  <complexType name="SystemStatusType">
+    <sequence>
+      <element name="environment" type="string">
+      </element>
+      <element name="systemCode" type="int">
+      </element>
+      <element name="systemMessage" type="string">
+      </element>
+      <element name="rows" type="int">
+      </element>
+      <element name="requestMetaData" type="tns:RequestMetaType">
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="RZMemberInquiryRequestType">
+    <sequence>
+      <element name="requestMetaData" type="tns:RequestMetaType" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="customerFirstName" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="customerLastName" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="phone" type="tns:PhoneType" maxOccurs="1" minOccurs="0">
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="RZMemberInquiryResponseType">
+    <sequence>
+      <element name="responseMetaData" type="tns:SystemStatusType" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="rewardZoneMember" type="tns:InquireRewardZoneMbrResponseType" maxOccurs="unbounded" minOccurs="0">
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="RZEnrollMemberResponseType">
+    <sequence>
+      <element name="responseMetaData" type="tns:SystemStatusType" maxOccurs="1" minOccurs="1" />
+    </sequence>
+  </complexType>
+  <element name="RZEnrollMemberRequest" type="tns:RZEnrollMemberRequestType">
+  </element>
+  <element name="RZEnrollMemberResponse" type="tns:RZEnrollMemberResponseType">
+  </element>
+  <element name="RZInquireMemberResponse" type="tns:RZMemberInquiryResponseType">
+  </element>
+  <element name="RZInquireMemberRequest" type="tns:RZMemberInquiryRequestType">
+  </element>
+  <complexType name="MemberRequestType">
+    <sequence>
+      <element name="memberNumber" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="certStatus" type="string" maxOccurs="1" minOccurs="0">
+      </element>
+      <element name="includeExpired" type="boolean" default="false" maxOccurs="1" minOccurs="1">
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="MemberCertificateType">
+    <sequence>
+      <element name="certId" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="certStatus" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="certAmount" type="decimal" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="issuedDate" type="date" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="expiredDate" type="date" maxOccurs="1" minOccurs="1">
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="MemberResponseType">
+    <sequence>
+      <element name="memberNumber" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="memberResponseCode" type="int" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="memberResponseMessage" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="memberCertificates" type="tns:MemberCertificateType" maxOccurs="unbounded" minOccurs="0">
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="RZGetCertsByMemberRequestType">
+    <sequence>
+      <element name="requestMetaData" type="tns:RequestMetaType" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="memberRequest" type="tns:MemberRequestType" maxOccurs="unbounded" minOccurs="0">
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="RZGetCertsByMemberResponseType">
+    <sequence>
+      <element name="responseMetaData" type="tns:SystemStatusType" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="memberResponse" type="tns:MemberResponseType" maxOccurs="unbounded" minOccurs="1">
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="CertNumberRequestType">
+    <sequence>
+      <element name="certID" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="CertNumberResponseType">
+    <sequence>
+      <element name="certId" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="certStatus" type="string" maxOccurs="1" minOccurs="0">
+      </element>
+      <element name="certAmount" type="decimal" maxOccurs="1" minOccurs="0">
+      </element>
+      <element name="issuedDate" type="date" maxOccurs="1" minOccurs="0">
+      </element>
+      <element name="expiredDate" type="date" maxOccurs="1" minOccurs="0">
+      </element>
+      <element name="certResponseCode" type="int" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="certResponseMessage" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="RZGetCertsByIDRequestType">
+    <sequence>
+      <element name="requestMetaData" type="tns:RequestMetaType" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="certNumberRequest" type="tns:CertNumberRequestType" maxOccurs="unbounded" minOccurs="1">
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="RZGetCertsByIDResponseType">
+    <sequence>
+      <element name="responseMetaData" type="tns:SystemStatusType" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="certNumberResponse" type="tns:CertNumberResponseType" maxOccurs="unbounded" minOccurs="0">
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="UpdateRequestType">
+    <sequence>
+      <element name="certId" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="certStatus" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="UpdateResponseType">
+    <sequence>
+      <element name="certId" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="updateResponseCode" type="int" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="updateResponseMessage" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="RZUpdateCertRequestType">
+    <sequence>
+      <element name="requestMetaData" type="tns:RequestMetaType" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="updateRequests" type="tns:UpdateRequestType" maxOccurs="unbounded" minOccurs="1">
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="RZUpdateCertResponseType">
+    <sequence>
+      <element name="responseMetaData" type="tns:SystemStatusType" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="updateResponses" type="tns:UpdateResponseType" maxOccurs="unbounded" minOccurs="0">
+      </element>
+    </sequence>
+  </complexType> 
+  <complexType name="AdjustRequestType">
+    <sequence>
+      <element name="certId" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="certAmount" type="decimal" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="order" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="lineNo" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="audTS" type="date" maxOccurs="1" minOccurs="0">
+      </element>
+      <element name="adjTS" type="date" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="reasonCode" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="transSourceID" type="decimal" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="certLineKey" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="parentSourceTransKey" type="string" maxOccurs="1" minOccurs="0">
+      </element>
+      <element name="sourceTransKey" type="string" maxOccurs="1" minOccurs="0">
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="AdjustResponseType">
+    <sequence>
+      <element name="certId" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="certAmount" type="decimal" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="order" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="lineNo" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="sourceTransKey" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="adjustCode" type="int" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="adjustMessage" type="string" maxOccurs="1" minOccurs="1">
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="RZAdjustPointsRequestType">
+    <sequence>
+      <element name="requestMetaData" type="tns:RequestMetaType" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="adjustmentRequests" type="tns:AdjustRequestType" maxOccurs="unbounded" minOccurs="1">
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="RZAdjustPointsResponseType">
+    <sequence>
+      <element name="responseMetaData" type="tns:SystemStatusType" maxOccurs="1" minOccurs="1">
+      </element>
+      <element name="adjustmentResponses" type="tns:AdjustResponseType" maxOccurs="unbounded" minOccurs="0">
+      </element>
+    </sequence>
+  </complexType>
+  <element name="RZGetCertsByMemberRequest" type="tns:RZGetCertsByMemberRequestType">
+  </element>
+  <element name="RZGetCertsByMemberResponse" type="tns:RZGetCertsByMemberResponseType">
+  </element>
+  <element name="RZGetCertsByIDRequest" type="tns:RZGetCertsByIDRequestType">
+  </element>
+  <element name="RZGetCertsByIDResponse" type="tns:RZGetCertsByIDResponseType">
+  </element>
+  <element name="RZUpdateCertRequest" type="tns:RZUpdateCertRequestType">
+  </element>
+  <element name="RZUpdateCertResponse" type="tns:RZUpdateCertResponseType">
+  </element>
+  <element name="RZAdjustPointsRequest" type="tns:RZAdjustPointsRequestType">
+  </element>
+  <element name="RZAdjustPointsResponse" type="tns:RZAdjustPointsResponseType">
+  </element>
+</schema>

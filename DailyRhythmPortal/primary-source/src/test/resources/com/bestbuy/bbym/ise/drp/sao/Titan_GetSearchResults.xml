@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<CatalogResource xmlns:ns2="http://www.w3.org/2005/Atom">
+    <ns2:title>Browse Trade-In Items</ns2:title>
+    <ns2:link title="Self" rel="self" href="http://hydra-pt:8080/store-271/catalog/search-results?Q=Apple%20iPhone&amp;Category=mobile-phones"/>
+    <ns2:link title="search-catalog" rel="http://hydra-pt:8080/rels/search-catalog" href="http://hydra-pt:8080/store-271/catalog/search"/>
+    <ns2:link title="Return to Home Page" rel="http://hydra-pt:8080/rels/home" href="http://hydra-pt:8080/store-271"/>
+    <ns2:link title="Overview" rel="http://hydra-pt:8080/rels/help" href="http://hydra-pt:8080/store-271/help"/>
+    <ns2:link title="FAQs" rel="http://hydra-pt:8080/rels/help" href="http://hydra-pt:8080/store-271/help/faq"/>
+    <ns2:link title="About" rel="http://hydra-pt:8080/rels/help" href="http://hydra-pt:8080/store-271/help/about"/>
+    <ns2:link title="Biometric Device Validation" rel="http://hydra-pt:8080/rels/help" href="http://hydra-pt:8080/store-271/devices"/>
+    <ns2:link title="Search Carts" rel="http://hydra-pt:8080/rels/cart-search" href="http://hydra-pt:8080/store-271/carts/search/form"/>
+    <ns2:link title="Provide Feedback" rel="http://hydra-pt:8080/rels/feedback" href="http://hydra-pt:8080/store-271/feedback/new"/>
+    <ns2:link title="Start a New Buy Back" rel="external-buyback" href="https://buyback-pl.bestbuytradein.com/bbPlanInfo.cfm?redirect=false"/>
+    <ns2:link title="Open Trade In Administration" rel="external-admin" href="https://buyback-pl.bestbuytradein.com/admin.cfm?redirect=false"/>
+    <ns2:link title="Open Shipping Center" rel="external-shipping-center" href="https://buyback-pl.bestbuytradein.com/manifest.cfm?redirect=false"/>
+    <ns2:link title="metadata" rel="http://hydra-pt:8080/rels/metadata" href="http://hydra-pt:8080/metadata/CatalogResource"/>
+    <CurrentPage>1</CurrentPage>
+    <PageSize xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+    <PageCount>1</PageCount>
+    <ItemCount>41</ItemCount>
+    <CurrentPageFirstItem>1</CurrentPageFirstItem>
+    <CurrentPageLastItem>41</CurrentPageLastItem>
+    <StoreId>271</StoreId>
+    <CartId xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+    <Items>
+        <CatalogItemResource>
+            <ns2:title>Apple - iPhone 4S with 16GB Memory Mobile Phone - Black (AT&amp;T) MC918LL/A</ns2:title>
+            <ns2:link title="Apple - iPhone 4S with 16GB Memory Mobile Phone - Black (AT&amp;T) MC918LL/A" rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/3487/3487784_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3487784"/>
+            <Name>Apple - iPhone 4S with 16GB Memory Mobile Phone - Black (AT&amp;T) MC918LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple - iPhone 4S with 16GB Memory Mobile Phone - Black (Verizon Wireless) MD276LL/A</ns2:title>
+            <ns2:link title="Apple - iPhone 4S with 16GB Memory Mobile Phone - Black (Verizon Wireless) MD276LL/A" rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/3562/3562379_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3562379"/>
+            <Name>Apple - iPhone 4S with 16GB Memory Mobile Phone - Black (Verizon Wireless) MD276LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple - iPhone 4S with 16GB Memory Mobile Phone - White (AT&amp;T) MC920LL/A</ns2:title>
+            <ns2:link title="Apple - iPhone 4S with 16GB Memory Mobile Phone - White (AT&amp;T) MC920LL/A" rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/3487/3487648_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3487648"/>
+            <Name>Apple - iPhone 4S with 16GB Memory Mobile Phone - White (AT&amp;T) MC920LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple - iPhone 4S with 16GB Memory Mobile Phone - White (Verizon Wireless) MD277LL/A</ns2:title>
+            <ns2:link title="Apple - iPhone 4S with 16GB Memory Mobile Phone - White (Verizon Wireless) MD277LL/A" rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/3562/3562527_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3562527"/>
+            <Name>Apple - iPhone 4S with 16GB Memory Mobile Phone - White (Verizon Wireless) MD277LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple - iPhone 4S with 32GB Memory Mobile Phone - Black (AT&amp;T) MC919LL/A</ns2:title>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3487675"/>
+            <Name>Apple - iPhone 4S with 32GB Memory Mobile Phone - Black (AT&amp;T) MC919LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple - iPhone 4S with 32GB Memory Mobile Phone - Black (Verizon Wireless) MD278LL/A</ns2:title>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3562493"/>
+            <Name>Apple - iPhone 4S with 32GB Memory Mobile Phone - Black (Verizon Wireless) MD278LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple - iPhone 4S with 32GB Memory Mobile Phone - White (AT&amp;T) MC921LL/A</ns2:title>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3487693"/>
+            <Name>Apple - iPhone 4S with 32GB Memory Mobile Phone - White (AT&amp;T) MC921LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple - iPhone 4S with 32GB Memory Mobile Phone - White (Verizon Wireless) MD279LL/A</ns2:title>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3562475"/>
+            <Name>Apple - iPhone 4S with 32GB Memory Mobile Phone - White (Verizon Wireless) MD279LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple - iPhone 4S with 64GB Memory Mobile Phone - Black (AT&amp;T) MD269LL/A</ns2:title>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3812927"/>
+            <Name>Apple - iPhone 4S with 64GB Memory Mobile Phone - Black (AT&amp;T) MD269LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple - iPhone 4S with 64GB Memory Mobile Phone - Black (Verizon Wireless) MD280LL/A</ns2:title>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3812972"/>
+            <Name>Apple - iPhone 4S with 64GB Memory Mobile Phone - Black (Verizon Wireless) MD280LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple - iPhone 4S with 64GB Memory Mobile Phone - White (AT&amp;T) MD271LL/A</ns2:title>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3812945"/>
+            <Name>Apple - iPhone 4S with 64GB Memory Mobile Phone - White (AT&amp;T) MD271LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple - iPhone 4S with 64GB Memory Mobile Phone - White (Verizon Wireless) MD281LL/A</ns2:title>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3813256"/>
+            <Name>Apple - iPhone 4S with 64GB Memory Mobile Phone - White (Verizon Wireless) MD281LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>APPLE BLACK 16GB IPHONE 3G MB048LL/A MB048LL/A</ns2:title>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/8975861"/>
+            <Name>APPLE BLACK 16GB IPHONE 3G MB048LL/A MB048LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>APPLE BLACK 8GB IPHONE 3G MB046LL/B MB046LL/B</ns2:title>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/8600864"/>
+            <Name>APPLE BLACK 8GB IPHONE 3G MB046LL/B MB046LL/B</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple iPhone 3GS with 16GB Memory - Black 16GB BLK 3GS</ns2:title>
+            <ns2:link title="Apple iPhone 3GS with 16GB Memory - Black 16GB BLK 3GS" rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/9397/9397155_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/9375758"/>
+            <Name>Apple iPhone 3GS with 16GB Memory - Black 16GB BLK 3GS</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple iPhone 3GS with 16GB Memory - White 16GB WHT 3GS</ns2:title>
+            <ns2:link title="Apple iPhone 3GS with 16GB Memory - White 16GB WHT 3GS" rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/9375/9375838_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/9375838"/>
+            <Name>Apple iPhone 3GS with 16GB Memory - White 16GB WHT 3GS</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple iPhone 3GS with 32GB Memory - Black 32GB BLK 3GS</ns2:title>
+            <ns2:link title="Apple iPhone 3GS with 32GB Memory - Black 32GB BLK 3GS" rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/9397/9397173_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/9375776"/>
+            <Name>Apple iPhone 3GS with 32GB Memory - Black 32GB BLK 3GS</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple iPhone 3GS with 32GB Memory - White 32GB WHT 3GS</ns2:title>
+            <ns2:link title="Apple iPhone 3GS with 32GB Memory - White 32GB WHT 3GS" rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/9397/9397182_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/9375847"/>
+            <Name>Apple iPhone 3GS with 32GB Memory - White 32GB WHT 3GS</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple iPhone 3GS with 8GB Memory - Black 8GB BLK 3GS</ns2:title>
+            <ns2:link title="Apple iPhone 3GS with 8GB Memory - Black 8GB BLK 3GS" rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/1048/1048998_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/1048998"/>
+            <Name>Apple iPhone 3GS with 8GB Memory - Black 8GB BLK 3GS</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple iPhone 4 with 16GB Memory - Black 16GB BLK 4</ns2:title>
+            <ns2:link title="Apple iPhone 4 with 16GB Memory - Black 16GB BLK 4" rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/1049/1049078_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/1049078"/>
+            <Name>Apple iPhone 4 with 16GB Memory - Black 16GB BLK 4</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple iPhone 4 with 16GB Memory - White 16GB WHT 4</ns2:title>
+            <ns2:link title="Apple iPhone 4 with 16GB Memory - White 16GB WHT 4" rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/1049/1049236_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/1049236"/>
+            <Name>Apple iPhone 4 with 16GB Memory - White 16GB WHT 4</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple iPhone 4 with 16GB Memory Mobile Phone - Black MC676LL/A</ns2:title>
+            <ns2:link title="Apple iPhone 4 with 16GB Memory Mobile Phone - Black MC676LL/A" rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/2024/2024814_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/2024814"/>
+            <Name>Apple iPhone 4 with 16GB Memory Mobile Phone - Black MC676LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple iPhone 4 with 16GB Memory Mobile Phone - White MC677LL/A</ns2:title>
+            <ns2:link title="Apple iPhone 4 with 16GB Memory Mobile Phone - White MC677LL/A" rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/2643/2643427_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/2643427"/>
+            <Name>Apple iPhone 4 with 16GB Memory Mobile Phone - White MC677LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple iPhone 4 with 32GB Memory - Black 32GB BLK 4</ns2:title>
+            <ns2:link title="Apple iPhone 4 with 32GB Memory - Black 32GB BLK 4" rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/1049/1049087_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/1049087"/>
+            <Name>Apple iPhone 4 with 32GB Memory - Black 32GB BLK 4</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple iPhone 4 with 32GB Memory - White 32GB WHT 4</ns2:title>
+            <ns2:link title="Apple iPhone 4 with 32GB Memory - White 32GB WHT 4" rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/1049/1049245_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/1049245"/>
+            <Name>Apple iPhone 4 with 32GB Memory - White 32GB WHT 4</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple iPhone 4 with 32GB Memory Mobile Phone - Black MC678LL/A</ns2:title>
+            <ns2:link title="Apple iPhone 4 with 32GB Memory Mobile Phone - Black MC678LL/A" rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/2025/2025128_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/2025128"/>
+            <Name>Apple iPhone 4 with 32GB Memory Mobile Phone - Black MC678LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Apple iPhone 4 with 32GB Memory Mobile Phone - White MC679LL/A</ns2:title>
+            <ns2:link title="Apple iPhone 4 with 32GB Memory Mobile Phone - White MC679LL/A" rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/2645/2645425_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/2645425"/>
+            <Name>Apple iPhone 4 with 32GB Memory Mobile Phone - White MC679LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>APPLE WHITE 16GB IPHONE 3G MB499LL/A MB499LL/A</ns2:title>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/8975898"/>
+            <Name>APPLE WHITE 16GB IPHONE 3G MB499LL/A MB499LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>iPhone 4 8GB Black - AT&amp;T (Verizon) MD146LL/A </ns2:title>
+            <ns2:link title="iPhone 4 8GB Black - AT&amp;T (Verizon) MD146LL/A " rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/3815/3815245_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3815245"/>
+            <Name>iPhone 4 8GB Black - AT&amp;T (Verizon) MD146LL/A </Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>iPhone 4 8GB Black - AT&amp;T MD126LL/A </ns2:title>
+            <ns2:link title="iPhone 4 8GB Black - AT&amp;T MD126LL/A " rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/3815/3815041_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3815041"/>
+            <Name>iPhone 4 8GB Black - AT&amp;T MD126LL/A </Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>iPhone 4 8GB White - AT&amp;T (Verizon) MD200LL/A </ns2:title>
+            <ns2:link title="iPhone 4 8GB White - AT&amp;T (Verizon) MD200LL/A " rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/3815/3815272_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3815272"/>
+            <Name>iPhone 4 8GB White - AT&amp;T (Verizon) MD200LL/A </Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>iPhone 4 8GB White - AT&amp;T MD196LL/A </ns2:title>
+            <ns2:link title="iPhone 4 8GB White - AT&amp;T MD196LL/A " rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/3815/3815157_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3815157"/>
+            <Name>iPhone 4 8GB White - AT&amp;T MD196LL/A </Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>SPRINT APPLE IPHONE MD146LL/A MD146LL/A</ns2:title>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3815175"/>
+            <Name>SPRINT APPLE IPHONE MD146LL/A MD146LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>SPRINT IPHONE 4 8GB SPR MD146LL/A SPR MD146LL/A</ns2:title>
+            <ns2:link title="SPRINT IPHONE 4 8GB SPR MD146LL/A SPR MD146LL/A" rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/3825/3825048_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3825048"/>
+            <Name>SPRINT IPHONE 4 8GB SPR MD146LL/A SPR MD146LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>SPRINT IPHONE 4 8GB SPR MD200LL/A SPR MD200LL/A</ns2:title>
+            <ns2:link title="SPRINT IPHONE 4 8GB SPR MD200LL/A SPR MD200LL/A" rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/3825/3825057_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3825057"/>
+            <Name>SPRINT IPHONE 4 8GB SPR MD200LL/A SPR MD200LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>SPRINT IPHONE 4S 16G MD377LL/A MD377LL/A</ns2:title>
+            <ns2:link title="SPRINT IPHONE 4S 16G MD377LL/A MD377LL/A" rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/3566/3566775_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3566775"/>
+            <Name>SPRINT IPHONE 4S 16G MD377LL/A MD377LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Sprint iPhone 4S 16G MD378LL/A MD378LL/A</ns2:title>
+            <ns2:link title="Sprint iPhone 4S 16G MD378LL/A MD378LL/A" rel="image" href="http://images.bestbuy.com/BestBuy_US/images/products/3566/3566966_sc.jpg"/>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3566966"/>
+            <Name>Sprint iPhone 4S 16G MD378LL/A MD378LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Sprint iPhone 4S 32G MD379LL/A MD379LL/A</ns2:title>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3566902"/>
+            <Name>Sprint iPhone 4S 32G MD379LL/A MD379LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>Sprint iPhone 4S 32G MD380LL/A MD380LL/A</ns2:title>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3566948"/>
+            <Name>Sprint iPhone 4S 32G MD380LL/A MD380LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>SPRINT IPHONE 4S 64G MD381LL/A MD381LL/A</ns2:title>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3814033"/>
+            <Name>SPRINT IPHONE 4S 64G MD381LL/A MD381LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+        <CatalogItemResource>
+            <ns2:title>SPRINT IPHONE 4S 64G MD382LL/A MD382LL/A</ns2:title>
+            <ns2:link title="Trade in" rel="self" href="http://hydra-pt:8080/store-271/catalog/products/3814088"/>
+            <Name>SPRINT IPHONE 4S 64G MD382LL/A MD382LL/A</Name>
+            <Description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            <Slug>mobile-phones</Slug>
+            <RecyclingCategorySlug xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+        </CatalogItemResource>
+    </Items>
+</CatalogResource>

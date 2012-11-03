@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://bestbuy.com/bbym/beast/portal/customerinfo/response"
+	targetNamespace="http://bestbuy.com/bbym/beast/portal/customerinfo/response"
+	elementFormDefault="qualified" xmlns:common="http://bestbuy.com/bbym/ise/common">
+	<xs:import namespace="http://bestbuy.com/bbym/ise/common"
+		schemaLocation="ISE_COMMON.XSD" />
+
+	<xs:element name="Customer">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="bbyAccount" minOccurs="0" type="BbyAccountType" />
+				<xs:element name="capTransactionId" minOccurs="0" type="xs:string" />
+				<xs:element name="carrierAccount" minOccurs="0"
+					type="CarrierAccountType" />
+				<xs:element name="createdBy" minOccurs="0" type="xs:string" />
+				<xs:element name="createdDate" minOccurs="0" type="xs:string" />
+				<xs:element name="dataSharingKey" minOccurs="0"
+					type="common:DataSharingKeyType" />
+				<xs:element name="lastModifiedBy" minOccurs="0" type="xs:string" />
+				<xs:element name="lastModifiedDate" minOccurs="0"
+					type="xs:dateTime" />
+				<xs:element name="recommendation" minOccurs="0"
+					type="common:RecommendationType" />
+				<xs:element name="source" minOccurs="0" type="xs:string" />
+				<xs:element name="storeId" minOccurs="0" type="xs:string" />
+				<xs:element name="transferFlag" minOccurs="0"
+					type="common:TransferFlagType" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="CarrierAccountType">
+		<xs:complexContent>
+			<xs:extension base="common:CustomerProfileType">
+				<xs:sequence>
+					<xs:element name="carrierAccountNumber" minOccurs="0"
+						type="common:AccountNumberType" />					<xs:element name="coverageZip" minOccurs="0"						type="common:ZipCodeType" />
+					<xs:element name="carrier" minOccurs="0"
+						type="common:CarrierType" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="BbyAccountType">
+		<xs:complexContent>
+			<xs:extension base="common:CustomerProfileType">
+				<xs:sequence>
+					<xs:element name="bbyCustomerId" minOccurs="0"
+						type="common:AccountNumberType" />
+					<xs:element name="rewardZoneNbr" minOccurs="0" type="xs:string" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,37 @@
+<html
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<title>Our Recommendations</title>	
+</wicket:head>
+<body>
+
+	<wicket:extend>
+            <h2><div wicket:id="sectionTitle"/></h2>
+			<div class="column width-full">
+				
+				<div class="field">
+					<label><wicket:message
+							key="mobileOurRecommendationsSectionForm.connectivity.label" /> </label>
+		
+					<textarea style="height: 7.5em; width: 400px" maxlength="250"
+						wicket:id="connectivityPlanFeaturesUsage"> </textarea>
+					<div style="width: 410px; " align='right' >	
+					<p>(<span wicket:id="connectivityCountLabel"></span>)</p>
+					</div>
+				</div>
+				<div class="field">
+					<label><wicket:message
+							key="mobileOurRecommendationsSectionForm.phonedevice.label" /> </label>
+							
+					<textarea style="height: 4em; width: 400px" maxlength="100"
+						wicket:id="phoneDevice"> </textarea>
+					<div style="width: 410px; " align='right' >	
+						<p>(<span wicket:id="phoneDeviceCountLabel"></span>)</p>
+					</div>	
+				</div>				 
+				
+			</div>
+
+	</wicket:extend>
+</body>
+</html>
